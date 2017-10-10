@@ -1,0 +1,9 @@
+<%- include("../components/head") %>
+<div class="content-wrapper">
+    <div class="container-fluid">
+       <h3 id="statusCode"><%= error.status %></h3>
+       <p><%= message %></p>
+       <p><%= error.stack %></p>
+    </div>
+</div>
+<%- include("../components/footer") %>

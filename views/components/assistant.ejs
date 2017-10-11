@@ -1,0 +1,29 @@
+<%/*
+    assistant需要以下参数：
+    {
+        agentName: "", //经纪人姓名
+        abbreviation: "", //经纪人所属公司
+        agentHeadImgUrl: "", //头像地址
+        agentMobile: "", //电话
+        agentWChartQRImgUrl: "", //微信号
+        ...
+    }
+
+    使用方法：
+    include("../components/assistant.ejs", {...})
+*/%>
+
+<div class="assistant">
+        <a class="portrait" href="#">
+            <div class="left">
+                <img src="<%= agentHeadImgUrl%>">    
+            </div>
+            <div class="right">
+                <div class="name"><%= agentName%></div>
+                <div class="company-name"><%= abbreviation%></div>
+            </div>                        
+        </a>
+        <a class="wx">添加微信</a>
+        <a href="tel:<%= agentMobile%>" class="phone">电话咨询</a>
+</div>
+

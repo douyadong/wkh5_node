@@ -1,6 +1,101 @@
 <%- include("../components/head") %>
-<div class="content-wrapper">
-    <h2>租房详情页！</h2>
-    这是一个
+<div class="content-wrapper has-assistant">
+    <div class="wk-panel  has-right-padding">
+        <div class="panel-header">
+            基本信息
+        </div>
+        <div class="panel-body two-column-container">
+            <dl>
+                <dt>付款</dt>
+                <dd>付三押一</dd>
+            </dl>
+            <dl>
+                <dt>朝向</dt>
+                <dd>南</dd>
+            </dl>
+            <dl>
+                <dt>类型</dt>
+                <dd>公寓</dd>
+            </dl>
+            <dl>
+                <dt>装修</dt>
+                <dd>精装</dd>
+            </dl>
+            <dl>
+                <dt>年代</dt>
+                <dd>2004 年</dd>
+            </dl>
+            <dl>
+                <dt>楼层</dt>
+                <dd>高区/27层很高了哦真的</dd>
+            </dl>
+        </div>
+    </div>    
+
+    <%- include("../components/supporting.ejs",{houseSupporting:{
+        hasBad: 1, //床
+        hasSofa: 1, //沙发
+        hasDesk: 1, //桌子
+        hasTV: 0, //电视
+        hasInternet: 1, //宽带
+        hasAirConditioning: 1, //空调
+        hasWashMachine: 1, //洗衣机
+        hasWardrobe: 1, //衣柜
+        hasCookerHood: 1, //
+        hasWaterHeater: 1, //热水器
+        hasHeating: 0, //暖气
+        hasBalcony: 0, //阳台
+        hasGas: 1, //煤气
+        hasMicrowave: 1, //微波炉
+        hasFridge: 0 //冰箱
+    }}) %>   
+    <% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
+    <%- include("../components/assistant", agent) %>
+
+    <div class="wk-panel top-gap has-right-padding">
+        <div class="panel-header">
+            基本信息
+        </div>
+        <div class="panel-body column-container">
+            <dl>
+                <dt>主要卖点</dt>
+                <dd>静安寺商圈，南京西路商圈，中山公园商圈</dd>
+            </dl>
+            <dl>
+                <dt>业主心态</dt>
+                <dd>静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈</dd>
+            </dl>
+            <dl>
+                <dt>周边配套</dt>
+                <dd>静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈</dd>
+            </dl>                
+        </div>
+    </div>
+        
+    <div class="wk-panel top-gap">
+        <div class="panel-header">
+            相似房源
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>
+                    <a class="rent-item box">
+                        <div class="left">
+                            <img src="">
+                        </div>
+                        <div class="right">
+                            <h4>享受好房，南北通透，买到就是转到，赶紧下手吧</h4>
+                            <p class="base-info">
+                                2室2厅1卫 210m2 浦东新区 花木西路
+                            </p>
+                            <p class="unit-price">
+                                4000 元/月
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>    
+        </div>        
+    </div>
 </div>
 <%- include("../components/footer") %>

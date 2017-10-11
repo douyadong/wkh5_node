@@ -1,0 +1,48 @@
+<%/*
+    配套设施，需要如下参数：
+    houseSupporting:{
+        hasBad: 1, //床
+        hasSofa: 1, //沙发
+        hasDesk: 1, //桌子
+        hasTV: 1, //电视
+        hasInternet: 1, //宽带
+        hasAirConditioning: 1, //空调
+        hasWashMachine: 1, //洗衣机
+        hasWardrobe: 1, //衣柜
+        hasCookerHood: 1, //
+        hasWaterHeater: 1, //热水器
+        hasHeating: 1, //暖气
+        hasBalcony: 1, //阳台
+        hasGas: 1, //煤气
+        hasMicrowave: 1, //微波炉
+        hasFridge: 0 //冰箱
+    }
+
+
+
+*/%>
+
+<%
+    let mapping = {
+        bed: ['hasBad','床'],
+        tv: ['hasTV','电视'],
+        internet: ['hasInternet','宽带'],
+        airconditioner: ['hasAirConditioning','空调'],
+        washer: ['hasWashMachine','洗衣机'],
+        wardrobe: ['hasWardrobe','衣柜'],
+        heater: ['hasWaterHeater','热水器'],
+        heating: ['hasHeating','暖气'],
+        balcony: ['hasBalcony','阳台'],
+        gas: ['hasGas','煤气'],
+        microwave: ['hasMicrowave','微波炉'],
+        refrigerator: ['hasFridge','冰箱']
+    };    
+%>
+<div class="wk-panel top-gap">
+    <div class="panel-header">
+        配套设施
+    </div>
+    <ul class="panel-body supporting"> 
+        <%for(let key in mapping){%><li class="<%= (houseSupporting[mapping[key][0]]?'':'strike')%>"><i class="icon iconfont icon-<%= key%>"></i> <%= mapping[key][1]%></li><%}%>        
+    </ul>
+</div> 

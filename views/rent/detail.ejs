@@ -1,36 +1,67 @@
 <%- include("../components/head") %>
 <div class="content-wrapper has-assistant">
-    <div class="wk-panel  has-right-padding">
-        <div class="panel-header">
-            基本信息
+    <div class="wk-panel has-right-padding">
+        <div class="panel-header house-title">
+            朝南户型，小区绿化好，环境优美。物业24小时，装修温馨怡人。
         </div>
-        <div class="panel-body two-column-container">
-            <dl>
-                <dt>付款</dt>
-                <dd>付三押一</dd>
-            </dl>
-            <dl>
-                <dt>朝向</dt>
-                <dd>南</dd>
-            </dl>
-            <dl>
-                <dt>类型</dt>
-                <dd>公寓</dd>
-            </dl>
-            <dl>
-                <dt>装修</dt>
-                <dd>精装</dd>
-            </dl>
-            <dl>
-                <dt>年代</dt>
-                <dd>2004 年</dd>
-            </dl>
-            <dl>
-                <dt>楼层</dt>
-                <dd>高区/27层很高了哦真的</dd>
-            </dl>
+        <div class="panel-body">
+            <div class="price-type-area">
+                <div class="column-container price">
+                    <dl>
+                        <dt>租金</dt>
+                        <dd>4000 元/月</dd>
+                    </dl>
+                </div>
+                <div class="column-container type">
+                    <dl>
+                        <dt>户型</dt>
+                        <dd>2室1厅1卫</dd>
+                    </dl>
+                </div>
+                <div class="column-container area">
+                    <dl>
+                        <dt>面积</dt>
+                        <dd>50m2</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="tags">
+                    <span class="tag">降价</span><span class="tag">新上</span><span class="tag">精装</span><span class="tag">朝南</span>
+            </div>
+            <div class="two-column-container has-bottom-border">
+                <dl>
+                    <dt>付款</dt>
+                    <dd>付三押一</dd>
+                </dl>
+                <dl>
+                    <dt>朝向</dt>
+                    <dd>南</dd>
+                </dl>
+                <dl>
+                    <dt>类型</dt>
+                    <dd>公寓</dd>
+                </dl>
+                <dl>
+                    <dt>装修</dt>
+                    <dd>精装</dd>
+                </dl>
+                <dl>
+                    <dt>年代</dt>
+                    <dd>2004 年</dd>
+                </dl>
+                <dl>
+                    <dt>楼层</dt>
+                    <dd>高区/27层</dd>
+                </dl>
+            </div>
+            <div class="one-column-container">
+                <dl>
+                    <dt>小区</dt>
+                    <dd class="has-arrow"><a href="#">贝港南区</a></dd>
+                </dl>
+            </div>
         </div>
-    </div>    
+    </div>        
 
     <%- include("../components/supporting.ejs",{houseSupporting:{
         hasBad: 1, //床
@@ -137,6 +168,6 @@
                 <!-- </li> -->
             </ul>    
         </div>        
-    </div>
+    </div>    
 </div>
 <%- include("../components/footer") %>

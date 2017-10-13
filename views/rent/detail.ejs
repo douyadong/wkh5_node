@@ -1,5 +1,8 @@
 <%- include("../components/head") %>
-<div class="content-wrapper has-assistant">    
+<div class="content-wrapper has-assistant">   
+    <% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
+    <%- include("../components/assistant", agent) %>
+
     <% 
     let imgList = [{
         isVideo: true,
@@ -102,8 +105,7 @@
         hasMicrowave: 1, //微波炉
         hasFridge: 0 //冰箱
     }}) %>   
-    <% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
-    <%- include("../components/assistant", agent) %>
+    
 
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">

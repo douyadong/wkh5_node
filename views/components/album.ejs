@@ -17,7 +17,7 @@
                     if(imgList[i].isVideo){
         %>
                     <div class="swiper-slide">
-                        <div class="item" style="background-image:url(<%= imgList[i].imageUrl%>)">               
+                        <div class="item video" style="background-image:url(<%= imgList[i].imageUrl%>)">               
                             <div class="play">
                                 <div class="triangle">
                                 </div>
@@ -31,7 +31,7 @@
                     }else{
         %>
                         <div class="swiper-slide">
-                            <div class="item" style="background-image:url(<%= imgList[i].url%>)">                   <div class="indicator">
+                            <div data-url="<%= imgList[i].url%>" class="item img" style="background-image:url(<%= imgList[i].url%>)">                   <div class="indicator">
                                     <%= i+1%>/<%= imgList.length%>
                                 </div>             
                             </div>
@@ -42,8 +42,4 @@
             }        
         %>                
     </div>                
-</div>
-
-<div class="preview-image">
-    
 </div>

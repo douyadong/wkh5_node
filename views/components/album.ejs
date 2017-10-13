@@ -1,0 +1,49 @@
+<%# 
+    需要的参数：
+    [{
+        isVideo: true,//是视频
+        url: "",//视频地址
+        imageUrl: ""//图片地址
+    },{
+        isVideo: false,//不是视频
+        url: ""//图片地址
+    }]
+%>
+<div class="swiper-container album">
+    <div class="swiper-wrapper">
+        <%
+            if(imgList && imgList.length > 0){
+                for(let i = 0; i < imgList.length; i++){
+                    if(imgList[i].isVideo){
+        %>
+                    <div class="swiper-slide">
+                        <div class="item" style="background-image:url(<%= imgList[i].imageUrl%>)">               
+                            <div class="play">
+                                <div class="triangle">
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <%= i+1%>/<%= imgList.length%>
+                            </div>
+                         </div>
+                    </div>
+        <%                
+                    }else{
+        %>
+                        <div class="swiper-slide">
+                            <div class="item" style="background-image:url(<%= imgList[i].url%>)">                   <div class="indicator">
+                                    <%= i+1%>/<%= imgList.length%>
+                                </div>             
+                            </div>
+                        </div>
+        <%
+                    }
+                }
+            }        
+        %>                
+    </div>                
+</div>
+
+<div class="preview-image">
+    
+</div>

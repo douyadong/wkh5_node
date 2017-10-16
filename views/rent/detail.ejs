@@ -1,5 +1,30 @@
 <%- include("../components/head") %>
-<div class="content-wrapper has-assistant">
+<div class="content-wrapper has-assistant">   
+    <% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
+    <%- include("../components/assistant", agent) %>
+
+    <% 
+    let imgList = [{
+        isVideo: true,
+        url: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4",
+        imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL"
+    },{
+        url: "https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"
+    },{
+        url: "https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"
+    },{
+        url: "https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"
+    },{
+        url: "https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"
+    },{
+        url: "https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"
+    }]; 
+    %>
+
+    <div class="wk-panel remove-left-padding">
+        <%- include("../components/album",{imgList: imgList})%>
+    </div>
+
     <div class="wk-panel has-right-padding">
         <div class="panel-header house-title">
             朝南户型，小区绿化好，环境优美。物业24小时，装修温馨怡人。
@@ -21,7 +46,7 @@
                 <div class="column-container area">
                     <dl>
                         <dt>面积</dt>
-                        <dd>50m2</dd>
+                        <dd>50 ㎡</dd>
                     </dl>
                 </div>
             </div>
@@ -63,7 +88,7 @@
         </div>
     </div>        
 
-    <%- include("../components/supporting.ejs",{houseSupporting:{
+    <%- include("../components/supporting",{houseSupporting:{
         hasBad: 1, //床
         hasSofa: 1, //沙发
         hasDesk: 1, //桌子
@@ -80,8 +105,7 @@
         hasMicrowave: 1, //微波炉
         hasFridge: 0 //冰箱
     }}) %>   
-    <% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
-    <%- include("../components/assistant", agent) %>
+    
 
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">
@@ -117,7 +141,7 @@
                         <div class="right">
                             <h4>享受好房，南北通透，买到就是转到，赶紧下手吧</h4>
                             <p class="base-info">
-                                2室2厅1卫 210m2 浦东新区 花木西路
+                                2室2厅1卫 210㎡ 浦东新区 花木西路
                             </p>
                             <p class="tags">
                                 <span class="tag">新上</span>
@@ -136,7 +160,7 @@
                         <div class="right">
                             <h4>享受好房，南北通透，买到就是转到，赶紧下手吧</h4>
                             <p class="base-info">
-                                2室2厅1卫 210m2 浦东新区 花木西路
+                                2室2厅1卫 210㎡ 浦东新区 花木西路
                             </p>
                             <p class="tags">
                                 <span class="tag">新上</span>
@@ -155,7 +179,7 @@
                         <div class="right">
                             <h4>享受好房，南北通透，买到就是转到，赶紧下手吧</h4>
                             <p class="base-info">
-                                2室2厅1卫 210m2 浦东新区 花木西路
+                                2室2厅1卫 210㎡ 浦东新区 花木西路
                             </p>
                             <p class="tags">
                                 <span class="tag">新上</span>

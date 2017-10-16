@@ -1,0 +1,74 @@
+<%# 
+    需要的参数：
+    [{
+        isVideo: true,//是视频
+        url: "",//视频地址
+        imageUrl: ""//图片地址
+    },{
+        isVideo: false,//不是视频
+        url: ""//图片地址
+    }]
+%>
+<div class="swiper-container album">
+    <div class="swiper-wrapper">
+        <%
+            let startIndex = 0;
+            if(imgList && imgList.length > 0){                
+                for(let i = 0; i < imgList.length; i++){
+                    if(imgList[i].isVideo){    
+                        startIndex = 1;                    
+        %>
+                    <div class="swiper-slide">
+                        <div class="item video" style="background-image:url(<%= imgList[i].imageUrl%>);background-repeat: no-repeat;background-size:100%">               
+                            <div class="play">
+                                <div class="triangle">
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <%= i+1%>/<%= imgList.length%>
+                            </div>
+                         </div>
+                    </div>
+        <%                
+                    }else{
+        %>
+                        <div class="swiper-slide">
+                            <div data-index="<%= i - startIndex%>" data-url="<%= imgList[i].url%>" class="item img" style="background-image:url(<%= imgList[i].url%>);background-repeat:no-repeat;background-size:100%;">                   
+                                <div class="indicator">
+                                    <%= i+1%>/<%= imgList.length%>
+                                </div>             
+                            </div>
+                        </div>
+        <%
+                    }
+                }
+            }        
+        %>                
+    </div>  
+
+    <div style="display:none" class="preview-image-template">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <%
+                    if(imgList && imgList.length> 0){
+                        for(let i = 0; i < imgList.length; i++){
+                            if(!imgList[i].isVideo){
+                %>
+                    <div class="swiper-slide">
+                        <div class="preview-item">
+                            <img src="">
+                            <div class="indicator">
+                                <%= i+1 - startIndex%>/<%= imgList.length - startIndex%>
+                            </div>             
+                        </div>
+                    </div>
+                <%
+                            }
+                        }
+                    }
+                %>
+                
+            </div>
+        </div>
+    </div>              
+</div>

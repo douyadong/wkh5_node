@@ -7,14 +7,14 @@
         <meta name="keywords" content="<%= keywords %>">
         <meta name="description" content="<%= description %>"> 
         <!-- 引入stylesheet资源 -->               
-        <link rel="stylesheet" href="<%= appStaticPrefix %>/css/app.min.css">
+        <link rel="stylesheet" href="<%= appStaticPrefix %>/css/app.min.css?v=<%= version %>">
         <!--如果需要额外的样式表文件-->
         <%  
             if(extraStylesheets) {
                 extraStylesheets.forEach(function(extraStylesheet){ %>
-        <link rel="stylesheet" href="<%= extraStylesheet %>">
+        <link rel="stylesheet" href="<%= extraStylesheet %>?v=<%= version %>">
         <% }) } ; %>      
-        <% if(matchStylesheet) { %><link rel="stylesheet" href="<%= appStaticPrefix %>/css/<%= matchStylesheet %>.min.css"><% } %>        
+        <% if(matchStylesheet) { %><link rel="stylesheet" href="<%= appStaticPrefix %>/css/<%= matchStylesheet %>.min.css?v=<%= version %>"><% } %>        
     </head>
     <body>    
   

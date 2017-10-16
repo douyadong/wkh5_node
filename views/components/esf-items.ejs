@@ -1,0 +1,51 @@
+<%
+    let esfSources = [
+        {
+            "houseId" : 123568 ,
+            "houseImgUrl" : "https://img.wkzf.com/7257fbd251e2487f90b4ae8db10939ef.ML" ,
+            "houseTitle" : "南北通透，看房方便" ,
+            "houseChild" : "3室1厅1卫" ,
+            "areaStr" : "96.30㎡" ,            
+            "totalPrice" : 300 ,
+            "unitPrice" : 31250 ,
+            "district" : "长宁区" ,
+            "town" : "虹桥" ,
+            "isTopHouse" : 8 ,
+            "isStorePush" : 2 ,
+            "commAgent" : 0 ,
+            "fullYears" : 4 ,
+            "onlyOne" : 1 ,
+            "isSubwayHouse" : 0 ,
+            "isSchoolHouse" : 0 ,
+            "isNewOnStore" : 0 ,
+            "orientation" : 8
+        }
+    ] ;
+%>
+<% esfSources.forEach(function(esf){ %>
+    <a href="/esf/<%= esf.houseId %>.html" class="esf-item">
+        <dl>
+            <dt><img src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150"></dt>
+            <dd class="title"><%= esf.houseTitle %></dd>
+            <dd>
+                <span class="layout"><%= esf.houseChild %> <%= esf.areaStr %></span>
+                <span class="money"><%= esf.totalPrice %> 万</span>
+            </dd>
+            <dd>
+                 <span class="location"><%= esf.district %> <%= esf.town %></span>
+                 <span class="price"><%= esf.unitPrice %> 元/㎡</span>
+            </dd>
+            <dd class="tags">
+                <% if(esf.isTopHouse >1) { %><span class="selected">精选</span>
+                <% } else if(esf.isStorePush === 1) { %><span>店长推荐</span>
+                <% } else if(esf.commAgent > 0) { %><span>急售</span><% } %>                
+                <% if(esf.fullYears >= 5 && esf.onlyOne == 1) { %><span>满五唯一</span><% } %>
+                <% if(esf.fullYears >= 2) { %><span>满二</span><% } %>
+                <% if(esf.isSubwayHouse === 1) { %><span>地铁</span><% } %>
+                <% if(esf.isSchoolHouse === 1) { %><span>近学校</span><% } %>
+                <% if(esf.isNewOnStore === 1) { %><span>新上</span><% } %>
+                <% if(esf.orientation === 9) { %><span>南北通透</span><% } %>    
+            </dd>                    
+        </dl>
+    </a>
+<% }) ; %>

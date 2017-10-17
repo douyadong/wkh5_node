@@ -40,13 +40,13 @@
 
     //合并视频和图片
     var imgList = [];
-    if(item.houseVideos){
-        imgList.push({
-            isVideo: true,
-            url: item.houseVideos.videoUrl,
-            imageUrl: item.houseVideos.imageUrl
-        });
-    }
+    // if(item.houseVideos){
+    //     imgList.push({
+    //         isVideo: true,
+    //         url: item.houseVideos.videoUrl,
+    //         imageUrl: item.houseVideos.imageUrl
+    //     });
+    // }
     if(item.imgList && item.imgList.length > 0){
         for(let i = 0; i < item.imgList.length; i++){
             imgList.push({

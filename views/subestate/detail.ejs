@@ -1,25 +1,67 @@
 <%- include("../components/head") %>
+<%
+    let item = {
+        // houseVideos: {
+        //     imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL",
+        //     videoUrl: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4"
+        // },
+        imgList: ["https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"], 
+        district: "黄浦区",
+        town: "小东门街道",
+        propertyRight: 70,
+        completedStr: 2010,
+        totalHouse: 990,
+        propertyType: "住宅",
+        propertyCharges: "4.9",
+        greenRate: 35,
+        volumeRate: 3.5,
+        propertyCompany: "戴德梁行",
+        developers: "上海中建房地产开发公司",
+        subwayName: "9号线[ 杨高中路-松江南路 ]",
+        schoolName: "上海市上文中学",
+
+        comments: [{
+            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
+            mobile: "15586952363",
+            datetime: "2015-06-03 12:02:01",
+            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
+        },{
+            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
+            mobile: "15586952363",
+            datetime: "2015-06-03 12:02:01",
+            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
+        },{
+            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
+            mobile: "15586952363",
+            datetime: "2015-06-03 12:02:01",
+            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
+        }]
+    };
+
+    //合并视频和图片
+    var imgList = [];
+    if(item.houseVideos){
+        imgList.push({
+            isVideo: true,
+            url: item.houseVideos.videoUrl,
+            imageUrl: item.houseVideos.imageUrl
+        });
+    }
+    if(item.imgList && item.imgList.length > 0){
+        for(let i = 0; i < item.imgList.length; i++){
+            imgList.push({
+                url: item.imgList[i]
+            });
+        }
+    }
+    item.imgList = imgList;
+%>
+
 <div class="content-wrapper has-assistant">
-        <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <video id="videoplay" src="http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4" poster="https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL" controls="controls" preload="none">
-                        </video>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL">
-                    </div>
-                </div>                
-            </div>
+    <!-- 轮播图片 -->
+    <div class="wk-panel remove-left-padding">
+        <%- include("../components/album",{imgList: item.imgList})%>
+    </div>
 
     <div class="wk-panel has-right-padding">
         <div class="panel-body one-column-container">
@@ -28,7 +70,7 @@
                     所属板块
                 </dt>
                 <dd>
-                    黄浦区 小东门街道
+                    <%= item.district%> <%= item.town%>
                 </dd>
             </dl>
             <dl>
@@ -36,7 +78,7 @@
                     产权年代
                 </dt>
                 <dd>
-                    70年
+                    <%= item.propertyRight%>年
                 </dd>
             </dl>
             <dl>
@@ -44,7 +86,7 @@
                     竣工年代
                 </dt>
                 <dd>
-                    2010年
+                    <%= item.completedStr%>年
                 </dd>
             </dl>
             <dl>
@@ -52,7 +94,7 @@
                     房屋总数
                 </dt>
                 <dd>
-                    900户
+                    <%= item.totalHouse%>户
                 </dd>
             </dl>
             <dl>
@@ -60,7 +102,7 @@
                     物业类型
                 </dt>
                 <dd>
-                    住宅
+                    <%= item.propertyType%>
                 </dd>
             </dl>
             <dl>
@@ -68,7 +110,7 @@
                     物业费
                 </dt>
                 <dd>
-                    4.9 元/m2/月
+                    <%= item.propertyCharges%> 元/㎡/月
                 </dd>
             </dl>
             <dl>
@@ -76,7 +118,7 @@
                     绿化率
                 </dt>
                 <dd>
-                    35%
+                    <%= item.greenRate%>%
                 </dd>
             </dl>
             <dl>
@@ -84,7 +126,7 @@
                     容积率
                 </dt>
                 <dd>
-                    3.5
+                    <%= item.volumeRate%>
                 </dd>
             </dl>
             <dl>
@@ -92,7 +134,7 @@
                     物业公司
                 </dt>
                 <dd>
-                    戴德梁行
+                    <%= item.propertyCompany%>
                 </dd>
             </dl>
             <dl>
@@ -100,18 +142,16 @@
                     开发商
                 </dt>
                 <dd>
-                    上海中建房地产开发公司
+                    <%= item.developers%>
                 </dd>
             </dl>
-            <br/>
-            <hr/>
-            <br/>
+            <div class="has-bottom-border"></div>            
             <dl>
                 <dt>
                     地铁
                 </dt>
                 <dd>
-                    9号线[ 杨高中路-松江南路 ]
+                    <%= item.subwayName%>
                 </dd>
             </dl>
             <dl>
@@ -119,7 +159,7 @@
                     学校
                 </dt>
                 <dd>
-                    上海市上文中学
+                    <%= item.schoolName%>
                 </dd>
             </dl>
         </div>
@@ -130,8 +170,10 @@
             小区评论
         </div>
         <div class="panel-body">
-
+            <%- include("../components/subestate-comments",{comments: item.comments})%>
         </div>
     </div>
+
+    <%- include("../components/map")%>
 </div>
 <%- include("../components/footer") %>

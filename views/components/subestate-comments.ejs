@@ -1,0 +1,27 @@
+<%
+    let items = comments;
+%>
+<div>
+    <%if(items && items.length > 0){
+        for(let i = 0; i < items.length; i++){     
+        let item = items[i];    
+    %>
+    <div class="subestate-comment box">
+        <div class="left">
+            <img src="<%= item.avatar%>">
+        </div>
+        <div class="right">
+            <p class="mobile">
+                <%= item.mobile%>
+            </p>
+            <p class="datetime">
+                <%= item.datetime%>
+            </p>
+            <div class="content">
+                <%= item.content%>
+            </div>
+        </div>
+    </div>    
+
+    <%}}%>
+</div>

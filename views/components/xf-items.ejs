@@ -1,0 +1,35 @@
+<%
+    let xfSources = [
+        {
+            "estateId" : 123568 ,
+            "imageUrl" : "https://img.wkzf.com/7257fbd251e2487f90b4ae8db10939ef.ML" ,
+            "estateName" : "绿地长岛" ,
+            "districtName" : "崇明区" ,
+            "townName" : "南门" ,
+            "startSpace" : 80 ,            
+            "endSpace" : 120 ,
+            "isSoonOpen" : "1" ,            
+            "hasActivity" : "1" ,
+            "isSubwayEstate" : "0" ,
+            "hasVideo" : "0" ,
+            "avgPriceWou" : 9000
+        }
+    ] ;
+%>
+<% xfSources.forEach(function(xf){ %>
+    <a href="/" class="xf-item">
+        <dl>
+            <dt><img src="<%= xf.imageUrl %>?x-oss-process=image/resize,w_150" class="img-responsive"></dt>
+            <dd class="title"><%= xf.estateName %></dd>
+            <dd class="summary"> <%= xf.districtName %> <%= xf.townName %> <%= xf.startSpace %>-<%= xf.endSpace %> ㎡ </dd>            
+            <dd class="tags">
+                <% if( xf.isSoonOpen === '1' ) { %><span>即将开盘</span>
+                <% } else { %><span>在售楼盘</span><% } %>
+                <% if( xf.hasActivity === '1' ) { %><span>有优惠</span><% } %>
+                <% if( xf.isSubwayEstate === '1' ) { %><span>地铁</span><% } %>
+                <% if( xf.hasVideo === '1' ) { %><span>有视频</span><% } %>                                 
+            </dd>
+            <dd class="price"><%= xf.avgPriceWou %> 元/㎡</dd>
+        </dl>
+    </a>
+<% }) ; %>

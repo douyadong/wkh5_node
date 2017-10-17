@@ -1,11 +1,11 @@
         <!--页面脚本区域-->        
-        <script src="<%= appStaticPrefix %>/js/app.min.js"></script>
+        <script src="<%= appStaticPrefix %>/js/app.min.js?v=<%= version %>"></script>
         <% 
             if(extraJavascripts) {
                 extraJavascripts.forEach(function(extraJavascript){
          %>
-        <script src="<%= extraJavascript %>"></script>
+        <script src="<%= extraJavascript %>?v=<%= version %>"></script>
         <% }) } ; %>             
-        <% if(matchJavascript) { %><script data-main="<%= appStaticPrefix %>/js/<%= matchJavascript %>.min.js" src="<%= utilStaticPrefix %>/wkzf/js/require.min.js"></script><% } %>        
+        <% if(matchJavascript) { %><script data-main="<%= appStaticPrefix %>/js/<%= matchJavascript %>.min.js?v=<%= version %>" src="<%= utilStaticPrefix %>/wkzf/js/require.min.js?v=<%= version %>"></script><% } %>        
     </body>
 </html>

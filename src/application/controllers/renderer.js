@@ -16,7 +16,7 @@ import UrlParser from "../../system/libraries/urlParser" ;
 class AppRendererControllerBasic extends SystemRendererControllerBasic {
     constructor(req, res, next) {
         super(req, res, next) ;
-        let appConf = this.req.app.locals.confs.app ;
+        let appConf = this.req.app.locals.confs.app ;        
         let up = new UrlParser(req.originalUrl) ;
         let MCCombined = up.getMCCombined() ;
         Object.assign(this.templateData, {

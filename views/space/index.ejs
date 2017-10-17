@@ -4,38 +4,38 @@
 <div class="wk-panel highlight">
     <div class="panel-body">
         <dl class="card">
-            <dt><img src="https://img.wkzf.com/79e8ebcffeca45a5983c32a96ad9028d" class="img-responsive" alt=""></dt>
+            <dt><img src="<%= agent.agentHeadImgUrl %>" alt=""></dt>
             <dd>
                 <div class="agent-name">
-                    <span class="name">王东华</span>
-                    <span class="good">好</span>
+                    <span class="name"><%= agent.agentName %></span>
+                    <% if(agent.isWellAgent) { %><span class="good">好</span><% } %>
                 </div>
                 <div class="volume">
                     <i class="iconfont"></i>
-                    <span>成交 200 套</span>
+                    <span>成交 <%= agent.agentVolume %> 套</span>
                 </div>
             </dd>
-            <dd class="company">千祥房产</dd>
+            <dd class="company"><%= agent.agentBelongToCompanyName %></dd>
             <dd class="tags">
-                <span>长宁区好经纪人</span>
-                <span>静安区好经纪人</span>
-                <span>浦东新区好经纪人</span>
+                <% agent.wellAgentBizMessageList.forEach(function(wellAgentTag){ %>
+                <span><%= wellAgentTag %></span>
+                <% }) ; %>                
             </dd>
         </dl>
         <div class="more">查看更多</div>
         <div class="optional">
             <dl class="panel-item">
                 <dt>熟悉商圈：</dt>
-                <dd>庄行 、 南桥 、 金汇 、 青村</dd>
+                <dd><%= agent.agentBizTown %></dd>
             </dl>
             <dl class="panel-item">
                 <dt>自我介绍：</dt>
-                <dd class="long-text">本人从事中介行业数年，热爱这份服务行业。每位有缘认识房东和顾客，都成了终生朋友。现在加入悟空找房，队伍更加强大。感谢我生命中的每位贵人!</dd>
+                <dd class="long-text"><%= agent.agentIntroduction %></dd>
                 <dd class="switch"><i class="iconfont icon-down"></i></dd>
             </dl>
             <dl class="panel-item">
                 <dt>成交故事：</dt>
-                <dd class="long-text">王先生看中一套静安区的900万的房子，在帮他和房东多次沟通后，王先生顺利买到了心仪的房子</dd>
+                <dd class="long-text"><%= agent.agentStory %></dd>
                 <dd class="switch"><i class="iconfont icon-down"></i></dd>                
             </dl>
         </div>
@@ -52,8 +52,8 @@
     <!--tabs-frame部分-->
     <div class="wk-panel tabs-frame"><%- include("../components/esf-items") %></div>
     <div class="wk-panel tabs-frame"><%- include("../components/xf-items") %></div>
+    <div class="wk-panel tabs-frame"></div>
     <!--tabs-frame内容结束-->
 </div>
-<% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
 <%- include("../components/assistant", agent) %>
 <%- include("../components/footer") %>

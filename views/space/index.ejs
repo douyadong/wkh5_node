@@ -10,9 +10,8 @@
                     <span class="name"><%= agent.agentName %></span>
                     <% if(agent.isWellAgent) { %><span class="good">好</span><% } %>
                 </div>
-                <div class="volume">
-                    <i class="iconfont"></i>
-                    <span>成交 <%= agent.agentVolume %> 套</span>
+                <div class="sign">
+                    <span>通过认证</span><i class="iconfont icon-authen"></i>
                 </div>
             </dd>
             <dd class="company"><%= agent.agentBelongToCompanyName %></dd>
@@ -28,16 +27,20 @@
                 <dt>熟悉商圈：</dt>
                 <dd><%= agent.agentBizTown %></dd>
             </dl>
+            <% if(agent.agentIntroduction) { %>
             <dl class="panel-item">
                 <dt>自我介绍：</dt>
                 <dd class="long-text"><%= agent.agentIntroduction %></dd>
                 <dd class="switch"><i class="iconfont icon-down"></i></dd>
             </dl>
+            <% } %>
+            <% if(agent.agentStory) { %>
             <dl class="panel-item">
                 <dt>成交故事：</dt>
                 <dd class="long-text"><%= agent.agentStory %></dd>
                 <dd class="switch"><i class="iconfont icon-down"></i></dd>                
             </dl>
+            <% } %>
         </div>
     </div>
 </div>

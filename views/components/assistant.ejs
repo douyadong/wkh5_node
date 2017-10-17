@@ -12,7 +12,7 @@
     使用方法：
     include("../components/assistant.ejs", {...})
 */%>
-<% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555", agentWChartQRImgUrl:""};%>
+<% let agent = {agentName:"王小五", abbreviation:"志远地产", agentHeadImgUrl:"", agentMobile: "998555" , agentWChatId : "huagang_zhao" , agentWChartQRImgUrl:"http://www.eccn.com/events/2017/osram/images/weixin.gif"};%>
 <div class="assistant">
         <a class="portrait" href="#">
             <div class="left">
@@ -23,7 +23,7 @@
                 <div class="company-name"><%= abbreviation%></div>
             </div>                        
         </a>
-        <a class="wx">添加微信</a>
+        <% if(agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agentWChartQRImgUrl %>" data-agentwchatid="<%= agentWChatId %>">添加微信</a><% } %>
         <a href="tel:<%= agentMobile%>" class="phone">电话咨询</a>
 </div>
 

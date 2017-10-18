@@ -64,6 +64,12 @@ class AppRendererControllerBasic extends SystemRendererControllerBasic {
         let stage_env = this.req.app.locals.stage_env ;
         return staticConf["prefix"][stage_env] + staticConf[type] ;
     }
+    /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    生成事件埋点数据
+    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+    generateBigDataParams(obj){
+        return encodeURIComponent(JSON.stringify(obj));
+    }
 }
 
 export default AppRendererControllerBasic ;

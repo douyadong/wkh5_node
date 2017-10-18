@@ -123,7 +123,10 @@
                     agentMobile: "998555", 
                     agentWChartQRImgUrl: "",
                     agentWChatId : "",
-                    encryptHouseId: "hohajd234jljdf"
+                    encryptHouseId: "hohajd234jljdf",
+                    mobileBigDataParams: encodeURIComponent(JSON.stringify({eventName:"mobile"})), //电话埋点参数
+                    avatarBigDataParams: encodeURIComponent(JSON.stringify({eventName:"avatar"})), //头像点击埋点参数
+                    wxBigDataParams: encodeURIComponent(JSON.stringify({eventName:"wx"})), //点击添加微信埋点数据
                 }
         };  
 
@@ -311,7 +314,7 @@
             <div class="one-column-container">
                 <dl>
                     <dt>小区评论</dt>
-                    <dd class="estate-comment has-arrow"><a href="<%= 'http://m.wkzf.com' + '/estate/moreComment.html?subEstateId='+ item.subEstateId + '&commentLocation=1'%>">9 条</a></dd>
+                    <dd class="estate-comment has-arrow"><a href="<%= domain + '/estate/moreComment.html?subEstateId='+ item.subEstateId + '&commentLocation=1'%>">9 条</a></dd>
                 </dl>
 
             </div>

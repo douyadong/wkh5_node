@@ -9,6 +9,7 @@
             rentPriceStr: 4000,
             houseTypeStr: "2室1厅1卫",
             subEstateName: "贝港南区",
+            subEstateId: 2334,
             spaceArea: 50,
             district: "长宁区",
             town: "虹桥",
@@ -64,7 +65,8 @@
                        isHardcover: false,
                        isSouth: true
                     },
-                    rentPriceStr: "4000"
+                    rentPriceStr: "4000",
+                    encryptHouseId: "hohajd234jljdf"
                 },{
                     houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
                     houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
@@ -79,7 +81,8 @@
                        isHardcover: false,
                        isSouth: true
                     },
-                    rentPriceStr: "4000"
+                    rentPriceStr: "4000",
+                    encryptHouseId: "hohajd234jljdf"
                 },{
                     houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
                     houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
@@ -94,7 +97,8 @@
                        isHardcover: false,
                        isSouth: true
                     },
-                    rentPriceStr: "4000"
+                    rentPriceStr: "4000",
+                    encryptHouseId: "hohajd234jljdf"
                 },{
                     houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
                     houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
@@ -109,7 +113,8 @@
                        isHardcover: false,
                        isSouth: true
                     },
-                    rentPriceStr: "4000"
+                    rentPriceStr: "4000",
+                    encryptHouseId: "hohajd234jljdf"
                 }],
                 houseAgent: {
                     agentName: "王小五", 
@@ -117,7 +122,8 @@
                     agentHeadImgUrl:"", 
                     agentMobile: "998555", 
                     agentWChartQRImgUrl: "",
-                    agentWChatId : ""
+                    agentWChatId : "",
+                    encryptHouseId: "hohajd234jljdf"
                 }
         };  
 
@@ -149,10 +155,7 @@
    <%if(item.houseState != 4){%>    
    <%- include("../components/assistant", item.houseAgent) %>
    <%}%>
-
-    <div class="wk-panel remove-left-padding title">
-        <%= item.district%> <%= item.town%>
-    </div>
+    
     <!-- 轮播图片 -->
     <%if(!item.isExternal){%>
     <div class="wk-panel remove-left-padding">
@@ -234,7 +237,7 @@
             <div class="one-column-container">
                 <dl>
                     <dt>小区</dt>
-                    <dd class="has-arrow"><a href="#"><%= item.subEstateName%></a></dd>
+                    <dd class="has-arrow"><a href="../../subestate/detail/<%= item.subEstateId%>.html"><%= item.subEstateName%></a></dd>
                 </dl>
             </div>
         </div>
@@ -283,6 +286,38 @@
     </div>
     <%}%>
         
+    <div class="wk-panel top-gap has-right-padding">
+        <div class="panel-header">
+            小区信息
+        </div>
+        <div class="panel-body">
+            <div class="has-bottom-border">
+                <a class="subestate box" href="../../subestate/detail/helloworld.html">
+                    <div class="left">
+                        <img src="https://img.wkzf.com/03fe7f2137a74184839c4a664d09871f.DW">
+                    </div>
+                    <div class="right">
+                        <h4>虹东校区 M11 金座</h4>
+                        <p class="completed has-arrow">
+                            1993 年竣工&nbsp;&nbsp; | &nbsp;&nbsp; 150户
+                        </p>
+                        <p class="address">
+                            虹桥路 996弄
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="one-column-container">
+                <dl>
+                    <dt>小区评论</dt>
+                    <dd class="estate-comment has-arrow"><a href="<%= domain + '/estate/moreComment.html?subEstateId='+ item.subEstateId + '&commentLocation=1'%>">9 条</a></dd>
+                </dl>
+
+            </div>
+        </div>
+    </div>
+    <%- include("../components/map")%>
     <!-- 相似房源推荐 -->
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">

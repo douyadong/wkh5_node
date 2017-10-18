@@ -9,7 +9,7 @@
         for(let i = 0; i < similiarRentItems.length; i++){
             let item = similiarRentItems[i];
     %>
-        <a class="rent-item box" href="http://www.baidu.com">
+        <a class="rent-item box" href="<%= item.encryptHouseId%>.html">
             <div class="left">
                 <img src="<%= item.houseImages && item.houseImages.length > 0 && item.houseImages[0] || ""%>">
             </div>

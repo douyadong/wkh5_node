@@ -20,10 +20,10 @@
         %>
                     <div class="swiper-slide">
                         <div class="item video" style="background-image:url(<%= imgList[i].imageUrl%>);background-repeat: no-repeat;background-size:100%">               
-                            <div class="play">
+                            <a class="play" href="../../videoplay/index?src=<%= imgList[i].url%>">
                                 <div class="triangle">
                                 </div>
-                            </div>
+                            </a>
                             <div class="indicator">
                                 <%= i+1%>/<%= imgList.length%>
                             </div>

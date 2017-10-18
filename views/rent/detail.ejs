@@ -152,6 +152,35 @@
         if(item.houseId > 1000000000){
             item.isExternal = true;
         }    
+
+        //item.bigDataParams
+        item.clickImageBigDataParams = encodeURIComponent(JSON.stringify({
+            eventName: "1204007",
+            eventParam: {
+                rent_house_id: item.houseId
+            },
+            type: 2
+        }));
+        item.clickSubEstateBigDataParams = encodeURIComponent(JSON.stringify({
+            eventName: "1204008",
+            eventParam: {
+                estate_id: item.subEstateId
+            },
+            type: 2
+        }));
+        item.clickSubEstateInfoBigDataParams = encodeURIComponent(JSON.stringify({
+            eventName: "1204009",
+            eventParam: {
+                estate_id: item.subEstateId
+            },
+            type: 2
+        }));
+        item.clickMapBigDataParams = encodeURIComponent(JSON.stringify({
+            eventName: "1204011",
+            eventParam: {                
+            },
+            type: 2
+        }));
     %>
         
    <!-- 底部助手条 --> 
@@ -162,7 +191,7 @@
     <!-- 轮播图片 -->
     <%if(!item.isExternal){%>
     <div class="wk-panel remove-left-padding">
-        <%- include("../components/album",{imgList: item.imgList})%>
+        <%- include("../components/album",{imgList: item.imgList, bigDataParams: item.clickImageBigDataParams})%>
     </div>
     <%}%>
 
@@ -240,7 +269,7 @@
             <div class="one-column-container">
                 <dl>
                     <dt>小区</dt>
-                    <dd class="has-arrow"><a href="../../subestate/detail/<%= item.subEstateId%>.html"><%= item.subEstateName%></a></dd>
+                    <dd class="has-arrow"><a data-bigdata="<%= item.clickSubEstateBigDataParams%>" href="../../subestate/detail/<%= item.subEstateId%>.html"><%= item.subEstateName%></a></dd>
                 </dl>
             </div>
         </div>
@@ -295,7 +324,7 @@
         </div>
         <div class="panel-body">
             <div class="has-bottom-border">
-                <a class="subestate box" href="../../subestate/detail/helloworld.html">
+                <a data-bigdata="<%= item.clickSubEstateInfoBigDataParams%>" class="subestate box" href="../../subestate/detail/helloworld.html">
                     <div class="left">
                         <img src="https://img.wkzf.com/03fe7f2137a74184839c4a664d09871f.DW">
                     </div>
@@ -320,7 +349,7 @@
             </div>
         </div>
     </div>
-    <%- include("../components/map")%>
+    <%- include("../components/map",{bigDataParams: item.clickMapBigDataParams, longitude: 121.461263, latitude: 30.912875, address: '某个地方', subEstateName: '好小区'})%>
     <!-- 相似房源推荐 -->
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">

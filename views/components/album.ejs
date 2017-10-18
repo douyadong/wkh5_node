@@ -1,13 +1,16 @@
 <%# 
     需要的参数：
-    [{
-        isVideo: true,//是视频
-        url: "",//视频地址
-        imageUrl: ""//图片地址
-    },{
-        isVideo: false,//不是视频
-        url: ""//图片地址
-    }]
+    {
+        imgList : [{
+            isVideo: true,//是视频
+            url: "",//视频地址
+            imageUrl: ""//图片地址
+        },{
+            isVideo: false,//不是视频
+            url: ""//图片地址
+        }],
+        bigDataParams:"", //点击图片埋点参数
+    }
 %>
 <div class="swiper-container album">
     <div class="swiper-wrapper">
@@ -33,7 +36,7 @@
                     }else{
         %>
                         <div class="swiper-slide">
-                            <div data-index="<%= i - startIndex%>" data-url="<%= imgList[i].url%>" class="item img" style="background-image:url(<%= imgList[i].url%>);background-repeat:no-repeat;background-size:100%;">                   
+                            <div data-bigdata="<%= bigDataParams%>" data-index="<%= i - startIndex%>" data-url="<%= imgList[i].url%>" class="item img" style="background-image:url(<%= imgList[i].url%>);background-repeat:no-repeat;background-size:100%;">                   
                                 <div class="indicator">
                                     <%= i+1%>/<%= imgList.length%>
                                 </div>             

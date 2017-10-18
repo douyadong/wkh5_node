@@ -3,8 +3,8 @@
     <%
         //模拟数据
         let item = {
-            houseId: 1000000001,
-            houseState: 4,
+            houseId: 10000001,
+            houseState: 2,
             houseTitle: "朝南户型，小区绿化好，环境优美。物业24小时，装修温馨怡人。物业24小时，装修温馨怡人。",
             rentPriceStr: 4000,
             houseTypeStr: "2室1厅1卫",
@@ -112,11 +112,12 @@
                     rentPriceStr: "4000"
                 }],
                 houseAgent: {
-                    agentName:"王小五", 
-                    abbreviation:"志远地产", 
+                    agentName: "王小五", 
+                    abbreviation: "志远地产", 
                     agentHeadImgUrl:"", 
                     agentMobile: "998555", 
-                    agentWChartQRImgUrl:""
+                    agentWChartQRImgUrl: "",
+                    agentWChatId : ""
                 }
         };  
 
@@ -293,9 +294,9 @@
     </div>   
 
     <%if(item.houseState == 4){%>  
-    <div class="invalid-rent">
+    <a href="http://www.baidu.com" class="invalid-rent" data-bigdata='<%= encodeURIComponent(JSON.stringify({"eventName":"0002"}))%>'>
     该房源已下架
-    </div>
+    </a>
     <%}%>
 </div>
 <%- include("../components/footer") %>

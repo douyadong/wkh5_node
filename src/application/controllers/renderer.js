@@ -24,17 +24,18 @@ class AppRendererControllerBasic extends SystemRendererControllerBasic {
             "version" : appConf.version ,
             "title" : "" ,
             "keywords" : "" ,
-            "description" : "" ,
-            "theme" : "default" ,
+            "description" : "" ,            
             "appStaticPrefix" : this.getStaticPrefix("app") ,
             "utilStaticPrefix" : this.getStaticPrefix("util") ,
             "extraStylesheets" : [] ,
             "matchStylesheet" : MCCombined ,
             "extraJavascripts" : [] ,
             "matchJavascript" : MCCombined ,
-            "appName" : appConf.appName ,
-            "username" : "zhaohuagang" ,
-            "activeRouter" : { "controller" : up.getSection(0) , "method" : up.getSection(1) }
+            "appName" : appConf.appName ,            
+            "domain" : appConf.domain[this.req.app.locals.stage_env] ,
+            "wechatTitle" : "" ,
+            "wechatContent" : "" ,
+            "wechatImgUrl" : ""
         }) ;
         this.pluginStatic = {
             "css" : {

@@ -1,5 +1,10 @@
+        <!--用于微信分享用的参数配置隐藏域-->
+        <input type="hidden" id="wechatTitle" value="<%= wechatTitle %>">
+        <input type="hidden" id="wechatContent" value="<%= wechatContent %>">
+        <input type="hidden" id="wechatImgUrl" value="<%= wechatImgUrl %>">
         <!--页面脚本区域-->        
         <script src="<%= appStaticPrefix %>/js/app.min.js?v=<%= version %>"></script>
+        <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js?v=<%= version %>"></script>
         <% 
             if(extraJavascripts) {
                 extraJavascripts.forEach(function(extraJavascript){

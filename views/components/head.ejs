@@ -16,5 +16,5 @@
         <% }) } ; %>      
         <% if(matchStylesheet) { %><link rel="stylesheet" href="<%= appStaticPrefix %>/css/<%= matchStylesheet %>.min.css?v=<%= version %>"><% } %>        
     </head>
-    <body>    
+    <body <% if(appType === "mobile") { %>ontouchstart=""<% } %>>    
   

@@ -1,7 +1,7 @@
 <%
     let items = comments;
 %>
-<div>
+<div class="subestate-comments">
     <%if(items && items.length > 0){
         for(let i = 0; i < items.length; i++){     
         let item = items[i];    
@@ -12,13 +12,24 @@
         </div>
         <div class="right">
             <p class="mobile">
-                <%= item.mobile%>
+                <%= item.guest.guestPhoneNum%>
             </p>
             <p class="datetime">
-                <%= item.datetime%>
+                <%= item.createTimeStr%>
             </p>
             <div class="content">
-                <%= item.content%>
+                <%= item.comment%>
+                <%if(item.imgList && item.imgList.length > 0){
+                %>
+                    <div class="imgs">
+                <%
+                    for(let i = 0; i < item.imgList.length; i++){
+                        let img = item.imgList[i];
+                %><img class="preview-image-item" src="<%= img.url%>" ><%}%>
+                </div>
+                <%
+                } 
+                %>
             </div>
         </div>
     </div>    

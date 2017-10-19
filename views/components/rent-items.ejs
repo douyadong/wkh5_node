@@ -1,7 +1,10 @@
 <%# 
     参数：
     {
-        similiarRentItems: []
+        similiarRentItems: [{
+            ...//别的参数按照参数就好了
+            bigDataParams: "", //点击事件埋点
+        }]
     }
 %>
 <div>
@@ -9,7 +12,7 @@
         for(let i = 0; i < similiarRentItems.length; i++){
             let item = similiarRentItems[i];
     %>
-        <a class="rent-item box" href="<%= item.encryptHouseId%>.html">
+        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.encryptHouseId%>.html">
             <div class="left">
                 <img src="<%= item.houseImages && item.houseImages.length > 0 && item.houseImages[0] || ""%>">
             </div>
@@ -30,8 +33,11 @@
                         <%if(item.houseTag.isNewHouse){%>
                             <span class="tag">新上</span>        
                         <%}%>
-                        <%if(item.houseTag.isHardcover){%>
+                        <%if(item.houseTag.isHardcover == 1){%>
                             <span class="tag">精装</span>        
+                        <%}%>
+                        <%if(item.houseTag.isHardcover == 2){%>
+                            <span class="tag">豪装</span>        
                         <%}%>
                         <%if(item.houseTag.isSouth){%>
                             <span class="tag">朝南</span>        

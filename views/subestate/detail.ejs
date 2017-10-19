@@ -20,21 +20,20 @@
         subwayName: "9号线[ 杨高中路-松江南路 ]",
         schoolName: "上海市上文中学",
 
-        comments: [{
-            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
-            mobile: "15586952363",
-            datetime: "2015-06-03 12:02:01",
-            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
-        },{
-            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
-            mobile: "15586952363",
-            datetime: "2015-06-03 12:02:01",
-            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
-        },{
-            avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
-            mobile: "15586952363",
-            datetime: "2015-06-03 12:02:01",
-            content: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透"
+        commentList: [{                        
+            createTimeStr: "2015-06-03 12:02:01",
+            comment: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透",
+            guest: {
+                guestPhoneNum: "15586952363",
+                avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
+            },
+            imgList:[{
+                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+            },{
+                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+            },{
+                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+            }]
         }]
     };
 
@@ -170,10 +169,10 @@
             小区评论
         </div>
         <div class="panel-body">
-            <%- include("../components/subestate-comments",{comments: item.comments})%>
+            <%- include("../components/subestate-comments",{comments: item.commentList})%>
         </div>
     </div>
 
-    <%- include("../components/map")%>
+    <%- include("../components/map",{address:"地址是",subEstateName:"",longitude: 131, latitude: 32})%>
 </div>
 <%- include("../components/footer") %>

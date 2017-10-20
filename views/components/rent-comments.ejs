@@ -1,0 +1,62 @@
+<%#
+    需要参数:
+    {
+        comments: [{
+            landload: true,
+            orderLevel: 10,
+            createTimeStr: "2016-11-20 16:30",
+            comment: "南北通透，黄金楼层，满五唯一，精装修。",
+            guest: {
+                guestPhoneNum: "139*****234",
+                avatar: {
+                    url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
+                }
+            }
+        }],
+        subEstateId: 1234
+    }
+%>
+
+<%
+    //subEstateId = 1234;
+    //comments = [];
+%>
+
+<div>
+    <%if(comments && comments.length > 0){
+        for(let i = 0; i < comments.length; i++){ 
+            let item = comments[i];
+    %>        
+        <div class="rent-comment">
+            <div class="rent-comment-header">
+                <img src="<%= item.guest && item.guest.avatar && item.guest.avatar.url || ""%>"> 
+                <span class="mobile"><%= item.guest && item.guest.guestPhoneNum || ""%> </span>
+                <%if(item.orderLevel==10){%><i class="iconfont icon-youping"></i><%}%> 
+                <%if(item.landload){%><i class="iconfont icon-owner"></i><%}%>
+            </div>
+            <div class="rent-comment-body">
+                <%= item.comment%>
+                <%if(item.imgList && item.imgList.length > 0){
+                %>
+                    <div class="imgs">
+                <%
+                    for(let i = 0; i < item.imgList.length; i++){
+                        let img = item.imgList[i];
+                %><img class="preview-image-item" src="<%= img.url%>" ><%}%>
+                </div>
+                <%
+                } 
+                %>
+            </div>
+            <div class="rent-comment-footer">
+                <%= item.createTimeStr%>
+            </div>
+        </div>
+        <%}%>
+         <a class="more" href="<%= domain + '/estate/moreComment.html?subEstateId='+ subEstateId + '&commentLocation=1'%>">
+        查看更多
+    </a>
+    <%}else{%>   
+        <div class="no-data">当前暂无评论</div>
+    <%}%>   
+</div>

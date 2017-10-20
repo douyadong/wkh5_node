@@ -26,7 +26,7 @@
                 isSubwayHouse: true,
                 isPriceDown: true,
                 isNewHouse: false,
-                isHardcover: true,
+                isHardcover: 1,//1-精装，2-豪装
                 isSouth: true
             },
             houseVideos: {
@@ -62,11 +62,11 @@
                        isSubwayHouse: true,
                        isPriceDown: true,
                        isNewHouse: true,
-                       isHardcover: false,
+                       isHardcover: 2,
                        isSouth: true
                     },
                     rentPriceStr: "4000",
-                    encryptHouseId: "hohajd234jljdf"
+                    encryptHouseId: "hohajd234jljdf"                    
                 },{
                     houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
                     houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
@@ -124,10 +124,51 @@
                     agentWChartQRImgUrl: "",
                     agentWChatId : "",
                     encryptHouseId: "hohajd234jljdf",
-                    mobileBigDataParams: encodeURIComponent(JSON.stringify({eventName:"mobile"})), //电话埋点参数
-                    avatarBigDataParams: encodeURIComponent(JSON.stringify({eventName:"avatar"})), //头像点击埋点参数
-                    wxBigDataParams: encodeURIComponent(JSON.stringify({eventName:"wx"})), //点击添加微信埋点数据
-                }
+                    mobileBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204015", eventParam:{
+                        agent_id: 'agent_id',
+                        rent_house_id: 'rent_house_id'
+                    }})), //电话埋点参数
+                    avatarBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204014", eventParam:{
+                        agent_id: 'agentId'
+                    }})), //头像点击埋点参数
+                    wxBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204019", eventParam:{
+                        agent_id: 'agent_id',
+                        rent_house_id: 'rent_house_id'
+                    }})), //点击添加微信埋点数据
+                },
+                commentList: [{
+                    landload: true,
+                    orderLevel: 10,
+                    createTimeStr: "2016-11-20 16:30",
+                    comment: "南北通透，黄金楼层，满五唯一，精装修。essddf sdfdf",
+                    guest: {
+                        guestPhoneNum: "139*****234",
+                        avatar: {
+                            url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
+                        }                        
+                    },
+                    imgList: [{
+                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+                    },{
+                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+                    }]
+                },{
+                    landload: true,
+                    orderLevel: 10,
+                    createTimeStr: "2016-11-20 16:30",
+                    comment: "南北通透，黄金楼层，满五唯一，精装修。essddf hell owld",
+                    guest: {
+                        guestPhoneNum: "139*****234",
+                        avatar: {
+                            url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
+                        }                        
+                    },
+                    imgList: [{
+                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+                    },{
+                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+                    }]
+                }]
         };  
 
         //合并视频和图片
@@ -232,8 +273,11 @@
                     <%if(item.houseTag.isNewHouse){%>
                         <span class="tag">新上</span>
                     <%}%>
-                    <%if(item.houseTag.isHardcover){%>
+                    <%if(item.houseTag.isHardcover == 1){%>
                         <span class="tag">精装</span>
+                    <%}%>
+                    <%if(item.houseTag.isHardcover == 2){%>
+                        <span class="tag">豪装</span>
                     <%}%>
                     <%if(item.houseTag.isSouth){%>
                         <span class="tag">朝南</span>
@@ -276,8 +320,10 @@
     </div>        
 
     <!-- 配套设施 -->
+    <%if(!item.isExternal){%>
     <%- include("../components/supporting",{houseSupporting: item.houseSupporting}) %>   
-    
+    <%}%>
+
     <!-- 基本信息 -->
     <%if(!item.isExternal&&(item.sellPoint||item.ownerMotivation||item.aroundSupport)){%>
     <div class="wk-panel top-gap has-right-padding">
@@ -337,9 +383,10 @@
                             虹桥路 996弄
                         </p>
                     </div>
-                </a>
+                </a>                
             </div>
 
+            <!--
             <div class="one-column-container">
                 <dl>
                     <dt>小区评论</dt>
@@ -347,8 +394,18 @@
                 </dl>
 
             </div>
+            -->
         </div>
     </div>
+    <div class="wk-panel rent-comments">
+        <div class="panel-header has-bottom-border">
+            用户评论
+        </div>
+        <div class="panel-body has-right-padding">
+            <%- include('../components/rent-comments',{comments: item.commentList, subEstateId: item.subEstateId})%>
+        </div>
+    </div>
+
     <%- include("../components/map",{bigDataParams: item.clickMapBigDataParams, longitude: 121.461263, latitude: 30.912875, address: '某个地方', subEstateName: '好小区'})%>
     <!-- 相似房源推荐 -->
     <div class="wk-panel top-gap has-right-padding">
@@ -361,7 +418,7 @@
     </div>   
 
     <%if(item.houseState == 4){%>  
-    <a href="http://www.baidu.com" class="invalid-rent" data-bigdata='<%= encodeURIComponent(JSON.stringify({"eventName":"0002"}))%>'>
+    <a href="http://www.baidu.com" class="invalid-rent">
     该房源已下架
     </a>
     <%}%>

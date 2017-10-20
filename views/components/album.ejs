@@ -12,6 +12,9 @@
         bigDataParams:"", //点击图片埋点参数
     }
 %>
+<%
+    bigDataParams = typeof(bigDataParams) == 'undefined' ? '' : bigDataParams;
+%>
 <div class="swiper-container album">
     <div class="swiper-wrapper">
         <%
@@ -36,7 +39,7 @@
                     }else{
         %>
                         <div class="swiper-slide">
-                            <div data-bigdata="<%= bigDataParams%>" data-index="<%= i - startIndex%>" data-url="<%= imgList[i].url%>" class="item img" style="background-image:url(<%= imgList[i].url%>);background-repeat:no-repeat;background-size:100%;">                   
+                            <div src="<%= imgList[i].url%>" data-bigdata="<%= bigDataParams%>" data-index="<%= i - startIndex%>" data-url="<%= imgList[i].url%>" class="item img preview-image-item" style="background-image:url(<%= imgList[i].url%>);background-repeat:no-repeat;background-size:100%;">                    
                                 <div class="indicator">
                                     <%= i+1%>/<%= imgList.length%>
                                 </div>             
@@ -59,7 +62,7 @@
                 %>
                     <div class="swiper-slide">
                         <div class="preview-item">
-                            <img src="">
+                            <img src="<%= imgList[i].url%>">
                             <div class="indicator">
                                 <%= i+1 - startIndex%>/<%= imgList.length - startIndex%>
                             </div>             

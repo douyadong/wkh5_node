@@ -93,9 +93,9 @@ class Renderer extends AppRendererControllerBasic {
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
         Object.assign(this.templateData, { 
             "title" : apiData.data.houseTitle , 
-            "wechatTitle" : apiData.data.wxShareTitle ,
-            "wechatContent" : apiData.data.wxShareDesc ,
-            "wechatImgUrl" : apiData.data.wxShareImgUrl ,
+            "wechatTitle" : apiData.data.weChatShare.title ,
+            "wechatContent" : apiData.data.weChatShare.content ,
+            "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
             "item" : item
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

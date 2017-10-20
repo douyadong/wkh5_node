@@ -17,4 +17,5 @@ let router = express.Router() ;
 router.get("/share-detail/:subEstateId", function(req, res, next) {   
     new EstateShareDetailRenderer(req, res, next) ;  
 }) ;
+
 export default router ;

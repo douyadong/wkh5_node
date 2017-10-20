@@ -1,44 +1,44 @@
 <%- include("../components/head") %>
 <%
-    let item = {
-        // houseVideos: {
-        //     imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL",
-        //     videoUrl: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4"
-        // },
-        imgList: ["https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"], 
-        district: "黄浦区",
-        town: "小东门街道",
-        propertyRight: 70,
-        completedStr: 2010,
-        totalHouse: 990,
-        propertyType: "住宅",
-        propertyCharges: "4.9",
-        greenRate: 35,
-        volumeRate: 3.5,
-        propertyCompany: "戴德梁行",
-        developers: "上海中建房地产开发公司",
-        subwayName: "9号线[ 杨高中路-松江南路 ]",
-        schoolName: "上海市上文中学",
+    // let item = {
+    //     // houseVideos: {
+    //     //     imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL",
+    //     //     videoUrl: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4"
+    //     // },
+    //     imgList: ["https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"], 
+    //     district: "黄浦区",
+    //     town: "小东门街道",
+    //     propertyRight: 70,
+    //     completedStr: 2010,
+    //     totalHouse: 990,
+    //     propertyType: "住宅",
+    //     propertyCharges: "4.9",
+    //     greenRate: 35,
+    //     volumeRate: 3.5,
+    //     propertyCompany: "戴德梁行",
+    //     developers: "上海中建房地产开发公司",
+    //     subwayName: "9号线[ 杨高中路-松江南路 ]",
+    //     schoolName: "上海市上文中学",
 
-        commentList: [{                        
-            createTimeStr: "2015-06-03 12:02:01",
-            comment: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透",
-            guest: {
-                guestPhoneNum: "15586952363",
-                avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
-            },
-            imgList:[{
-                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-            },{
-                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-            },{
-                url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-            }]
-        }]
-    };
+    //     commentList: [{                        
+    //         createTimeStr: "2015-06-03 12:02:01",
+    //         comment: "南北通透 南北通透 南北通透 南北通透 南北通透 南北通透",
+    //         guest: {
+    //             guestPhoneNum: "15586952363",
+    //             avatar: "https://imgwater.oss.aliyuncs.com/258377fe0a9c4e54b8976447398fe6fb",
+    //         },
+    //         imgList:[{
+    //             url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+    //         },{
+    //             url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+    //         },{
+    //             url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+    //         }]
+    //     }]
+    // };
 
     //合并视频和图片
-    var imgList = [];
+    // var imgList = [];
     // if(item.houseVideos){
     //     imgList.push({
     //         isVideo: true,
@@ -46,14 +46,14 @@
     //         imageUrl: item.houseVideos.imageUrl
     //     });
     // }
-    if(item.imgList && item.imgList.length > 0){
-        for(let i = 0; i < item.imgList.length; i++){
-            imgList.push({
-                url: item.imgList[i]
-            });
-        }
-    }
-    item.imgList = imgList;
+    // if(item.imgList && item.imgList.length > 0){
+    //     for(let i = 0; i < item.imgList.length; i++){
+    //         imgList.push({
+    //             url: item.imgList[i]
+    //         });
+    //     }
+    // }
+    // item.imgList = imgList;
 %>
 
 <div class="content-wrapper has-assistant">

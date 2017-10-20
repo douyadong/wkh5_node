@@ -48,33 +48,13 @@
         <%
                     }
                 }
-            }        
-        %>                
-    </div>  
-
-    <div style="display:none" class="preview-image-template">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <%
-                    if(imgList && imgList.length> 0){
-                        for(let i = 0; i < imgList.length; i++){
-                            if(!imgList[i].isVideo){
-                %>
-                    <div class="swiper-slide">
-                        <div class="preview-item">
-                            <img src="<%= imgList[i].url%>">
-                            <div class="indicator">
-                                <%= i+1 - startIndex%>/<%= imgList.length - startIndex%>
-                            </div>             
-                        </div>
-                    </div>
-                <%
-                            }
-                        }
-                    }
-                %>
+            }else{
+        %>
+            <div class="swiper-slide no-data">
                 
             </div>
-        </div>
-    </div>              
+        <%        
+            }        
+        %>                
+    </div>                 
 </div>

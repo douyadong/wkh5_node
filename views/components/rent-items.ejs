@@ -12,9 +12,9 @@
         for(let i = 0; i < similiarRentItems.length; i++){
             let item = similiarRentItems[i];
     %>
-        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.encryptHouseId%>.html">
+        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.encryptHouseId%>">
             <div class="left">
-                <img src="<%= item.houseImages && item.houseImages.length > 0 && item.houseImages[0] || ""%>">
+                <img src="<%= item.firstImageUrl %>">
             </div>
             <div class="right">
                 <h4><%= item.houseTitle%></h4>

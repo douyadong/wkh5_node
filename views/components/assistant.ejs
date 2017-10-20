@@ -24,17 +24,19 @@
      avatarBigDataParams =   typeof(avatarBigDataParams) == 'undefined' ? "" : avatarBigDataParams; //头像点击埋点参数
      wxBigDataParams = typeof(wxBigDataParams) == 'undefined' ?  "" : wxBigDataParams; //点击添加微信埋点数据
 %>
+<%if(agent){%>
 <div class="assistant">
-        <a class="portrait" href="../../space/index/23434" data-bigdata="<%= avatarBigDataParams%>">
+        <a class="portrait" href="../../space/index/23434" data-bigdata="<%= agent.avatarBigDataParams%>">
             <div class="left">
-                <img src="<%= agentHeadImgUrl%>">    
+                <img src="<%= agent.agentHeadImgUrl%>">    
             </div>
             <div class="right">
-                <div class="name"><%= agentName%></div>
-                <div class="company-name"><%= abbreviation%></div>
+                <div class="name"><%= agent.agentName%></div>
+                <div class="company-name"><%= agent.abbreviation%></div>
             </div>                        
         </a>
-        <% if(agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agentWChartQRImgUrl %>" data-agentwchatid="<%= agentWChatId %>" data-bigdata="<%= wxBigDataParams%>">添加微信</a><% } %>        
-        <a href="tel:<%= agentMobile%>" class="phone" data-bigdata="<%= mobileBigDataParams%>">电话咨询</a>
+        <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= agent.wxBigDataParams%>">添加微信</a><% } %>        
+        <a href="tel:<%= agent.agentMobile%>" class="phone" data-bigdata="<%= agent.mobileBigDataParams%>">电话咨询</a>
 </div>
+<%}%>
 

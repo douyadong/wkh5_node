@@ -38,6 +38,7 @@
         refrigerator: ['hasFridge','冰箱']
     };    
 %>
+<%if(houseSupporting){%>
 <div class="wk-panel top-gap">
     <div class="panel-header">
         配套设施
@@ -46,3 +47,4 @@
         <%for(let key in mapping){%><li class="<%= (houseSupporting[mapping[key][0]]?'':'strike')%>"><i class="icon iconfont icon-<%= key%>"></i><span> <%= mapping[key][1]%></span></li><%}%>        
     </ul>
 </div> 
+<%}%>

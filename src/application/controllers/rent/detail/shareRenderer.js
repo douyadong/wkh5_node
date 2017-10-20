@@ -30,8 +30,64 @@ class Renderer extends AppRendererControllerBasic {
         let apiData = await adf.request({
             "apiPath" : "rent.detail" ,
             "data" : { "houseId" : houseId }
-        }) ;
-        
+        }) ;        
+        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        处理返回数据供模板使用
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+        //合并视频和图片
+        let imgList = [];
+        let item = apiData.data;
+        if(item.houseVideos){
+            imgList.push({
+                isVideo: true,
+                url: item.houseVideos.videoUrl,
+                imageUrl: item.houseVideos.imageUrl
+            });
+        }
+        if(item.imgList && item.imgList.length > 0){
+            for(let i = 0; i < item.imgList.length; i++){
+                imgList.push({
+                    url: item.imgList[i]
+                });
+            }
+        }
+        item.imgList = imgList;  
+
+        //计算isExternal
+        if(item.houseId > 1000000000){//大于1000000000是外部房源
+            item.isExternal = true;
+        }    
+
+        //大数据埋点参数
+        item.bigDataParams = {
+            clickImageBigDataParams : encodeURIComponent(JSON.stringify({
+                eventName: "1204007",
+                eventParam: {
+                    rent_house_id: item.houseId
+                },
+                type: 2
+            })), //点击上部图片埋点参数
+            clickSubEstateBigDataParams : encodeURIComponent(JSON.stringify({
+                eventName: "1204008",
+                eventParam: {
+                    estate_id: item.subEstateId
+                },
+                type: 2
+            })), //点击小区链接埋点参数
+            clickSubEstateInfoBigDataParams : encodeURIComponent(JSON.stringify({
+                eventName: "1204009",
+                eventParam: {
+                    estate_id: item.subEstateId
+                },
+                type: 2
+            })), //点击小区信息埋点参数
+            clickMapBigDataParams : encodeURIComponent(JSON.stringify({
+                eventName: "1204011",
+                eventParam: {                
+                },
+                type: 2
+            })) //点击地图埋点参数
+        };
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -39,12 +95,13 @@ class Renderer extends AppRendererControllerBasic {
             "title" : apiData.data.houseTitle , 
             "wechatTitle" : apiData.data.wxShareTitle ,
             "wechatContent" : apiData.data.wxShareDesc ,
-            "wechatImgUrl" : apiData.data.wxShareImgUrl
+            "wechatImgUrl" : apiData.data.wxShareImgUrl ,
+            "item" : item
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-        Object.assign(this.templateData, { "title" : "长宁区 贝港南区" , extraStylesheets : [ ] , "extraJavascripts" : [] }) ;
+        Object.assign(this.templateData, { extraStylesheets : [ ] , "extraJavascripts" : [] }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        

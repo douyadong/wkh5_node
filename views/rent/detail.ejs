@@ -2,237 +2,237 @@
 <div class="content-wrapper has-assistant"> 
     <%
         //模拟数据
-        let item = {
-            houseId: 10000001,
-            houseState: 2,
-            houseTitle: "朝南户型，小区绿化好，环境优美。物业24小时，装修温馨怡人。物业24小时，装修温馨怡人。",
-            rentPriceStr: 4000,
-            houseTypeStr: "2室1厅1卫",
-            subEstateName: "贝港南区",
-            subEstateId: 19727,
-            spaceArea: 50,
-            district: "长宁区",
-            town: "虹桥",
-            sellPoint: "静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈",
-            ownerMotivation: "静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈",
-            aroundSupport: "静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈",
-            payTypeStr: "交三押一",
-            orientationStr: "南",
-            houseChildTypeStr: "公寓",
-            renovationStr: "精装",
-            completedStr: "2000",
-            isExternal: false,
-            houseTag: {
-                isSubwayHouse: true,
-                isPriceDown: true,
-                isNewHouse: false,
-                isHardcover: 1,//1-精装，2-豪装
-                isSouth: true
-            },
-            houseVideos: {
-                imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL",
-                videoUrl: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4"
-            },
-            imgList: ["https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"],            
-            houseSupporting: {
-                hasBad: 1, //床
-                hasSofa: 1, //沙发
-                hasDesk: 1, //桌子
-                hasTV: 0, //电视
-                hasInternet: 1, //宽带
-                hasAirConditioning: 1, //空调
-                hasWashMachine: 1, //洗衣机
-                hasWardrobe: 1, //衣柜
-                hasCookerHood: 1, //
-                hasWaterHeater: 1, //热水器
-                hasHeating: 0, //暖气
-                hasBalcony: 0, //阳台
-                hasGas: 1, //煤气
-                hasMicrowave: 1, //微波炉
-                hasFridge: 0 //冰箱
-           },
-           similarHouses: [{                    
-                    houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
-                    houseImages: [],
-                    houseTypeStr: "2室2厅1卫",
-                    spaceArea: "210",
-                    district: "浦东新区",
-                    town: "花木西路",
-                    houseTag: {
-                       isSubwayHouse: true,
-                       isPriceDown: true,
-                       isNewHouse: true,
-                       isHardcover: 2,
-                       isSouth: true
-                    },
-                    rentPriceStr: "4000",
-                    encryptHouseId: "hohajd234jljdf"                    
-                },{
-                    houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
-                    houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
-                    houseTypeStr: "2室2厅1卫",
-                    spaceArea: "210",
-                    district: "浦东新区",
-                    town: "花木西路",
-                    houseTag: {
-                       isSubwayHouse: true,
-                       isPriceDown: true,
-                       isNewHouse: true,
-                       isHardcover: false,
-                       isSouth: true
-                    },
-                    rentPriceStr: "4000",
-                    encryptHouseId: "hohajd234jljdf"
-                },{
-                    houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
-                    houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
-                    houseTypeStr: "2室2厅1卫",
-                    spaceArea: "210",
-                    district: "浦东新区",
-                    town: "花木西路",
-                    houseTag: {
-                       isSubwayHouse: true,
-                       isPriceDown: true,
-                       isNewHouse: true,
-                       isHardcover: false,
-                       isSouth: true
-                    },
-                    rentPriceStr: "4000",
-                    encryptHouseId: "hohajd234jljdf"
-                },{
-                    houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
-                    houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
-                    houseTypeStr: "2室2厅1卫",
-                    spaceArea: "210",
-                    district: "浦东新区",
-                    town: "花木西路",
-                    houseTag: {
-                       isSubwayHouse: true,
-                       isPriceDown: true,
-                       isNewHouse: true,
-                       isHardcover: false,
-                       isSouth: true
-                    },
-                    rentPriceStr: "4000",
-                    encryptHouseId: "hohajd234jljdf"
-                }],
-                houseAgent: {
-                    agentName: "王小五", 
-                    abbreviation: "志远地产", 
-                    agentHeadImgUrl:"", 
-                    agentMobile: "998555", 
-                    agentWChartQRImgUrl: "",
-                    agentWChatId : "",
-                    encryptHouseId: "hohajd234jljdf",
-                    mobileBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204015", eventParam:{
-                        agent_id: 'agent_id',
-                        rent_house_id: 'rent_house_id'
-                    }})), //电话埋点参数
-                    avatarBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204014", eventParam:{
-                        agent_id: 'agentId'
-                    }})), //头像点击埋点参数
-                    wxBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204019", eventParam:{
-                        agent_id: 'agent_id',
-                        rent_house_id: 'rent_house_id'
-                    }})), //点击添加微信埋点数据
-                },
-                commentList: [{
-                    landload: true,
-                    orderLevel: 10,
-                    createTimeStr: "2016-11-20 16:30",
-                    comment: "南北通透，黄金楼层，满五唯一，精装修。essddf sdfdf",
-                    guest: {
-                        guestPhoneNum: "139*****234",
-                        avatar: {
-                            url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
-                        }                        
-                    },
-                    imgList: [{
-                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-                    },{
-                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-                    }]
-                },{
-                    landload: true,
-                    orderLevel: 10,
-                    createTimeStr: "2016-11-20 16:30",
-                    comment: "南北通透，黄金楼层，满五唯一，精装修。essddf hell owld",
-                    guest: {
-                        guestPhoneNum: "139*****234",
-                        avatar: {
-                            url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
-                        }                        
-                    },
-                    imgList: [{
-                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-                    },{
-                        url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
-                    }]
-                }]
-        };  
+        // let item = {
+        //     houseId: 10000001,
+        //     houseState: 2,
+        //     houseTitle: "朝南户型，小区绿化好，环境优美。物业24小时，装修温馨怡人。物业24小时，装修温馨怡人。",
+        //     rentPriceStr: 4000,
+        //     houseTypeStr: "2室1厅1卫",
+        //     subEstateName: "贝港南区",
+        //     subEstateId: 19727,
+        //     spaceArea: 50,
+        //     district: "长宁区",
+        //     town: "虹桥",
+        //     sellPoint: "静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈静安寺商圈，南京西路商圈，中山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈山公园商圈",
+        //     ownerMotivation: "静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈",
+        //     aroundSupport: "静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈静安寺商圈，南京西路商圈，中山公园商圈",
+        //     payTypeStr: "交三押一",
+        //     orientationStr: "南",
+        //     houseChildTypeStr: "公寓",
+        //     renovationStr: "精装",
+        //     completedStr: "2000",
+        //     isExternal: false,
+        //     houseTag: {
+        //         isSubwayHouse: true,
+        //         isPriceDown: true,
+        //         isNewHouse: false,
+        //         isHardcover: 1,//1-精装，2-豪装
+        //         isSouth: true
+        //     },
+        //     houseVideos: {
+        //         imageUrl: "https://img.wkzf.com/112f72a5248942ec972bdeb4788cb4c2.DL",
+        //         videoUrl: "http://v.wkzf.com/06f91e10db774e6c81195736c84e399aWV.mp4"
+        //     },
+        //     imgList: ["https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL","https://img.wkzf.com/f56d971975104155951971ce060b5cf4.DL"],            
+        //     houseSupporting: {
+        //         hasBad: 1, //床
+        //         hasSofa: 1, //沙发
+        //         hasDesk: 1, //桌子
+        //         hasTV: 0, //电视
+        //         hasInternet: 1, //宽带
+        //         hasAirConditioning: 1, //空调
+        //         hasWashMachine: 1, //洗衣机
+        //         hasWardrobe: 1, //衣柜
+        //         hasCookerHood: 1, //
+        //         hasWaterHeater: 1, //热水器
+        //         hasHeating: 0, //暖气
+        //         hasBalcony: 0, //阳台
+        //         hasGas: 1, //煤气
+        //         hasMicrowave: 1, //微波炉
+        //         hasFridge: 0 //冰箱
+        //    },
+        //    similarHouses: [{                    
+        //             houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
+        //             houseImages: [],
+        //             houseTypeStr: "2室2厅1卫",
+        //             spaceArea: "210",
+        //             district: "浦东新区",
+        //             town: "花木西路",
+        //             houseTag: {
+        //                isSubwayHouse: true,
+        //                isPriceDown: true,
+        //                isNewHouse: true,
+        //                isHardcover: 2,
+        //                isSouth: true
+        //             },
+        //             rentPriceStr: "4000",
+        //             encryptHouseId: "hohajd234jljdf"                    
+        //         },{
+        //             houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
+        //             houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
+        //             houseTypeStr: "2室2厅1卫",
+        //             spaceArea: "210",
+        //             district: "浦东新区",
+        //             town: "花木西路",
+        //             houseTag: {
+        //                isSubwayHouse: true,
+        //                isPriceDown: true,
+        //                isNewHouse: true,
+        //                isHardcover: false,
+        //                isSouth: true
+        //             },
+        //             rentPriceStr: "4000",
+        //             encryptHouseId: "hohajd234jljdf"
+        //         },{
+        //             houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
+        //             houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
+        //             houseTypeStr: "2室2厅1卫",
+        //             spaceArea: "210",
+        //             district: "浦东新区",
+        //             town: "花木西路",
+        //             houseTag: {
+        //                isSubwayHouse: true,
+        //                isPriceDown: true,
+        //                isNewHouse: true,
+        //                isHardcover: false,
+        //                isSouth: true
+        //             },
+        //             rentPriceStr: "4000",
+        //             encryptHouseId: "hohajd234jljdf"
+        //         },{
+        //             houseTitle: "享受好房，南北通透，买到就是转到，赶紧下手吧",
+        //             houseImages: ["https://img.wkzf.com/5d9c513251c441b58220c52286dbaded.ML"],
+        //             houseTypeStr: "2室2厅1卫",
+        //             spaceArea: "210",
+        //             district: "浦东新区",
+        //             town: "花木西路",
+        //             houseTag: {
+        //                isSubwayHouse: true,
+        //                isPriceDown: true,
+        //                isNewHouse: true,
+        //                isHardcover: false,
+        //                isSouth: true
+        //             },
+        //             rentPriceStr: "4000",
+        //             encryptHouseId: "hohajd234jljdf"
+        //         }],
+        //         houseAgent: {
+        //             agentName: "王小五", 
+        //             abbreviation: "志远地产", 
+        //             agentHeadImgUrl:"", 
+        //             agentMobile: "998555", 
+        //             agentWChartQRImgUrl: "",
+        //             agentWChatId : "",
+        //             encryptHouseId: "hohajd234jljdf",
+        //             mobileBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204015", eventParam:{
+        //                 agent_id: 'agent_id',
+        //                 rent_house_id: 'rent_house_id'
+        //             }})), //电话埋点参数
+        //             avatarBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204014", eventParam:{
+        //                 agent_id: 'agentId'
+        //             }})), //头像点击埋点参数
+        //             wxBigDataParams: encodeURIComponent(JSON.stringify({eventName:"1204019", eventParam:{
+        //                 agent_id: 'agent_id',
+        //                 rent_house_id: 'rent_house_id'
+        //             }})), //点击添加微信埋点数据
+        //         },
+        //         commentList: [{
+        //             landload: true,
+        //             orderLevel: 10,
+        //             createTimeStr: "2016-11-20 16:30",
+        //             comment: "南北通透，黄金楼层，满五唯一，精装修。essddf sdfdf",
+        //             guest: {
+        //                 guestPhoneNum: "139*****234",
+        //                 avatar: {
+        //                     url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
+        //                 }                        
+        //             },
+        //             imgList: [{
+        //                 url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+        //             },{
+        //                 url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+        //             }]
+        //         },{
+        //             landload: true,
+        //             orderLevel: 10,
+        //             createTimeStr: "2016-11-20 16:30",
+        //             comment: "南北通透，黄金楼层，满五唯一，精装修。essddf hell owld",
+        //             guest: {
+        //                 guestPhoneNum: "139*****234",
+        //                 avatar: {
+        //                     url: "https://img.wkzf.com/615422c2264b44caae44a595172c8e29"
+        //                 }                        
+        //             },
+        //             imgList: [{
+        //                 url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+        //             },{
+        //                 url: "https://img.wkzf.com/e70897fee403418bb6903462fb3d7d5d.DW"
+        //             }]
+        //         }]
+        // };  
 
-        //合并视频和图片
-        var imgList = [];
-        if(item.houseVideos){
-            imgList.push({
-                isVideo: true,
-                url: item.houseVideos.videoUrl,
-                imageUrl: item.houseVideos.imageUrl
-            });
-        }
-        if(item.imgList && item.imgList.length > 0){
-            for(let i = 0; i < item.imgList.length; i++){
-                imgList.push({
-                    url: item.imgList[i]
-                });
-            }
-        }
-        item.imgList = imgList;  
+        // //合并视频和图片
+        // let imgList = [];
+        // if(item.houseVideos){
+        //     imgList.push({
+        //         isVideo: true,
+        //         url: item.houseVideos.videoUrl,
+        //         imageUrl: item.houseVideos.imageUrl
+        //     });
+        // }
+        // if(item.imgList && item.imgList.length > 0){
+        //     for(let i = 0; i < item.imgList.length; i++){
+        //         imgList.push({
+        //             url: item.imgList[i]
+        //         });
+        //     }
+        // }
+        // item.imgList = imgList;  
 
-        //计算isExternal
-        if(item.houseId > 1000000000){
-            item.isExternal = true;
-        }    
+        // //计算isExternal
+        // if(item.houseId > 1000000000){
+        //     item.isExternal = true;
+        // }    
 
-        //item.bigDataParams
-        item.clickImageBigDataParams = encodeURIComponent(JSON.stringify({
-            eventName: "1204007",
-            eventParam: {
-                rent_house_id: item.houseId
-            },
-            type: 2
-        }));
-        item.clickSubEstateBigDataParams = encodeURIComponent(JSON.stringify({
-            eventName: "1204008",
-            eventParam: {
-                estate_id: item.subEstateId
-            },
-            type: 2
-        }));
-        item.clickSubEstateInfoBigDataParams = encodeURIComponent(JSON.stringify({
-            eventName: "1204009",
-            eventParam: {
-                estate_id: item.subEstateId
-            },
-            type: 2
-        }));
-        item.clickMapBigDataParams = encodeURIComponent(JSON.stringify({
-            eventName: "1204011",
-            eventParam: {                
-            },
-            type: 2
-        }));
+        // //item.bigDataParams
+        // item.clickImageBigDataParams = encodeURIComponent(JSON.stringify({
+        //     eventName: "1204007",
+        //     eventParam: {
+        //         rent_house_id: item.houseId
+        //     },
+        //     type: 2
+        // }));
+        // item.clickSubEstateBigDataParams = encodeURIComponent(JSON.stringify({
+        //     eventName: "1204008",
+        //     eventParam: {
+        //         estate_id: item.subEstateId
+        //     },
+        //     type: 2
+        // }));
+        // item.clickSubEstateInfoBigDataParams = encodeURIComponent(JSON.stringify({
+        //     eventName: "1204009",
+        //     eventParam: {
+        //         estate_id: item.subEstateId
+        //     },
+        //     type: 2
+        // }));
+        // item.clickMapBigDataParams = encodeURIComponent(JSON.stringify({
+        //     eventName: "1204011",
+        //     eventParam: {                
+        //     },
+        //     type: 2
+        // }));
     %>
         
    <!-- 底部助手条 --> 
    <%if(item.houseState != 4){%>    
-   <%- include("../components/assistant", item.houseAgent) %>
+   <%- include("../components/assistant", {agent: item.houseAgent}) %>
    <%}%>
     
     <!-- 轮播图片 -->
     <%if(!item.isExternal){%>
     <div class="wk-panel remove-left-padding">
-        <%- include("../components/album",{imgList: item.imgList, bigDataParams: item.clickImageBigDataParams})%>
+        <%- include("../components/album",{imgList: item.imgList, bigDataParams: item.bigDataParams.clickImageBigDataParams})%>
     </div>
     <%}%>
 
@@ -307,13 +307,13 @@
                 </dl>
                 <dl>
                     <dt>楼层</dt>
-                    <dd>高区/27层</dd>
+                    <dd><%= item.floorStr%>区/<%= item.totalFloor%>层</dd>
                 </dl>
             </div>
             <div class="one-column-container">
                 <dl>
                     <dt>小区</dt>
-                    <dd class="has-arrow"><a data-bigdata="<%= item.clickSubEstateBigDataParams%>" href="../../estate/share-detail/<%= item.subEstateId%>"><%= item.subEstateName%></a></dd>
+                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams%>" href="../../estate/share-detail/<%= item.encryptSubEstateId%>"><%= item.subEstateName%></a></dd>
                 </dl>
             </div>
         </div>
@@ -370,31 +370,21 @@
         </div>
         <div class="panel-body">
             <div class="has-bottom-border">
-                <a data-bigdata="<%= item.clickSubEstateInfoBigDataParams%>" class="subestate box" href="../../estate/share-detail/helloworld.html">
+                <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams%>" class="subestate box" href="../../estate/share-detail/<%= item.encryptSubEstateId%>">
                     <div class="left">
-                        <img src="https://img.wkzf.com/03fe7f2137a74184839c4a664d09871f.DW">
+                        <img src="<%= item.estateImgUrl%>">
                     </div>
                     <div class="right">
-                        <h4>虹东校区 M11 金座</h4>
+                        <h4><%= item.subEstateName%></h4>
                         <p class="completed has-arrow">
-                            1993 年竣工&nbsp;&nbsp; | &nbsp;&nbsp; 150户
+                            <%=item.completedStr%> 年竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse%>户
                         </p>
                         <p class="address">
-                            虹桥路 996弄
+                            <%= item.estateAddr%>
                         </p>
                     </div>
                 </a>                
             </div>
-
-            <!--
-            <div class="one-column-container">
-                <dl>
-                    <dt>小区评论</dt>
-                    <dd class="estate-comment has-arrow"><a href="<%= domain + '/estate/moreComment.html?subEstateId='+ item.subEstateId + '&commentLocation=1'%>">9 条</a></dd>
-                </dl>
-
-            </div>
-            -->
         </div>
     </div>
     <div class="wk-panel rent-comments">
@@ -406,8 +396,9 @@
         </div>
     </div>
 
-    <%- include("../components/map",{bigDataParams: item.clickMapBigDataParams, longitude: 121.461263, latitude: 30.912875, address: '某个地方', subEstateName: '好小区'})%>
+    <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddress, subEstateName: item.subEstateName})%>
     <!-- 相似房源推荐 -->
+    <%if(item.similarHouses){%>
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">
             相似房源推荐
@@ -415,10 +406,11 @@
         <div class="panel-body">
             <%- include("../components/rent-items", {similiarRentItems: item.similarHouses})%>       
         </div>        
-    </div>   
+    </div>  
+    <%}%> 
 
     <%if(item.houseState == 4){%>  
-    <a href="http://www.baidu.com" class="invalid-rent">
+    <a class="invalid-rent">
     该房源已下架
     </a>
     <%}%>

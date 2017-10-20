@@ -9,12 +9,12 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import SpaceIndexRenderer from "../controllers/space/index/renderer" ;
+import SpaceIndexShareRenderer from "../controllers/space/index/shareRenderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /space/index的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/index/:agentId", function(req, res, next) {   
-    new SpaceIndexRenderer(req, res, next) ;  
+router.get("/share-index/:agentId", function(req, res, next) {   
+    new SpaceIndexShareRenderer(req, res, next) ;  
 }) ;
 export default router ;

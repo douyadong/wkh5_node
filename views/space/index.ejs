@@ -11,7 +11,7 @@
                     <% if(agent.isWellAgent) { %><span class="good">好</span><% } %>
                 </div>
                 <div class="sign">
-                    <span>通过认证</span><i class="iconfont icon-authen"></i>
+                    <% if(agent.agentVerifiedStatus) { %><span>通过认证</span><i class="iconfont icon-authen"></i><% } %>
                 </div>
             </dd>
             <dd class="company"><%= agent.agentBelongToCompanyName %></dd>
@@ -38,7 +38,14 @@
             <dl class="panel-item">
                 <dt>成交故事：</dt>
                 <dd class="long-text"><%= agent.agentStory %></dd>
-                <dd class="switch"><i class="iconfont icon-down"></i></dd>                
+                <dd class="switch"><i class="iconfont icon-down"></i></dd>
+                <% if(agent.myBizStoryImgUrls) { %>
+                <dd class="picts">
+                    <% agent.myBizStoryImgUrls.forEach(function(pict){ %>
+                    <img src="<%= pict %>">
+                    <% })%>                    
+                </dd>
+                <% } %>     
             </dl>
             <% } %>
         </div>
@@ -46,11 +53,11 @@
 </div>
 <!--三个tabs部分-->
 <div class="wk-tabs top-gap">
-    <!--tabs-handle部分-->
+    <!--tabs-handle部分-->    
     <ul class="wk-panel tabs-handle">
-        <li class="on">推荐二手房</li>
-        <li>推荐新房</li>
-        <li>推荐租房</li>
+        <li class="on" data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">推荐二手房</a></li>
+        <li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">推荐新房</a></li>
+        <li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">推荐租房</a></li>
     </ul>
     <!--tabs-frame部分-->
     <div class="wk-panel tabs-frame"><%- include("../components/esf-items") %></div>
@@ -58,5 +65,7 @@
     <div class="wk-panel tabs-frame"></div>
     <!--tabs-frame内容结束-->
 </div>
+<!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->
+<input type="hidden" id="agentId" value="<%= agentId %>">
 <%- include("../components/assistant", agent) %>
 <%- include("../components/footer") %>

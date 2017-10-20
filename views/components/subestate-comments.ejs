@@ -1,3 +1,9 @@
+<%#
+    需要参数：
+    {
+        comments: []
+    }
+%>
 <%
     let items = comments;
 %>
@@ -8,7 +14,7 @@
     %>
     <div class="subestate-comment box">
         <div class="left">
-            <img src="<%= item.avatar%>">
+            <img src="<%= item.guest.avatar%>">
         </div>
         <div class="right">
             <p class="mobile">

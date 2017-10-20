@@ -9,12 +9,12 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import SubEstateDetailRenderer from "../controllers/subestate/detail/renderer" ;
+import EstateDetailRenderer from "../controllers/estate/detail/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/detail/(:houseId).html", function(req, res, next) {   
-    new SubEstateDetailRenderer(req, res, next) ;  
+router.get("/share-detail/:houseId", function(req, res, next) {   
+    new EstateDetailRenderer(req, res, next) ;  
 }) ;
 export default router ;

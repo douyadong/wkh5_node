@@ -51,6 +51,7 @@ let apiData = {
         "agentCommentList": [],
         "oldHouseList": null,
         "newHouseList": null,
+        "rentHouseList" : null ,
         "recommendType": 0,
         "title": "",
         "isFavourite": 0,

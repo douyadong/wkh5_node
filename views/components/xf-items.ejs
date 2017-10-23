@@ -1,5 +1,5 @@
 <% newHouseList && newHouseList.forEach(function(xf){ %>
-    <a href="/" class="xf-item" data-bigdata="<%= xf.bigDataParams %>">
+    <a href="<%= xf.url %>" class="xf-item" data-bigdata="<%= xf.bigDataParams %>">
         <dl>
             <dt><img src="<%= xf.imageUrl %>?x-oss-process=image/resize,w_150" class="img-responsive"></dt>
             <dd class="title"><%= xf.estateName %></dd>

@@ -1,5 +1,5 @@
 <% oldHouseList && oldHouseList.forEach(function(esf){ %>
-    <a href="/esf/<%= esf.houseId %>.html" class="esf-item" data-bigdata="<%= esf.bigDataParams %>">
+    <a href="/esf/<%= esf.encryptHouseId %>.html" class="esf-item" data-bigdata="<%= esf.bigDataParams %>">
         <dl>
             <dt><img src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150"></dt>
             <dd class="title"><%= esf.houseTitle %></dd>

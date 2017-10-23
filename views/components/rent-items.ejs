@@ -1,17 +1,18 @@
 <%# 
     参数：
     {
-        similiarRentItems: [{
+        rentItems: [{
             ...//别的参数按照参数就好了
             bigDataParams: "", //点击事件埋点
+            url: "", //跳转路径
         }]
     }
 %>
-    <%if(similiarRentItems && similiarRentItems.length > 0){
-        for(let i = 0; i < similiarRentItems.length; i++){
-            let item = similiarRentItems[i];
+    <%if(rentItems && rentItems.length > 0){
+        for(let i = 0; i < rentItems.length; i++){
+            let item = rentItems[i];
     %>        
-        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= currentProjectDir + 'rent/share-detail/' + item.encryptHouseId%>">
+        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.url%>">
             <div class="left">
                 <img src="<%= item.firstImageUrl %>">
             </div>

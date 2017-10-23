@@ -58,6 +58,18 @@ class Renderer extends AppRendererControllerBasic {
             item.isExternal = true;
         }    
 
+        //相似房源跳转路径
+        if(item.similarHouses && item.similarHouses.length > 0){            
+            item.similarHouses.forEach(house => {
+                console.log("house:" , house);
+                house.url = this.templateData.currentProjectDir + this.req.params.city + '/rent/share-detail/' + house.encryptHouseId;
+            });            
+        }
+
+        //小区跳转路径
+
+        //经济人跳转路径
+
         //大数据埋点参数
         item.bigDataParams = {
             clickImageBigDataParams : this.generateBigDataParams({
@@ -104,7 +116,7 @@ class Renderer extends AppRendererControllerBasic {
         Object.assign(this.templateData, { extraStylesheets : [ ] , "extraJavascripts" : [] }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
-        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/              
         this.render("rent/detail") ; 
     }
 }

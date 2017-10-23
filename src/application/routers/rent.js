@@ -14,7 +14,7 @@ let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/share-detail/:houseId", function(req, res, next) {   
+router.get("/:city/rent/share-detail/:houseId", function(req, res, next) {   
     new RentShareDetailRenderer(req, res, next) ;  
 }) ;
 export default router ;

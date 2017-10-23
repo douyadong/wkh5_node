@@ -7,19 +7,18 @@
         }]
     }
 %>
-
     <%if(similiarRentItems && similiarRentItems.length > 0){
         for(let i = 0; i < similiarRentItems.length; i++){
             let item = similiarRentItems[i];
-    %>
-        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.encryptHouseId%>">
+    %>        
+        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= currentProjectDir + 'rent/share-detail/' + item.encryptHouseId%>">
             <div class="left">
                 <img src="<%= item.firstImageUrl %>">
             </div>
             <div class="right">
                 <h4><%= item.houseTitle%></h4>
                 <p class="base-info">                    
-                    <%= item.houseTypeStr%> <%= item.spaceArea%>㎡ <%= item.district%> <%= item.town%>
+                    <%= item.houseTypeStr%> <%= item.spaceArea%>㎡ <%= item.districtAndTownName%> 
                 </p>
 
                 <p class="tags">

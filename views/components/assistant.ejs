@@ -26,9 +26,9 @@
 %>
 <%if(agent){%>
 <div class="assistant">
-        <a class="portrait" href="../../space/index/23434" data-bigdata="<%= agent.avatarBigDataParams%>">
+        <a class="portrait" href="<%= currentProjectDir + 'space/share-index/' + agent.agentId%>" data-bigdata="<%= agent.avatarBigDataParams%>">
             <div class="left">
-                <img src="<%= agent.agentHeadImgUrl%>">    
+                <img src="<%= agent.headRoundImgUrl%>">    
             </div>
             <div class="right">
                 <div class="name"><%= agent.agentName%></div>

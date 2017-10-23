@@ -33,28 +33,13 @@ class AppRendererControllerBasic extends SystemRendererControllerBasic {
             "matchJavascript" : MCCombined ,
             "appName" : appConf.appName ,            
             "domain" : appConf.domain[this.req.app.locals.stage_env] ,
+            "currentProjectDir" : appConf.currentProjectDir[this.req.app.locals.stage_env] +  "/",
             "wechatTitle" : "" ,
             "wechatContent" : "" ,
             "wechatImgUrl" : ""
         }) ;
-        this.pluginStatic = {
-            "css" : {
-                "wktable" : this.getStaticPrefix("util") + "/wkzf/js/util/jQuery.wktable/wktable.min.css" ,
-                "daterangepicker" : this.getStaticPrefix("util") + "/wkzf/js/util/daterangepicker/daterangepicker.css" ,
-                "select2" : this.getStaticPrefix("util") + "/wkzf/js/util/select2/4.0.1/dist/css/select2.min.css"
-            } ,
-            "js" : {
-                "daterangepicker" : [
-                    this.getStaticPrefix("util") + "/wkzf/js/util/daterangepicker/moment.js" ,
-                    this.getStaticPrefix("util") + "/wkzf/js/util/daterangepicker/daterangepicker.js" 
-                ] ,
-                "select2" : [
-                    this.getStaticPrefix("util") + "/wkzf/js/util/select2/4.0.1/dist/js/select2.min.js" ,
-                    this.getStaticPrefix("util") + "/wkzf/js/util/select2/4.0.1/dist/js/i18n/zh-CN.js" ,
-                    this.getStaticPrefix("util") + "/wkzf/js/cascadingSelect2.min.js"
-                ]
-            }
-        }
+        this.pluginStatic = {            
+        } ;        
     }
     /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     获取静态资源路径前缀

@@ -15,5 +15,11 @@ export default {
         "test" : "//m.test.wkzf" ,
         "sim" : "//m.sim.wkzf" ,
         "prod" : "//m.wkzf.com"
+    } ,
+    "currentProjectDir" : {
+        "dev" : "/" ,
+        "test" : "/2018/" ,
+        "sim" : "/2018/" ,
+        "prod" : "/2018/"
     }
 } ;

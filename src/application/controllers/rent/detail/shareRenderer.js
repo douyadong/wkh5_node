@@ -60,33 +60,33 @@ class Renderer extends AppRendererControllerBasic {
 
         //大数据埋点参数
         item.bigDataParams = {
-            clickImageBigDataParams : encodeURIComponent(JSON.stringify({
+            clickImageBigDataParams : this.generateBigDataParams({
                 eventName: "1204007",
                 eventParam: {
                     rent_house_id: item.houseId
                 },
                 type: 2
-            })), //点击上部图片埋点参数
-            clickSubEstateBigDataParams : encodeURIComponent(JSON.stringify({
+            }), //点击上部图片埋点参数
+            clickSubEstateBigDataParams : this.generateBigDataParams({
                 eventName: "1204008",
                 eventParam: {
                     estate_id: item.subEstateId
                 },
                 type: 2
-            })), //点击小区链接埋点参数
-            clickSubEstateInfoBigDataParams : encodeURIComponent(JSON.stringify({
+            }), //点击小区链接埋点参数
+            clickSubEstateInfoBigDataParams : this.generateBigDataParams({
                 eventName: "1204009",
                 eventParam: {
                     estate_id: item.subEstateId
                 },
                 type: 2
-            })), //点击小区信息埋点参数
-            clickMapBigDataParams : encodeURIComponent(JSON.stringify({
+            }), //点击小区信息埋点参数
+            clickMapBigDataParams : this.generateBigDataParams({
                 eventName: "1204011",
                 eventParam: {                
                 },
                 type: 2
-            })) //点击地图埋点参数
+            }) //点击地图埋点参数
         };
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据

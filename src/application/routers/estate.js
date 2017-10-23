@@ -14,7 +14,7 @@ let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/share-detail/:subEstateId", function(req, res, next) {   
+router.get("/:city/estate/share-detail/:subEstateId", function(req, res, next) {   
     new EstateShareDetailRenderer(req, res, next) ;  
 }) ;
 

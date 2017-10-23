@@ -6,10 +6,11 @@
         latitude: "", //维度
         address: "", //地址
         subEstateName: "", //小区名称
+        mapUrl: "", //地图跳转路径
     }
 
 %>
-<a href="<%= domain + '/esf/map.html?longitude=' + longitude + '&latitude=' + latitude + '&houseName=' + subEstateName + '&houseAddress=' + address%>" data-bigdata="<%= bigDataParams%>" class="map" style="background-image:url(https://api.map.baidu.com/staticimage/v2?ak=GByG2pAz1WlmY7wX1rlIM4nd&width=640&height=426&center=<%= longitude%>,<%= latitude%>&zoom=18);">
+<a href="<%= mapUrl%>" data-bigdata="<%= bigDataParams%>" class="map" style="background-image:url(https://api.map.baidu.com/staticimage/v2?ak=GByG2pAz1WlmY7wX1rlIM4nd&width=640&height=426&center=<%= longitude%>,<%= latitude%>&zoom=18);">
     <div class="location">
         <div class="inner">
 

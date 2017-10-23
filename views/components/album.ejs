@@ -4,7 +4,8 @@
         imgList : [{
             isVideo: true,//是视频
             url: "",//视频地址
-            imageUrl: ""//图片地址
+            imageUrl: "",//图片地址
+            videoPlayUrl: "",//视频播放页面地址
         },{
             isVideo: false,//不是视频
             url: ""//图片地址
@@ -26,7 +27,7 @@
         %>
                     <div class="swiper-slide">
                         <div class="item video" style="background-image:url(<%= imgList[i].imageUrl%>);background-repeat: no-repeat;background-size:100%">               
-                            <a class="play" href="../../videoplay/index?src=<%= imgList[i].url%>">
+                            <a class="play" href="<%= imgList[i].videoPlayUrl%>">
                                 <div class="triangle">
                                 </div>
                             </a>

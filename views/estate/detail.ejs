@@ -1,5 +1,5 @@
 <%- include("../components/head") %>
-<div class="content-wrapper has-assistant">
+<div class="content-wrapper">
     <!-- 轮播图片 -->
     <div class="wk-panel remove-left-padding">
         <%- include("../components/album",{imgList: item.imgList})%>
@@ -36,7 +36,7 @@
                     房屋总数
                 </dt>
                 <dd>
-                    <%= item.totalHouse%>户
+                    <%= item.totalHouse%>
                 </dd>
             </dl>
             <dl>
@@ -52,7 +52,7 @@
                     物业费
                 </dt>
                 <dd>
-                    <%= item.propertyCharges%> 元/㎡/月
+                    <%= item.propertyCharges%>
                 </dd>
             </dl>
             <dl>
@@ -60,7 +60,7 @@
                     绿化率
                 </dt>
                 <dd>
-                    <%= item.greenRate%>%
+                    <%= item.greenRate%>
                 </dd>
             </dl>
             <dl>
@@ -116,6 +116,6 @@
         </div>
     </div>
 
-    <%- include("../components/map",{address:"地址是",subEstateName:"",longitude: 131, latitude: 32})%>
+    <%- include("../components/map",{address:item.estateAddr,subEstateName:item.subEstateName,longitude: item.longitude, latitude: item.latitude, mapUrl: item.mapUrl})%>
 </div>
 <%- include("../components/footer") %>

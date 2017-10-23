@@ -41,7 +41,8 @@ class Renderer extends AppRendererControllerBasic {
             imgList.push({
                 isVideo: true,
                 url: item.houseVideos.videoUrl,
-                imageUrl: item.houseVideos.imageUrl
+                imageUrl: item.houseVideos.imageUrl, 
+                videoPlayUrl: this.templateData.currentProjectDir + this.req.params.city + '/videoplay/index?src=' + item.houseVideos.videoUrl
             });
         }
         if(item.imgList && item.imgList.length > 0){
@@ -60,15 +61,20 @@ class Renderer extends AppRendererControllerBasic {
 
         //相似房源跳转路径
         if(item.similarHouses && item.similarHouses.length > 0){            
-            item.similarHouses.forEach(house => {
-                console.log("house:" , house);
+            item.similarHouses.forEach(house => {                
                 house.url = this.templateData.currentProjectDir + this.req.params.city + '/rent/share-detail/' + house.encryptHouseId;
             });            
         }
 
         //小区跳转路径
+        item.subEstateUrl = this.templateData.currentProjectDir + this.req.params.city + '/estate/share-detail/' + item.encryptSubEstateId;
 
-        //经济人跳转路径
+        //经纪人跳转路径
+        item.houseAgent.url = this.templateData.currentProjectDir + this.req.params.city + '/space/share-index/' + item.houseAgent.agentId;
+        
+        //地图跳转路径
+        item.mapUrl = "";
+        item.mapUrl = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;        
 
         //大数据埋点参数
         item.bigDataParams = {

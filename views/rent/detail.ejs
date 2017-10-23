@@ -89,7 +89,7 @@
             <div class="one-column-container">
                 <dl>
                     <dt>小区</dt>
-                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams%>" href="../../estate/share-detail/<%= item.encryptSubEstateId%>"><%= item.subEstateName%></a></dd>
+                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams%>" href="<%= item.subEstateUrl%>"><%= item.subEstateName%></a></dd>
                 </dl>
             </div>
         </div>
@@ -146,7 +146,7 @@
         </div>
         <div class="panel-body">
             <div class="has-bottom-border">
-                <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams%>" class="subestate box" href="../../estate/share-detail/<%= item.encryptSubEstateId%>">
+                <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams%>" class="subestate box" href="<%= item.subEstateUrl%>">
                     <div class="left">
                         <img src="<%= item.estateImgUrl%>">
                     </div>
@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName})%>
+    <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName, mapUrl: item.mapUrl})%>
     <!-- 相似房源推荐 -->
     <%if(item.similarHouses){%>
     <div class="wk-panel top-gap has-right-padding">

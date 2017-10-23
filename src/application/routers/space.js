@@ -14,7 +14,7 @@ let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /space/index的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/share-index/:agentId", function(req, res, next) {   
+router.get("/:city/space/share-index/:agentId", function(req, res, next) { 
     new SpaceIndexShareRenderer(req, res, next) ;  
 }) ;
 export default router ;

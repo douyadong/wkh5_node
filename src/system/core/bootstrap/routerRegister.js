@@ -19,7 +19,7 @@ let routers = loader.load("application/routers") ;
 export default function (app) {
     for(let m in routers) {
         //if (m === app.locals.confs.app.homeRouter) app.use("/", routers[m]["default"]) ; 
-        //else 
+        //else app.use("/", routers[m]["default"]) ;
         app.use("/", routers[m]["default"]) ;
     } 
 } ;

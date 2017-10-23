@@ -39,18 +39,25 @@ class Renderer extends AppRendererControllerBasic {
             "data" : { "agentId" : agentId }
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        对推荐房源数据进行大数据埋点处理
+        对推荐房源数据进行大数据埋点以及跳转地址的处理
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
         if(apiData.data.oldHouseList) {
             for(let n = 0 ; n < apiData.data.oldHouseList.length ; n ++) {
                 apiData.data.oldHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                apiData.data.oldHouseList[n].url = this.templateData.domain + "/" + this.req.params.city + "/esf/" + apiData.data.oldHouseList[n].encryptHouseId + ".html" ;
             }
         }
         if(apiData.data.newHouseList) {
             for(let n = 0 ; n < apiData.data.newHouseList.length ; n ++) {
                 apiData.data.newHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : apiData.data.newHouseList[n].subEstateId } } ) ;
+                apiData.data.newHouseList[n].url = this.templateData.domain + "/" + this.req.params.city + "/xfdetail/" + apiData.data.newHouseList[n].encryptSubEstateId + ".html" ;
             }
-        }   
+        }
+        if(apiData.data.rentHouseList) {
+            for(let n = 0 ; n < apiData.data.rentHouseList.length ; n ++) {                
+                apiData.data.rentHouseList[n].url = this.templateData.currentProjectDir + "/" + this.req.params.city + "/rent/detail/" + apiData.data.rentHouseList[n].encryptHouseId ;
+            }
+        }
         
         Object.assign(this.templateData , apiData.data ) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

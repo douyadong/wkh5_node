@@ -13,7 +13,7 @@ export default {
         {
             "category" : "info" ,
             "type" : "dateFile" ,
-            "filename" : "../logs/ares/info/" ,
+            "filename" : "../logs/wkh5_node/info/" ,
             "pattern" : "yyyy-MM-dd.log" ,
             "alwaysIncludePattern" : true ,
             "maxLogSize" : 1024
@@ -21,7 +21,7 @@ export default {
         {
             "category" : "warn" ,
             "type" : "dateFile" ,
-            "filename" : "../logs/ares/warn/" ,
+            "filename" : "../logs/wkh5_node/warn/" ,
             "pattern" : "yyyy-MM-dd.log" ,
             "alwaysIncludePattern" : true ,
             "maxLogSize" : 1024
@@ -29,7 +29,7 @@ export default {
         {
             "category" : "error" ,
             "type" : "dateFile" ,
-            "filename" : "../logs/ares/error/" ,
+            "filename" : "../logs/wkh5_node/error/" ,
             "pattern" : "yyyy-MM-dd.log" ,
             "alwaysIncludePattern" : true ,
             "maxLogSize" : 1024

@@ -54,10 +54,12 @@ class ApiDataFilter {
         搞正事
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/       
         try {
-            let result = ( method === "get" ) ? await request.get(opts) : await request.post(opts) ;       
+            let result = ( method === "get" ) ? await request.get(opts) : await request.post(opts) ;
+            /*   
             if(this.app.locals.stage_env !== "prod") {
                 console.log("后端接口返回数据数据：" + JSON.stringify(result)) ; 
-            }  
+            }
+            */
             return result ;
         }
         catch({ name , message }) {

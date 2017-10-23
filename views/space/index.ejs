@@ -43,7 +43,7 @@
                 <dd class="picts">
                     <% agent.myBizStoryImgUrls.forEach(function(pict){ %>
                     <img src="<%= pict %>">
-                    <% })%>                    
+                    <% }) ; %>                    
                 </dd>
                 <% } %>     
             </dl>
@@ -53,16 +53,18 @@
 </div>
 <!--三个tabs部分-->
 <div class="wk-tabs top-gap">
-    <!--tabs-handle部分-->    
+    <!--tabs-handle部分-->
+    <% if(tabsCount > 1) { %>
     <ul class="wk-panel tabs-handle">
-        <li class="on" data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">推荐二手房</a></li>
-        <li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">推荐新房</a></li>
-        <li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">推荐租房</a></li>
+        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">推荐二手房</a></li><% } %>
+        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">推荐新房</a></li><% } %>
+        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">推荐租房</a></li><% } %>
     </ul>
+    <% } %>
     <!--tabs-frame部分-->
-    <div class="wk-panel tabs-frame"><%- include("../components/esf-items") %></div>
-    <div class="wk-panel tabs-frame"><%- include("../components/xf-items") %></div>
-    <div class="wk-panel tabs-frame"></div>
+    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
+    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
+    <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame rent-frame"><%- include("../components/rent-items" , { "similiarRentItems" : rentHouseList } ) %></div><% } %>
     <!--tabs-frame内容结束-->
 </div>
 <!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->

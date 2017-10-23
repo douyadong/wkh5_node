@@ -1,22 +1,4 @@
-<%
-    let xfSources = [
-        {
-            "estateId" : 123568 ,
-            "imageUrl" : "https://img.wkzf.com/7257fbd251e2487f90b4ae8db10939ef.ML" ,
-            "estateName" : "绿地长岛" ,
-            "districtName" : "崇明区" ,
-            "townName" : "南门" ,
-            "startSpace" : 80 ,            
-            "endSpace" : 120 ,
-            "isSoonOpen" : "1" ,            
-            "hasActivity" : "1" ,
-            "isSubwayEstate" : "0" ,
-            "hasVideo" : "0" ,
-            "avgPriceWou" : 9000
-        }
-    ] ;
-%>
-<% xfSources.forEach(function(xf){ %>
+<% newHouseList && newHouseList.forEach(function(xf){ %>
     <a href="/" class="xf-item" data-bigdata="<%= xf.bigDataParams %>">
         <dl>
             <dt><img src="<%= xf.imageUrl %>?x-oss-process=image/resize,w_150" class="img-responsive"></dt>

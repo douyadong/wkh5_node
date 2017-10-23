@@ -37,7 +37,21 @@ class Renderer extends AppRendererControllerBasic {
         let apiData = await adf.request({
             "apiPath" : "space.index" ,
             "data" : { "agentId" : agentId }
-        }) ;           
+        }) ;
+        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        对推荐房源数据进行大数据埋点处理
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+        if(apiData.data.oldHouseList) {
+            for(let n = 0 ; n < apiData.data.oldHouseList.length ; n ++) {
+                apiData.data.oldHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+            }
+        }
+        if(apiData.data.newHouseList) {
+            for(let n = 0 ; n < apiData.data.newHouseList.length ; n ++) {
+                apiData.data.newHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : apiData.data.newHouseList[n].subEstateId } } ) ;
+            }
+        }   
+        
         Object.assign(this.templateData , apiData.data ) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         判断是否需要显示tabs
@@ -71,7 +85,7 @@ class Renderer extends AppRendererControllerBasic {
             "bigDataParams" : {
                 "esfTab" : this.generateBigDataParams( { "eventName" : 1002008 , "eventParam" : {} } ) ,
                 "xfTab" : this.generateBigDataParams( { "eventName" : 1002009 , "eventParam" : {} } ) ,
-                "rentTab" : this.generateBigDataParams( { "eventName" : 1002029 , "eventParam" : {} } )                
+                "rentTab" : this.generateBigDataParams( { "eventName" : 1002029 , "eventParam" : {} } )    
             }
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

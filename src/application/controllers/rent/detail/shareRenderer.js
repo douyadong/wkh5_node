@@ -38,7 +38,7 @@ class Renderer extends AppRendererControllerBasic {
         //合并视频和图片
         let imgList = [];
         let item = apiData.data;
-        if(item.houseVideos){
+        if(item.houseVideos && item.houseVideos.videoUrl){
             imgList.push({
                 isVideo: true,
                 url: item.houseVideos.videoUrl,
@@ -46,10 +46,10 @@ class Renderer extends AppRendererControllerBasic {
                 videoPlayUrl: this.templateData.currentProjectDir + this.req.params.city + '/videoplay/index?src=' + item.houseVideos.videoUrl
             });
         }
-        if(item.imgList && item.imgList.length > 0){
-            for(let i = 0; i < item.imgList.length; i++){
+        if(item.houseImages && item.houseImages.length > 0){
+            for(let i = 0; i < item.houseImages.length; i++){
                 imgList.push({
-                    url: item.imgList[i]
+                    url: item.houseImages[i]
                 });
             }
         }

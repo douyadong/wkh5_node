@@ -43,9 +43,11 @@ class ApiDataFilter {
             else opts.form = data ;           
         }
         else opts.qs = data ;
-        if(this.app.locals.stage_env !== "prod") {
+        //if(this.app.locals.stage_env !== "prod") {
             console.log("Node请求(" + apiUrl + ")后端接口数据("+method+")：" + JSON.stringify(data)) ;
-        }
+        //} else {
+            this.logger.info("Node请求(" + apiUrl + ")后端接口数据("+method+")：" + JSON.stringify(data)) ;
+        //}
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         如果converter没有设置为false，就必定是一定对象格式，就需要取得转换器方法
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -60,6 +62,8 @@ class ApiDataFilter {
                 console.log("后端接口返回数据数据：" + JSON.stringify(result)) ; 
             }
             */
+            console.log("后端接口返回数据数据：" + JSON.stringify(result)) ;
+            this.logger.info("后端接口返回数据数据：" + JSON.stringify(result)) ;
             return result ;
         }
         catch({ name , message }) {

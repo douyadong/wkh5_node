@@ -112,7 +112,7 @@
             小区评论
         </div>
         <div class="panel-body">
-            <%- include("../components/subestate-comments",{comments: item.comment.commentList})%>
+            <%- include("../components/subestate-comments",{comments:item.comment && item.comment.commentList || []})%>
         </div>
     </div>
 

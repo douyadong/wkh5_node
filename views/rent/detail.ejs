@@ -5,12 +5,10 @@
    <%- include("../components/assistant", {agent: item.houseAgent}) %>
    <%}%>
     
-    <!-- 轮播图片 -->
-    <%if(!item.isExternal){%>
+    <!-- 轮播图片 -->    
     <div class="wk-panel remove-left-padding">
         <%- include("../components/album",{imgList: item.imgList, bigDataParams: item.bigDataParams.clickImageBigDataParams})%>
-    </div>
-    <%}%>
+    </div>    
 
     <!-- 户型等信息 -->
     <div class="wk-panel has-right-padding">

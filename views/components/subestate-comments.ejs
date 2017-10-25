@@ -26,15 +26,17 @@
             <div class="content">
                 <%= item.comment%>
                 <%if(item.imgList && item.imgList.length > 0){
+                    let loopCount = Math.ceil(item.imgList.length /3);
+                    for(let c = 0; c < loopCount; c++){
                 %>
                     <div class="imgs">
                 <%
-                    for(let i = 0; i < item.imgList.length; i++){
-                        let img = item.imgList[i];
-                %><img class="preview-image-item" src="<%= img.url%>" ><%}%>
+                    for(let i = 0; i < 3 && ( (3*c +i) < item.imgList.length); i++){
+                        let img = item.imgList[3*c +i];
+                %><div class="img"><img class="preview-image-item" src="<%= img.url%>" ></div><%}%>
                 </div>
                 <%
-                } 
+                } }
                 %>
             </div>
         </div>

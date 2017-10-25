@@ -20,7 +20,7 @@
                     产权年代
                 </dt>
                 <dd>
-                    <%= item.propertyRight%>年
+                    <%= item.propertyRight%>
                 </dd>
             </dl>
             <dl>
@@ -112,7 +112,7 @@
             小区评论
         </div>
         <div class="panel-body">
-            <%- include("../components/subestate-comments",{comments: item.commentList})%>
+            <%- include("../components/subestate-comments",{comments: item.comment.commentList})%>
         </div>
     </div>
 

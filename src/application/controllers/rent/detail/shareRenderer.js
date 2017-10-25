@@ -58,6 +58,7 @@ class Renderer extends AppRendererControllerBasic {
         //计算isExternal
         if(item.houseId > 1000000000){//大于1000000000是外部房源
             item.isExternal = true;
+            item.payTypeStr = "面议"; //prd要求外来房源统一显示面议
         }    
 
         //相似房源跳转路径

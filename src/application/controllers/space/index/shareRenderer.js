@@ -67,15 +67,7 @@ class Renderer extends AppRendererControllerBasic {
         if(this.templateData.oldHouseList && this.templateData.oldHouseList.length > 0 )  tabsCount ++ ;
         if(this.templateData.newHouseList && this.templateData.newHouseList.length > 0 )  tabsCount ++ ;
         if(this.templateData.rentHouseList && this.templateData.rentHouseList.length > 0 )  tabsCount ++ ;
-        Object.assign(this.templateData , { "tabsCount" : tabsCount } ) ;
-        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        给下面辅助条加上埋点数据
-        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-        Object.assign(this.templateData.agent , {
-            "mobileBigDataParams" : this.generateBigDataParams( { "eventName" : 1002001 , "eventParam" : { "agent_id" : agentId } } ) ,
-            "avatarBigDataParams" :  this.generateBigDataParams( { "eventName" : 1002001 , "eventParam" : { "agent_id" : agentId } } ) ,
-            "wxBigDataParams" : this.generateBigDataParams( { "eventName" : 1002007 , "eventParam" : { "agent_id" : agentId } } )
-        } ) ;
+        Object.assign(this.templateData , { "tabsCount" : tabsCount } ) ;        
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -92,7 +84,9 @@ class Renderer extends AppRendererControllerBasic {
             "bigDataParams" : {
                 "esfTab" : this.generateBigDataParams( { "eventName" : 1002008 , "eventParam" : {} } ) ,
                 "xfTab" : this.generateBigDataParams( { "eventName" : 1002009 , "eventParam" : {} } ) ,
-                "rentTab" : this.generateBigDataParams( { "eventName" : 1002029 , "eventParam" : {} } )    
+                "rentTab" : this.generateBigDataParams( { "eventName" : 1002029 , "eventParam" : {} } ) ,
+                "phone" : this.generateBigDataParams( { "eventName" : 1002001 , "eventParam" : { "agent_id" : agentId } } ) ,
+                "wx" : this.generateBigDataParams( { "eventName" : 1002007 , "eventParam" : { "agent_id" : agentId } } )
             }
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

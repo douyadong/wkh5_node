@@ -69,5 +69,8 @@
 </div>
 <!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->
 <input type="hidden" id="agentId" value="<%= agentId %>">
-<%- include("../components/assistant", agent) %>
+<div class="assistant">
+    <a href="tel:<%= agent.agentMobile %>" class="phone" data-bigdata="<%= bigDataParams.phone %>">电话咨询</a>
+    <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= bigDataParams.wx %>">添加微信</a><% } %> 
+</div>
 <%- include("../components/footer") %>

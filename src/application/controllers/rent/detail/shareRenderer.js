@@ -65,6 +65,13 @@ class Renderer extends AppRendererControllerBasic {
         if(item.similarHouses && item.similarHouses.length > 0){            
             item.similarHouses.forEach(house => {                
                 house.url = this.templateData.currentProjectDir + this.req.params.city + '/rent/share-detail/' + house.encryptHouseId;
+                house.bigDataParams = this.generateBigDataParams({                    
+                    eventName: "1204012",
+                    eventParam: {
+                        rent_house_id: house.houseId
+                    },
+                    type: 2
+                });
             });            
         }
 

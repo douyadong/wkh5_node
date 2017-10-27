@@ -106,7 +106,30 @@ class Renderer extends AppRendererControllerBasic {
                 eventParam: {                
                 },
                 type: 2
-            }) //点击地图埋点参数
+            }), //点击地图埋点参数
+            avatarBigDataParams : this.generateBigDataParams({
+                eventName: "1204014",
+                eventParam: {
+                    agent_id: item.houseAgent && item.houseAgent.agentId
+                }, 
+                type: 2
+            }), //点击底部经纪人头像埋点参数
+            wxBigDataParams : this.generateBigDataParams({
+                eventName: "1204019",
+                eventParam: {
+                    agent_id: item.houseAgent && item.houseAgent.agentId,
+                    rent_house_id: item.houseId
+                }, 
+                type: 2
+            }),
+            mobileBigDataParams : this.generateBigDataParams({
+                eventName: "1204015",
+                eventParam: {
+                    agent_id: item.houseAgent && item.houseAgent.agentId,
+                    rent_house_id: item.houseId
+                },
+                type: 2
+            })
         };
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据

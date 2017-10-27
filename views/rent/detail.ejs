@@ -3,7 +3,7 @@
     <input type="hidden" value="<%item.houseId%>">
    <!-- 底部助手条 --> 
    <%if(item.houseState != 4){%>    
-   <%- include("../components/assistant", {agent: item.houseAgent}) %>
+   <%- include("../components/assistant", {agent: item.houseAgent, mobileBigDataParams: item.bigDataParams && item.bigDataParams.clickImageBigDataParams ,avatarBigDataParams: item.bigDataParams && item.bigDataParams.clickImageBigDataParams,wxBigDataParams: item.bigDataParams && item.bigDataParams.clickImageBigDataParams}) %>
    <%}%>
     
     <!-- 轮播图片 -->    

@@ -1,5 +1,6 @@
 <%- include("../components/head") %>
-<div class="content-wrapper has-assistant">  
+<div class="content-wrapper has-assistant"> 
+    <input type="hidden" value="<%item.houseId%>">
    <!-- 底部助手条 --> 
    <%if(item.houseState != 4){%>    
    <%- include("../components/assistant", {agent: item.houseAgent}) %>
@@ -134,7 +135,7 @@
                     <div class="right">
                         <h4><%= item.subEstateName%></h4>
                         <p class="completed has-arrow">
-                            <%=item.completedStr%> 年竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse%>户
+                            <%=item.completedStr%> 竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse%>户
                         </p>
                         <p class="address">
                             <%= item.estateAddr%>
@@ -155,7 +156,7 @@
 
     <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName, mapUrl: item.mapUrl})%>
     <!-- 相似房源推荐 -->
-    <%if(item.similarHouses){%>
+    <%if(item.similarHouses && item.similarHouses.length > 0){%>
     <div class="wk-panel top-gap has-right-padding">
         <div class="panel-header">
             相似房源推荐

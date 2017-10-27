@@ -26,7 +26,7 @@
 %>
 <%if(agent){%>
 <div class="assistant">
-        <a class="portrait" href="<%= agent.url || 'javascript:void()'%>" data-bigdata="<%= agent.avatarBigDataParams%>">
+        <a class="portrait" href="<%= agent.url || 'javascript:void()'%>" data-bigdata="<%= avatarBigDataParams%>">
             <div class="left">
                 <img src="<%= agent.headRoundImgUrl%>">    
             </div>
@@ -35,8 +35,8 @@
                 <div class="company-name"><%= agent.abbreviation%></div>
             </div>                        
         </a>
-        <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= agent.wxBigDataParams%>">添加微信</a><% } %>        
-        <a href="tel:<%= agent.agentMobile%>" class="phone" data-bigdata="<%= agent.mobileBigDataParams%>">电话咨询</a>
+        <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= wxBigDataParams%>">添加微信</a><% } %>        
+        <a href="tel:<%= agent.agentMobile%>" class="phone" data-bigdata="<%= mobileBigDataParams%>">电话咨询</a>
 </div>
 <%}%>
 

@@ -1,6 +1,7 @@
 <%- include("../components/head") %>
 <div class="content-wrapper has-assistant"> 
     <input type="hidden" id="houseId" value="<%= item.houseId%>">
+    <i class="iconfont icon-back"></i>
    <!-- 底部助手条 --> 
    <%if(item.houseState != 4){%>    
    <%- include("../components/assistant", {agent: item.houseAgent, mobileBigDataParams: item.bigDataParams && item.bigDataParams.mobileBigDataParams ,avatarBigDataParams: item.bigDataParams && item.bigDataParams.avatarBigDataParams,wxBigDataParams: item.bigDataParams && item.bigDataParams.wxBigDataParams}) %>

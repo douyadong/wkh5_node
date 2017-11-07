@@ -56,7 +56,7 @@ class Renderer extends AppRendererControllerBasic {
             }
             if(apiData.data.rentHouseList) {
                 for(let n = 0 ; n < apiData.data.rentHouseList.length ; n ++) {                
-                    apiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/detail/" + apiData.data.rentHouseList[n].encryptHouseId + ".html" ;
+                    apiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/" + apiData.data.rentHouseList[n].encryptHouseId + ".html" ;
                 }
             }
             

@@ -1,6 +1,6 @@
 /*++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. 项目名称：ares
-2. 文件名：src -> application -> controllers -> subestate -> detail -> renderer.js
+2. 文件名：src -> application -> controllers -> community -> detail -> renderer.js
 3. 作者：tangxuyang@lifang.com
 4. 备注：小区详情页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -26,10 +26,9 @@ class Renderer extends AppRendererControllerBasic {
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         调用接口获取数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/  
-        let adf = new ApiDataFilter(this.req.app) ; 
-        console.log("subEstate:", subEstateId);
+        let adf = new ApiDataFilter(this.req.app) ;         
         let apiData = await adf.request({
-            "apiPath" : "estate.detail" ,
+            "apiPath" : "community.detail" ,
             "data" : { "subEstateId" : subEstateId }
         }) ;        
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -58,13 +57,13 @@ class Renderer extends AppRendererControllerBasic {
             "wechatContent" : apiData.data.weChatShare.content ,
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
             "item" : item ,
-            "matchStylesheet" : this.getStaticPrefix("app") + "/css/estate/detail.min.css" ,
-            "controllerJavascript" : this.getStaticPrefix("app") + "/js/estate/detail.min.js" 
+            "matchStylesheet" : this.getStaticPrefix("app") + "/css/community/detail.min.css" ,
+            "controllerJavascript" : this.getStaticPrefix("app") + "/js/community/detail.min.js" 
         }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        
-        this.render("estate/detail") ; 
+        this.render("community/detail") ; 
     }
 }
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

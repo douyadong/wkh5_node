@@ -64,7 +64,7 @@ class Renderer extends AppRendererControllerBasic {
         //相似房源跳转路径
         if(item.similarHouses && item.similarHouses.length > 0){            
             item.similarHouses.forEach(house => {                
-                house.url = "/" + this.req.params.city + '/rent/detail/' + house.encryptHouseId + ".html" ;
+                house.url = "/" + this.req.params.city + '/rent/' + house.encryptHouseId + ".html" ;
                 house.bigDataParams = this.generateBigDataParams({                    
                     eventName: "1204012",
                     eventParam: {
@@ -76,7 +76,7 @@ class Renderer extends AppRendererControllerBasic {
         }
 
         //小区跳转路径
-        item.subEstateUrl = "/" + this.req.params.city + '/estate/detail/' + item.encryptSubEstateId + ".html" ;
+        item.subEstateUrl = "/" + this.req.params.city + '/community/' + item.encryptSubEstateId + ".html" ;
 
         //经纪人跳转路径
         item.houseAgent.url = "/" + this.req.params.city + '/space/' + item.houseAgent.agentId + ".html" ;

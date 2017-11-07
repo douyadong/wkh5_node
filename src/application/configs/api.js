@@ -24,7 +24,7 @@ export default {
         "rent" : {
             "detail" : "rent/queryHouseDetailForWkzf.rest"
         } ,
-        "estate" : {
+        "community" : {
             "detail" : "estate/estateInfo.rest"
         }
     }

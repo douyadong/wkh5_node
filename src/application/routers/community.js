@@ -1,6 +1,6 @@
 /*++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. 项目名称：ares
-2. 文件名：src -> application -> routers -> subestate.js
+2. 文件名：src -> application -> routers -> community.js
 3. 作者：tangxuyang@lifang.com
 4. 备注：wkh5 -> 小区模块路由器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -9,13 +9,13 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import EstateShareDetailRenderer from "../controllers/estate/detail/renderer" ;
+import CommunityDetailRenderer from "../controllers/community/detail/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/estate/(:subEstateId).html", function(req, res, next) {   
-    new EstateShareDetailRenderer(req, res, next) ;  
+router.get("/:city/community/(:subEstateId).html", function(req, res, next) {   
+    new CommunityDetailRenderer(req, res, next) ;  
 }) ;
 
 export default router ;

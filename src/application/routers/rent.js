@@ -9,12 +9,12 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import RentShareDetailRenderer from "../controllers/rent/detail/shareRenderer" ;
+import RentDetailRenderer from "../controllers/rent/detail/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/rent/share-detail/:houseId", function(req, res, next) {   
-    new RentShareDetailRenderer(req, res, next) ;  
+router.get("/:city/rent/(:houseId).html", function(req, res, next) {   
+    new RentDetailRenderer(req, res, next) ;  
 }) ;
 export default router ;

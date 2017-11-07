@@ -28,12 +28,11 @@ class AppRendererControllerBasic extends SystemRendererControllerBasic {
             "appStaticPrefix" : this.getStaticPrefix("app") ,
             "utilStaticPrefix" : this.getStaticPrefix("util") ,
             "extraStylesheets" : [] ,
-            "matchStylesheet" : MCCombined ,
+            "matchStylesheet" : this.getStaticPrefix("app") + "/css/" + MCCombined + ".min.css" ,  //这里也可以是false或者null
             "extraJavascripts" : [] ,
-            "matchJavascript" : MCCombined ,
+            "controllerJavascript" : this.getStaticPrefix("app") + "/js/" + MCCombined + ".min.js" ,    //这里也可以是false或者null
             "appName" : appConf.appName ,            
-            "domain" : appConf.domain[this.req.app.locals.stage_env] ,
-            "currentProjectDir" : appConf.currentProjectDir[this.req.app.locals.stage_env] ,
+            "domain" : appConf.domain[this.req.app.locals.stage_env] ,            
             "wechatTitle" : "" ,
             "wechatContent" : "" ,
             "wechatImgUrl" : ""

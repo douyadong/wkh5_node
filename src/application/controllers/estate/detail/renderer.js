@@ -57,12 +57,10 @@ class Renderer extends AppRendererControllerBasic {
             "wechatTitle" : apiData.data.weChatShare.title ,
             "wechatContent" : apiData.data.weChatShare.content ,
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
-            "item" : item
-        }) ;                           
-        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        扩展模板数据
-        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-        Object.assign(this.templateData, { extraStylesheets : [ ] , "extraJavascripts" : [] }) ;
+            "item" : item ,
+            "matchStylesheet" : this.getStaticPrefix("app") + "/css/estate/detail.min.css" ,
+            "controllerJavascript" : this.getStaticPrefix("app") + "/js/estate/detail.min.js" 
+        }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        

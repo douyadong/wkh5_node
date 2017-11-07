@@ -24,7 +24,15 @@ class Renderer extends AppRendererControllerBasic {
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-        Object.assign(this.templateData, { "title" : "出错啦！" , "matchStylesheet" : false , "extraStylesheets" : [ this.getStaticPrefix("app") + "/css/" + this.templateData.theme + "/exception/index.min.css" ] , "extraJavascripts" : [ this.getStaticPrefix("app") + "/js/exception/index.min.js" ] , "error" : err , "message" : err.message }) ;
+        Object.assign(this.templateData, { 
+            "title" : "出错啦！" , 
+            "matchStylesheet" : false , 
+            "extraStylesheets" : [ this.getStaticPrefix("app") + "/css/" + this.templateData.theme + "/exception/index.min.css" ] , 
+            "extraJavascripts" : [ this.getStaticPrefix("app") + "/js/exception/index.min.js" ] , 
+            "controllerJavascript" : false , 
+            "error" : err , 
+            "message" : err.message 
+        }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/    

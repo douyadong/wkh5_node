@@ -9,12 +9,12 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import EstateShareDetailRenderer from "../controllers/estate/detail/shareRenderer" ;
+import EstateShareDetailRenderer from "../controllers/estate/detail/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/estate/share-detail/:subEstateId", function(req, res, next) {   
+router.get("/:city/estate/(:subEstateId).html", function(req, res, next) {   
     new EstateShareDetailRenderer(req, res, next) ;  
 }) ;
 

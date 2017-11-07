@@ -43,7 +43,7 @@ class Renderer extends AppRendererControllerBasic {
                 isVideo: true,
                 url: item.houseVideos.videoUrl,
                 imageUrl: item.houseVideos.imageUrl, 
-                videoPlayUrl: this.templateData.currentProjectDir + this.req.params.city + '/videoplay/index?src=' + item.houseVideos.videoUrl
+                videoPlayUrl : "/" + this.req.params.city + '/videoplay/index?src=' + encodeURIComponent(item.houseVideos.videoUrl)
             });
         }
         if(item.houseImages && item.houseImages.length > 0){
@@ -64,7 +64,7 @@ class Renderer extends AppRendererControllerBasic {
         //相似房源跳转路径
         if(item.similarHouses && item.similarHouses.length > 0){            
             item.similarHouses.forEach(house => {                
-                house.url = this.templateData.currentProjectDir + this.req.params.city + '/rent/share-detail/' + house.encryptHouseId;
+                house.url = "/" + this.req.params.city + '/rent/detail/' + house.encryptHouseId + ".html" ;
                 house.bigDataParams = this.generateBigDataParams({                    
                     eventName: "1204012",
                     eventParam: {
@@ -76,10 +76,10 @@ class Renderer extends AppRendererControllerBasic {
         }
 
         //小区跳转路径
-        item.subEstateUrl = this.templateData.currentProjectDir + this.req.params.city + '/estate/share-detail/' + item.encryptSubEstateId;
+        item.subEstateUrl = "/" + this.req.params.city + '/estate/detail/' + item.encryptSubEstateId + ".html" ;
 
         //经纪人跳转路径
-        item.houseAgent.url = this.templateData.currentProjectDir + this.req.params.city + '/space/share-index/' + item.houseAgent.agentId;
+        item.houseAgent.url = "/" + this.req.params.city + '/space/' + item.houseAgent.agentId + ".html" ;
         
         //地图跳转路径
         item.mapUrl = "";
@@ -146,12 +146,10 @@ class Renderer extends AppRendererControllerBasic {
             "wechatTitle" : apiData.data.weChatShare.title ,
             "wechatContent" : apiData.data.weChatShare.content ,
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
-            "item" : item
-        }) ;
-        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        扩展模板数据
-        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-        Object.assign(this.templateData, { extraStylesheets : [ ] , "extraJavascripts" : [] }) ;
+            "item" : item ,
+            "matchStylesheet" : this.getStaticPrefix("app") + "/css/rent/detail.min.css" ,
+            "controllerJavascript" : this.getStaticPrefix("app") + "/js/rent/detail.min.js"
+        }) ;        
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/              

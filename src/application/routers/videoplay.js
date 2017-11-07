@@ -9,12 +9,12 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
-import VideoPlayDetailRenderer from "../controllers/videoplay/renderer" ;
+import VideoPlayRenderer from "../controllers/videoplay/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/:city/videoplay/index", function(req, res, next) {   
-    new VideoPlayDetailRenderer(req, res, next) ;  
+    new VideoPlayRenderer(req, res, next) ;
 }) ;
 export default router ;

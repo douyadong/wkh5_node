@@ -73,7 +73,7 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, { 
-                "title" : "经纪人个人店铺" , 
+                "title" : apiData.data.agent.agentName + "_" , 
                 "wechatTitle" : apiData.data.wxShareTitle ,
                 "wechatContent" : apiData.data.wxShareDesc ,
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 

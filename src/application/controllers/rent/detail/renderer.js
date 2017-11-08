@@ -144,6 +144,9 @@ class Renderer extends AppRendererControllerBasic {
         let houseTitle = apiData.data.houseTitle ;
         let subEstateName = apiData.data.subEstateName ;
         let cityName = apiData.data.cityName ;
+        if(cityName && cityName.charAt(cityName.length - 1) === "市") {
+            cityName = cityName.substring( 0 , cityName.length - 1) ;
+        }
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

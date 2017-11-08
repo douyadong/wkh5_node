@@ -68,12 +68,19 @@ class Renderer extends AppRendererControllerBasic {
             if(this.templateData.oldHouseList && this.templateData.oldHouseList.length > 0 )  tabsCount ++ ;
             if(this.templateData.newHouseList && this.templateData.newHouseList.length > 0 )  tabsCount ++ ;
             if(this.templateData.rentHouseList && this.templateData.rentHouseList.length > 0 )  tabsCount ++ ;
-            Object.assign(this.templateData , { "tabsCount" : tabsCount } ) ;        
+            Object.assign(this.templateData , { "tabsCount" : tabsCount } ) ;
+             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            经纪人名称和城市中文名称后面会有多个地方用到
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let agentName = apiData.data.agent.agentName ;
+            let cityName = apiData.data.agent.cityName ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, { 
-                "title" : apiData.data.agent.agentName + "_" , 
+                "title" : agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" , 
+                "keywords" : agentName + ",房产经纪人" + agentName + "," + cityName + "优秀房地产经纪人推荐" ,
+                "description" : "悟空找房网为您展示房地产经纪人" + agentName + "的房屋交易信息，客户评价等信息，让您真实了解到房产经纪人" + agentName + "的情况，更加放心去选择" + cityName + "靠谱经纪人，找房产经纪人就上悟空找房网。" ,
                 "wechatTitle" : apiData.data.wxShareTitle ,
                 "wechatContent" : apiData.data.wxShareDesc ,
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 

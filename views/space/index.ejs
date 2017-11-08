@@ -7,10 +7,10 @@
 <div class="wk-panel highlight">
     <div class="panel-body">
         <dl class="card">
-            <dt><img src="<%= agent.agentHeadImgUrl %>" alt=""></dt>
+            <dt><img src="<%= agent.agentHeadImgUrl %>" alt="<%= agent.agentName %>"></dt>
             <dd>
                 <div class="agent-name">
-                    <span class="name"><%= agent.agentName %></span>
+                    <h1><%= agent.agentName %></h1>
                     <% if(agent.isWellAgent) { %><span class="good">好</span><% } %>
                 </div>
                 <div class="sign">

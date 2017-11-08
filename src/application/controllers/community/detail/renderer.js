@@ -49,10 +49,17 @@ class Renderer extends AppRendererControllerBasic {
         //地图跳转路径
         item.mapUrl = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;  
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        小区名称和城市名称存起来，多用
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+        let estateName = apiData.data.estateName ;
+        let cityName = apiData.data.cityName ;
+        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
         Object.assign(this.templateData, { 
-            "title" : apiData.data.houseTitle , 
+            "title" : estateName + "房价_" + cityName + estateName + "租房-悟空找房" , 
+            "keywords" : estateName + "，" + estateName + "房价，" + estateName + "租房" ,
+            "description" : "悟空找房网为您提供" + estateName + "的具体信息，查看" + cityName + estateName + "二手房，租房房源信息和周边配套设施，交通详情就上悟空找房网，百分百真实房源。" ,
             "wechatTitle" : apiData.data.weChatShare.title ,
             "wechatContent" : apiData.data.weChatShare.content ,
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,

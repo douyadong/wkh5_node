@@ -23,12 +23,13 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() { 
         let subEstateId = this.req.params.subEstateId || "" ;   //加密的houseId
+        let modulePathArray = [ "community" , "detail" ] ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         调用接口获取数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/  
         let adf = new ApiDataFilter(this.req.app) ;         
         let apiData = await adf.request({
-            "apiPath" : "community.detail" ,
+            "apiPath" : modulePathArray.join(".") ,
             "data" : { "subEstateId" : subEstateId }
         }) ;        
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,13 +68,13 @@ class Renderer extends AppRendererControllerBasic {
             "wechatContent" : apiData.data.weChatShare.content ,
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
             "item" : item ,
-            "matchStylesheet" : this.getStaticPrefix("app") + "/css/community/detail.min.css" ,
-            "controllerJavascript" : this.getStaticPrefix("app") + "/js/community/detail.min.js" 
+            "matchStylesheetPath" : modulePathArray.join("/") ,
+            "controllerJavascript" : modulePathArray.join("/") 
         }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        
-        this.render("community/detail") ; 
+        this.render(modulePathArray.join("/")) ; 
     }
 }
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

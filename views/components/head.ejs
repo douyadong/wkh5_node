@@ -14,7 +14,7 @@
                 extraStylesheets.forEach(function(extraStylesheet){ %>
         <link rel="stylesheet" href="<%= extraStylesheet %>?v=<%= version %>">
         <% }) } ; %>      
-        <% if(matchStylesheet) { %><link rel="stylesheet" href="<%= matchStylesheet %>?v=<%= version %>"><% } %>        
+        <% if(matchStylesheetPath) { %><link rel="stylesheet" href="<%= appStaticPrefix %>/css/<%= matchStylesheetPath %>.min.css?v=<%= version %>"><% } %>        
     </head>
     <body <% if(appType === "mobile") { %>ontouchstart=""<% } %>>    
   

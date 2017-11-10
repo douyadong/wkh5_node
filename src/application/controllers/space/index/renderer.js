@@ -25,6 +25,7 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
+        let modulePathArray = [ "space" , "index" ] ;
         try {
             let adf = new ApiDataFilter(this.req.app) ;   
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +37,7 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let apiData = await adf.request({
-                "apiPath" : "space.index" ,
+                "apiPath" : modulePathArray.join(".") ,
                 "data" : { "agentId" : agentId }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,8 +88,8 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatTitle" : apiData.data.wxShareTitle ,
                 "wechatContent" : apiData.data.wxShareDesc ,
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 
-                "matchStylesheet" : this.getStaticPrefix("app") + "/css/space/index.min.css" ,
-                "controllerJavascript" : this.getStaticPrefix("app") + "/js/space/index.min.js"
+                "matchStylesheetPath" : modulePathArray.join("/") ,
+                "controllerJavascriptPath" : modulePathArray.join("/")
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板大数据埋点数据
@@ -105,10 +106,10 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        
-            this.render("space/index") ; 
+            this.render(modulePathArray.join("/")) ; 
         }
         catch(ex){
-            this.next(ex);
+            this.next(ex) ;
         }
     }
 }

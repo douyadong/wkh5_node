@@ -30,6 +30,7 @@ class Renderer extends AppRendererControllerBasic {
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
+                "title" :"租房" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/")
             }) ;

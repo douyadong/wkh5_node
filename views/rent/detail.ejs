@@ -152,8 +152,9 @@
             <%- include('../components/rent-comments',{comments: item.commentList, subEstateId: item.subEstateId})%>
         </div>
     </div>
-
-    <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName, mapUrl: item.mapUrl})%>
+    <%if(item.longitude > 0&&  item.latitude > 0){%>
+         <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName, mapUrl: item.mapUrl})%>
+    <%}%>
     <!-- 相似房源推荐 -->
     <%if(item.similarHouses && item.similarHouses.length > 0){%>
     <div class="wk-panel top-gap has-right-padding">

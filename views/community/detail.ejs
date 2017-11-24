@@ -116,7 +116,8 @@
             <%- include("../components/subestate-comments",{comments:item.comment && item.comment.commentList || []})%>
         </div>
     </div>
-
-    <%- include("../components/map",{address:item.estateAddr,subEstateName:item.subEstateName,longitude: item.longitude, latitude: item.latitude, mapUrl: item.mapUrl})%>
+    <%if(item.longitude >0 &&  item.latitude > 0){%>
+       <%- include("../components/map",{address:item.estateAddr,subEstateName:item.subEstateName,longitude: item.longitude, latitude: item.latitude, mapUrl: item.mapUrl})%>
+    <%}%>
 </div>
 <%- include("../components/footer") %>

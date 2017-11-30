@@ -21,6 +21,7 @@ export default function (app) {
         //if (m === app.locals.confs.app.homeRouter) app.use("/", routers[m]["default"]) ; 
         //else app.use("/" + m , routers[m]["default"]) ;
         app.use("/", routers[m]["default"]) ;
+        //console.log(routers[m]["default"]+"m---------------"+m)
     } 
 } ;
 

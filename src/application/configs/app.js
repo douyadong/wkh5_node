@@ -10,6 +10,7 @@ export default {
     "appType" : "mobile" ,  //应用类型，可以是：pc | mobile 分别表示pc端应用和移动端应用，在模板head区域meta元素会体现不同
     "viewEnginee" : "ejs" ,   //应用系统使用的模板引擎，可以是：ejs | jade | hbs，当然前提条件是npm install了相应模板引擎模块
     "homeRouter" : "" ,  //域名根路径，也就是首页使用哪个路由进行注册
+    "dubbo" : false ,  //是否需要执行 dubbo连接，如果需要，在bootstrap的时候将连接zookeeper注册中心方便dubbo接口调用
     "domain" : {
         "dev" : "//m.dev.wkzf" ,
         "test" : "//m.test.wkzf" ,

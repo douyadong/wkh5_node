@@ -15,6 +15,7 @@ import SystemApiControllerBasic from "../../system/core/controllers/api" ;
 class AppApiControllerBasic extends SystemApiControllerBasic {
     constructor(req, res, next) {
         super(req, res, next) ;
+        if(this.req.app.locals.confs.app.dubbo) this.SOAServices = this.req.app.locals.SOAServices ;
         Object.assign(this.jsonObject, {
             "status" : 1 ,
             "message" : "" ,

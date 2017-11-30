@@ -1,3 +1,5 @@
 <%- include("../components/head") %>
-<%- include("../components/essay-category") %>
+<%- include("./essay-category" , { "categoryList" : categoryList }) %>
+<!--其他资讯条目-->
+<%- include("../components/essay-items" , { "essayList" : articleList , "specailCategory" : specailCategory , "showLocation" : showLocation }) %>
 <%- include("../components/footer") %>

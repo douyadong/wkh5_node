@@ -1,0 +1,21 @@
+<div class="special-category wk-panel top-gap">
+    <div class="panel-header">        
+        <h2>
+            <img src="<%= imageUrl %>" alt="">
+            <span><%= categoryTitle %></span>
+        </h2>
+        <a class="iconfont icon-next" href="<%= categoryUrl %>"></a> 
+    </div>
+    <div class="panel-body">
+        <div class="cards" style="width : <%= cardList.length* 150 + 50 || 0 %>px">
+            <% cardList && cardList.forEach(function( card , index ){ %>            
+                <dl>
+                    <dt><img src="<%= card.cardImageUrl %>?x-oss-process=image/resize,w_50" alt="" class="img-responsive"></dt>
+                    <dd class="title"><%= card.title %></dd>
+                    <dd class="subtitle"><%= card.subTitle %></dd>
+                    <dd><a href="<%= card.url %>"><%= card.buttonName %></a></dd>
+                </dl>
+            <% }) ;%>
+        </div>
+    </div>
+</div>

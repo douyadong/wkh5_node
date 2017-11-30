@@ -1,0 +1,23 @@
+<!--第一级类别-->
+<div class="essay-category">
+    <div>
+        <a href="#" class="on">推荐</a>
+        <% categoryList && categoryList.forEach(function(category){ %>
+            <% if( ! category.firstSubTitleList || category.firstSubTitleList.length === 0 ) { %>
+            <a  href="category.url"><%= category.title %></a>
+            <% } else { %>
+            <span data-id="<%= category.categoryId %>"><%= category.title %></span>
+            <% } %>
+        <% }) ; %>
+    </div>
+</div>
+<!--第二级类别-->
+<% hasChildCategoryList && hasChildCategoryList.forEach(function(category){ %>
+    <div class="essay-subcategory" id="essayCategory<%= category.categoryId %>ChildList">
+        <div>
+            <% category.firstSubTitleList && category.firstSubTitleList.forEach(function(subCategory){ %>
+                <a href="<%= subCategory.url %>"><%= subCategory.title %></a>
+            <% }) ; %>
+        </div>
+    </div>
+<% }) ; %>

@@ -27,7 +27,7 @@ class Renderer extends AppRendererControllerBasic {
     async renders() {
         let modulePathArray = [ "store" , "index" ] ;
         try {
-            console.log(apiData)
+            // console.log(apiData)
             Object.assign(this.templateData , apiData.data) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据

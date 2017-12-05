@@ -1,5 +1,57 @@
 <%- include("../components/head") %>
-<div class="wk-panel top-gap">
-    <div class="panel-header" style="color : red ;">小悟空在努力，请先使用微信扫码！</div>    
-</div>
+    <div class="hd">
+        <div class="store">虹桥店</div>
+        <span class="nearby-house">周边房源均价</span>
+        <span class="house-price">105501元/m²</span>
+    </div> 
+    <div class="tab">
+        <div class="recommend-house"><span class="active">推荐好房</span></div>
+        <div class="recommend-agent"><span>推荐经济人</span></div>
+    </div> 
+    <!--房源列表-->
+    <div class="house-list">
+         <% for(var i=0; i<rentHouseList.length; i++) {
+             let item=rentHouseList[i] %>
+            <a href="#">
+                <div class="house-item">
+                    <img src="<%= item.firstImageUrl %>?x-oss-process=image/resize,w_120" alt="">
+                    <div class="info">
+                        <div class="title"><%= item.districtAndTownName %></div>
+                        <div class="type-area-district-town">
+                            <span><%= item.houseTypeStr %></span><span><%= item.spaceArea %>m²</span>|<span><%= item.district %></span><span><%= item.town %></span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">满五唯一</span><span class="tag">地铁房</span><span class="tag">新上</span><span class="tag">南北通透</span>
+                        </div>
+                        <div class="total-unit">
+                            <span class="total">255万</span>
+                            <span class="unit">8857元/m²</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% } %>   
+        
+    </div>
+    <!--经纪人列表-->
+    <div class="agent-list">
+        <div class="agent-item">
+            <img src="http://www.qk365.com/images/find/houseHead.jpg?x-oss-process=image/resize,w_120" alt="">
+            <div class="agent-info">
+                <p class="name">程茂胜</p>
+                <p class="join-long">加入悟空：1年</p>
+            </div>
+            <ul class="agent-contact">
+                <li class="wx">
+                    <p></p>
+                    <p>添加微信</p>
+                </li>
+                <li>|</li>
+                <li class="tel">
+                    <p></p>
+                    <a href="tel:138********">13523512427</a>
+                </li>
+            </ul>
+        </div>
+    </div> 
 <%- include("../components/footer") %>

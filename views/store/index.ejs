@@ -1,17 +1,21 @@
 <%- include("../components/head") %>
-    <div class="hd">
-        <div class="store">虹桥店</div>
-        <div class="near-price">
-            <span class="nearby-house">周边房源均价</span>
-            <span class="house-price">105501元/m²</span>
-        </div>
-    </div>
+    
     <div class="wk-tabs">
         <!--tabs-handle部分-->
-        <ul class="tabs-handle wk-panel">
-            <li><a>推荐好房</a></li>
-            <li><a>推荐经纪人</a></li>
-        </ul>
+        <!--此处将页面头部写在wk-tabs是为了更好的实现动画效果-->
+        <div class="hd">
+            <div class="animation">
+                <div class="store">虹桥店</div>
+                <div class="near-price">
+                    <span class="nearby-house">周边房源均价</span>
+                    <span class="house-price">105501元/m²</span>
+                </div>
+            </div>
+            <ul class="tabs-handle wk-panel">
+                <li><a>推荐好房</a></li>
+                <li><a>推荐经纪人</a></li>
+            </ul>
+        </div>
         <!--tabs-frame-->
         <!--房源列表-->
         <div class="wk-panel house-list tabs-frame"><%- include("../components/esf-items" , { "oldHouseList" : rentHouseList } ) %></div>

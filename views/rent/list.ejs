@@ -2,19 +2,93 @@
 <!--条件选择-->
 <div class="rent-list">
     <ul>
-        <li>区域<span><i></i></span></li>
-        <li>类型<span><i></i></span></li>
-        <li>价格<span><i></i></span></li>
-        <li>更多<span><i></i></span></li>
+        <li id="dic">区域<span><i></i></span></li>
+        <li id="price">价格<span><i></i></span></li>
+        <li id="type">类型<span><i></i></span></li>
+        <li id="more">更多<span><i></i></span></li>
     </ul>
 </div>
 <!--房源总数-->
 <div class="total-num">
     <p>共找到<span>900</span>套房源</p>
 </div>
+<!--区域查询对应模块-->
+<div class="dic">
+  <div class="tabs">
+      <ul>
+          <li><span class="active-color-dic">区域</span></li>
+          <li><span>地铁</span></li>
+      </ul>
+  </div>
+  <div class="content">
+      <div class="dic-content">
+          <div class="content-left">
+              <ul>
+                  <li>附近／定位失败</li>
+                  <li>宝山区</li>
+                  <li>崇明区</li>
+                  <li>奉贤区</li>
+                  <li>长宁区</li>
+                  <li>普陀区</li>
+                  <li>黄浦区</li>
+                  <li>虹口区</li>
+                  <li>浦东新区</li>
+                  <li>虹口区</li>
+              </ul>
+          </div>
+          <div class="content-right">
+              <ul>
+                  <li>不限（智能范围）</li>
+                  <li>500米以内</li>
+                  <li>1000米以内</li>
+                  <li>2000米以内</li>
+                  <li>5000米以内</li>
+              </ul>
+          </div>
+      </div>
+      <div class="metro-content" style="display: none">
+          地铁
+      </div>
+  </div>
+</div>
+<!--总价查询对应模块-->
+<div class="price-total">
+    <div class="price-list">
+        <ul>
+            <li>不限</li>
+            <li>100 万以下</li>
+            <li>100 - 150 万</li>
+            <li>150 - 200 万</li>
+            <li>200 - 250 万</li>
+            <li>250 - 300 万</li>
+        </ul>
+    </div>
+    <div class="writ-price">
+        <input type="number" placeholder="最低价格"><span> - </span><input type="number" placeholder="最高价格"> <button>确定</button>
+    </div>
+</div>
+<!--房型查询对应模块-->
+<div class="house-type">
+    <div class="house-list">
+        <ul>
+            <li>不限</li>
+            <li>一室</li>
+            <li>二室</li>
+            <li>三室</li>
+            <li>四室</li>
+            <li>五室及以上</li>
+        </ul>
+    </div>
+    <div class="house-conf">
+        <button>确定</button>
+    </div>
+</div>
 
+<div class="bac"></div>
 <!--租房具体房源列表-->
-<%- include("../components/rent-list") %>
+<div class="rent-items">
+
+</div>
 
 
 <%- include("../components/footer") %>

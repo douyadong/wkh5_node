@@ -42,6 +42,26 @@ class UrlParser {
     getQueryObject() {
         return this.urlObj.query ;
     }
+    /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    获取并解析路由中(:condition)部分成一个Object
+    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+    parseCondition({ condition , separator = "-" }) {
+        let result = {} ;
+        if( ! condition) return result ;
+        let partArray = condition.split(separator) ;
+        if( partArray.length === 1 ) return partArray[0] ;       
+        partArray.forEach(( part , index )=>{
+            let val = (partArray.length < index + 2) ? "" : partArray[index+1] ;
+            if( index % 2 == 0 ) {
+                if( ! result.hasOwnProperty(part)) result[part] = val ;
+                else {                    
+                    if( result[part].constructor != Array) result[part] = [result[part]] ;
+                    result[part].push(val) ;
+                }
+            }
+        }) ;
+        return result ;
+    }
     
 }
 

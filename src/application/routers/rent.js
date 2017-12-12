@@ -22,7 +22,7 @@ router.get("/:city/rent/(:houseId).html", function(req, res, next) {
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/list的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/rent/list", function(req, res, next) {
+router.get("/rent/(:condition).html", function(req, res, next) {
     new RentListRenderer(req, res, next) ;
 }) ;
 export default router ;

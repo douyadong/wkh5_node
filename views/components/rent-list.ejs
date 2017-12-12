@@ -1,27 +1,31 @@
 <!--租房具体房源列表-->
+
+<% rentItem && rentItem.forEach(function(item){ %>
 <div class="single-house">
     <div class="house-detail">
         <div class="pic">
-            <img src="https://imgwater-test.oss.aliyuncs.com/6af6e136ce64436598f5e016bc9378f3.ML" alt="">
+            <img src="<%= item.firstImageUrl%>" alt="">
         </div>
         <div class="desc">
-            <h3>西黄新村二期4号0室</h3>
-            <p class="posit">67㎡  |  东  |  精装修 | 1 室 1 厅 1 卫</p>
+            <h3><%=item.subEstateName%></h3>
+            <p class="posit"><%=item.spaceArea%>㎡  |  <%=item.orientationStr || '--'%>  |  <%=item.renovationStr || '--'%> | <%=item.houseTypeStr%></p>
             <ul>
                 <li>奖励</li>
                 <li>奖励</li>
                 <li>奖励</li>
                 <li>奖励</li>
             </ul>
-            <p class="price">3000 元/月</p>
+            <p class="price"><%=item.rentPrice%> 元/月</p>
         </div>
     </div>
     <div class="share-detail">
-        <p class="share-time">发布 01-21 12:34</p>
+        <p class="share-time">发布 <%=item.publishHouseTime%></p>
         <p class="share">
-            <span>浏览 20</span>
-            <span>收藏 140</span>
-            <span>分享 88</span>
+            <span>浏览 <%=item.browseCount%></span>
+            <span>收藏 <%=item.lookCount%></span>
+            <span>分享 <%=item.shareCount%></span>
         </p>
     </div>
 </div>
+
+<% }) ; %>

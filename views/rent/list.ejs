@@ -10,7 +10,7 @@
 </div>
 <!--房源总数-->
 <div class="total-num">
-    <p>共找到<span>900</span>套房源</p>
+    <p>共找到<span><%=item.totalHouseCount%></span>套房源</p>
 </div>
 <!--区域查询对应模块-->
 <div class="dic">
@@ -87,7 +87,7 @@
 <div class="bac"></div>
 <!--租房具体房源列表-->
 <div class="rent-items">
-
+    <%- include("../components/rent-list" , {rentItem: item.rentList}) %>
 </div>
 
 

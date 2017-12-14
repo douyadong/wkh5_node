@@ -56,7 +56,7 @@
     <div class="price-list">
         <ul>
             <% item.pageData.priceList && item.pageData.priceList.forEach(function(item,index){ %>
-            <li data-index="<%=index%>"><%=item%></li>
+               <li data-index="<%='pr-'+index%>"><%=item%></li>
             <% }) ; %>
         </ul>
     </div>
@@ -68,12 +68,9 @@
 <div class="house-type">
     <div class="house-list">
         <ul>
-            <li>不限</li>
-            <li>一室</li>
-            <li>二室</li>
-            <li>三室</li>
-            <li>四室</li>
-            <li>五室及以上</li>
+            <% item.pageData.layout && item.pageData.layout.forEach(function(item,index){ %>
+            <li data-index="<%='la-'+index%>"><%=item%></li>
+            <% }) ; %>
         </ul>
     </div>
     <div class="house-conf">

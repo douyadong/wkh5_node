@@ -27,14 +27,15 @@ class Renderer extends AppRendererControllerBasic {
     async renders() {
         let modulePathArray = [ "rent" , "list" ] ;
         try{
-            let apiData = require("../../../mock/rent/rentList")["default"].data ;
+            let apiData = require("../../../mock/rent/rentList")["default"].data ;  // mock 数据
             let item = apiData;
             let conditionGet = new UrlParser(this.req.originalUrl);
             /*conditionGet.parseCondition({condition:this.req.params.condition});*/
             console.log(conditionGet.parseCondition({condition:this.req.params.condition}));
-            let pageData={};
-            pageData['priceList']=['不限','100 万以下','100 - 150 万','150 - 200 万','200 - 250 万','250 - 300 万'];
-            item['pageData']= pageData;
+            let pageData={};  // 定义页面储存的对象变量值
+            pageData['priceList'] = ['不限', '1000元以下', '1002 - 2000 元', '2000 - 4000 元', '4000 - 6000 元', '6000 - 8000 元']; // 租房价格索引展示值
+            pageData['layout'] = ['不限', '一室', '二室', '三室', '四室', '五室及以上'];  // 租房户型索引展示值
+            item['pageData']= pageData;    //  静态页面展示值赋值给一个变量
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

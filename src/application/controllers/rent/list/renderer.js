@@ -10,6 +10,7 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import AppRendererControllerBasic from "../../renderer" ;
 //import ApiDataFilter from "../../../../system/libraries/apiDataFilter" ;
+import UrlParser from "../../../../system/libraries/urlParser" ;
 
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 创建一个渲染器实例
@@ -28,6 +29,9 @@ class Renderer extends AppRendererControllerBasic {
         try{
             let apiData = require("../../../mock/rent/rentList")["default"].data ;
             let item = apiData;
+            let conditionGet = new UrlParser(this.req.originalUrl);
+            /*conditionGet.parseCondition({condition:this.req.params.condition});*/
+            console.log(conditionGet.parseCondition({condition:this.req.params.condition}));
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

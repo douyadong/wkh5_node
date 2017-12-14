@@ -10,6 +10,8 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import AppRendererControllerBasic from "../../renderer" ;
 //import ApiDataFilter from "../../../../system/libraries/apiDataFilter" ;
+import UrlParser from "../../../../system/libraries/urlParser" ;
+
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 创建一个渲染器实例
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -25,14 +27,19 @@ class Renderer extends AppRendererControllerBasic {
     async renders() {
         let modulePathArray = [ "rent" , "list" ] ;
         try{
-
+            let apiData = require("../../../mock/rent/rentList")["default"].data ;
+            let item = apiData;
+            let conditionGet = new UrlParser(this.req.originalUrl);
+            /*conditionGet.parseCondition({condition:this.req.params.condition});*/
+            console.log(conditionGet.parseCondition({condition:this.req.params.condition}));
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
                 "title" :"租房" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
-                "controllerJavascriptPath" : modulePathArray.join("/")
+                "controllerJavascriptPath" : modulePathArray.join("/"),
+                "item" : item ,
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

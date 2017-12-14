@@ -32,6 +32,9 @@ class Renderer extends AppRendererControllerBasic {
             let conditionGet = new UrlParser(this.req.originalUrl);
             /*conditionGet.parseCondition({condition:this.req.params.condition});*/
             console.log(conditionGet.parseCondition({condition:this.req.params.condition}));
+            let pageData={};
+            pageData['priceList']=['不限','100 万以下','100 - 150 万','150 - 200 万','200 - 250 万','250 - 300 万'];
+            item['pageData']= pageData;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

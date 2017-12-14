@@ -1,50 +1,37 @@
 <%- include("../components/head") %>
-    
     <div class="wk-tabs">
-        <!--tabs-handle部分-->
-        <!--此处将页面头部写在wk-tabs是为了更好的实现动画效果-->
-        <div class="hd">
-            <div class="animation">
-                <div class="store">虹桥店</div>
-                <div class="near-price">
-                    <span class="nearby-house">周边房源均价</span>
-                    <span class="house-price">105501元/m²</span>
-                </div>
-            </div>
-            <ul class="tabs-handle wk-panel">
-                <li><a>推荐好房</a></li>
-                <li><a>推荐经纪人</a></li>
-            </ul>
+        <!--头部根据滚动条可以变fixed的内容，包括banner和tabs-handle-->
+        <header class="header">
+            <dl class="banner">
+                <dt class="store-name"><%= store.name %></dt>
+                <dd class="market">
+                    <span class="hd">周边房源均价</span>
+                    <span class="bd"><%= store.avgPrice %></span>
+                </dd>
+            </dl>        
+            <ul class="tabs-handle">
+                <li class=""><a>推荐好房</a></li>
+                <li class=""><a>推荐经纪人</a></li>                
+            </ul>        
+        </header>
+        <!--两个tabs-frame内容-->
+        <div class="tabs-frame wk-panel">
+            <%- include("../components/esf-items" , { "oldHouseList" : house.secondHouseListModels } ) %>
         </div>
-        <!--tabs-frame-->
-        <!--房源列表-->
-        <div class="wk-panel house-list tabs-frame"><%- include("../components/esf-items" , { "oldHouseList" : rentHouseList } ) %></div>
-        <!--经纪人列表-->
-        <div class="wk-panel agent-list tabs-frame">
-            <% for (let i=0;  i < agentList.length ; i++){
-                let item=agentList[i] %>
-                <div class="agent-item">
-                    <a href="#">
-                        <img src="<%= item.url %>?x-oss-process=image/resize,w_120" alt="">
-                        <div class="agent-info">
-                            <p class="name"><%= item.name %></p>
-                            <p class="seniority">加入悟空：<%= item.joinLong %>年</p>
-                        </div>
-                    </a>
-                    <ul class="agent-contact">
-                        <li class="wx">
-                            <p class="iconfont icon-wechat"></p>
-                            <p class="ad-wx">添加微信</p>
-                        </li>
-                        <li class="tel">
-                            <a href="tel:<%= item.tel %>">
-                                <p class="iconfont icon-tel"></p>
-                                <p class="tel-refer">电话咨询</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            <% } %>
+        <div class="tabs-frame wk-panel">
+            <% agent.agentList && agent.agentList.forEach((agent)=>{ %>
+                <dl class="agent">
+                    <dd class="tel"><span><i class="iconfont icon-tel"></i></span><span class="memo">电话咨询</span></dd>
+                    <dd class="wechat"><span><i class="iconfont icon-wechat"></i></span><span class="memo">添加微信</span></dd>
+                    <dt>
+                        <a href="#">
+                            <img data-src="<%= agent.agentHeadImgUrl %>?x-oss-process=image/resize,w_120 %>" class="lazy">
+                            <div class="summary"><p class="name"><%= agent.agentName %></p><p class="seniority">加入悟空：<%= agent.serviceYears %></p></div>
+                        </a>
+                    </dt>
+                </dl>
+            <% }) ; %>
         </div>
-    </div> 
+        <!--tabs下内容结束-->
+    </div>
 <%- include("../components/footer") %>

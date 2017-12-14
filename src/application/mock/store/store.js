@@ -1,0 +1,1 @@
+export default {"message":"成功","status":1,"data":{"regionId":10027,"name":"杭州力辉房地产营销策划有限公司 ","avgPrice":"--","increase":"--","flag":0,"subList":null}} ;

@@ -14,7 +14,7 @@
     %>        
         <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.url%>">
             <div class="left">
-                <img src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>">
+                <img data-src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>" class="lazy">
             </div>
             <div class="right">
                 <h4><%= item.houseTitle%></h4>

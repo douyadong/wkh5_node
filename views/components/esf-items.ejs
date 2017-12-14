@@ -1,7 +1,7 @@
 <% oldHouseList && oldHouseList.forEach(function(esf){ %>
     <a href="<%= esf.url %>" class="esf-item" data-bigdata="<%= esf.bigDataParams %>">
         <dl>
-            <dt><img src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>"></dt>
+            <dt><img data-src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>" class="lazy"></dt>
             <dd class="title"><%= esf.houseTitle %></dd>
             <dd>
                 <span class="layout"><%= esf.houseChild %> <%= esf.areaStr %></span>

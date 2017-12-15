@@ -1,8 +1,9 @@
 <%- include("../components/head") %>
 <div>
+
    <!-- <swipers :items.sync="albums" eventName="1213001"></swipers>-->
     <div class="highlight wk-panel">
-        <p class="source-title"><%= item.house.houseTitle %></p>
+        <p class="source-title"><%= item.house.houseTitle || item.estate.estateName %></p>
         <div class="outline">
             <div class="money">
                 <span class="hd">总价</span>
@@ -30,7 +31,7 @@
             <%if(item.house.orientation === 9){%><span>南北通透</span><%}%>
         </div>
         <div class="cols2-fields">
-            <div><span class="hd">单价</span><span class="bd"><%= item.house.unitPrice %></span></div>
+            <div><span class="hd">单价</span><span class="bd"><%= item.house.unitPrice %> 元 / ㎡</span></div>
             <div><span class="hd">年代</span><span class="bd"><%= item.house.completed %> 年</span></div>
             <div><span class="hd">类型</span><span class="bd"><%= item.house.houseType %></span></div>
             <div><span class="hd">楼层</span><span class="bd"><%= item.house.floorDesc %></span></div>
@@ -39,7 +40,13 @@
         </div>
         <hr/>
         <div class="cols1-fields">
-            <div><span class="hd">预算</span><span class="bd">首付<%= item.house.advancePayment %> 万，月供 <%= item.house.mortgage %> 元</span></div>
+            <div class="estateName">
+                <span class="hd">预算</span>
+                <a  class="bd" >
+                   <span >首付<%= item.house.advancePayment %> 万，月供 <%= item.house.mortgage %> 元</span>
+                    <i class="iconfont icon-next"></i>
+                </a>
+            </div>
             <div class="estateName">
                 <span class="hd">小区</span>
                 <a  class="bd" >
@@ -55,10 +62,38 @@
     <div class="summary wk-panel top-gap">
         <div class="panel-header">基本信息</div>
         <div class="panel-body">
-             <p>愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第 54 中学。</p>
+            <div>
+                <span class="hd">主要优势</span>
+                <span class="bd"><%= item.house.sellPoint %></span>
+                <div >
+                    <span class="hd">业主心态</span>
+                    <span class="bd"><%= item.house.ownerMotivation%></span>
+                    <span class="hd">周边设施</span>
+                    <span class="bd"><%= item.house.aroundSupport %></span>
+                    <!--<view class="panel-more" wx:if="{{ ! pageStates.summaryOptional }}" @tap="spreadOptional">查看更多</view>
+                    <view class="optional" wx:if="{{ pageStates.summaryOptional }}">
+                        <text class="hd">户型介绍</text>
+                        <text class="bd">{{ house.houseTypeDesc }}</text>
+                        <text class="hd">小区介绍</text>
+                        <text class="bd">{{ house.estateDesc }}</text>
+                        <text class="hd">税费解析</text>
+                        <text class="bd">{{ house.taxDesc }}</text>
+                        <text class="hd">其他</text>
+                        <text class="bd">{{ house.otherIntroduce }}</text>
+                    </view>-->
+                </div>
+            </div>
+            <div>
+                <p class="base-info ">
+                    愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第
+                    54 中学。</p>
+                <div class="more">查看更多</div>
+            </div>
+
         </div>
     </div>
     <%}%>
+
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
         <a class="panel-body">
@@ -70,11 +105,29 @@
             </span>
             <span class="address"><%= item.estate.estateAddr%></span>
         </a>
+         <div class="echart">
+             <hr/>
+             <div class="panel-header">价格走势</div>
+             <div id="main" style="width: 100%;height:20rem;"></div>
+         </div>
+
         <%if(item. estate.sameEstateHouseAmount){%>
         <div >
             <hr/>
             <a class="total-item" >
                 <p>在售房源</p>
+                <span>
+                    <span><%= item. estate.sameEstateHouseAmount || 0 %> 套</span>
+                    <i class="iconfont icon-next"></i>
+                </span>
+            </a>
+        </div>
+        <%}%>
+        <%if(item. estate.sameEstateHouseAmount){%>
+        <div >
+            <hr/>
+            <a class="total-item" >
+                <p>成交历史</p>
                 <span>
                     <span><%= item. estate.sameEstateHouseAmount || 0 %> 套</span>
                     <i class="iconfont icon-next"></i>
@@ -95,7 +148,9 @@
         </div>
         <%}%>
     </div>
-    <%- include("../components/map",{ longitude: item.estate.longitude, latitude: item.estate.latitude, address: item.estate.estateAddr, subEstateName:item.estate.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
+    <%if(item.estate.latitude && item.estate.longitude){%>
+       <%- include("../components/map",{ longitude: item.estate.longitude, latitude: item.estate.latitude, address: item.estate.estateAddr, subEstateName:item.estate.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
+    <%}%>
     <%if(item.sameTownHouseList){%>
     <div class="similar wk-panel">
         <div class="panel-header" >相似房源推荐</div>

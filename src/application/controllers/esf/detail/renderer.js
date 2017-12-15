@@ -36,7 +36,7 @@ class Renderer extends AppRendererControllerBasic {
              let item = apiData;
             //地图跳转路径
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.estate.longitude + '&latitude=' + item.estate.latitude + '&houseName=' + item.estate.subEstateName + '&houseAddress=' + item.estate.estateAddr;
-            // 额外的页面样式
+            // 额外的脚本样式
             let  extraJavascript = ['//dev01.fe.wkzf/fe_public_library/wkzf/js/util/echarts/echarts.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据

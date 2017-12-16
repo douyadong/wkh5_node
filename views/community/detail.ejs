@@ -3,121 +3,41 @@
     <i class="iconfont icon-back"></i>
     <!-- 轮播图片 -->
     <div class="wk-panel remove-left-padding">
-        <%- include("../components/album",{imgList: item.imgList})%>
+        <%- include( "../components/album" , { imgList : item.imgList }) %>
     </div>
-
     <div class="wk-panel has-right-padding">
         <div class="panel-body one-column-container">
-            <dl>
-                <dt>
-                    所属板块
-                </dt>
-                <dd>
-                    <%= item.district%> <%= item.town%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    产权年代
-                </dt>
-                <dd>
-                    <%= item.propertyRight%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    竣工年代
-                </dt>
-                <dd>
-                    <%= item.completedStr%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    房屋总数
-                </dt>
-                <dd>
-                    <%= item.totalHouse%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    物业类型
-                </dt>
-                <dd>
-                    <%= item.propertyType%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    物业费
-                </dt>
-                <dd>
-                    <%= item.propertyCharges%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    绿化率
-                </dt>
-                <dd>
-                    <%= item.greenRate%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    容积率
-                </dt>
-                <dd>
-                    <%= item.volumeRate%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    物业公司
-                </dt>
-                <dd>
-                    <%= item.propertyCompany%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    开发商
-                </dt>
-                <dd>
-                    <%= item.developers%>
-                </dd>
-            </dl>
-            <div class="has-bottom-border"></div>            
-            <dl>
-                <dt>
-                    地铁
-                </dt>
-                <dd>
-                    <%= item.subwayName%>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    学校
-                </dt>
-                <dd>
-                    <%= item.schoolName%>
-                </dd>
-            </dl>
+            <dl><dt>所属板块</dt><dd><%= item.district %> <%= item.town %></dd></dl>
+            <dl><dt>产权年代</dt><dd><%= item.propertyRight %></dd></dl>
+            <dl><dt>竣工年代</dt><dd><%= item.completedStr %></dd></dl>
+            <dl><dt>房屋总数</dt><dd><%= item.totalHouse %></dd></dl>
+            <dl><dt>物业类型</dt><dd><%= item.propertyType %></dd></dl>
+            <dl><dt>物业费</dt><dd><%= item.propertyCharges %></dd></dl>
+            <dl><dt>绿化率</dt><dd><%= item.greenRate %></dd></dl>
+            <dl><dt>容积率</dt><dd><%= item.volumeRate %></dd></dl>
+            <dl><dt>物业公司</dt><dd><%= item.propertyCompany %></dd></dl>
+            <dl><dt>开发商</dt><dd><%= item.developers %></dd></dl>
+            <% if( item.subwayName || item.schoolName ) { %>
+                <div class="has-bottom-border"></div>
+                <% if( item.subwayName) { %><dl><dt>地铁</dt><dd><%= item.subwayName %></dd></dl><% } %>
+                <% if( item.schoolName) { %><dl><dt>学校</dt><dd><%= item.schoolName %></dd></dl><% } %>
+            <% } %>
         </div>
     </div>
-
     <div class="wk-panel has-right-padding top-gap">
-        <div class="panel-header">
-            小区评论
-        </div>
-        <div class="panel-body">
-            <%- include("../components/subestate-comments",{comments:item.comment && item.comment.commentList || []})%>
-        </div>
+        <div class="panel-header">小区评论</div>
+        <div class="panel-body"><%- include( "../components/subestate-comments" , { 
+            comments : item.comment && item.comment.commentList || []
+        }) %></div>
     </div>
-    <%if(item.longitude >0 &&  item.latitude > 0){%>
-       <%- include("../components/map",{address:item.estateAddr,subEstateName:item.subEstateName,longitude: item.longitude, latitude: item.latitude, mapUrl: item.mapUrl})%>
-    <%}%>
+    <% if( item.longitude >0 &&  item.latitude > 0 ){ %>
+       <%- include("../components/map" , {
+           address : item.estateAddr ,
+           subEstateName : item.subEstateName ,
+           longitude : item.longitude , 
+           latitude : item.latitude , 
+           mapUrl : item.mapUrl
+        }) %>
+    <% } %>
 </div>
 <%- include("../components/footer") %>

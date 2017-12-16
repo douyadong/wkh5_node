@@ -11,9 +11,8 @@
                  <span class="location"><%= esf.district %> <%= esf.town %></span>
                  <span class="price"><%= esf.unitPrice %> 元/㎡</span>
             </dd>
-            <dd class="tags">
-                <% if(esf.isTopHouse >1) { %><span class="selected">精选</span>
-                <% } else if(esf.isStorePush === 1) { %><span>店长推荐</span>
+            <dd class="tags">                
+                <% if(esf.isStorePush === 1) { %><span>店长推荐</span>
                 <% } else if(esf.commAgent > 0) { %><span>急售</span><% } %>                
                 <% if(esf.fullYears >= 5 && esf.onlyOne == 1) { %><span>满五唯一</span><% } %>
                 <% if(esf.fullYears >= 2) { %><span>满二</span><% } %>

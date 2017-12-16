@@ -3,174 +3,122 @@
     <input type="hidden" id="houseId" value="<%= item.houseId%>">
     <i class="iconfont icon-back"></i>
    <!-- 底部助手条 --> 
-   <%if(item.houseState != 4){%>    
-   <%- include("../components/assistant", {agent: item.houseAgent, mobileBigDataParams: item.bigDataParams && item.bigDataParams.mobileBigDataParams ,avatarBigDataParams: item.bigDataParams && item.bigDataParams.avatarBigDataParams,wxBigDataParams: item.bigDataParams && item.bigDataParams.wxBigDataParams}) %>
-   <%}%>
-    
-    <!-- 轮播图片 -->    
+   <% if( item.houseState != 4 ) { %>    
+        <%- include( "../components/assistant" , {
+                agent : item.houseAgent , 
+                mobileBigDataParams : item.bigDataParams && item.bigDataParams.mobileBigDataParams ,
+                avatarBigDataParams : item.bigDataParams && item.bigDataParams.avatarBigDataParams ,
+                wxBigDataParams : item.bigDataParams && item.bigDataParams.wxBigDataParams
+            } ) %>
+   <% } %>    
+    <!-- 轮播相册图片 -->    
     <div class="wk-panel remove-left-padding">
-        <%- include("../components/album",{imgList: item.imgList, bigDataParams: item.bigDataParams.clickImageBigDataParams})%>
-    </div>    
-
+        <%- include( "../components/album" , {
+            imgList : item.imgList , 
+            bigDataParams : item.bigDataParams.clickImageBigDataParams
+        } ) %>
+    </div>
     <!-- 户型等信息 -->
     <div class="wk-panel has-right-padding">
-        <h1 class="panel-header house-title"><%= item.houseTitle%></h1>
+        <h1 class="panel-header house-title"><%= item.houseTitle %></h1>
         <div class="panel-body">
             <div class="price-type-area">
                 <div class="column-container price">
-                    <dl>
-                        <dt>租金</dt>
-                        <dd><%= item.rentPriceStr%> 元/月</dd>
-                    </dl>
+                    <dl><dt>租金</dt><dd><%= item.rentPriceStr %> 元/月</dd></dl>
                 </div>
                 <div class="column-container type">
-                    <dl>
-                        <dt>户型</dt>
-                        <dd><%= item.houseTypeStr%></dd>
-                    </dl>
+                    <dl><dt>户型</dt><dd><%= item.houseTypeStr %></dd></dl>
                 </div>
                 <div class="column-container area">
-                    <dl>
-                        <dt>面积</dt>
-                        <dd><%= item.spaceArea%> ㎡</dd>
-                    </dl>
+                    <dl><dt>面积</dt><dd><%= item.spaceArea %> ㎡</dd></dl>
                 </div>
             </div>
             <div class="tags">
-                <%if(item.houseTag){%>
-                    <%if(item.houseTag.isSubwayHouse){%><span class="tag">近地铁</span><%}%><%if(item.houseTag.isPriceDown){%><span class="tag">降价</span><%}%><%if(item.houseTag.isNewHouse){%><span class="tag">新上</span><%}%><%if(item.houseTag.isHardcover == 1){%><span class="tag">精装</span><%}%><%if(item.houseTag.isHardcover == 2){%><span class="tag">豪装</span><%}%><%if(item.houseTag.isSouth){%><span class="tag">朝南</span><%}%>                
-                <%}%>
+                <% if( item.houseTag ) { %>
+                    <% if( item.houseTag.isSubwayHouse ) { %><span class="tag">近地铁</span><% } %>
+                    <% if( item.houseTag.isPriceDown ) { %><span class="tag">降价</span><% } %>
+                    <% if( item.houseTag.isNewHouse ) { %><span class="tag">新上</span><% } %>
+                    <% if( item.houseTag.isHardcover == 1 ) { %><span class="tag">精装</span><% } %>
+                    <% if( item.houseTag.isHardcover == 2 ) { %><span class="tag">豪装</span><% } %>
+                    <% if( item.houseTag.isSouth ) { %><span class="tag">朝南</span><% } %>                
+                <% } %>
             </div>
             <div class="two-column-container has-bottom-border">
-                <dl>
-                    <dt>付款</dt>
-                    <dd><%= item.payTypeStr || "--"%></dd>
-                </dl>
-                <dl>
-                    <dt>朝向</dt>
-                    <dd><%= item.orientationStr || "--"%></dd>
-                </dl>
-                <dl>
-                    <dt>类型</dt>
-                    <dd><%= item.houseChildTypeStr || "--"%></dd>
-                </dl>
-                <dl>
-                    <dt>装修</dt>
-                    <dd><%= item.renovationStr || "--"%></dd>
-                </dl>
-                <dl>
-                    <dt>年代</dt>
-                    <dd><%= item.completedStr || "--"%></dd>
-                </dl>
-                <dl>
-                    <dt>楼层</dt>
-                    <dd><%= item.floorStr%></dd>
-                </dl>
+                <dl><dt>付款</dt><dd><%= item.payTypeStr || "--" %></dd></dl>
+                <dl><dt>朝向</dt><dd><%= item.orientationStr || "--" %></dd></dl>
+                <dl><dt>类型</dt><dd><%= item.houseChildTypeStr || "--" %></dd></dl>
+                <dl><dt>装修</dt><dd><%= item.renovationStr || "--" %></dd></dl>
+                <dl><dt>年代</dt><dd><%= item.completedStr || "--" %></dd></dl>
+                <dl><dt>楼层</dt><dd><%= item.floorStr %></dd></dl>
             </div>
             <div class="one-column-container">
                 <dl>
                     <dt>小区</dt>
-                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams%>" href="<%= item.subEstateUrl%>"><%= item.subEstateName%></a></dd>
+                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams %>" href="<%= item.subEstateUrl %>"><%= item.subEstateName %></a></dd>
                 </dl>
             </div>
         </div>
-    </div>        
-
+    </div>
     <!-- 配套设施 -->
-    <%if(!item.isExternal){%>
-    <%- include("../components/supporting",{houseSupporting: item.houseSupporting}) %>   
-    <%}%>
-
+    <% if( ! item.isExternal ) { %>
+        <%- include( "../components/supporting" , { houseSupporting : item.houseSupporting } ) %>   
+    <% } %>
     <!-- 基本信息 -->
-    <%if(!item.isExternal&&(item.sellPoint||item.ownerMotivation||item.aroundSupport)){%>
+    <% if( ! item.isExternal && ( item.sellPoint || item.ownerMotivation || item.aroundSupport )) { %>
     <div class="wk-panel top-gap has-right-padding">
-        <div class="panel-header">
-            基本信息
-        </div>
+        <div class="panel-header">基本信息</div>
         <div class="panel-body column-container">
-            <%if(item.sellPoint){%>
-            <dl>
-                <dt>主要优势</dt>
-                <dd><%= item.sellPoint%></dd>
-            </dl>
-            <%}%>
-            <%if(item.ownerMotivation){%>
-            <dl>
-                <dt>房东心态</dt>
-                <dd><%= item.ownerMotivation%></dd>
-            </dl>
-            <%}%>
-            <%if(item.aroundSupport){%>
-            <dl>
-                <dt>周边配套</dt>
-                <dd><%= item.aroundSupport%></dd>
-            </dl>   
-            <%}%>             
+            <% if( item.sellPoint ) { %><dl><dt>主要优势</dt><dd><%= item.sellPoint %></dd></dl><% } %>
+            <% if( item.ownerMotivation ) { %><dl><dt>房东心态</dt><dd><%= item.ownerMotivation %></dd></dl><% } %>
+            <% if( item.aroundSupport ) { %><dl><dt>周边配套</dt><dd><%= item.aroundSupport %></dd></dl><% } %>             
         </div>
     </div>
-    <%}else if(item.sellPoint && item.sellPoint.length >= 30){%>
+    <% } else if( item.sellPoint && item.sellPoint.length >= 30 ) { %>
     <div class="wk-panel top-tap has-right-padding">
-        <div class="panel-header">
-            基本信息
-        </div>
+        <div class="panel-header">基本信息</div>
         <div class="panel-body column-container">
-            <dl>                
-                <dd class="external-sellpoint"><%= item.sellPoint%></dd>
+            <dl>
+                <dd class="external-sellpoint"><%= item.sellPoint %></dd>                
             </dl>            
         </div>
     </div>
-    <%}%>
-        
+    <% } %>        
     <div class="wk-panel top-gap has-right-padding">
-        <div class="panel-header">
-            小区信息
-        </div>
+        <div class="panel-header">小区信息</div>
         <div class="panel-body">
             <div class="has-bottom-border">
-                <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams%>" class="subestate box" href="<%= item.subEstateUrl%>">
-                    <div class="left">
-                        <img src="<%= item.estateImgUrl%>" alt="<%= item.subEstateName%>">
-                    </div>
+                <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams %>" class="subestate box" href="<%= item.subEstateUrl %>">
+                    <div class="left"><img src="<%= item.estateImgUrl %>" alt="<%= item.subEstateName %>"></div>
                     <div class="right">
-                        <h4><%= item.subEstateName%></h4>
-                        <p class="completed has-arrow">
-                            <%=item.completedStr%> 竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse%>户
-                        </p>
-                        <p class="address">
-                            <%= item.estateAddr%>
-                        </p>
+                        <h4><%= item.subEstateName %></h4>
+                        <p class="completed has-arrow"><%= item.completedStr %> 竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse %>户</p>
+                        <p class="address"><%= item.estateAddr %></p>
                     </div>
                 </a>                
             </div>
         </div>
     </div>
     <div class="wk-panel rent-comments">
-        <div class="panel-header has-bottom-border">
-            用户评论
-        </div>
-        <div class="panel-body has-right-padding">
-            <%- include('../components/rent-comments',{comments: item.commentList, subEstateId: item.subEstateId})%>
-        </div>
+        <div class="panel-header has-bottom-border">用户评论</div>
+        <div class="panel-body has-right-padding"><%- include( '../components/rent-comments' , { comments : item.commentList , subEstateId : item.subEstateId }) %></div>
     </div>
-    <%if(item.longitude > 0&&  item.latitude > 0){%>
-         <%- include("../components/map",{bigDataParams: item.bigDataParams.clickMapBigDataParams, longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName: item.subEstateName, mapUrl: item.mapUrl})%>
-    <%}%>
+    <% if( item.longitude > 0 &&  item.latitude > 0 ){ %>
+         <%- include("../components/map" , {
+             bigDataParams : item.bigDataParams.clickMapBigDataParams ,
+             longitude : item.longitude ,
+             latitude : item.latitude , 
+             address : item.estateAddr , 
+             subEstateName : item.subEstateName , 
+             mapUrl : item.mapUrl
+          }) %>
+    <% } %>
     <!-- 相似房源推荐 -->
-    <%if(item.similarHouses && item.similarHouses.length > 0){%>
+    <% if( item.similarHouses && item.similarHouses.length > 0 ) { %>
     <div class="wk-panel top-gap has-right-padding">
-        <div class="panel-header">
-            相似房源推荐
-        </div>
-        <div class="panel-body">
-            <%- include("../components/rent-items", {rentItems: item.similarHouses})%>       
-        </div>        
+        <div class="panel-header">相似房源推荐</div>
+        <div class="panel-body"><%- include( "../components/rent-items" , { rentItems : item.similarHouses }) %></div>        
     </div>  
-    <%}%> 
-
-    <%if(item.houseState == 4){%>  
-    <a class="invalid-rent">
-    该房源已下架
-    </a>
-    <%}%>
+    <% } %>
+    <% if( item.houseState == 4 ) { %><a class="invalid-rent">该房源已下架</a><% } %>
 </div>
 <%- include("../components/footer") %>

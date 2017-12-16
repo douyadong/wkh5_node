@@ -55,12 +55,9 @@
 <div class="price-total">
     <div class="price-list">
         <ul>
-            <li>不限</li>
-            <li>100 万以下</li>
-            <li>100 - 150 万</li>
-            <li>150 - 200 万</li>
-            <li>200 - 250 万</li>
-            <li>250 - 300 万</li>
+            <% item.pageData.priceList && item.pageData.priceList.forEach(function(item,index){ %>
+               <li data-index="<%='pr-'+index%>"><%=item%></li>
+            <% }) ; %>
         </ul>
     </div>
     <div class="writ-price">
@@ -71,16 +68,47 @@
 <div class="house-type">
     <div class="house-list">
         <ul>
-            <li>不限</li>
-            <li>一室</li>
-            <li>二室</li>
-            <li>三室</li>
-            <li>四室</li>
-            <li>五室及以上</li>
+            <% item.pageData.layout && item.pageData.layout.forEach(function(item,index){ %>
+            <li data-index="<%='la-'+index%>"><%=item%></li>
+            <% }) ; %>
         </ul>
     </div>
     <div class="house-conf">
         <button>确定</button>
+    </div>
+</div>
+<!--更多查询对应模块-->
+<div class="more">
+  <div class="more-spec">
+      <p>特色</p>
+      <ul>
+          <li>近地铁</li>
+          <li>降价</li>
+          <li>新上</li>
+          <li>朝南</li>
+      </ul>
+  </div>
+    <div class="area">
+        <p>面积㎡</p>
+        <ul>
+            <li>50以下</li>
+            <li>50-70</li>
+            <li>70-90</li>
+            <li>90-110</li>
+            <li>110-130</li>
+            <li>130-150</li>
+            <li>150以上</li>
+        </ul>
+    </div>
+    <div class="decoration">
+        <p>装修</p>
+        <ul>
+            <li>毛坯</li>
+            <li>简装</li>
+            <li>中装</li>
+            <li>精装</li>
+            <li>豪装</li>
+        </ul>
     </div>
 </div>
 

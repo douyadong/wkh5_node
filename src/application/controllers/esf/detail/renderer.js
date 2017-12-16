@@ -32,14 +32,32 @@ class Renderer extends AppRendererControllerBasic {
             获取houseId
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/ 
             let houseId = this.req.params.houseId || "" ;         
-            // let apiData = require("../../../mock/space/index.js")["default"] ;
+             let apiData = require("../../../mock/esf/esf")["default"].data ;
+             let item = apiData;
+            //地图跳转路径
+            item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.estate.longitude + '&latitude=' + item.estate.latitude + '&houseName=' + item.estate.subEstateName + '&houseAddress=' + item.estate.estateAddr;
+            // 额外的脚本样式
+            let  extraJavascript = ['//dev01.fe.wkzf/fe_public_library/wkzf/js/util/echarts/echarts.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let apiData = await adf.request({
+         /*   let apiData = await adf.request({
                 "apiPath" : modulePathArray.join(".") ,
                 "data" : { "houseId" : houseId }
-            }) ;            
+            }) ; */
+
+
+
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       扩展模板常规数据
+       -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData, {
+                "title" :"二手房详情" ,
+                "matchStylesheetPath" : modulePathArray.join("/") ,
+                "controllerJavascriptPath" : modulePathArray.join("/"),
+                "extraJavascripts" : extraJavascript ,
+                "item" : item ,
+            }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        

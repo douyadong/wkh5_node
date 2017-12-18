@@ -4,12 +4,7 @@
             <dt><img data-src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>" class="lazy"></dt>
             <dd class="title"><%= esf.houseTitle %></dd>
             <dd>
-                <span class="layout"><%= esf.houseChild %> <%= esf.areaStr %></span>
-                <span class="money"><%= esf.totalPrice %> 万</span>
-            </dd>
-            <dd>
-                 <span class="location"><%= esf.district %> <%= esf.town %></span>
-                 <span class="price"><%= esf.unitPrice %> 元/㎡</span>
+                <span class="layout"><%= esf.houseChild %> <%= esf.areaStr %></span>|<span class="location"><%= esf.district %> <%= esf.town %></span>                
             </dd>
             <dd class="tags">                
                 <% if(esf.isStorePush === 1) { %><span>店长推荐</span>
@@ -20,7 +15,12 @@
                 <% if(esf.isSchoolHouse === 1) { %><span>近学校</span><% } %>
                 <% if(esf.isNewOnStore === 1) { %><span>新上</span><% } %>
                 <% if(esf.orientation === 9) { %><span>南北通透</span><% } %>    
-            </dd>                    
+            </dd>   
+            <dd>
+                 <span class="money"><%= esf.totalPrice %> 万</span>
+                 <span class="price"><%= esf.unitPrice %> 元/㎡</span>
+            </dd>
+                             
         </dl>
     </a>
 <% }) ; %>

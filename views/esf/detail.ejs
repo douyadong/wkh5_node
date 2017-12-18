@@ -1,7 +1,5 @@
 <%- include("../components/head") %>
 <div>
-
-   <!-- <swipers :items.sync="albums" eventName="1213001"></swipers>-->
     <div class="highlight wk-panel">
         <p class="source-title"><%= item.house.houseTitle || item.estate.estateName %></p>
         <div class="outline">
@@ -11,11 +9,11 @@
             </div>
             <div class="layout">
                 <span class="hd">户型</span>
-                <span class="bd"><%= item. house.houseChild %></span>
+                <span class="bd"><%= item.house.houseChild %></span>
             </div>
             <div class="area">
                 <span class="hd">建筑面积</span>
-                <span class="bd"><%= item. house.areaStr %></span>
+                <span class="bd"><%= item.house.areaStr %></span>
             </div>
         </div>
         <div class="tags">
@@ -58,6 +56,8 @@
             <%if(item.estate.schoolName){%><div><span class="hd">学校</span><span class="bd"><%= item.estate.schoolName %></span></div><%}%>
         </div>
     </div>
+
+    <!-- 基本信息模块-->
     <%if(! (item.house.houseSource === 2 && !item.house.sellPoint)){%>
     <div class="summary wk-panel top-gap">
         <div class="panel-header">基本信息</div>
@@ -139,12 +139,19 @@
         <div>
             <hr/>
             <a class="total-item" >
-                <p>用户评论</p>
+                <p>小区评论</p>
                 <span>
                     <span><%= item.estate.comment.amount || 0 %> 条</span>
                     <i class="iconfont icon-next"></i>
                 </span>
             </a>
+            <div class="total-item">
+                <p>小区评论</p>
+                <div>
+                    <span>当前暂无评论，快来抢沙发吧！</span>
+                    <p>我来点评</p>
+                </div>
+            </div>
         </div>
         <%}%>
     </div>
@@ -164,7 +171,6 @@
         <%}%>
     </div>
     <%}%>
-    <view class="bottom-gap"></view>
-    <assistant :agent.sync="agent" portraitEventName="1213009" wechatEventName="1213011" telEventName="1213010" :houseId.sync="houseId"></assistant>
 </div>
+<%- include("../components/assistant" , { agent: item.agent ,mobileBigDataParams: " ",avatarBigDataParams: " ",wxBigDataParams: " ",}) %>
 <%- include("../components/footer") %>

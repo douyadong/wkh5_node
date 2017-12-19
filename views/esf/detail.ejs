@@ -40,14 +40,14 @@
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
-                <a  class="bd" >
+                <a  class="bd" href="https://m.wkzf.com/houseLoanCalculator.html?totalPrice=<%= item.house.totalPrice %>">
                    <span >首付<%= item.house.advancePayment %> 万，月供 <%= item.house.mortgage %> 元</span>
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
             <div class="estateName">
                 <span class="hd">小区</span>
-                <a  class="bd" >
+                <a  class="bd" href="<%= item.estate.estateUrl %>">
                     <span><%= item.estate.estateName %></span>
                     <i class="iconfont icon-next"></i>
                 </a>
@@ -93,10 +93,10 @@
         </div>
     </div>
     <%}%>
-
+    <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body">
+        <a class="panel-body" href="<%= item.estate.estateUrl %>">
             <img src="<%= item.estate.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estate.estateName%></p>
             <span class="outline">
@@ -108,12 +108,13 @@
          <div class="echart">
              <hr/>
              <div class="panel-header">价格走势</div>
-             <div id="main" style="width: 100%;height:20rem;"></div>
+             <div id="main"></div>
          </div>
 
         <%if(item. estate.sameEstateHouseAmount){%>
         <div >
             <hr/>
+           <!-- /estate/sameEstateHouseList.html?subEstateId=86756c9c3f35ff0e-->
             <a class="total-item" >
                 <p>在售房源</p>
                 <span>
@@ -126,6 +127,7 @@
         <%if(item. estate.sameEstateHouseAmount){%>
         <div >
             <hr/>
+          <!--  /estate/historicalTransactionList.html?subEstateId=86756c9c3f35ff0e-->
             <a class="total-item" >
                 <p>成交历史</p>
                 <span>
@@ -135,16 +137,17 @@
             </a>
         </div>
         <%}%>
-        <%if(item.estate.comment.amount ){%>
         <div>
             <hr/>
+            <%if(item.estate.comment.amount ){%>
             <a class="total-item" >
                 <p>小区评论</p>
                 <span>
-                    <span><%= item.estate.comment.amount || 0 %> 条</span>
+                    <span><%= item.estate.comment.amount  %> 条</span>
                     <i class="iconfont icon-next"></i>
                 </span>
             </a>
+            <%}else{%>
             <div class="total-item">
                 <p>小区评论</p>
                 <div>
@@ -152,8 +155,8 @@
                     <p>我来点评</p>
                 </div>
             </div>
+            <%}%>
         </div>
-        <%}%>
     </div>
     <%if(item.estate.latitude && item.estate.longitude){%>
        <%- include("../components/map",{ longitude: item.estate.longitude, latitude: item.estate.latitude, address: item.estate.estateAddr, subEstateName:item.estate.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>

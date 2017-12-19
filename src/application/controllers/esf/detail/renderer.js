@@ -31,15 +31,21 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             获取houseId
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/ 
-            let houseId = this.req.params.houseId || "" ;         
+            let houseId = this.req.params.houseId || "" ;
+            // 获取city
+             let city = this.req.params.city || "" ;
              let apiData = require("../../../mock/esf/esf")["default"].data ;
              let item = apiData;
             //地图跳转路径
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.estate.longitude + '&latitude=' + item.estate.latitude + '&houseName=' + item.estate.subEstateName + '&houseAddress=' + item.estate.estateAddr;
-            // 额外的脚本样式
-            let  extraJavascript = ['//dev01.fe.wkzf/fe_public_library/wkzf/js/util/echarts/echarts.js'];
+            // 计算机URL
+            item.house['calculatorUrl'] = this.templateData.domain +'/houseLoanCalculator.html?totalPrice='+item.house.totalPrice;
             // 经纪人路径跳转URL
             item.agent['url'] = '/';
+            // 小区详情URL
+            item.estate['estateUrl'] = this.templateData.domain +'/'+city+'/community/'+item.estate.subEstateId+'.html';
+            // 额外的脚本样式
+            let  extraJavascript = ['//dev01.fe.wkzf/fe_public_library/wkzf/js/util/echarts/echarts.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

@@ -36,9 +36,9 @@ class Renderer extends AppRendererControllerBasic {
              let city = this.req.params.city || "" ;
              let apiData = require("../../../mock/esf/esf")["default"].data ;
              let item = apiData;
-            //地图跳转路径
+            // 地图跳转路径
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.estate.longitude + '&latitude=' + item.estate.latitude + '&houseName=' + item.estate.subEstateName + '&houseAddress=' + item.estate.estateAddr;
-            // 计算机URL
+            // 计算器URL
             item.house['calculatorUrl'] = this.templateData.domain +'/houseLoanCalculator.html?totalPrice='+item.house.totalPrice;
             // 经纪人路径跳转URL
             item.agent['url'] = '/';

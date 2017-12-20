@@ -1,75 +1,71 @@
 <%- include("../components/head") %>
-<div>
+<%- include("../components/album",{imgList:item.imgList,bigDataParams:"123"}) %>
+<div class="all-dis">
+
     <div class="highlight wk-panel">
-        <p class="source-title"><%= item.house.houseTitle || item.estate.estateName %></p>
+        <p class="source-title"><%= item.houseTitle || item.estateName %></p>
         <div class="outline">
             <div class="money">
                 <span class="hd">总价</span>
-                <span class="bd"><%= item.house.totalPrice %>万</span>
+                <span class="bd"><%= item.totalPrice %>万</span>
             </div>
             <div class="layout">
                 <span class="hd">户型</span>
-                <span class="bd"><%= item.house.houseChild %></span>
+                <span class="bd"><%= item.houseChild %></span>
             </div>
             <div class="area">
                 <span class="hd">建筑面积</span>
-                <span class="bd"><%= item.house.areaStr %></span>
+                <span class="bd"><%= item.areaStr %></span>
             </div>
         </div>
         <div class="tags">
-            <!--<text wx:if="{{ house.isTopHouse > 1 }}">精选</text>-->
-            <%if(item.house.isStorePush === 1){%><span >店长推荐</span> <%}%>
-            <%if(item.house.commAgent > 0){%><span >近学校</span><%}%>
-            <%if(item.house.fullYears >= 5 &&item.house.onlyOne == 1){%><span>满五唯一</span><%}%>
-            <%if(item.house.fullYears >= 2 ){%><span>满二</span><%}%>
-            <%if(item.house.isSubwayHouse === 1){%><span>地铁</span><%}%>
-            <%if(item.house.isSchoolHouse === 1){%><span>近学校</span><%}%>
-            <%if(item.house.priceHasDown === 1){%><span>降价</span><%}%>
-            <%if(item.house.isNewOnStore === 1){%><span>新上</span><%}%>
-            <%if(item.house.orientation === 9){%><span>南北通透</span><%}%>
+            <% item.tagList && item.tagList.forEach(function(item){ %>
+            <span ><%= item %></span>
+            <% }) ; %>
         </div>
         <div class="cols2-fields">
-            <div><span class="hd">单价</span><span class="bd"><%= item.house.unitPrice %> 元 / ㎡</span></div>
-            <div><span class="hd">年代</span><span class="bd"><%= item.house.completed %> 年</span></div>
-            <div><span class="hd">类型</span><span class="bd"><%= item.house.houseType %></span></div>
-            <div><span class="hd">楼层</span><span class="bd"><%= item.house.floorDesc %></span></div>
-            <div><span class="hd">装修</span><span class="bd"><%= item.house.decorationStr %></span></div>
-            <div><span class="hd">朝向</span><span class="bd"><%= item.house.orientationStr %></span></div>
+            <div><span class="hd">单价</span><span class="bd"><%= item.unitPrice %> 元 / ㎡</span></div>
+            <div><span class="hd">年代</span><span class="bd"><%= item.completed %> 年</span></div>
+            <div><span class="hd">类型</span><span class="bd"><%= item.houseType %></span></div>
+            <div><span class="hd">楼层</span><span class="bd"><%= item.floorDesc %></span></div>
+            <div><span class="hd">装修</span><span class="bd"><%= item.decorationStr %></span></div>
+            <div><span class="hd">朝向</span><span class="bd"><%= item.orientationStr %></span></div>
         </div>
         <hr/>
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
-                <a  class="bd" href="https://m.wkzf.com/houseLoanCalculator.html?totalPrice=<%= item.house.totalPrice %>">
-                   <span >首付<%= item.house.advancePayment %> 万，月供 <%= item.house.mortgage %> 元</span>
+                <a  class="bd" href="https://m.wkzf.com/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>">
+                   <span >首付<%= item.advancePayment %> 万，月供 <%= item.mortgage %> 元</span>
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
             <div class="estateName">
                 <span class="hd">小区</span>
-                <a  class="bd" href="<%= item.estate.estateUrl %>">
-                    <span><%= item.estate.estateName %></span>
+                <a  class="bd" href="<%= item.estateImgUrl %>">
+                    <span><%= item.estateName %></span>
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
-            <%if(item.estate.subwayName){%><div><span class="hd">地铁</span><span class="bd"><%= item.estate.subwayName %></span></div><%}%>
-            <%if(item.estate.schoolName){%><div><span class="hd">学校</span><span class="bd"><%= item.estate.schoolName %></span></div><%}%>
+            <%if(item.metroInfo){%><div><span class="hd">地铁</span><span class="bd"><%= item.metroInfo %></span></div><%}%>
+            <%if(item.schoolName){%><div><span class="hd">学校</span><span class="bd"><%= item.schoolName %></span></div><%}%>
         </div>
     </div>
 
     <!-- 基本信息模块-->
-    <%if(! (item.house.houseSource === 2 && !item.house.sellPoint)){%>
+    <%if(! (item.houseState === 2 && !item.sellPoint)){%>
     <div class="summary wk-panel top-gap">
         <div class="panel-header">基本信息</div>
         <div class="panel-body">
+            <%if(item.isWKhouse === 1){%>
             <div>
                 <span class="hd">主要优势</span>
-                <span class="bd"><%= item.house.sellPoint %></span>
+                <span class="bd"><%= item.sellPoint %></span>
                 <div >
                     <span class="hd">业主心态</span>
-                    <span class="bd"><%= item.house.ownerMotivation%></span>
+                    <span class="bd"><%= item.ownerMotivation%></span>
                     <span class="hd">周边设施</span>
-                    <span class="bd"><%= item.house.aroundSupport %></span>
+                    <span class="bd"><%= item.aroundSupport %></span>
                     <!--<view class="panel-more" wx:if="{{ ! pageStates.summaryOptional }}" @tap="spreadOptional">查看更多</view>
                     <view class="optional" wx:if="{{ pageStates.summaryOptional }}">
                         <text class="hd">户型介绍</text>
@@ -83,27 +79,28 @@
                     </view>-->
                 </div>
             </div>
+            <%}else {%>
             <div>
                 <p class="base-info ">
                     愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第
                     54 中学。</p>
                 <div class="more">查看更多</div>
             </div>
-
+            <%}%>
         </div>
     </div>
     <%}%>
     <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body" href="<%= item.estate.estateUrl %>">
-            <img src="<%= item.estate.estateImgUrl%>?x-oss-process=image/resize,w_120" >
-            <p class="name"><%= item.estate.estateName%></p>
+        <a class="panel-body" href="<%= item.estateUrl  %>">
+            <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
+            <p class="name"><%= item.estateName%></p>
             <span class="outline">
-                <span><%= item. estate.completed %> 年竣工  |  <%= item.estate.totalHouse %></span>
+                <span><%= item.completedStr %> 竣工  |  <%= item.totalHouse %></span>
                 <span class="iconfont icon-next"></span>
             </span>
-            <span class="address"><%= item.estate.estateAddr%></span>
+            <span class="address"><%= item.estateAddr || '--'%></span>
         </a>
          <div class="echart">
              <hr/>
@@ -111,69 +108,73 @@
              <div id="main"></div>
          </div>
 
-        <%if(item. estate.sameEstateHouseAmount){%>
-        <div >
+        <%if(item.sameEstateHouseAmount){%>
+             <div >
             <hr/>
            <!-- /estate/sameEstateHouseList.html?subEstateId=86756c9c3f35ff0e-->
             <a class="total-item" >
                 <p>在售房源</p>
                 <span>
-                    <span><%= item. estate.sameEstateHouseAmount || 0 %> 套</span>
+                    <span><%= item.sameEstateHouseAmount || 0 %> 套</span>
                     <i class="iconfont icon-next"></i>
                 </span>
             </a>
         </div>
         <%}%>
-        <%if(item. estate.sameEstateHouseAmount){%>
-        <div >
+        <%if(item.historicalTransactionAmount){%>
+           <div >
             <hr/>
           <!--  /estate/historicalTransactionList.html?subEstateId=86756c9c3f35ff0e-->
             <a class="total-item" >
                 <p>成交历史</p>
                 <span>
-                    <span><%= item. estate.sameEstateHouseAmount || 0 %> 套</span>
+                    <span><%= item.historicalTransactionAmount || 0 %> 套</span>
                     <i class="iconfont icon-next"></i>
                 </span>
             </a>
         </div>
         <%}%>
-        <div>
+          <div>
             <hr/>
-            <%if(item.estate.comment.amount ){%>
-            <a class="total-item" >
+            <%if(item.commentTotal ){%>
+              <a class="total-item" >
                 <p>小区评论</p>
                 <span>
-                    <span><%= item.estate.comment.amount  %> 条</span>
+                    <span><%= item.commentTotal  %> 条</span>
                     <i class="iconfont icon-next"></i>
                 </span>
             </a>
             <%}else{%>
-            <div class="total-item">
+               <div class="total-item">
                 <p>小区评论</p>
                 <div>
                     <span>当前暂无评论，快来抢沙发吧！</span>
-                    <p>我来点评</p>
+                   <!-- /estate/commentEstate.html?subEstateId=80953&source=esf&businessId=1068469b2a801b91&commentLocation=1&boutique=0&hotSpotId=3038144-->
+                    <p><a>我来点评</a></p>
                 </div>
             </div>
             <%}%>
         </div>
     </div>
-    <%if(item.estate.latitude && item.estate.longitude){%>
-       <%- include("../components/map",{ longitude: item.estate.longitude, latitude: item.estate.latitude, address: item.estate.estateAddr, subEstateName:item.estate.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
-    <%}%>
-    <%if(item.sameTownHouseList){%>
-    <div class="similar wk-panel">
-        <div class="panel-header" >相似房源推荐</div>
-        <div class="panel-body">
 
+    <!--地图模块-->
+    <%if(item.latitude && item.longitude){%>
+       <%- include("../components/map",{ longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName:item.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
+    <%}%>
+    <%if(item.similarHouses){%>
+    <div class="similar wk-panel">
+        <div class="panel-header">相似房源推荐</div>
+        <div class="panel-body">
+            <%- include("../components/rent-items",{ rentItems: item.similarHouses}) %>
         </div>
-        <%if(item.sameTownTotalCount > 5){%>
+        <% if(item.similarHouses.length > 5){ %>
         <div class="panel-more">
+            <!--/esf/similarList.html?enCryptHouseId=1068469b2a801b91-->
             <a url="/pages/esf/list?type=similar&houseId={{ house.houseId }}">查看更多</a>
         </div>
-        <%}%>
+        <% } %>
     </div>
     <%}%>
 </div>
-<%- include("../components/assistant" , { agent: item.agent ,mobileBigDataParams: " ",avatarBigDataParams: " ",wxBigDataParams: " ",}) %>
+<%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams: " ",avatarBigDataParams: " ",wxBigDataParams: " ",}) %>
 <%- include("../components/footer") %>

@@ -1,7 +1,6 @@
 <%- include("../components/head") %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:"123"}) %>
 <div class="all-dis">
-
     <div class="highlight wk-panel">
         <p class="source-title"><%= item.houseTitle || item.estateName %></p>
         <div class="outline">
@@ -59,31 +58,24 @@
         <div class="panel-body">
             <%if(item.isWKhouse === 1){%>
             <div>
-                <span class="hd">主要优势</span>
-                <span class="bd"><%= item.sellPoint %></span>
+                <%if(item.sellPoint){%>
+                  <span class="hd">主要优势</span>
+                  <span class="bd"><%= item.sellPoint %></span>
+                <%}%>
                 <div >
-                    <span class="hd">业主心态</span>
-                    <span class="bd"><%= item.ownerMotivation%></span>
-                    <span class="hd">周边设施</span>
-                    <span class="bd"><%= item.aroundSupport %></span>
-                    <!--<view class="panel-more" wx:if="{{ ! pageStates.summaryOptional }}" @tap="spreadOptional">查看更多</view>
-                    <view class="optional" wx:if="{{ pageStates.summaryOptional }}">
-                        <text class="hd">户型介绍</text>
-                        <text class="bd">{{ house.houseTypeDesc }}</text>
-                        <text class="hd">小区介绍</text>
-                        <text class="bd">{{ house.estateDesc }}</text>
-                        <text class="hd">税费解析</text>
-                        <text class="bd">{{ house.taxDesc }}</text>
-                        <text class="hd">其他</text>
-                        <text class="bd">{{ house.otherIntroduce }}</text>
-                    </view>-->
+                    <%if(item.ownerMotivation){%>
+                      <span class="hd">业主心态</span>
+                      <span class="bd"><%= item.ownerMotivation%></span>
+                    <%}%>
+                    <%if(item.aroundSupport){%>
+                       <span class="hd">周边设施</span>
+                       <span class="bd"><%= item.aroundSupport %></span>
+                    <%}%>
                 </div>
             </div>
             <%}else {%>
             <div>
-                <p class="base-info ">
-                    愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第54中学。愚一幼儿园，愚一小学，包玉刚实验学校，建青实验学校，江苏路第五小学分校，上海市三女中上海延安中学，上海第
-                    54 中学。</p>
+                <p class="base-info "><%= item.sellPoint %></p>
                 <div class="more">查看更多</div>
             </div>
             <%}%>
@@ -156,11 +148,11 @@
             <%}%>
         </div>
     </div>
-
     <!--地图模块-->
     <%if(item.latitude && item.longitude){%>
        <%- include("../components/map",{ longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName:item.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
     <%}%>
+   <!-- 相似房源推荐-->
     <%if(item.similarHouses){%>
     <div class="similar wk-panel">
         <div class="panel-header">相似房源推荐</div>
@@ -176,5 +168,13 @@
     </div>
     <%}%>
 </div>
+
+<!--判断房源是否下架-->
+<% if(item.houseState == 2){ %>
 <%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams: " ",avatarBigDataParams: " ",wxBigDataParams: " ",}) %>
+<% }else{ %>
+<div class="no-sell">
+    <p>该房源已下架</p>
+</div>
+<% } %>
 <%- include("../components/footer") %>

@@ -1,6 +1,7 @@
 <%- include("../components/head") %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:"123"}) %>
 <div class="all-dis">
+    <i class="iconfont icon-back"></i>
     <div class="highlight wk-panel">
         <p class="source-title"><%= item.houseTitle || item.estateName %></p>
         <div class="outline">
@@ -34,14 +35,14 @@
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
-                <a  class="bd" href="https://m.wkzf.com/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>">
+                <a  class="bd" href="<%= domain %>/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>">
                    <span >首付<%= item.advancePayment %> 万，月供 <%= item.mortgage %> 元</span>
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
-            <div class="estateName">
-                <span class="hd">小区</span>
-                <a  class="bd" href="<%= item.estateImgUrl %>">
+            <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>">
+                <span class="hd" >小区</span>
+                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html">
                     <span><%= item.estateName %></span>
                     <i class="iconfont icon-next"></i>
                 </a>
@@ -85,7 +86,7 @@
     <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body" href="<%= item.estateUrl  %>">
+        <a class="panel-body" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html">
             <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estateName%></p>
             <span class="outline">
@@ -104,7 +105,7 @@
              <div >
             <hr/>
            <!-- /estate/sameEstateHouseList.html?subEstateId=86756c9c3f35ff0e-->
-            <a class="total-item" >
+            <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>">
                 <p>在售房源</p>
                 <span>
                     <span><%= item.sameEstateHouseAmount || 0 %> 套</span>
@@ -117,7 +118,7 @@
            <div >
             <hr/>
           <!--  /estate/historicalTransactionList.html?subEstateId=86756c9c3f35ff0e-->
-            <a class="total-item" >
+            <a class="total-item"  href="<%= domain %>/estate/historicalTransactionList.html?subEstateId=<%= item.encryptSubEstateId %>">
                 <p>成交历史</p>
                 <span>
                     <span><%= item.historicalTransactionAmount || 0 %> 套</span>
@@ -129,7 +130,7 @@
           <div>
             <hr/>
             <%if(item.commentTotal ){%>
-              <a class="total-item" >
+              <a class="total-item" href="<%= domain %>/estate/moreComment.html?subEstateId=<%= item.subEstateId %>&commentLocation=1">
                 <p>小区评论</p>
                 <span>
                     <span><%= item.commentTotal  %> 条</span>
@@ -142,7 +143,7 @@
                 <div>
                     <span>当前暂无评论，快来抢沙发吧！</span>
                    <!-- /estate/commentEstate.html?subEstateId=80953&source=esf&businessId=1068469b2a801b91&commentLocation=1&boutique=0&hotSpotId=3038144-->
-                    <p><a>我来点评</a></p>
+                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>">我来点评</a></p>
                 </div>
             </div>
             <%}%>
@@ -162,7 +163,7 @@
         <% if(item.similarHouses.length > 5){ %>
         <div class="panel-more">
             <!--/esf/similarList.html?enCryptHouseId=1068469b2a801b91-->
-            <a url="/pages/esf/list?type=similar&houseId={{ house.houseId }}">查看更多</a>
+            <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>">查看更多</a>
         </div>
         <% } %>
     </div>

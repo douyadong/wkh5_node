@@ -34,20 +34,22 @@ class Renderer extends AppRendererControllerBasic {
             let houseId = this.req.params.houseId || "" ;
             // 获取city
              let city = this.req.params.city || "" ;
-             let apiData = require("../../../mock/esf/esf")["default"].data ;
-             let item = apiData;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+               let apiData = await adf.request({
+                   "apiPath" : modulePathArray.join("."),
+                   "data" : { "houseId" : houseId }
+               }) ;
+             let item = apiData.data;
             // 地图跳转路径
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;
-            // 计算器URL
-            item['calculatorUrl'] = this.templateData.domain +'/houseLoanCalculator.html?totalPrice='+item.totalPrice;
             // 经纪人路径跳转URL
-            item.houseAgent['url'] = '/';
-            // 小区详情URL
-            item['estateUrl'] = this.templateData.domain +'/'+city+'/community/'+item.subEstateId+'.html';
+            item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
             // 相似房源更多的Url
-            item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+houseId;
+            item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
             // 额外的脚本样式
-            let  extraJavascript = ['//dev01.fe.wkzf/fe_public_library/wkzf/js/util/echarts/echarts.js','//dev01.fe.wkzf/wkh5_fe/js/components/album.min.js'];
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js',this.templateData.appStaticPrefix+'/js/components/album.min.js'];
             // 相册的视频和图片的数据的组装处理
             let imgList = [];
             if(item.houseVideos){
@@ -72,15 +74,6 @@ class Renderer extends AppRendererControllerBasic {
                     item.similarHouses[index]['url'] = this.templateData.domain +'/'+city+'/esf/'+eachItem.encryptHouseId+'.html' ;
                 })
             }
-            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            扩展模板api数据
-            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-         /*   let apiData = await adf.request({
-                "apiPath" : modulePathArray.join(".") ,
-                "data" : { "houseId" : houseId }
-            }) ; */
-
-
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据

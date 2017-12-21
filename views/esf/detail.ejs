@@ -20,7 +20,7 @@
         </div>
         <div class="tags">
             <% item.tagList && item.tagList.forEach(function(item){ %>
-            <span ><%= item %></span>
+               <span ><%= item %></span>
             <% }) ; %>
         </div>
         <div class="cols2-fields">
@@ -160,7 +160,7 @@
         <div class="panel-body">
             <%- include("../components/rent-items",{ rentItems: item.similarHouses}) %>
         </div>
-        <% if(item.similarHouses.length > 5){ %>
+        <% if(item.similarHouseCount > 5){ %>
         <div class="panel-more">
             <!--/esf/similarList.html?enCryptHouseId=1068469b2a801b91-->
             <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>">查看更多</a>

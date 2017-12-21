@@ -26,6 +26,17 @@ export default {
         } ,
         "community" : {
             "detail" : "estate/estateInfo.rest"
+        } ,
+        "store" : {
+            "store" : "store/getStorePriceInfo.rest" ,
+            "agent" : "store/getAgentList.rest" ,
+            "house" : "store/getHouseList.rest"
+        } ,
+        "esf" : {
+            "detail" : "sellHouse/getSellHouseDetail.rest"
+        } ,
+        "estate" : {
+            "priceChart" : "estate/getEstateHistoricalPriceList.rest"
         }
     }
 };

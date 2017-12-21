@@ -17,5 +17,4 @@ let router = express.Router() ;
 router.get("/:city/esf/(:houseId).html", function(req, res, next) {   
     new EsfDetailRenderer(req, res, next) ;  
 }) ;
-
 export default router ;

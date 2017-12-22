@@ -48,14 +48,14 @@ class Renderer extends AppRendererControllerBasic {
             item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
             // 相似房源更多的Url
             item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
-            // 额外的脚本样式
-            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js',this.templateData.appStaticPrefix+'/js/components/album.min.js'];
+            // 额外的脚本样式,this.templateData.appStaticPrefix+'/js/components/album.min.js'
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
             // 相册的视频和图片的数据的组装处理
             let imgList = [];
             if(item.houseVideos){
                 item.houseVideos['isVideo'] = true ;
                 item.houseVideos['url'] = item.houseVideos.videoUrl;
-                item.houseVideos['videoPlayUrl'] = "/" + this.req.params.city + '/videoplay/index?src=' + encodeURIComponent(item.houseVideos.videoUrl);
+                item.houseVideos['videoPlayUrl'] = "/" + city + '/videoplay/index?src=' + encodeURIComponent(item.houseVideos.videoUrl);
                 imgList.push(item.houseVideos)
             }
             if (item.houseImages){
@@ -67,12 +67,18 @@ class Renderer extends AppRendererControllerBasic {
                 })
             }
             item['imgList'] = imgList ;
+            console.log(imgList);
             // 给相似房源添加埋点和点击调往页面的Url
             if (item.similarHouses){
+                let that = this;
+                item['similarFiveHouses'] = [];
                 item.similarHouses.forEach(function (eachItem,index) {
-                    item.similarHouses[index]['bigDataParams'] = {};
-                    item.similarHouses[index]['url'] = this.templateData.domain +'/'+city+'/esf/'+eachItem.encryptHouseId+'.html' ;
-                })
+                    if (index < 5){
+                        item['similarFiveHouses'].push(eachItem);
+                        item['similarFiveHouses'][index]['bigDataParams'] = {};
+                        item['similarFiveHouses'][index]['url'] = that.templateData.domain +'/'+city+'/esf/'+eachItem.encryptHouseId+'.html' ;
+                    }
+                });
             }
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

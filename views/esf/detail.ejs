@@ -1,4 +1,5 @@
 <%- include("../components/head") %>
+<%- include("../components/download-app") %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:"123"}) %>
 <div class="all-dis">
     <i class="iconfont icon-back"></i>
@@ -158,10 +159,10 @@
     <div class="similar wk-panel">
         <div class="panel-header">相似房源推荐</div>
         <div class="panel-body">
-            <%- include("../components/rent-items",{ rentItems: item.similarHouses}) %>
+            <%- include("../components/esf-items",{ oldHouseList: item.similarFiveHouses}) %>
         </div>
         <% if(item.similarHouseCount > 5){ %>
-        <div class="panel-more">
+        <div class="esf-more">
             <!--/esf/similarList.html?enCryptHouseId=1068469b2a801b91-->
             <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>">查看更多</a>
         </div>

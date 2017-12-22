@@ -48,7 +48,7 @@ class Renderer extends AppRendererControllerBasic {
             item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
             // 相似房源更多的Url
             item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
-            // 额外的脚本样式,this.templateData.appStaticPrefix+'/js/components/album.min.js'
+            // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
             // 相册的视频和图片的数据的组装处理
             let imgList = [];
@@ -67,7 +67,6 @@ class Renderer extends AppRendererControllerBasic {
                 })
             }
             item['imgList'] = imgList ;
-            console.log(imgList);
             // 给相似房源添加埋点和点击调往页面的Url
             if (item.similarHouses){
                 let that = this;
@@ -85,7 +84,7 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" :"二手房详情" ,
+                "title" :"找对人，买好房就在悟空找房！" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "extraJavascripts" : extraJavascript ,

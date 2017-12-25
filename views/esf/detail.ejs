@@ -1,6 +1,6 @@
 <%- include("../components/head") %>
 <%- include("../components/download-app") %>
-<%- include("../components/album",{imgList:item.imgList,bigDataParams:"123"}) %>
+<%- include("../components/album",{imgList:item.imgList,bigDataParams:item.DataParams.albumBigDataParams}) %>
 <div class="all-dis">
     <i class="iconfont icon-back"></i>
     <div class="highlight wk-panel">
@@ -36,14 +36,14 @@
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
-                <a  class="bd" href="<%= domain %>/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>">
+                <a  class="bd" href="<%= domain %>/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>" data-bigdata = "<%= item.DataParams.calculatorBigDataParams%>">
                    <span >首付<%= item.advancePayment %> 万，月供 <%= item.mortgage %> 元</span>
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
             <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>">
                 <span class="hd" >小区</span>
-                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html">
+                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
                     <span><%= item.estateName %></span>
                     <i class="iconfont icon-next"></i>
                 </a>
@@ -87,7 +87,7 @@
     <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html">
+        <a class="panel-body" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
             <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estateName%></p>
             <span class="outline">
@@ -106,7 +106,7 @@
              <div >
             <hr/>
            <!-- /estate/sameEstateHouseList.html?subEstateId=86756c9c3f35ff0e-->
-            <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>">
+            <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.onSellBigDataParams%>">
                 <p>在售房源</p>
                 <span>
                     <span><%= item.sameEstateHouseAmount || 0 %> 套</span>
@@ -119,7 +119,7 @@
            <div >
             <hr/>
           <!--  /estate/historicalTransactionList.html?subEstateId=86756c9c3f35ff0e-->
-            <a class="total-item"  href="<%= domain %>/estate/historicalTransactionList.html?subEstateId=<%= item.encryptSubEstateId %>">
+            <a class="total-item"  href="<%= domain %>/estate/historicalTransactionList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.historyBigDataParams%>">
                 <p>成交历史</p>
                 <span>
                     <span><%= item.historicalTransactionAmount || 0 %> 套</span>
@@ -144,7 +144,7 @@
                 <div>
                     <span>当前暂无评论，快来抢沙发吧！</span>
                    <!-- /estate/commentEstate.html?subEstateId=80953&source=esf&businessId=1068469b2a801b91&commentLocation=1&boutique=0&hotSpotId=3038144-->
-                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>">我来点评</a></p>
+                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.DataParams.commentBigDataParams%>">我来点评</a></p>
                 </div>
             </div>
             <%}%>
@@ -152,7 +152,7 @@
     </div>
     <!--地图模块-->
     <%if(item.latitude && item.longitude){%>
-       <%- include("../components/map",{ longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName:item.subEstateName, mapUrl: item.mapUrl,bigDataParams: "23" }) %>
+       <%- include("../components/map",{ longitude: item.longitude, latitude: item.latitude, address: item.estateAddr, subEstateName:item.subEstateName, mapUrl: item.mapUrl,bigDataParams: item.DataParams.mapBigDataParams }) %>
     <%}%>
    <!-- 相似房源推荐-->
     <%if(item.similarHouses){%>
@@ -164,7 +164,7 @@
         <% if(item.similarHouseCount > 5){ %>
         <div class="esf-more">
             <!--/esf/similarList.html?enCryptHouseId=1068469b2a801b91-->
-            <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>">查看更多</a>
+            <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>" data-bigdata="<%= item.DataParams.similarBigDataParams%>">查看更多</a>
         </div>
         <% } %>
     </div>
@@ -173,7 +173,7 @@
 
 <!--判断房源是否下架-->
 <% if(item.houseState == 2){ %>
-<%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams: " ",avatarBigDataParams: " ",wxBigDataParams: " ",}) %>
+<%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: "",wxBigDataParams: item.DataParams.wxBigDataParams}) %>
 <% }else{ %>
 <div class="no-sell">
     <p>该房源已下架</p>

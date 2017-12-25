@@ -49,7 +49,9 @@ class Renderer extends AppRendererControllerBasic {
             }) ;
             if(agentApiData.data) {
                 for(let n = 0 ; n < agentApiData.data.length ; n ++) {
-                    //agentApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    agentApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1222004 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
+                    agentApiData.data[n].phoneBigDataParams = this.generateBigDataParams( { "eventName" : 1222006 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
+                    agentApiData.data[n].wxBigDataParams = this.generateBigDataParams( { "eventName" : 1222005 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
                     agentApiData.data[n].url = "/" + this.req.params.city + "/space/" + agentApiData.data[n].agentId + ".html" ;
                 }
             }
@@ -62,7 +64,7 @@ class Renderer extends AppRendererControllerBasic {
             }) ;
             if(houseApiData.data) {
                 for(let n = 0 ; n < houseApiData.data.length ; n ++) {
-                    //houseApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    houseApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1222001 , "eventParam" : { "store_id" : storeId , "house_id" : houseApiData.data[n].houseId } } ) ;
                     houseApiData.data[n].url = "/" + this.req.params.city + "/esf/" + houseApiData.data[n].encryptHouseId + ".html" ;
                 }
             }    
@@ -85,7 +87,16 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData , { store : storeApiData.data.priceModel } ) ;
             Object.assign(this.templateData , { oldHouseList : houseApiData.data } ) ;
-            Object.assign(this.templateData , { agentList : agentApiData.data } ) ;            
+            Object.assign(this.templateData , { agentList : agentApiData.data } ) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板大数据埋点数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData, { 
+                "bigDataParams" : {
+                    "esfTab" : this.generateBigDataParams( { "eventName" : 1222002 , "eventParam" : { "store_id" : storeId } } ) ,
+                    "agentTab" : this.generateBigDataParams( { "eventName" : 1222003 , "eventParam" : { "store_id" : storeId } } ) 
+                }
+            }) ;        
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        

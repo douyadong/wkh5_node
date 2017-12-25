@@ -90,13 +90,13 @@ class Renderer extends AppRendererControllerBasic {
                 // 微信埋点
                 wxBigDataParams: this.generateBigDataParams({
                     eventName: '1067086',
-                    eventParam: {house_id: item.houseId, agent_id: item.houseAgent.agentId, boutique: '0'},
+                    eventParam: {house_id: item.houseId, agent_id: item.houseAgent.agentId, boutique: item.isTopHouse},
                     type: 2
                 }),
                 // 经纪人头像点击
                 avatarBigDataParams: this.generateBigDataParams({
                     eventName: '1067043',
-                    eventParam:{house_id: item.houseId ,agent_id: item.houseAgent.agentId, boutique: '0' },
+                    eventParam:{house_id: item.houseId ,agent_id: item.houseAgent.agentId, boutique: item.isTopHouse },
                     type: 2
                 }),
                 // 相册点击埋点
@@ -108,7 +108,7 @@ class Renderer extends AppRendererControllerBasic {
                  // 计算器
                 calculatorBigDataParams : this.generateBigDataParams({
                     eventName: '1067038',
-                    eventParam: {house_id: item.houseId, boutique: '0'},
+                    eventParam: {house_id: item.houseId, boutique: item.isTopHouse},
                     type: 2
                 }),
                 // 小区名称埋点
@@ -150,7 +150,7 @@ class Renderer extends AppRendererControllerBasic {
                 // 位置及周边
                 mapBigDataParams: this.generateBigDataParams({
                     eventName:'1067087',
-                    eventParam:{house_id: item.houseId , boutique: '0'},
+                    eventParam:{house_id: item.houseId , boutique: item.isTopHouse},
                     type: 2
                 }),
                 // 相似房源查看更多

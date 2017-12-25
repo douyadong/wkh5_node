@@ -71,14 +71,71 @@ class Renderer extends AppRendererControllerBasic {
             if (item.similarHouses){
                 let that = this;
                 item['similarFiveHouses'] = [];
-                item.similarHouses.forEach(function (eachItem,index) {
+                item.similarHouses.forEach((eachItem,index) =>{
                     if (index < 5){
                         item['similarFiveHouses'].push(eachItem);
-                        item['similarFiveHouses'][index]['bigDataParams'] = {};
+                        item['similarFiveHouses'][index]['bigDataParams']= this.generateBigDataParams({ eventName:'1067036',eventParam:{house_id:eachItem.houseId,boutique:'1'}});
                         item['similarFiveHouses'][index]['url'] = that.templateData.domain +'/'+city+'/esf/'+eachItem.encryptHouseId+'.html' ;
                     }
                 });
             }
+            // 大数据埋点参数
+            item['DataParams'] = {
+                mobileBigDataParams: this.generateBigDataParams({
+                    eventName: '1067027',
+                    eventParam: {house_id: item.houseId, boutique: '0'},
+                    type: 2
+                }),
+                wxBigDataParams: this.generateBigDataParams({
+                    eventName: '1067031',
+                    eventParam: {house_id: item.houseId, agent_id: item.houseAgent.agentId, boutique: '0'},
+                    type: 2
+                }),
+                // 相册点击埋点
+                albumBigDataParams: this.generateBigDataParams({
+                    eventName: '1067037',
+                    eventParam:{house_id: item.houseId},
+                    type: 2
+                }),
+                 // 计算器
+                calculatorBigDataParams : this.generateBigDataParams({
+                    eventName: '1067038',
+                    eventParam: {house_id: item.houseId, boutique: '0'},
+                    type: 2
+                }),
+                // 小区
+                communtBigDataParams: this.generateBigDataParams({
+                    eventName: '1067033',
+                    type: 2
+                }),
+                // 在售房源
+                onSellBigDataParams: this.generateBigDataParams({
+                    eventName:'1067034',
+                    type: 2
+                }),
+                // 成交历史
+                historyBigDataParams: this.generateBigDataParams({
+                    eventName:'1067025',
+                    eventParam:{house_id: item.houseId,history_sell_suits: item.historicalTransactionAmount},
+                    type: 2
+                }),
+                // 点评
+                commentBigDataParams: this.generateBigDataParams({
+                    eventName:'1067040',
+                    type: 2
+                }),
+                // 位置及周边
+                mapBigDataParams: this.generateBigDataParams({
+                    eventName:'1067032',
+                    type: 2
+                }),
+                // 相似房源查看更多
+                similarBigDataParams: this.generateBigDataParams({
+                    eventName:'1067035',
+                    type: 2
+                }),
+
+            };
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据

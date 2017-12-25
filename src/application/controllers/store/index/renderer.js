@@ -46,14 +46,26 @@ class Renderer extends AppRendererControllerBasic {
             let agentApiData = await adf.request({
                 "apiPath" : "store.agent" ,
                 "data" : { "storeId" : storeId , "pageIndex" : 0 , pageSize : this.pageSize }
-            }) ; 
+            }) ;
+            if(agentApiData.data) {
+                for(let n = 0 ; n < agentApiData.data.length ; n ++) {
+                    //agentApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    agentApiData.data[n].url = "/" + this.req.params.city + "/space/" + agentApiData.data[n].agentId + ".html" ;
+                }
+            }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            调用门店房源接口获取数据
+            调用门店房源接口获取数据并做相应处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let houseApiData = await adf.request({
                 "apiPath" : "store.house" ,
                 "data" : { "storeId" : storeId , "pageIndex" : 0 , pageSize : this.pageSize }
-            }) ; 
+            }) ;
+            if(houseApiData.data) {
+                for(let n = 0 ; n < houseApiData.data.length ; n ++) {
+                    //houseApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    houseApiData.data[n].url = "/" + this.req.params.city + "/esf/" + houseApiData.data[n].encryptHouseId + ".html" ;
+                }
+            }    
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

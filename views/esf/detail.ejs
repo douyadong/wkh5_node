@@ -41,9 +41,9 @@
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
-            <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>">
+            <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>" data-subestateid = "<%= item.subEstateId %>" data-houseid = "<%= item.houseId %>">
                 <span class="hd" >小区</span>
-                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
+                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtNameBigDataParams%>">
                     <span><%= item.estateName %></span>
                     <i class="iconfont icon-next"></i>
                 </a>
@@ -78,7 +78,7 @@
             <%}else {%>
             <div>
                 <p class="base-info "><%= item.sellPoint %></p>
-                <div class="more">查看更多</div>
+                <div class="more" data-bigdata="<%= item.DataParams.basecInfoBigDataParams%>">查看更多</div>
             </div>
             <%}%>
         </div>
@@ -131,7 +131,7 @@
           <div>
             <hr/>
             <%if(item.commentTotal ){%>
-              <a class="total-item" href="<%= domain %>/estate/moreComment.html?subEstateId=<%= item.subEstateId %>&commentLocation=1">
+              <a class="total-item" href="<%= domain %>/estate/moreComment.html?subEstateId=<%= item.subEstateId %>&commentLocation=1" data-bigdata="<%= item.DataParams.commentBigDataParams%>">
                 <p>小区评论</p>
                 <span>
                     <span><%= item.commentTotal  %> 条</span>
@@ -144,7 +144,7 @@
                 <div>
                     <span>当前暂无评论，快来抢沙发吧！</span>
                    <!-- /estate/commentEstate.html?subEstateId=80953&source=esf&businessId=1068469b2a801b91&commentLocation=1&boutique=0&hotSpotId=3038144-->
-                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.DataParams.commentBigDataParams%>">我来点评</a></p>
+                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.DataParams.goCommentBigDataParams%>">我来点评</a></p>
                 </div>
             </div>
             <%}%>
@@ -173,7 +173,7 @@
 
 <!--判断房源是否下架-->
 <% if(item.houseState == 2){ %>
-<%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: "",wxBigDataParams: item.DataParams.wxBigDataParams}) %>
+<%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: item.DataParams.avatarBigDataParams ,wxBigDataParams: item.DataParams.wxBigDataParams}) %>
 <% }else{ %>
 <div class="no-sell">
     <p>该房源已下架</p>

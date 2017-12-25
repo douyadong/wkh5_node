@@ -74,26 +74,34 @@ class Renderer extends AppRendererControllerBasic {
                 item.similarHouses.forEach((eachItem,index) =>{
                     if (index < 5){
                         item['similarFiveHouses'].push(eachItem);
-                        item['similarFiveHouses'][index]['bigDataParams']= this.generateBigDataParams({ eventName:'1067036',eventParam:{house_id:eachItem.houseId,boutique:'1'}});
+                        item['similarFiveHouses'][index]['bigDataParams']= this.generateBigDataParams({ eventName:'1067036',eventParam:{house_id:eachItem.houseId }});
                         item['similarFiveHouses'][index]['url'] = that.templateData.domain +'/'+city+'/esf/'+eachItem.encryptHouseId+'.html' ;
                     }
                 });
             }
             // 大数据埋点参数
             item['DataParams'] = {
+                // 手机点击埋点
                 mobileBigDataParams: this.generateBigDataParams({
                     eventName: '1067027',
-                    eventParam: {house_id: item.houseId, boutique: '0'},
+                    eventParam: {house_id: item.houseId,agent_id: item.houseAgent.agentId, boutique: item.isTopHouse},
                     type: 2
                 }),
+                // 微信埋点
                 wxBigDataParams: this.generateBigDataParams({
-                    eventName: '1067031',
+                    eventName: '1067086',
                     eventParam: {house_id: item.houseId, agent_id: item.houseAgent.agentId, boutique: '0'},
+                    type: 2
+                }),
+                // 经纪人头像点击
+                avatarBigDataParams: this.generateBigDataParams({
+                    eventName: '1067043',
+                    eventParam:{house_id: item.houseId ,agent_id: item.houseAgent.agentId, boutique: '0' },
                     type: 2
                 }),
                 // 相册点击埋点
                 albumBigDataParams: this.generateBigDataParams({
-                    eventName: '1067037',
+                    eventName: '1067008',
                     eventParam:{house_id: item.houseId},
                     type: 2
                 }),
@@ -103,37 +111,60 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {house_id: item.houseId, boutique: '0'},
                     type: 2
                 }),
-                // 小区
+                // 小区名称埋点
+                communtNameBigDataParams: this.generateBigDataParams({
+                    eventName: '1067006',
+                    eventParam: {house_id: item.houseId, estate_id: item.subEstateId},
+                    type: 2
+                }),
+                // 小区信息埋点
                 communtBigDataParams: this.generateBigDataParams({
                     eventName: '1067033',
+                    eventParam: {house_id: item.houseId, estate_id: item.subEstateId},
                     type: 2
                 }),
                 // 在售房源
                 onSellBigDataParams: this.generateBigDataParams({
                     eventName:'1067034',
+                    eventParam: {house_id: item.houseId},
                     type: 2
                 }),
                 // 成交历史
                 historyBigDataParams: this.generateBigDataParams({
                     eventName:'1067025',
-                    eventParam:{house_id: item.houseId,history_sell_suits: item.historicalTransactionAmount},
+                    eventParam:{house_id: item.houseId},
                     type: 2
                 }),
                 // 点评
                 commentBigDataParams: this.generateBigDataParams({
+                    eventName:'1067013',
+                    eventParam:{house_id: item.houseId, estate_id: item.subEstateId},
+                    type: 2
+                }),
+                // 点击去评论
+                goCommentBigDataParams: this.generateBigDataParams({
                     eventName:'1067040',
+                    eventParam:{house_id: item.houseId },
                     type: 2
                 }),
                 // 位置及周边
                 mapBigDataParams: this.generateBigDataParams({
-                    eventName:'1067032',
+                    eventName:'1067087',
+                    eventParam:{house_id: item.houseId , boutique: '0'},
                     type: 2
                 }),
                 // 相似房源查看更多
                 similarBigDataParams: this.generateBigDataParams({
-                    eventName:'1067035',
+                    eventName:'1067045',
+                    eventParam:{house_id: item.houseId },
                     type: 2
                 }),
+                // 基本信息查看更多
+                basecInfoBigDataParams:this.generateBigDataParams({
+                    eventName:'1067046',
+                    eventParam:{house_id: item.houseId },
+                    type: 2
+                })
 
             };
 

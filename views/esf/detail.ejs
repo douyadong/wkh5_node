@@ -1,5 +1,5 @@
 <%- include("../components/head") %>
-<%- include("../components/download-app") %>
+<%- include("../components/download-app",{bigDataParams: item.DataParams.appBigDataParams}) %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:item.DataParams.albumBigDataParams}) %>
 <div class="all-dis">
     <i class="iconfont icon-back"></i>

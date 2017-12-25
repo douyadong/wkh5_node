@@ -164,7 +164,12 @@ class Renderer extends AppRendererControllerBasic {
                     eventName:'1067046',
                     eventParam:{house_id: item.houseId },
                     type: 2
-                })
+                }),
+                // 下载app
+                appBigDataParams:this.generateBigDataParams({
+                    eventName:'1067042',
+                    type: 2
+                }),
 
             };
 

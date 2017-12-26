@@ -172,7 +172,7 @@
 </div>
 
 <!--判断房源是否下架-->
-<% if(item.houseState == 2){ %>
+<% if(item.houseState == 2 && item.houseAgent){ %>
 <%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: item.DataParams.avatarBigDataParams ,wxBigDataParams: item.DataParams.wxBigDataParams}) %>
 <% }else{ %>
 <div class="no-sell">

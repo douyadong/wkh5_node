@@ -42,10 +42,14 @@ class Renderer extends AppRendererControllerBasic {
                    "data" : { "houseId" : houseId }
                }) ;
              let item = apiData.data;
+             let  agentid =  "0";
             // 地图跳转路径
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;
             // 经纪人路径跳转URL
-            item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
+            if(item.houseAgent){
+                item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
+                agentid = item.houseAgent.agentId;
+            }
             // 相似房源更多的Url
             item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
             // 额外的脚本样式
@@ -84,19 +88,19 @@ class Renderer extends AppRendererControllerBasic {
                 // 手机点击埋点
                 mobileBigDataParams: this.generateBigDataParams({
                     eventName: '1067027',
-                    eventParam: {house_id: item.houseId,agent_id: item.houseAgent.agentId, boutique: item.isTopHouse},
+                    eventParam: {house_id: item.houseId,agent_id: agentid, boutique: item.isTopHouse},
                     type: 2
                 }),
                 // 微信埋点
                 wxBigDataParams: this.generateBigDataParams({
                     eventName: '1067086',
-                    eventParam: {house_id: item.houseId, agent_id: item.houseAgent.agentId, boutique: item.isTopHouse},
+                    eventParam: {house_id: item.houseId, agent_id: agentid, boutique: item.isTopHouse},
                     type: 2
                 }),
                 // 经纪人头像点击
                 avatarBigDataParams: this.generateBigDataParams({
                     eventName: '1067043',
-                    eventParam:{house_id: item.houseId ,agent_id: item.houseAgent.agentId, boutique: item.isTopHouse },
+                    eventParam:{house_id: item.houseId ,agent_id: agentid, boutique: item.isTopHouse },
                     type: 2
                 }),
                 // 相册点击埋点
@@ -164,7 +168,12 @@ class Renderer extends AppRendererControllerBasic {
                     eventName:'1067046',
                     eventParam:{house_id: item.houseId },
                     type: 2
-                })
+                }),
+                // 下载app
+                appBigDataParams:this.generateBigDataParams({
+                    eventName:'1067042',
+                    type: 2
+                }),
 
             };
 

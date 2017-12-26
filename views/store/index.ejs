@@ -4,7 +4,7 @@
         <!--头部根据滚动条可以变fixed的内容，包括banner和tabs-handle-->
         <header class="header">
             <dl class="banner">
-                <dt class="store-name"><%= store.name %></dt>
+                <dt class="store-name"><%= store.name || "悟空找房门店" %></dt>
                 <dd class="market">
                     <span class="hd">周边房源均价</span>
                     <span class="bd"><%= store.avgPrice %></span>

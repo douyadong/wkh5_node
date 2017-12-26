@@ -1,5 +1,5 @@
 <%- include("../components/head") %>
-<%- include("../components/download-app",{bigDataParams: item.DataParams.appBigDataParams}) %>
+<%- include("../components/download-app" ,{bigDataParams:item.DataParams.appBigDataParams}) %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:item.DataParams.albumBigDataParams}) %>
 <div class="all-dis">
     <i class="iconfont icon-back"></i>
@@ -172,7 +172,7 @@
 </div>
 
 <!--判断房源是否下架-->
-<% if(item.houseState == 2){ %>
+<% if(item.houseState == 2 && item.houseAgent){ %>
 <%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: item.DataParams.avatarBigDataParams ,wxBigDataParams: item.DataParams.wxBigDataParams}) %>
 <% }else{ %>
 <div class="no-sell">

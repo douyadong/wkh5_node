@@ -137,7 +137,21 @@ class Renderer extends AppRendererControllerBasic {
                         rent_house_id: item.houseId
                     },
                     type: 2
-                })
+                }),//点击评论总数埋点
+                clickCommentTotalBigDataParams: this.generateBigDataParams({
+                    eventName: "1204022",
+                    eventParam: {
+                        house_id: item.houseId,
+                        estate_id: item.subEstateId
+                    }
+                }),//我来评论埋点
+                clickGoCommentBigDataParams: this.generateBigDataParams({
+                    eventName: "1204023",
+                    eventParam: {
+                        house_id: item.houseId,
+                        estate_id: item.subEstateId
+                    }
+                }),
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             租房标题和城市名称存起来，后面用
@@ -150,7 +164,7 @@ class Renderer extends AppRendererControllerBasic {
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
-            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/            
             Object.assign(this.templateData, { 
                 "title" : houseTitle + "_" + cityName + subEstateName + "租房-悟空找房" , 
                 "keywords" : houseTitle + "，" + subEstateName + "租房，真实房屋出租" ,
@@ -161,7 +175,8 @@ class Renderer extends AppRendererControllerBasic {
                 "item" : item ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/")
-            }) ;        
+            }) ;       
+            
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/              

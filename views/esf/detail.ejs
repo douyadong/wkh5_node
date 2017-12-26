@@ -1,10 +1,10 @@
 <%- include("../components/head") %>
-<%- include("../components/download-app") %>
+<%- include("../components/download-app" ,{bigDataParams:item.DataParams.appBigDataParams}) %>
 <%- include("../components/album",{imgList:item.imgList,bigDataParams:item.DataParams.albumBigDataParams}) %>
 <div class="all-dis">
     <i class="iconfont icon-back"></i>
     <div class="highlight wk-panel">
-        <p class="source-title"><%= item.houseTitle || item.estateName %></p>
+        <p class="source-title"><%= item.houseTitle || item.estateName + item.subEstateName %></p>
         <div class="outline">
             <div class="money">
                 <span class="hd">总价</span>
@@ -25,8 +25,8 @@
             <% }) ; %>
         </div>
         <div class="cols2-fields">
-            <div><span class="hd">单价</span><span class="bd"><%= item.unitPrice %> 元 / ㎡</span></div>
-            <div><span class="hd">年代</span><span class="bd"><%= item.completed %> 年</span></div>
+            <div><span class="hd">单价</span><span class="bd"><%= item.unitPrice %> </span></div>
+            <div><span class="hd">年代</span><span class="bd"><%= item.completedStr %> </span></div>
             <div><span class="hd">类型</span><span class="bd"><%= item.houseType %></span></div>
             <div><span class="hd">楼层</span><span class="bd"><%= item.floorDesc %></span></div>
             <div><span class="hd">装修</span><span class="bd"><%= item.decorationStr %></span></div>
@@ -94,7 +94,7 @@
                 <span><%= item.completedStr %> 竣工  |  <%= item.totalHouse %></span>
                 <span class="iconfont icon-next"></span>
             </span>
-            <span class="address"><%= item.estateAddr || '--'%></span>
+            <span class="address"><%= item.estateAddr %></span>
         </a>
          <div class="echart">
              <hr/>
@@ -172,7 +172,7 @@
 </div>
 
 <!--判断房源是否下架-->
-<% if(item.houseState == 2){ %>
+<% if(item.houseState == 2 && item.houseAgent){ %>
 <%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: item.DataParams.avatarBigDataParams ,wxBigDataParams: item.DataParams.wxBigDataParams}) %>
 <% }else{ %>
 <div class="no-sell">

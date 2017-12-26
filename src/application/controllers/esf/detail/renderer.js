@@ -47,7 +47,7 @@ class Renderer extends AppRendererControllerBasic {
             item['mapUrl'] = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;
             // 经纪人路径跳转URL
             if(item.houseAgent){
-                item.houseAgent['url'] = this.templateData.domain +'/agent/agentDetail.html?agentId='+item.houseAgent.agentId;
+                item.houseAgent['url'] = this.templateData.domain +'/'+city+"/space/"+item.houseAgent.agentId+".html";
                 agentid = item.houseAgent.agentId;
             }
             // 相似房源更多的Url

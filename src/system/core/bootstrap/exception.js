@@ -21,6 +21,7 @@ export default function(app){
     将所有错误渲染到处理页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     app.use(function(err, req, res, next) {
+        //console.log(err);
         res.status(err.status || 500) ;
         res.redirect("/seo/error.html") ;       
     }) ;

@@ -98,9 +98,21 @@
             </div>
         </div>
     </div>
-    <div class="wk-panel rent-comments">
-        <div class="panel-header has-bottom-border">用户评论</div>
-        <div class="panel-body has-right-padding"><%- include( '../components/rent-comments' , { comments : item.commentList , subEstateId : item.subEstateId }) %></div>
+    <div class="wk-panel rent-comments has-right-padding">
+        <div class="panel-header <%=item.commentTotal > 0? 'has-bottom-border' : ''%>">
+            <a class="box" href="<%= item.commentTotal > 0 ? domain + '/estate/moreComment.html?commentLocation=1&subEstateId='+ item.subEstateId: '#' %>" data-bigdata="<%= item.bigDataParams.clickCommentTotalBigDataParams%>">
+                <div class="left">小区评论</div>
+                <%if(item.commentTotal > 0){%>
+                <div class="right"><%= item.commentTotal%> 条<i class="iconfont icon-next"></i></div>
+                <%}%>
+            </a>
+        </div>
+        <%if(item.commentTotal<=0){%>
+            <div class="panel-body has-bottom-border">
+                <span>当前暂无评论，快来抢沙发吧！</span>
+                <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=rent&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
+            </div>
+        <%}%>        
     </div>
     <% if( item.longitude > 0 &&  item.latitude > 0 ){ %>
          <%- include("../components/map" , {

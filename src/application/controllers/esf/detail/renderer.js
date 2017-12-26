@@ -180,8 +180,16 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let pageTitle = '';
+            if (item.houseTitle){
+                pageTitle = item.houseTitle;
+            }else {
+                pageTitle =  item.estateName + item.subEstateName ;
+            }
             Object.assign(this.templateData, {
-                "title" :"二手房详情" ,
+                "title" :city+item.estateName+"二手房-"+pageTitle+"二手房房源出售买卖-悟空找房二手房详情" ,
+                "keywords" : pageTitle+item.estateName+"优质二手房，"+item.estateName+"二手房房源出售买卖" ,
+                "description" : "悟空找房网为您提供"+city+item.estateName+pageTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "extraJavascripts" : extraJavascript ,

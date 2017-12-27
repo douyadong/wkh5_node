@@ -17,10 +17,10 @@
         </header>
         <!--两个tabs-frame内容-->
         <div class="tabs-frame wk-panel esf-items">
-            <div class="list-container" data-requestable="false"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div>
+            <div class="list-container"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div>
         </div>
         <div class="tabs-frame wk-panel agent-items">
-            <div class="list-container" data-requestable="false">
+            <div class="list-container">
                 <% agentList && agentList.forEach((agent)=>{ %>
                     <dl class="agent">
                         <dd class="tel" data-bigdata="<%= agent.phoneBigDataParams %>"><a href="tel:<%= agent.agentMobile %>"><span><i class="iconfont icon-tel"></i></span><span class="memo">电话咨询</span></a></dd>

@@ -88,11 +88,11 @@
         <div class="panel-body">
             <div class="has-bottom-border">
                 <a data-bigdata="<%= item.bigDataParams.clickSubEstateInfoBigDataParams %>" class="subestate box" href="<%= item.subEstateUrl %>">
-                    <div class="left"><img src="<%= item.estateImgUrl %>" alt="<%= item.subEstateName %>"></div>
+                    <div class="left"><img src="<%= item.estateImgUrl %>"></div>
                     <div class="right">
-                        <h4><%= item.subEstateName %></h4>
-                        <p class="completed has-arrow"><%= item.completedStr %> 竣工&nbsp;&nbsp; | &nbsp;&nbsp; <%= item.totalHouse %>户</p>
-                        <p class="address"><%= item.estateAddr %></p>
+                        <h4><%= item.subEstateName %></h4>                        
+                        <p class="completed has-arrow"><%= item.completedStr&&item.completedStr!='--'?(item.completedStr + '竣工  '):'' %><%= item.totalHouse && item.totalHouse!='0' && item.totalHouse!='--'? ((item.completedStr && item.completedStr!='--'? '|  ' : '') + item.totalHouse + '户'):'' %>&nbsp;</p>                        
+                        <p class="address"><%= item.estateAddr&&item.estateAddr!='--'?item.estateAddr:'' %></p>
                     </div>
                 </a>                
             </div>

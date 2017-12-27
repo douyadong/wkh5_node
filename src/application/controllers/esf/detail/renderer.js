@@ -185,9 +185,9 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" :item.cityname+item.estateName+"二手房-"+item.houseTitle+"二手房房源出售买卖-悟空找房二手房详情" ,
+                "title" :item.cityName+item.estateName+"二手房-"+item.houseTitle+"二手房房源出售买卖-悟空找房二手房详情" ,
                 "keywords" : item.houseTitle+item.estateName+"优质二手房，"+item.estateName+"二手房房源出售买卖" ,
-                "description" : "悟空找房网为您提供"+item.cityname+item.estateName+item.houseTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
+                "description" : "悟空找房网为您提供"+item.cityName+item.estateName+item.houseTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "extraJavascripts" : extraJavascript ,

@@ -41,11 +41,11 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "storeId" : storeId }
             }) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            调用门店经纪人接口获取数据
+            调用门店经纪人接口获取数据，这里是一次性加载，所以把pageSize设置得比较高
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/             
             let agentApiData = await adf.request({
                 "apiPath" : "store.agent" ,
-                "data" : { "storeId" : storeId , "pageIndex" : 0 , pageSize : this.pageSize }
+                "data" : { "storeId" : storeId , "pageIndex" : 0 , pageSize : 1000 }
             }) ;
             if(agentApiData.data) {
                 for(let n = 0 ; n < agentApiData.data.length ; n ++) {

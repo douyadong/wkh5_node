@@ -144,16 +144,16 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam:{house_id: item.houseId},
                     type: 2
                 }),
-                // 点评
+                // 点评查看
                 commentBigDataParams: this.generateBigDataParams({
-                    eventName:'1067013',
-                    eventParam:{house_id: item.houseId, estate_id: item.subEstateId},
+                    eventName:'1067040',
+                    eventParam:{house_id: item.houseId },
                     type: 2
                 }),
                 // 点击去评论
                 goCommentBigDataParams: this.generateBigDataParams({
-                    eventName:'1067040',
-                    eventParam:{house_id: item.houseId },
+                    eventName:'1067013',
+                    eventParam:{house_id: item.houseId  , estate_id: item.subEstateId},
                     type: 2
                 }),
                 // 位置及周边

@@ -32,7 +32,7 @@
                         <dd class="wechat" data-bigdata="<%= agent.wxBigDataParams %>" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>"><span><i class="iconfont icon-wechat"></i></span><span class="memo">添加微信</span></dd>
                         <% } %>
                         <dt class="<%= agent.agentWChatId ? '' : 'no-wechat' %>">
-                            <a href="<%= agent.url %>">
+                            <a href="<%= agent.url %>" data-bigdata="<%= agent.bigDataParams %>">
                                 <img data-src="<%= agent.agentHeadImgUrl %>?x-oss-process=image/resize,w_120 %>" class="lazy">
                                 <div class="summary"><p class="name"><%= agent.agentName %></p><p class="seniority">加入悟空：<%= agent.serviceYears %></p></div>
                             </a>

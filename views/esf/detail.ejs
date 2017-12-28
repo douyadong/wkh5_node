@@ -41,7 +41,7 @@
                     <i class="iconfont icon-next"></i>
                 </a>
             </div>
-            <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>" data-subestateid = "<%= item.subEstateId %>" data-houseid = "<%= item.houseId %>">
+            <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>" data-subestateid = "<%= item.subEstateId %>" data-houseid = "<%= item.houseId %>" data-boutique = "<%= item.isTopHouse %>">
                 <span class="hd" >小区</span>
                 <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtNameBigDataParams%>">
                     <span><%= item.estateName %></span>
@@ -172,7 +172,7 @@
 <!--判断房源是否下架-->
 <% if(item.houseState == 2 && item.houseAgent){ %>
 <%- include("../components/assistant" , { agent: item.houseAgent ,mobileBigDataParams:item.DataParams.mobileBigDataParams, avatarBigDataParams: item.DataParams.avatarBigDataParams ,wxBigDataParams: item.DataParams.wxBigDataParams}) %>
-<% }else{ %>
+<% }else if (item.houseState == 4 ){ %>
 <div class="no-sell">
     <p>该房源已下架</p>
 </div>

@@ -69,7 +69,7 @@ class Renderer extends AppRendererControllerBasic {
             "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
             "item" : item ,
             "matchStylesheetPath" : modulePathArray.join("/") ,
-            "controllerJavascript" : modulePathArray.join("/") 
+            "controllerJavascriptPath" : modulePathArray.join("/") 
         }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板

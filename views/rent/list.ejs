@@ -2,10 +2,10 @@
 <!--条件选择-->
 <div class="rent-list">
     <ul>
-        <li id="dic">区域<span><i></i></span></li>
-        <li id="price">价格<span><i></i></span></li>
-        <li id="type">类型<span><i></i></span></li>
-        <li id="more">更多<span><i></i></span></li>
+        <li id="dic"><p>区域</p><span><i></i></span></li>
+        <li id="price"><p>租金</p><span><i></i></span></li>
+        <li id="type"><p>户型</p><span><i></i></span></li>
+        <li id="more"><p>更多</p><span><i></i></span></li>
     </ul>
 </div>
 <!--房源总数-->
@@ -16,13 +16,13 @@
 <div class="dic">
   <div class="tabs">
       <ul>
-          <li><span class="active-color-dic">区域</span></li>
-          <li><span>地铁</span></li>
+          <li class="active-color-dic">区域</li>
+          <li>地铁</li>
       </ul>
   </div>
   <div class="content">
       <div class="dic-content">
-          <div class="content-left">
+          <div class="content-left content-hight">
               <ul>
                   <li>附近／定位失败</li>
                   <li>宝山区</li>
@@ -36,7 +36,7 @@
                   <li>虹口区</li>
               </ul>
           </div>
-          <div class="content-right">
+          <div class="content-right content-hight">
               <ul>
                   <li>不限（智能范围）</li>
                   <li>500米以内</li>
@@ -61,7 +61,7 @@
         </ul>
     </div>
     <div class="writ-price">
-        <input type="number" placeholder="最低价格"><span> - </span><input type="number" placeholder="最高价格"> <button>确定</button>
+        <input type="number" placeholder="最低价格"><span> - </span><input type="number" placeholder="最高价格"> <button>确认</button>
     </div>
 </div>
 <!--房型查询对应模块-->
@@ -79,7 +79,7 @@
 </div>
 <!--更多查询对应模块-->
 <div class="more">
-  <div class="more-spec">
+    <div class="more-spec">
       <p>特色</p>
       <ul>
           <li>近地铁</li>
@@ -89,7 +89,7 @@
       </ul>
   </div>
     <div class="area">
-        <p>面积㎡</p>
+        <p>面积[㎡]</p>
         <ul>
             <li>50以下</li>
             <li>50-70</li>
@@ -110,12 +110,43 @@
             <li>豪装</li>
         </ul>
     </div>
+    <div class="butt-group">
+        <p class="canl">重置</p>
+        <p class="conf">确定</p>
+    </div>
+</div>
+<!--房源排序选项-->
+<div class="sort-chose">
+    <ul>
+        <li class="chosed">默认排序</li>
+        <li>租金从低到高</li>
+        <li>租金从高到低</li>
+        <li>面积从小到大</li>
+        <li>面积从大到小</li>
+        <li>发布时间从近到远</li>
+    </ul>
 </div>
 
+<!--底部罩层-->
 <div class="bac"></div>
+<!--排序按钮-->
+<div class="sort" id="sort">
+    <i class="iconfont icon-paixu"></i>
+    <span>排序</span>
+</div>
 <!--租房具体房源列表-->
-<div class="rent-items">
+<div class="rent-items" >
     <%- include("../components/rent-list" , {rentItem: item.rentList}) %>
+</div>
+<div class="no-rent-item" style="display: none">
+    <div class="show-no">
+        <p class="disc-one">暂时没有符合条件的房源</p>
+        <p class="disc-two">您可以扩大搜索范围，找到更多的房源</p>
+        <p class="clear">清除条件</p>
+    </div>
+    <div class="guess-like wk-panel">
+        <div class="panel-header">猜你喜欢</div>
+    </div>
 </div>
 
 

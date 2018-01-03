@@ -182,12 +182,21 @@ class Renderer extends AppRendererControllerBasic {
 
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            对城市的字段进行处理（去掉"市"字）
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let shortName = "上海";
+             if (item.cityName.lastIndexOf("市") == item.cityName.length - 1){
+                 shortName = item.cityName.substr(0,item.cityName.length - 1);
+             }else {
+                 shortName = item.cityName;
+             }
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" :item.cityName+item.estateName+"二手房-"+item.houseTitle+"二手房房源出售买卖-悟空找房" ,
+                "title" :shortName+item.estateName+"二手房-"+item.houseTitle+"二手房房源出售买卖-悟空找房" ,
                 "keywords" : item.houseTitle+item.estateName+"优质二手房，"+item.estateName+"二手房房源出售买卖" ,
-                "description" : "悟空找房网为您提供"+item.cityName+item.estateName+item.houseTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
+                "description" : "悟空找房网为您提供"+shortName+item.estateName+item.houseTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "extraJavascripts" : extraJavascript ,

@@ -32,7 +32,8 @@ class ApiDataFilter {
             "uri" : apiUrl ,
             "json" : this.apiConf.json ,
             "timeout" : this.apiConf.timeout ,
-            "encoding" : this.apiConf.encoding            
+            "encoding" : this.apiConf.encoding ,
+            "headers":{}
         } ;      
         if(method === "post")  {
             if(contentType) {

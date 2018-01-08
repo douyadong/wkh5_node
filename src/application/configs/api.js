@@ -22,7 +22,14 @@ export default {
             "index" : "agent/AgentDetail.rest"
         } ,
         "rent" : {
-            "detail" : "rent/queryHouseDetailForWkzf.rest"
+            "detail" : "rent/queryHouseDetailForWkzf.rest",
+            "list" : {
+                "rentHouseList":"rent/rentHouseList.rest",
+                "cityAreas": "houseMap/getDicAndTowns.rest",
+                "citySubway" : "houseMap/getCitySubwayLines.rest",
+                "guessLikeHouse":"rent/guessLikeHouse.rest",
+                "acWord":"acWord.rest"
+            }
         } ,
         "community" : {
             "detail" : "estate/estateInfo.rest"

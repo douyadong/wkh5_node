@@ -11,6 +11,9 @@
 import express from "express" ;
 import RentDetailRenderer from "../controllers/rent/detail/renderer" ;
 import RentListRenderer from "../controllers/rent/list/renderer" ;
+import rentListAreasApiProvider from "../controllers/rent/list/areasApiProvider";
+import rentListSubwayApiProvider from "../controllers/rent/list/subwayApiProvider";
+import rentListAcWordApiProvider from "../controllers/rent/list/acWordApiProvider";
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
@@ -23,6 +26,25 @@ router.get("/:city/rent/(:houseId).html", function(req, res, next) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/:city/rent/(:condition)", function(req, res, next) {
     new RentListRenderer(req, res, next) ;
+}) ;
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/rent/list/areas 的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/rent/list/areas", function(req, res, next) {
+    new rentListAreasApiProvider(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/rent/list/subway 的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/rent/list/subway", function(req, res, next) {
+    new rentListSubwayApiProvider(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/rent/list/acWord 的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/rent/list/acWord", function(req, res, next) {
+    new rentListAcWordApiProvider(req, res, next) ;
 }) ;
 
 export default router ;

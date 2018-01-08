@@ -1,6 +1,14 @@
 <%- include("../components/head") %>
 <!--条件选择-->
 <div class="rent-list">
+    <div class="rent-search">
+        <i class="iconfont icon-back"></i>
+        <div class="search-input">
+            <i class="iconfont icon-search"></i>
+            <input id="searchInput" type="text" placeholder="请输入小区名称或地址">
+            <i class="iconfont icon-close"></i>
+        </div>
+    </div>
     <ul>
         <li id="dic"><p>区域</p><span><i></i></span></li>
         <li id="price"><p>租金</p><span><i></i></span></li>
@@ -8,146 +16,179 @@
         <li id="more"><p>更多</p><span><i></i></span></li>
     </ul>
 </div>
-<!--房源总数-->
-<div class="total-num">
-    <p>共找到<span><%=item.totalHouseCount%></span>套房源</p>
-</div>
-<!--区域查询对应模块-->
-<div class="dic">
-  <div class="tabs">
-      <ul>
-          <li class="active-color-dic">区域</li>
-          <li>地铁</li>
-      </ul>
-  </div>
-  <div class="content">
-      <div class="dic-content">
-          <div class="content-left content-hight">
-              <ul>
-                  <li>附近／定位失败</li>
-                  <li>宝山区</li>
-                  <li>崇明区</li>
-                  <li>奉贤区</li>
-                  <li>长宁区</li>
-                  <li>普陀区</li>
-                  <li>黄浦区</li>
-                  <li>虹口区</li>
-                  <li>浦东新区</li>
-                  <li>虹口区</li>
-              </ul>
-          </div>
-          <div class="content-right content-hight">
-              <ul>
-                  <li>不限（智能范围）</li>
-                  <li>500米以内</li>
-                  <li>1000米以内</li>
-                  <li>2000米以内</li>
-                  <li>5000米以内</li>
-              </ul>
-          </div>
-      </div>
-      <div class="metro-content" style="display: none">
-          地铁
-      </div>
-  </div>
-</div>
-<!--总价查询对应模块-->
-<div class="price-total">
-    <div class="price-list">
+<div class="all-control">
+    <!--房源总数-->
+    <div class="total-num">
+        <p>共找到<span><%=item.count%></span>套房源</p>
+    </div>
+    <!--区域查询对应模块-->
+    <div class="dic" style="display: none">
+        <div class="tabs">
+            <ul>
+                <li class="active-color-dic">区域</li>
+                <li>地铁</li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="dic-content" >
+                <div class="content-left content-hight">
+                    <ul id="dicAreas">
+
+                    </ul>
+                </div>
+                <div class="content-right content-hight">
+                    <ul id="town">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="metro-content" style="display: none">
+                <div class="content-left content-hight">
+                    <ul id="metroLine">
+
+                    </ul>
+                </div>
+                <div class="content-right content-hight">
+                    <ul id="metroStation">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--总价查询对应模块-->
+    <div class="price-total" style="display: none">
+        <div class="price-list">
+            <ul>
+                <% item.pageData.priceList && item.pageData.priceList.forEach(function(item){ %>
+                <%  if (item == 0){  %>
+                <li data-pr="0">不限</li>
+                <% }else if (item == 1000) {%>
+                <li data-pr="<%='pr-0-pr-1000'%>"><%=item%> 元以下</li>
+                <% } else {%>
+                <li data-pr="<%='pr-'+item.replace(" - ","-pr-")%>"><%=item%> 元</li>
+                <% } %>
+                <% }) ; %>
+            </ul>
+        </div>
+        <div class="writ-price">
+            <input type="number" id="lowPr" placeholder="最低价格"><span> - </span><input type="number" id="topPr" placeholder="最高价格"> <button id="selfPrConf">确认</button>
+        </div>
+    </div>
+    <!--房型查询对应模块-->
+    <div class="house-type" style="display: none">
+        <div class="house-list">
+            <ul>
+                <% item.pageData.layout && item.pageData.layout.forEach(function(item,index){ %>
+                <li data-la="<%='la-'+index%>"><%=item%></li>
+                <% }) ; %>
+            </ul>
+        </div>
+        <div class="house-conf">
+            <button id="houseCmfir">确定</button>
+        </div>
+    </div>
+    <!--更多查询对应模块-->
+    <div class="more" style="display: none">
+        <div class="more-spec">
+            <p>特色</p>
+            <ul>
+                <li>近地铁</li>
+                <li>降价</li>
+                <li>新上</li>
+                <li>朝南</li>
+            </ul>
+        </div>
+        <div class="area">
+            <p>面积[㎡]</p>
+            <ul>
+                <li data-ar="ar-0-ar-50">50以下</li>
+                <li data-ar="ar-50-ar-70">50-70</li>
+                <li data-ar="ar-70-ar-90">70-90</li>
+                <li data-ar="ar-90-ar-110">90-110</li>
+                <li data-ar="ar-110-ar-130">110-130</li>
+                <li data-ar="ar-130-ar-150">130-150</li>
+                <li data-ar="ar-150">150以上</li>
+            </ul>
+        </div>
+        <div class="decoration">
+            <p>装修</p>
+            <ul>
+                <li data-dt="dt-1">毛坯</li>
+                <li data-dt="dt-2">简装</li>
+                <li data-dt="dt-3">中装</li>
+                <li data-dt="dt-4">精装</li>
+                <li data-dt="dt-5">豪装</li>
+            </ul>
+        </div>
+        <div class="butt-group">
+            <p id="cancelMore" class="canl" >重置</p>
+            <p id="moreComf" class="conf">确定</p>
+        </div>
+    </div>
+    <!--房源排序选项-->
+    <div id="sortChose" class="sort-chose" style="display: none">
         <ul>
-            <% item.pageData.priceList && item.pageData.priceList.forEach(function(item,index){ %>
-               <li data-index="<%='pr-'+index%>"><%=item%></li>
-            <% }) ; %>
+            <li data-so="so-0" class="chosed">默认排序</li>
+            <li data-so="so-1">租金从低到高</li>
+            <li data-so="so-2">租金从高到低</li>
+            <li data-so="so-3">面积从小到大</li>
+            <li data-so="so-4">面积从大到小</li>
+            <li data-so="so-5">发布时间从近到远</li>
         </ul>
     </div>
-    <div class="writ-price">
-        <input type="number" placeholder="最低价格"><span> - </span><input type="number" placeholder="最高价格"> <button>确认</button>
+
+    <!--底部罩层-->
+    <div class="bac" style="display: none"></div>
+    <!--排序按钮-->
+    <div class="sort" id="sort">
+        <i class="iconfont icon-paixu"></i>
+        <span>排序</span>
     </div>
+    <!--租房具体房源列表-->
+    <%if(item.count > 0){%>
+    <div class="rent-items" >
+        <%- include("../components/rent-items" , {rentItems: item.data}) %>
+    </div>
+    <%}else {%>
+    <div class="no-rent-item" style="display: none">
+        <div class="show-no">
+            <p class="disc-one">暂时没有符合条件的房源</p>
+            <p class="disc-two">您可以扩大搜索范围，找到更多的房源</p>
+            <p class="clear">清除条件</p>
+        </div>
+        <div class="guess-like wk-panel">
+            <div class="panel-header">猜你喜欢</div>
+            <div class="wk-body">
+                <%- include("../components/rent-items" , {rentItems: item.guessLikeHouse.data}) %>
+            </div>
+        </div>
+    </div>
+    <%}%>
 </div>
-<!--房型查询对应模块-->
-<div class="house-type">
-    <div class="house-list">
-        <ul>
-            <% item.pageData.layout && item.pageData.layout.forEach(function(item,index){ %>
-            <li data-index="<%='la-'+index%>"><%=item%></li>
-            <% }) ; %>
+<div class="search-result">
+    <div class="no-result" style="display: none">
+        <p>未找到该地址，请重新搜索</p>
+        <span>您可以更换其他关键字再试一次</span>
+    </div>
+    <div class="have-result">
+        <p>搜索历史</p>
+        <div class="result-history">
+            <ul>
+                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
+                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
+                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
+            </ul>
+            <p id="clearHistory">清除搜索历史</p>
+        </div>
+    </div>
+    <div class="show-result">
+        <ul id="showResult">
+            <li></li>
         </ul>
     </div>
-    <div class="house-conf">
-        <button>确定</button>
-    </div>
-</div>
-<!--更多查询对应模块-->
-<div class="more">
-    <div class="more-spec">
-      <p>特色</p>
-      <ul>
-          <li>近地铁</li>
-          <li>降价</li>
-          <li>新上</li>
-          <li>朝南</li>
-      </ul>
-  </div>
-    <div class="area">
-        <p>面积[㎡]</p>
-        <ul>
-            <li>50以下</li>
-            <li>50-70</li>
-            <li>70-90</li>
-            <li>90-110</li>
-            <li>110-130</li>
-            <li>130-150</li>
-            <li>150以上</li>
-        </ul>
-    </div>
-    <div class="decoration">
-        <p>装修</p>
-        <ul>
-            <li>毛坯</li>
-            <li>简装</li>
-            <li>中装</li>
-            <li>精装</li>
-            <li>豪装</li>
-        </ul>
-    </div>
-    <div class="butt-group">
-        <p class="canl">重置</p>
-        <p class="conf">确定</p>
-    </div>
-</div>
-<!--房源排序选项-->
-<div class="sort-chose">
-    <ul>
-        <li class="chosed">默认排序</li>
-        <li>租金从低到高</li>
-        <li>租金从高到低</li>
-        <li>面积从小到大</li>
-        <li>面积从大到小</li>
-        <li>发布时间从近到远</li>
-    </ul>
 </div>
 
-<!--底部罩层-->
-<div class="bac"></div>
-<!--排序按钮-->
-<div class="sort" id="sort">
-    <i class="iconfont icon-paixu"></i>
-    <span>排序</span>
-</div>
-<!--租房具体房源列表-->
-<div class="rent-items" >
-    <%- include("../components/rent-list" , {rentItem: item.rentList}) %>
-</div>
-<div class="no-rent-item" style="display: none">
-    <div class="show-no">
-        <p class="disc-one">暂时没有符合条件的房源</p>
-        <p class="disc-two">您可以扩大搜索范围，找到更多的房源</p>
-        <p class="clear">清除条件</p>
-    </div>
-    <div class="guess-like wk-panel">
-        <div class="panel-header">猜你喜欢</div>
-    </div>
-</div>
 
 
 <%- include("../components/footer") %>

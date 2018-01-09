@@ -33,8 +33,11 @@ class Renderer extends AppRendererControllerBasic {
             let conditionString = this.req.params.condition;
             let newConditionString  = conditionString.replace("di","districtId").replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
             let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
+            console.log("Cookies=======================================================================: ", this.req.cookies);
+            let cityId = 3 ;
+            this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 3;
             let conditionData = {
-                "cityId":"3",
+                "cityId":cityId,
                 "bedRoomSumLists":[],
             };
             if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
@@ -86,6 +89,9 @@ class Renderer extends AppRendererControllerBasic {
                 conditionData["orderType"] = conditionObj['so'];   // 装修状况
             }
             delete(conditionObj['so']);
+            if (this.req.query.subEstateId){
+                conditionData["subEstateId"] = this.req.query.subEstateId
+            }
             Object.assign(conditionData,conditionObj) ;
             console.log(conditionData);
 
@@ -107,14 +113,18 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房猜你喜欢列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-
-    /*        if (item.count <1 ){
+            let guessLikeHouseData = {
+                "cityId":cityId,
+                "guId": this.req.cookies.guId ? this.req.cookies.guId : (this.req.cookies.cookieId || "5E93F94DB7E4751BF4D7BFB8CA3C207E")
+            };
+            if (item.count <1 ){
                 let apiSimilarData = await adf.request({
                     "apiPath" : guessLikeHouse.join("."),
-                    "data" : conditionData,
+                    "data" : guessLikeHouseData,
                 }) ;
+                console.log("apiSimilarData==============================" + JSON.stringify(apiSimilarData));
                 item['guessLikeHouse'] = apiSimilarData;
-            }*/
+            }
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/jquery.cookie.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

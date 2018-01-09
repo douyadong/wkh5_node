@@ -32,8 +32,8 @@ class Renderer extends AppRendererControllerBasic {
             let conditionGet = new UrlParser(this.req.originalUrl);
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
-            let cityId = 3 ;
-            this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 3;
+            let cityId = 43 ;
+            this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;
             if (this.req.params.condition) {
                 console.log("=======================");
                 let conditionString = this.req.params.condition;

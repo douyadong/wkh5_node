@@ -1,7 +1,8 @@
 <%- include("../components/head") %>
+<%- include("../components/download-app" ,{ bigDataParams: {} }) %>
 <div class="content-wrapper has-assistant"> 
     <input type="hidden" id="houseId" value="<%= item.houseId%>">
-    <i class="iconfont icon-back"></i>
+    <!--<i class="iconfont icon-back"></i>-->
    <!-- 底部助手条 --> 
    <% if( item.houseState != 4 ) { %>    
         <%- include( "../components/assistant" , {

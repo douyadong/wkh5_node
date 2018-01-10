@@ -62,6 +62,7 @@ class Renderer extends AppRendererControllerBasic {
                     conditionData = {
                         "cityId":cityId,
                         "bedRoomSumLists":[],
+                        "renovations":[],
                     };
                     if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
                         if(conditionObj['la'] == 0){
@@ -111,7 +112,12 @@ class Renderer extends AppRendererControllerBasic {
                     }
                     delete(conditionObj['ar']);
                     if (conditionObj['dt']) {
-                        conditionData["renovations"] = conditionObj['dt'];   // 装修状况
+                        if (conditionObj['dt'].length == 1){
+                            conditionData["renovations"].push(conditionObj['dt'])
+                        }else {
+                            conditionData["renovations"] = conditionObj['dt'];   // 装修状况
+                        }
+
                     }
                     delete(conditionObj['dt']);
                     if (conditionObj['so']) {

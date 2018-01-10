@@ -19,9 +19,11 @@
 </div>
 <div class="all-control">
     <!--房源总数-->
+    <%if(item.count > 0){%>
     <div class="total-num">
         <p>共找到<span><%=item.count%></span>套房源</p>
     </div>
+    <%}%>
     <!--区域查询对应模块-->
     <div class="dic" style="display: none">
         <div class="tabs">

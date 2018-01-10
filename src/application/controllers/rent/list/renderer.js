@@ -57,7 +57,7 @@ class Renderer extends AppRendererControllerBasic {
                     };
                 }else {*/
                     let conditionString = this.req.params.condition;
-                    let newConditionString  = conditionString.replace("di","districtId").replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
+                    let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
                     let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
                     conditionData = {
                         "cityId":cityId,
@@ -124,6 +124,10 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["orderType"] = conditionObj['so'];   // 装修状况
                     }
                     delete(conditionObj['so']);
+                    if (conditionObj['di']){
+                        conditionData["districtId"] =conditionObj['di']
+                    }
+                    delete(conditionObj['di']);
                     if (this.req.query.subEstateId){
                         conditionData["subEstateId"] = this.req.query.subEstateId
                     }

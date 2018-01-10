@@ -51,18 +51,15 @@ class Renderer extends AppRendererControllerBasic {
             }*/
            /* this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;*/
             if (this.req.params.condition) {
-        /*        if (this.req.params.condition == "ta-0-ta-0-ta-0-ta-0-la-0"){
-                    conditionData = {
-                        "cityId":cityId,
-                    };
-                }else {*/
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
                     let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
+                    let spaceAreaStart =[{"start":0,"end":50},{"start":50,"end":70},{"start":70,"end":90},{"start":90,"end":110},{"start":"110","end":"130"},{"start":"130","end":"150"},{"start":"150","end":"0"}]
                     conditionData = {
                         "cityId":cityId,
                         "bedRoomSumLists":[],
                         "renovations":[],
+                        "spaceAreas":[]
                     };
                     if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
                         if(conditionObj['la'] == 0){
@@ -104,10 +101,11 @@ class Renderer extends AppRendererControllerBasic {
                     delete(conditionObj['ta']);
                     if (conditionObj['ar']) {   // 面积选择
                         if(conditionObj['ar'].length == 1) {
-                            conditionData["spaceAreaStart"]= conditionObj['ar'][0]
+                            conditionData["spaceAreas"].push(spaceAreaStart[conditionObj['ar']])
                         }else {
-                            conditionData["spaceAreaStart"]= conditionObj['ar'][0];
-                            conditionData["spaceAreaEnd"]= conditionObj['ar'][1]
+                            conditionObj['ar'].forEach(function (item) {
+                                conditionData["spaceAreas"].push(spaceAreaStart[item])
+                            });
                         }
                     }
                     delete(conditionObj['ar']);
@@ -132,15 +130,11 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["subEstateId"] = this.req.query.subEstateId
                     }
                     Object.assign(conditionData,conditionObj) ;
-              /*  }*/
-
             }else {
                 conditionData = {
                     "cityId":cityId,
                 };
             }
-
-            console.log(conditionData);
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房列表

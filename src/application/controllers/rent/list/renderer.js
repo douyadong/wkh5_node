@@ -33,9 +33,10 @@ class Renderer extends AppRendererControllerBasic {
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
+            let ip = this.req.ip;
+            console.log("ip===========================================",ip);
             this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;
             if (this.req.params.condition) {
-                console.log("=======================");
                 let conditionString = this.req.params.condition;
                 let newConditionString  = conditionString.replace("di","districtId").replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
                 let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
@@ -50,11 +51,11 @@ class Renderer extends AppRendererControllerBasic {
                 }
                 delete(conditionObj['la']);
                 if (conditionObj['pr']) {   // 价格选择
-                    if(conditionObj['pr'].length == 1) {
-                        conditionData["rentPriceStart"]= conditionObj['pr'][0]
-                    }else {
+                    if(conditionObj['pr'].constructor == Array) {
                         conditionData["rentPriceStart"]= conditionObj['pr'][0];
                         conditionData["rentPriceEnd"]= conditionObj['pr'][1]
+                    }else {
+                        conditionData["rentPriceStart"]= conditionObj['pr']
                     }
                 }
                 delete(conditionObj['pr']);
@@ -129,7 +130,7 @@ class Renderer extends AppRendererControllerBasic {
                 })
             }
             let pageData={};  // 定义页面储存的对象变量值不限
-            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000']; // 租房价格索引展示值
+            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000','8000-10000','10000']; // 租房价格索引展示值
             pageData['layout'] = ['不限', '一室', '二室', '三室', '四室', '五室及以上'];  // 租房户型索引展示值
             item['pageData']= pageData;    //  静态页面展示值赋值给一个变量
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

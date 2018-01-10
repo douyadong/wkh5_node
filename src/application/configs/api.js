@@ -28,7 +28,8 @@ export default {
                 "cityAreas": "houseMap/getDicAndTowns.rest",
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
-                "acWord":"acWord.rest"
+                "acWord":"acWord.rest",
+                "getIp":"common/getCityId"
             }
         } ,
         "community" : {

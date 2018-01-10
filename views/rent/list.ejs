@@ -65,7 +65,9 @@
                 <li data-pr="0">不限</li>
                 <% }else if (item == 1000) {%>
                 <li data-pr="<%='pr-0-pr-1000'%>"><%=item%> 元以下</li>
-                <% } else {%>
+                <% } else if (item == 10000){%>
+                <li data-pr="<%='pr-'+item%>"><%=item%> 元以上</li>
+                <% } else  {%>
                 <li data-pr="<%='pr-'+item.replace(" - ","-pr-")%>"><%=item%> 元</li>
                 <% } %>
                 <% }) ; %>
@@ -132,8 +134,8 @@
             <li data-so="so-0" class="chosed">默认排序</li>
             <li data-so="so-1">租金从低到高</li>
             <li data-so="so-2">租金从高到低</li>
-            <li data-so="so-3">面积从小到大</li>
-            <li data-so="so-4">面积从大到小</li>
+            <li data-so="so-3">面积从大到小</li>
+            <li data-so="so-4">面积从小到大</li>
             <li data-so="so-5">发布时间从近到远</li>
         </ul>
     </div>

@@ -37,15 +37,15 @@
             <div class="estateName">
                 <span class="hd">预算</span>
                 <a  class="bd" href="<%= domain %>/houseLoanCalculator.html?totalPrice=<%= item.totalPrice %>" data-bigdata = "<%= item.DataParams.calculatorBigDataParams%>">
-                   <span >首付<%= item.advancePayment %> 万，月供 <%= item.mortgage %> 元</span>
                     <i class="iconfont icon-next"></i>
+                   <span >首付<%= item.advancePayment %> 万，月供 <%= item.mortgage %> 元</span>                    
                 </a>
             </div>
             <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>" data-subestateid = "<%= item.subEstateId %>" data-houseid = "<%= item.houseId %>" data-boutique = "<%= item.isTopHouse %>">
                 <span class="hd" >小区</span>
                 <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtNameBigDataParams%>">
-                    <span><%= item.estateName %></span>
                     <i class="iconfont icon-next"></i>
+                    <span><%= item.estateName %></span>                    
                 </a>
             </div>
             <%if(item.metroInfo){%><div><span class="hd">地铁</span><span class="bd"><%= item.metroInfo %></span></div><%}%>

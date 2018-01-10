@@ -28,20 +28,34 @@ class Renderer extends AppRendererControllerBasic {
         let modulePathArray = [ "rent" , "list" ] ;
         let rentListPathArray = ["rent" , "list", "rentHouseList"];
         let guessLikeHouse = ["rent" , "list", "guessLikeHouse"];
+        let ipRent = ["rent" , "list", "ip"];
         try{
             let conditionGet = new UrlParser(this.req.originalUrl);
+            let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
-            let ip = this.req.ip;
+            let ip = {
+                "ip":this.req.ip
+            };
             console.log("ip===========================================",ip);
-            this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;
+
+/*            if(this.req.cookies.cityId ){
+                cityId = this.req.cookies.cityId
+            }else {
+                let apiIpCity= await adf.request({
+                    "apiPath" : ipRent.join("."),
+                    "data" : ip,
+                }) ;
+                console.log("apiIpCity==========="+JSON.stringify(apiIpCity))
+            }*/
+           /* this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;*/
             if (this.req.params.condition) {
-                if (this.req.params.condition == "ta-0-ta-0-ta-0-ta-0-la-0"){
+        /*        if (this.req.params.condition == "ta-0-ta-0-ta-0-ta-0-la-0"){
                     conditionData = {
                         "cityId":cityId,
                     };
-                }else {
+                }else {*/
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("di","districtId").replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
                     let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
@@ -50,7 +64,11 @@ class Renderer extends AppRendererControllerBasic {
                         "bedRoomSumLists":[],
                     };
                     if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
-                        conditionData['bedRoomSumLists'].push(conditionObj.la)
+                        if(conditionObj['la'] == 0){
+                            conditionData['bedRoomSumLists'] =[];
+                        }else {
+                            conditionData['bedRoomSumLists'].push(conditionObj.la)
+                        }
                     }else {
                         conditionData['bedRoomSumLists'] = conditionObj['la']
                     }
@@ -93,7 +111,7 @@ class Renderer extends AppRendererControllerBasic {
                     }
                     delete(conditionObj['ar']);
                     if (conditionObj['dt']) {
-                        conditionData["renovation"] = conditionObj['dt'];   // 装修状况
+                        conditionData["renovations"] = conditionObj['dt'];   // 装修状况
                     }
                     delete(conditionObj['dt']);
                     if (conditionObj['so']) {
@@ -104,7 +122,7 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["subEstateId"] = this.req.query.subEstateId
                     }
                     Object.assign(conditionData,conditionObj) ;
-                }
+              /*  }*/
 
             }else {
                 conditionData = {
@@ -117,7 +135,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let adf = new ApiDataFilter(this.req.app) ;
+
             let apiDat = await adf.request({
                 "apiPath" : rentListPathArray.join("."),
                 "data" : conditionData,
@@ -141,7 +159,7 @@ class Renderer extends AppRendererControllerBasic {
                 "cityId":cityId,
                 "guId": this.req.cookies.guId ? this.req.cookies.guId : (this.req.cookies.cookieId || "5E93F94DB7E4751BF4D7BFB8CA3C207E")
             };
-            if (item.count <1 ){
+            if (item.count < 1 ){
                 let apiSimilarData = await adf.request({
                     "apiPath" : guessLikeHouse.join("."),
                     "data" : guessLikeHouseData,

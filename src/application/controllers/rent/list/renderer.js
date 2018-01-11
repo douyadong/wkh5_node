@@ -82,14 +82,14 @@ class Renderer extends AppRendererControllerBasic {
                     delete(conditionObj['pr']);
                     if (conditionObj['cp']){  // 价格自定义
                         let cpArray = conditionObj['cp'].split("townId");
-                        if (cpArray[0] == 0){
+                  /*      if (cpArray[0] == 0){
                             conditionData["rentPriceEnd"]= cpArray[1]  //价格
                         }else if(cpArray[1] == 0){
                             conditionData["rentPriceStart"]= cpArray[0] //价格
-                        }else {
+                        }else {*/
                             conditionData["rentPriceStart"]= cpArray[0];
                             conditionData["rentPriceEnd"]= cpArray[1]
-                        }
+                   /*     }*/
                     }
                     delete(conditionObj['cp']);
                     if (conditionObj['ta']){
@@ -163,7 +163,7 @@ class Renderer extends AppRendererControllerBasic {
                 })
             }
             let pageData={};  // 定义页面储存的对象变量值不限
-            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000','8000-10000','10000']; // 租房价格索引展示值
+            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000','8000 - 10000','10000']; // 租房价格索引展示值
             pageData['layout'] = ['不限', '一室', '二室', '三室', '四室', '五室及以上'];  // 租房户型索引展示值
             item['pageData']= pageData;    //  静态页面展示值赋值给一个变量
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

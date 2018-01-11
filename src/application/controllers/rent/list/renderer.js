@@ -109,25 +109,35 @@ class Renderer extends AppRendererControllerBasic {
                         }
                     }
                     delete(conditionObj['ar']);
-                    if (conditionObj['dt']) {
+                    if (conditionObj['dt']) {  // 装修状况
                         if (conditionObj['dt'].length == 1){
                             conditionData["renovations"].push(conditionObj['dt'])
                         }else {
-                            conditionData["renovations"] = conditionObj['dt'];   // 装修状况
+                            conditionData["renovations"] = conditionObj['dt'];
                         }
 
                     }
                     delete(conditionObj['dt']);
-                    if (conditionObj['so']) {
-                        conditionData["orderType"] = conditionObj['so'];   // 装修状况
+                    if (conditionObj['so']) { // 排序
+                        conditionData["orderType"] = conditionObj['so'];
                     }
                     delete(conditionObj['so']);
-                    if (conditionObj['di']){
+                    if (conditionObj['di']){ // 区域
                         conditionData["districtId"] =conditionObj['di']
                     }
                     delete(conditionObj['di']);
                     if (this.req.query){
-                        conditionData[Object.keys(this.req.query)[0]] = Object.values(this.req.query)[0]
+                        if (this.req.query['districtId']){  // 查询？后面参数异步请求
+                            conditionData['districtId'] = this.req.query['districtId'];
+                        }else if (this.req.query['townId']){
+                            conditionData['townId'] = this.req.query['townId'];
+                        }else if (this.req.query['subwayLine']){
+                            conditionData['subwayLine'] = this.req.query['subwayLine'];
+                        }else if (this.req.query['subwayStation']){
+                            conditionData['subwayStation'] = this.req.query['subwayStation'];
+                        }else if (this.req.query['subEstateId']){
+                            conditionData['subEstateId'] = this.req.query['subEstateId'];
+                        }
                     }
                     Object.assign(conditionData,conditionObj) ;
             }else {
@@ -190,7 +200,6 @@ class Renderer extends AppRendererControllerBasic {
         }catch (err){
             this.next(err)
         }
-
     }
 }
 

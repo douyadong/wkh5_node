@@ -57,6 +57,7 @@ class Renderer extends AppRendererControllerBasic {
                     let spaceAreaStart =["0-50","50-70","70-90","90-110","110-130","130-150","150-0"];
                     conditionData = {
                         "cityId":cityId,
+                        "pageSize":10,
                         "bedRoomSumLists":[],
                         "renovations":[],
                         "spaceAreas":[]
@@ -143,6 +144,7 @@ class Renderer extends AppRendererControllerBasic {
             }else {
                 conditionData = {
                     "cityId":cityId,
+                    "pageSize":10
                 };
             }
 

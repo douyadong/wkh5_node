@@ -126,8 +126,8 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["districtId"] =conditionObj['di']
                     }
                     delete(conditionObj['di']);
-                    if (this.req.query.subEstateId){
-                        conditionData["subEstateId"] = this.req.query.subEstateId
+                    if (this.req.query){
+                        conditionData[Object.keys(this.req.query)[0]] = Object.values(this.req.query)[0]
                     }
                     Object.assign(conditionData,conditionObj) ;
             }else {

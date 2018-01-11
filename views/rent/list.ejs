@@ -2,11 +2,13 @@
 <!--条件选择-->
 <div class="rent-list">
     <div class="rent-search">
-        <i class="iconfont icon-back" ></i>
+        <i class="iconfont icon-fanhui  back" ></i>
+        <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
         <div class="search-input">
             <i class="iconfont icon-search"></i>
-            <input id="searchInput" type="text" placeholder="请输入小区名称或地址">
-            <i class="iconfont icon-close"></i>
+            <input id="searchInput" type="text" placeholder="搜索小区或地址">
+            <i class="iconfont icon-close conone"></i>
+            <i class="iconfont icon-close contwo"></i>
         </div>
     </div>
     <ul>
@@ -18,9 +20,11 @@
 </div>
 <div class="all-control">
     <!--房源总数-->
+    <%if(item.count > 0){%>
     <div class="total-num">
         <p>共找到<span><%=item.count%></span>套房源</p>
     </div>
+    <%}%>
     <!--区域查询对应模块-->
     <div class="dic" style="display: none">
         <div class="tabs">
@@ -66,7 +70,7 @@
                 <% }else if (item == 1000) {%>
                 <li data-pr="<%='pr-0-pr-1000'%>"><%=item%> 元以下</li>
                 <% } else if (item == 10000){%>
-                <li data-pr="<%='pr-'+item%>"><%=item%> 元以上</li>
+                <li data-pr="<%='pr-10000-pr-0'%>"><%=item%> 元以上</li>
                 <% } else  {%>
                 <li data-pr="<%='pr-'+item.replace(" - ","-pr-")%>"><%=item%> 元</li>
                 <% } %>
@@ -104,13 +108,13 @@
         <div class="area">
             <p>面积[㎡]</p>
             <ul>
-                <li data-ar="ar-0-ar-50">50以下</li>
-                <li data-ar="ar-50-ar-70">50-70</li>
-                <li data-ar="ar-70-ar-90">70-90</li>
-                <li data-ar="ar-90-ar-110">90-110</li>
-                <li data-ar="ar-110-ar-130">110-130</li>
-                <li data-ar="ar-130-ar-150">130-150</li>
-                <li data-ar="ar-150">150以上</li>
+                <li data-ar="ar-0">50以下</li>
+                <li data-ar="ar-1">50-70</li>
+                <li data-ar="ar-2">70-90</li>
+                <li data-ar="ar-3">90-110</li>
+                <li data-ar="ar-4">110-130</li>
+                <li data-ar="ar-5">130-150</li>
+                <li data-ar="ar-6">150以上</li>
             </ul>
         </div>
         <div class="decoration">
@@ -134,8 +138,8 @@
             <li data-so="so-0" class="chosed">默认排序</li>
             <li data-so="so-1">租金从低到高</li>
             <li data-so="so-2">租金从高到低</li>
-            <li data-so="so-3">面积从大到小</li>
-            <li data-so="so-4">面积从小到大</li>
+            <li data-so="so-4">面积从大到小</li>
+            <li data-so="so-3">面积从小到大</li>
             <li data-so="so-5">发布时间从近到远</li>
         </ul>
     </div>
@@ -146,25 +150,27 @@
         <p>请输入正确的价格区间</p>
     </div>
     <!--排序按钮-->
+    <%if(item.count > 0){%>
     <div class="sort" id="sort">
         <i class="iconfont icon-paixu"></i>
         <span>排序</span>
     </div>
+    <%}%>
     <!--租房具体房源列表-->
     <%if(item.count > 0){%>
     <div class="rent-items" >
         <%- include("../components/rent-items" , {rentItems: item.data}) %>
     </div>
     <%}else {%>
-    <div class="no-rent-item" style="display: none">
+    <div class="no-rent-item" >
         <div class="show-no">
             <p class="disc-one">暂时没有符合条件的房源</p>
             <p class="disc-two">您可以扩大搜索范围，找到更多的房源</p>
-            <p class="clearOption">清除条件</p>
+            <p class="clear clearOption">清除条件</p>
         </div>
         <div class="guess-like wk-panel">
             <div class="panel-header">猜你喜欢</div>
-            <div class="wk-body">
+            <div class="">
                 <% if(item.guessLikeHouse){%>
                 <%- include("../components/rent-items" , {rentItems: item.guessLikeHouse.data}) %>
                 <%}%>
@@ -174,7 +180,7 @@
     </div>
     <%}%>
 </div>
-<div class="search-result">
+<div class="search-result" style="display: none">
     <div class="no-result" style="display: none">
         <p>未找到该地址，请重新搜索</p>
         <span>您可以更换其他关键字再试一次</span>

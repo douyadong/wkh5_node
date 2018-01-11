@@ -14,6 +14,7 @@ import RentListRenderer from "../controllers/rent/list/renderer" ;
 import rentListAreasApiProvider from "../controllers/rent/list/areasApiProvider";
 import rentListSubwayApiProvider from "../controllers/rent/list/subwayApiProvider";
 import rentListAcWordApiProvider from "../controllers/rent/list/acWordApiProvider";
+import rentHouseListApiProvider from "../controllers/rent/list/rentHouseListApiProvider";
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
@@ -51,6 +52,12 @@ router.get("/api/rent/list/subway", function(req, res, next) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/rent/list/acWord", function(req, res, next) {
     new rentListAcWordApiProvider(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/rent/list/rentHouseList 的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.post("/api/rent/list/rentHouseList", function(req, res, next) {
+    new rentHouseListApiProvider(req, res, next) ;
 }) ;
 
 export default router ;

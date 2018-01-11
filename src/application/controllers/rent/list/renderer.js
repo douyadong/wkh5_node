@@ -28,95 +28,130 @@ class Renderer extends AppRendererControllerBasic {
         let modulePathArray = [ "rent" , "list" ] ;
         let rentListPathArray = ["rent" , "list", "rentHouseList"];
         let guessLikeHouse = ["rent" , "list", "guessLikeHouse"];
+        let ipRent = ["rent" , "list", "ip"];
         try{
             let conditionGet = new UrlParser(this.req.originalUrl);
+            let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
-            let ip = this.req.ip;
+            let ip = {
+                "ip":this.req.ip
+            };
             console.log("ip===========================================",ip);
-            this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;
+
+/*            if(this.req.cookies.cityId ){
+                cityId = this.req.cookies.cityId
+            }else {
+                let apiIpCity= await adf.request({
+                    "apiPath" : ipRent.join("."),
+                    "data" : ip,
+                }) ;
+                console.log("apiIpCity==========="+JSON.stringify(apiIpCity))
+            }*/
+           /* this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;*/
             if (this.req.params.condition) {
-                let conditionString = this.req.params.condition;
-                let newConditionString  = conditionString.replace("di","districtId").replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
-                let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
-                conditionData = {
-                    "cityId":cityId,
-                    "bedRoomSumLists":[],
-                };
-                if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
-                    conditionData['bedRoomSumLists'].push(conditionObj.la)
-                }else {
-                    conditionData['bedRoomSumLists'] = conditionObj['la']
-                }
-                delete(conditionObj['la']);
-                if (conditionObj['pr']) {   // 价格选择
-                    if(conditionObj['pr'].constructor == Array) {
-                        conditionData["rentPriceStart"]= conditionObj['pr'][0];
-                        conditionData["rentPriceEnd"]= conditionObj['pr'][1]
+                    let conditionString = this.req.params.condition;
+                    let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
+                    let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
+                    let spaceAreaStart =["0-50","50-70","70-90","90-110","110-130","130-150","150-0"];
+                    conditionData = {
+                        "cityId":cityId,
+                        "pageSize":10,
+                        "bedRoomSumLists":[],
+                        "renovations":[],
+                        "spaceAreas":[]
+                    };
+                    if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
+                        if(conditionObj['la'] == 0){
+                            conditionData['bedRoomSumLists'] =[];
+                        }else {
+                            conditionData['bedRoomSumLists'].push(conditionObj.la)
+                        }
                     }else {
-                        conditionData["rentPriceStart"]= conditionObj['pr']
+                        conditionData['bedRoomSumLists'] = conditionObj['la']
                     }
-                }
-                delete(conditionObj['pr']);
-                if (conditionObj['cp']){  // 价格自定义
-                    let cpArray = conditionObj['cp'].split("townId");
-                    if (cpArray[0] == 0){
-                        conditionData["rentPriceEnd"]= cpArray[1]  //价格
-                    }else if(cpArray[1] == 0){
-                        conditionData["rentPriceStart"]= cpArray[0] //价格
-                    }else {
-                        conditionData["rentPriceStart"]= cpArray[0];
-                        conditionData["rentPriceEnd"]= cpArray[1]
+                    delete(conditionObj['la']);
+                    if (conditionObj['pr']) {   // 价格选择
+                        if(conditionObj['pr'].constructor == Array) {
+                            conditionData["rentPriceStart"]= conditionObj['pr'][0];
+                            conditionData["rentPriceEnd"]= conditionObj['pr'][1]
+                        }else {
+                            conditionData["rentPriceStart"]= conditionObj['pr']
+                        }
                     }
-                }
-                delete(conditionObj['cp']);
-                if (conditionObj['ta']){
-                    conditionData["isSubWay"] = conditionObj['ta'][0];  // 近地铁 0 任意  1 是
-                    conditionData["priceDown"] = conditionObj['ta'][1]; // 降价  0 否  1 是
-                    conditionData["isNewOnStore"] = conditionObj['ta'][2]; // 新上 0：否 1：是，
-                    conditionData["orientation"] = conditionObj['ta'][3]; // 房屋朝向 1南北通透 0任意
-                }
-                delete(conditionObj['ta']);
-                if (conditionObj['ar']) {   // 面积选择
-                    if(conditionObj['ar'].length == 1) {
-                        conditionData["spaceAreaStart"]= conditionObj['ar'][0]
-                    }else {
-                        conditionData["spaceAreaStart"]= conditionObj['ar'][0];
-                        conditionData["spaceAreaEnd"]= conditionObj['ar'][1]
+                    delete(conditionObj['pr']);
+                    if (conditionObj['cp']){  // 价格自定义
+                        let cpArray = conditionObj['cp'].split("townId");
+                  /*      if (cpArray[0] == 0){
+                            conditionData["rentPriceEnd"]= cpArray[1]  //价格
+                        }else if(cpArray[1] == 0){
+                            conditionData["rentPriceStart"]= cpArray[0] //价格
+                        }else {*/
+                            conditionData["rentPriceStart"]= cpArray[0];
+                            conditionData["rentPriceEnd"]= cpArray[1]
+                   /*     }*/
                     }
-                }
-                delete(conditionObj['ar']);
-                if (conditionObj['dt']) {
-                    conditionData["renovation"] = conditionObj['dt'];   // 装修状况
-                }
-                delete(conditionObj['dt']);
-                if (conditionObj['so']) {
-                    conditionData["orderType"] = conditionObj['so'];   // 装修状况
-                }
-                delete(conditionObj['so']);
-                if (this.req.query.subEstateId){
-                    conditionData["subEstateId"] = this.req.query.subEstateId
-                }
-                Object.assign(conditionData,conditionObj) ;
+                    delete(conditionObj['cp']);
+                    if (conditionObj['ta']){
+                        conditionData["isSubWay"] = conditionObj['ta'][0];  // 近地铁 0 任意  1 是
+                        conditionData["priceDown"] = conditionObj['ta'][1]; // 降价  0 否  1 是
+                        conditionData["isNewOnStore"] = conditionObj['ta'][2]; // 新上 0：否 1：是，
+                        conditionData["orientation"] = conditionObj['ta'][3]; // 房屋朝向 1南北通透 0任意
+                    }
+                    delete(conditionObj['ta']);
+                    if (conditionObj['ar']) {   // 面积选择
+                        if(conditionObj['ar'].length == 1) {
+                            conditionData["spaceAreas"].push(spaceAreaStart[conditionObj['ar']])
+                        }else {
+                            conditionObj['ar'].forEach(function (item) {
+                                conditionData["spaceAreas"].push(spaceAreaStart[item])
+                            });
+                        }
+                    }
+                    delete(conditionObj['ar']);
+                    if (conditionObj['dt']) {  // 装修状况
+                        if (conditionObj['dt'].length == 1){
+                            conditionData["renovations"].push(conditionObj['dt'])
+                        }else {
+                            conditionData["renovations"] = conditionObj['dt'];
+                        }
+
+                    }
+                    delete(conditionObj['dt']);
+                    if (conditionObj['so']) { // 排序
+                        conditionData["orderType"] = conditionObj['so'];
+                    }
+                    delete(conditionObj['so']);
+                    if (conditionObj['di']){ // 区域
+                        conditionData["districtId"] =conditionObj['di']
+                    }
+                    delete(conditionObj['di']);
+                    if (this.req.query){
+                        if (this.req.query['districtId']){  // 查询？后面参数异步请求
+                            conditionData['districtId'] = this.req.query['districtId'];
+                        }else if (this.req.query['townId']){
+                            conditionData['townId'] = this.req.query['townId'];
+                        }else if (this.req.query['subwayLine']){
+                            conditionData['subwayLine'] = this.req.query['subwayLine'];
+                        }else if (this.req.query['subwayStation']){
+                            conditionData['subwayStation'] = this.req.query['subwayStation'];
+                        }else if (this.req.query['subEstateId']){
+                            conditionData['subEstateId'] = this.req.query['subEstateId'];
+                        }
+                    }
+                    Object.assign(conditionData,conditionObj) ;
             }else {
                 conditionData = {
-                    "bedRoomSumLists": [ '0' ],
-                    "isSubWay": '0',
-                    "priceDown": '0',
-                    "isNewOnStore": '0',
-                    "orientation": '0',
+                    "cityId":cityId,
+                    "pageSize":10
                 };
             }
-
-
-
-            console.log(conditionData);
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let adf = new ApiDataFilter(this.req.app) ;
+
             let apiDat = await adf.request({
                 "apiPath" : rentListPathArray.join("."),
                 "data" : conditionData,
@@ -130,7 +165,7 @@ class Renderer extends AppRendererControllerBasic {
                 })
             }
             let pageData={};  // 定义页面储存的对象变量值不限
-            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000','8000-10000','10000']; // 租房价格索引展示值
+            pageData['priceList'] = ['0', '1000', '1000 - 2000', '2000 - 4000', '4000 - 6000', '6000 - 8000','8000 - 10000','10000']; // 租房价格索引展示值
             pageData['layout'] = ['不限', '一室', '二室', '三室', '四室', '五室及以上'];  // 租房户型索引展示值
             item['pageData']= pageData;    //  静态页面展示值赋值给一个变量
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -140,7 +175,7 @@ class Renderer extends AppRendererControllerBasic {
                 "cityId":cityId,
                 "guId": this.req.cookies.guId ? this.req.cookies.guId : (this.req.cookies.cookieId || "5E93F94DB7E4751BF4D7BFB8CA3C207E")
             };
-            if (item.count <1 ){
+            if (item.count < 1 ){
                 let apiSimilarData = await adf.request({
                     "apiPath" : guessLikeHouse.join("."),
                     "data" : guessLikeHouseData,
@@ -167,7 +202,6 @@ class Renderer extends AppRendererControllerBasic {
         }catch (err){
             this.next(err)
         }
-
     }
 }
 

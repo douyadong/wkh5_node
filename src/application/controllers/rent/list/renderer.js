@@ -182,6 +182,11 @@ class Renderer extends AppRendererControllerBasic {
                 }) ;
                 console.log("apiSimilarData==============================" + JSON.stringify(apiSimilarData));
                 item['guessLikeHouse'] = apiSimilarData;
+                if (item.guessLikeHouse.data){
+                    item.guessLikeHouse.data.forEach(function (itemI, index) {
+                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html"
+                    })
+                }
             }
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/jquery.cookie.min.js'];

@@ -54,7 +54,7 @@ class Renderer extends AppRendererControllerBasic {
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
                     let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
-                    let spaceAreaStart =[{"start":0,"end":50},{"start":50,"end":70},{"start":70,"end":90},{"start":90,"end":110},{"start":"110","end":"130"},{"start":"130","end":"150"},{"start":"150","end":"0"}]
+                    let spaceAreaStart =["0-50","50-70","70-90","90-110","110-130","130-150","150-0"];
                     conditionData = {
                         "cityId":cityId,
                         "bedRoomSumLists":[],

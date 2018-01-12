@@ -25,23 +25,21 @@ class Renderer extends AppRendererControllerBasic {
 渲染页面
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
-        let modulePathArray = [ "rent" , "list" ] ;
-        let rentListPathArray = ["rent" , "list", "rentHouseList"];
-        let guessLikeHouse = ["rent" , "list", "guessLikeHouse"];
-        let ipRent = ["rent" , "list", "ip"];
+        let modulePathArray = [ "seo" , "exception" ] ; // 渲染的页面
+        let errPathArray = [ "rent" , "list" ] ; // 渲染的页面
+        let rentListPathArray = ["rent" , "list", "rentHouseList"]; // 租房列表接口
+        let guessLikeHouse = ["rent" , "list", "guessLikeHouse"]; // 猜你喜欢接口
+        let ipRent = ["rent" , "list", "getIp"];   // 用ip获取cityId
         try{
             let conditionGet = new UrlParser(this.req.originalUrl);
             let guId = new guID();
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
-
             let cityId = 43 ;
             let ip = {
-                "ip":this.req.ip
+                "ip":"10.0.93.45"
             };
-            console.log("ip===========================================",ip);
-
 /*            if(this.req.cookies.cityId ){
                 cityId = this.req.cookies.cityId
             }else {
@@ -149,7 +147,6 @@ class Renderer extends AppRendererControllerBasic {
                     conditionData['subEstateId'] = this.req.query['subEstateId'];
                 }
             }
-
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -192,7 +189,6 @@ class Renderer extends AppRendererControllerBasic {
                     "apiPath" : guessLikeHouse.join("."),
                     "data" : guessLikeHouseData,
                 }) ;
-                console.log("apiSimilarData==============================" + JSON.stringify(apiSimilarData));
                 item['guessLikeHouse'] = apiSimilarData;
                 if (item.guessLikeHouse.data){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
@@ -293,22 +289,29 @@ class Renderer extends AppRendererControllerBasic {
                     type: 2
                 }),
             };
-
-
-            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           扩展模板常规数据
-           -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            Object.assign(this.templateData, {
-                "title" :"租房" ,
-                "matchStylesheetPath" : modulePathArray.join("/") ,
-                "controllerJavascriptPath" : modulePathArray.join("/"),
-                "extraJavascripts" : extraJavascript ,
-                "item" : item ,
-            }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            this.render(modulePathArray.join("/")) ;
+            if (item.successCode == 1){
+                Object.assign(this.templateData, {
+                    "title" :"租房" ,
+                    "matchStylesheetPath" : modulePathArray.join("/") ,
+                    "controllerJavascriptPath" : modulePathArray.join("/"),
+                    "extraJavascripts" : extraJavascript ,
+                    "item" : item ,
+                }) ;
+                this.render(modulePathArray.join("/")) ;
+            }else {
+                Object.assign(this.templateData, {
+                    "title" :"租房" ,
+                    "matchStylesheetPath" : errPathArray.join("/") ,
+                    "controllerJavascriptPath" : errPathArray.join("/"),
+                    "extraJavascripts" : extraJavascript ,
+                    "item" : item ,
+                }) ;
+                this.render(errPathArray.join("/")) ;
+            }
+
         }catch (err){
             this.next(err)
         }

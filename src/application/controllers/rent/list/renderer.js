@@ -127,7 +127,6 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["districtId"] =conditionObj['di']
                     }
                     delete(conditionObj['di']);
-
                 Object.assign(conditionData,conditionObj) ;
             }else {
                 conditionData = {

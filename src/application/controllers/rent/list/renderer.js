@@ -162,8 +162,9 @@ class Renderer extends AppRendererControllerBasic {
             }) ;
             let item = apiDat;
             if (item.data){
-                item.data.forEach(function (itemI, index) {
-                    item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html"
+                item.data.forEach((itemI, index) =>{
+                    item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
+                    item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202001',eventParam:{rent_house_id:itemI.houseId }, type: 2})
                 })
             }
             let pageData={};  // 定义页面储存的对象变量值不限
@@ -201,6 +202,88 @@ class Renderer extends AppRendererControllerBasic {
             }
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/jquery.cookie.min.js'];
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+           大数据埋点参数
+           -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            item['DataParams'] ={
+                // 点击搜索框
+                searchD:this.generateBigDataParams({
+                    eventName: '1202002',
+                    type: 2
+                }),
+                // 点击区域筛选
+                areasD : this.generateBigDataParams({
+                    eventName: '1202003',
+                    type: 2
+                }),
+                // 点击租金筛选
+                rentPD : this.generateBigDataParams({
+                    eventName: '1202004',
+                    type: 2
+                }),
+                // 点击租金-自定义-确定
+                rentSelfPD : this.generateBigDataParams({
+                    eventName: '1202005',
+                    type: 2
+                }),
+                //点击户型筛选
+                typeD : this.generateBigDataParams({
+                    eventName: '1202006',
+                    type: 2
+                }),
+                //点击户型-确定
+                typeCoD : this.generateBigDataParams({
+                    eventName: '1202007',
+                    type: 2
+                }),
+                //点击更多筛选
+                moreD : this.generateBigDataParams({
+                    eventName: '1202008',
+                    type: 2
+                }),
+                //点击更多-确定
+                moreCoD : this.generateBigDataParams({
+                    eventName: '1202009',
+                    type: 2
+                }),
+                //点击更多-重置
+                moreRD : this.generateBigDataParams({
+                    eventName: '1202010',
+                    type: 2
+                }),
+                //点击排序按钮
+                sortD : this.generateBigDataParams({
+                    eventName: '1202011',
+                    type: 2
+                }),
+                //点击排序-默认排序
+                sortDefD : this.generateBigDataParams({
+                    eventName: '1202012',
+                    type: 2
+                }),
+                //点击排序-租金从低到高
+                sortltD : this.generateBigDataParams({
+                    eventName: '1202013',
+                    type: 2
+                }),
+                //点击排序-租金从高到底
+                sorttlD : this.generateBigDataParams({
+                    eventName: '1202013',
+                    type: 2
+                }),
+                //点击排序-面积从大到小
+                sortsqD : this.generateBigDataParams({
+                    eventName: '1202015',
+                    type: 2
+                }),
+                //点击排序-面积从小到大
+                sortSbD : this.generateBigDataParams({
+                    eventName: '1202016',
+                    type: 2
+                }),
+            };
+
+
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            扩展模板常规数据
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

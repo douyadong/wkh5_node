@@ -43,7 +43,7 @@ class Renderer extends AppRendererControllerBasic {
             if(this.req.cookies.cityId ){
                 cityId = this.req.cookies.cityId
             }else {
-                let cityId= await adf.request({
+                cityId = await adf.request({
                     "apiPath" : ipRent.join("."),
                     "data" : ip ,
                 }) ;

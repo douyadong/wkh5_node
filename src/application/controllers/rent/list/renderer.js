@@ -37,7 +37,7 @@ class Renderer extends AppRendererControllerBasic {
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
-            let ip = {
+/*            let ip = {
                 "ip": this.req.ip || "10.0.93.45"
             };
             if(this.req.cookies.cityId ){
@@ -48,7 +48,7 @@ class Renderer extends AppRendererControllerBasic {
                     "data" : ip ,
                 }) ;
                 console.log("apiIpCity==========="+JSON.stringify(cityId))
-            }
+            }*/
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
@@ -62,10 +62,11 @@ class Renderer extends AppRendererControllerBasic {
                         "spaceAreas":[]
                     };
                     if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
+                        console.log("conditionObj['la']================="+conditionObj['la']);
                         if(conditionObj['la'] == 0){
                             conditionData['bedRoomSumLists'] =[];
                         }else {
-                            conditionData['bedRoomSumLists'].push(conditionObj.la)
+                            conditionData['bedRoomSumLists'].push(conditionObj['la'])
                         }
                     }else {
                         conditionData['bedRoomSumLists'] = conditionObj['la']

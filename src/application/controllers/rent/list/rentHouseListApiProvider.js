@@ -24,6 +24,15 @@ class RestfulApi extends AppApiControllerBasic {
     async outputs() {
         try {
             let adf = new ApiDataFilter(this.req.app) ;
+             if (typeof(this.req.body.bedRoomSumLists) == 'string'){
+                 this.req.body.bedRoomSumLists =[this.req.body.bedRoomSumLists]
+             }
+             if (typeof(this.req.body.spaceAreas) == 'string'){
+                 this.req.body.spaceAreas =[this.req.body.spaceAreas]
+             }
+            if (typeof(this.req.body.renovations) == 'string'){
+                this.req.body.renovations =[this.req.body.renovations]
+            }
             this.jsonObject = await adf.request({
                 "apiPath" : "rent.list.rentHouseList" ,
                 "data" : this.req.body,

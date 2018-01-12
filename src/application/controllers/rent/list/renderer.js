@@ -178,7 +178,7 @@ class Renderer extends AppRendererControllerBasic {
                 cookieId = this.req.cookies.guId
             }else {
                 cookieId = guId.guid();
-                this.res.cookie('cookieId', cookieId, { maxAge: 900000, httpOnly: true })
+                this.res.cookie('cookieId', cookieId, { expires: new Date(Date.now() + 9999999990000), httpOnly: false  })
             }
             let guessLikeHouseData = {
                 "cityId":cityId,

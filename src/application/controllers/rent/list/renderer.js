@@ -38,17 +38,17 @@ class Renderer extends AppRendererControllerBasic {
             console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
             let ip = {
-                "ip":"10.0.93.45"
+                "ip": this.req.ip || "10.0.93.45"
             };
-/*            if(this.req.cookies.cityId ){
+            if(this.req.cookies.cityId ){
                 cityId = this.req.cookies.cityId
             }else {
-                let apiIpCity= await adf.request({
+                let cityId= await adf.request({
                     "apiPath" : ipRent.join("."),
-                    "data" : ip,
+                    "data" : ip ,
                 }) ;
-                console.log("apiIpCity==========="+JSON.stringify(apiIpCity))
-            }*/
+                console.log("apiIpCity==========="+JSON.stringify(cityId))
+            }
            /* this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;*/
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;

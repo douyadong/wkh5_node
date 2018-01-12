@@ -127,25 +127,25 @@ class Renderer extends AppRendererControllerBasic {
                         conditionData["districtId"] =conditionObj['di']
                     }
                     delete(conditionObj['di']);
-                    if (this.req.query){
-                        if (this.req.query['districtId']){  // 查询？后面参数异步请求
-                            conditionData['districtId'] = this.req.query['districtId'];
-                        }else if (this.req.query['townId']){
-                            conditionData['townId'] = this.req.query['townId'];
-                        }else if (this.req.query['subwayLine']){
-                            conditionData['subwayLine'] = this.req.query['subwayLine'];
-                        }else if (this.req.query['subwayStation']){
-                            conditionData['subwayStation'] = this.req.query['subwayStation'];
-                        }else if (this.req.query['subEstateId']){
-                            conditionData['subEstateId'] = this.req.query['subEstateId'];
-                        }
-                    }
-                    Object.assign(conditionData,conditionObj) ;
+                Object.assign(conditionData,conditionObj) ;
             }else {
                 conditionData = {
                     "cityId":cityId,
                     "pageSize":10
                 };
+            }
+            if (this.req.query){
+                if (this.req.query['districtId']){  // 查询？后面参数异步请求
+                    conditionData['districtId'] = this.req.query['districtId'];
+                }else if (this.req.query['townId']){
+                    conditionData['townId'] = this.req.query['townId'];
+                }else if (this.req.query['subwayLine']){
+                    conditionData['subwayLine'] = this.req.query['subwayLine'];
+                }else if (this.req.query['subwayStation']){
+                    conditionData['subwayStation'] = this.req.query['subwayStation'];
+                }else if (this.req.query['subEstateId']){
+                    conditionData['subEstateId'] = this.req.query['subEstateId'];
+                }
             }
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -182,6 +182,11 @@ class Renderer extends AppRendererControllerBasic {
                 }) ;
                 console.log("apiSimilarData==============================" + JSON.stringify(apiSimilarData));
                 item['guessLikeHouse'] = apiSimilarData;
+                if (item.guessLikeHouse.data){
+                    item.guessLikeHouse.data.forEach(function (itemI, index) {
+                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html"
+                    })
+                }
             }
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/jquery.cookie.min.js'];

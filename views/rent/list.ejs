@@ -6,9 +6,15 @@
         <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
         <div class="search-input">
             <i class="iconfont icon-search"></i>
-            <input id="searchInput" type="text" placeholder="搜索小区或地址">
+            <form action="" class="input-kw-form">
+               <input id="searchInput" type="search" autocomplete="off" placeholder="搜索小区或地址">
+            </form>
             <i class="iconfont icon-close conone"></i>
             <i class="iconfont icon-close contwo"></i>
+        </div>
+        <div class="channel">
+            <i class="iconfont icon-hanbao"  style="display: none"></i>
+            <p class="cancel-channel" style="display: none">取消</p>
         </div>
     </div>
     <ul>
@@ -179,6 +185,23 @@
         </div>
     </div>
     <%}%>
+    <!--右侧滑出的选择内容-->
+    <div class="slide-right" style="display: none">
+        <ul>
+            <li><a href="/shanghai">首页</a></li>
+            <li><a href="/shanghai/esf">二手房</a></li>
+            <li><a href="/shanghai/xflist">新房</a></li>
+            <li><a href="/sellHouse.html">卖房</a></li>
+            <li class="active"><a>租房</a></li>
+            <li><a href="/member/personal.html">个人中心</a></li>
+            <li><a href="/about.html">关于悟空</a></li>
+        </ul>
+        <div class="downloadApp WKBigDataBtn" >
+            <a href="/download/transit?from=oldHouseList">
+                <i class="icon-chouTiDown wk_iconfont"></i>APP下载
+            </a>
+        </div>
+    </div>
 </div>
 <div class="search-result" style="display: none">
     <div class="no-result" style="display: none">
@@ -186,7 +209,7 @@
         <span>您可以更换其他关键字再试一次</span>
     </div>
     <div class="have-result" style="display: none">
-        <p>搜索历史</p>
+        <p class="history-name">搜索历史</p>
         <div class="result-history">
             <ul id="resultHistory">
                 <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
@@ -202,7 +225,4 @@
         </ul>
     </div>
 </div>
-
-
-
 <%- include("../components/footer") %>

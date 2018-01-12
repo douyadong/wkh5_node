@@ -25,8 +25,8 @@ class Renderer extends AppRendererControllerBasic {
 渲染页面
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
-        let modulePathArray = [ "seo" , "exception" ] ; // 渲染的页面
-        let errPathArray = [ "rent" , "list" ] ; // 渲染的页面
+        let modulePathArray =  [ "rent" , "list" ] ; // 渲染的页面
+        let errPathArray = [ "seo" , "exception" ] ; // 渲染的页面
         let rentListPathArray = ["rent" , "list", "rentHouseList"]; // 租房列表接口
         let guessLikeHouse = ["rent" , "list", "guessLikeHouse"]; // 猜你喜欢接口
         let ipRent = ["rent" , "list", "getIp"];   // 用ip获取cityId
@@ -49,7 +49,6 @@ class Renderer extends AppRendererControllerBasic {
                 }) ;
                 console.log("apiIpCity==========="+JSON.stringify(cityId))
             }
-           /* this.req.cookies.cityId ? cityId = this.req.cookies.cityId : cityId = 43;*/
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
@@ -297,7 +296,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if (item.successCode == 1){
+            if (item.status == 1){
                 Object.assign(this.templateData, {
                     "title" :"租房" ,
                     "matchStylesheetPath" : modulePathArray.join("/") ,

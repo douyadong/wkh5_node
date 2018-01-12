@@ -29,7 +29,7 @@ export default {
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
                 "acWord":"acWord.rest",
-                "getIp":"common/getCityId"
+                "getIp":"common/getCityId.rest"
             }
         } ,
         "community" : {

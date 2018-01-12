@@ -7,7 +7,7 @@
         <div class="search-input">
             <i class="iconfont icon-search"></i>
             <form action="" class="input-kw-form">
-               <input id="searchInput" type="search" autocomplete="off" placeholder="搜索小区或地址">
+               <input id="searchInput" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
             </form>
             <i class="iconfont icon-close conone"></i>
             <i class="iconfont icon-close contwo"></i>
@@ -18,25 +18,25 @@
         </div>
     </div>
     <ul>
-        <li id="dic"><p>区域</p><span><i></i></span></li>
-        <li id="price"><p>租金</p><span><i></i></span></li>
-        <li id="type"><p>户型</p><span><i></i></span></li>
-        <li id="more"><p>更多</p><span><i></i></span></li>
+        <li id="dic" data-bigdata="<%=item.DataParams.areasD%>"><p>区域</p><span><i></i></span></li>
+        <li id="price" data-bigdata="<%=item.DataParams.rentPD%>"><p>租金</p><span><i></i></span></li>
+        <li id="type" data-bigdata="<%=item.DataParams.typeD%>"><p>户型</p><span><i></i></span></li>
+        <li id="more" data-bigdata="<%=item.DataParams.moreD%>"><p>更多</p><span><i></i></span></li>
     </ul>
 </div>
 <div class="all-control">
     <!--房源总数-->
     <%if(item.count > 0){%>
     <div class="total-num">
-        <p>共找到<span><%=item.count%></span>套房源</p>
+        <p>共找到<%=item.count%>套房源</p>
     </div>
     <%}%>
     <!--区域查询对应模块-->
     <div class="dic" style="display: none">
         <div class="tabs">
             <ul>
-                <li class="active-color-dic">区域</li>
-                <li>地铁</li>
+                <li class="are active-color-dic">区域</li>
+                <li class="subway">地铁</li>
             </ul>
         </div>
         <div class="content">
@@ -84,7 +84,7 @@
             </ul>
         </div>
         <div class="writ-price">
-            <input type="number" id="lowPr" placeholder="最低价格"><span> - </span><input type="number" id="topPr" placeholder="最高价格"> <button id="selfPrConf">确认</button>
+            <input type="number" id="lowPr" placeholder="最低价格"><span> - </span><input type="number" id="topPr" placeholder="最高价格"> <button id="selfPrConf" data-bigdata="<%=item.DataParams.rentSelfPD%>">确认</button>
         </div>
     </div>
     <!--房型查询对应模块-->
@@ -97,7 +97,7 @@
             </ul>
         </div>
         <div class="house-conf">
-            <button id="houseCmfir">确定</button>
+            <button id="houseCmfir" data-bigdata="<%=item.DataParams.typeCoD%>">确定</button>
         </div>
     </div>
     <!--更多查询对应模块-->
@@ -134,22 +134,21 @@
             </ul>
         </div>
         <div class="butt-group">
-            <p id="cancelMore" class="canl" >重置</p>
-            <p id="moreComf" class="conf">确定</p>
+            <p id="cancelMore" class="canl" data-bigdata="<%=item.DataParams.moreRD%>" >重置</p>
+            <p id="moreComf" class="conf" data-bigdata="<%=item.DataParams.moreCoD%>">确定</p>
         </div>
     </div>
     <!--房源排序选项-->
     <div id="sortChose" class="sort-chose" style="display: none">
         <ul>
-            <li data-so="so-0" class="chosed">默认排序</li>
-            <li data-so="so-1">租金从低到高</li>
-            <li data-so="so-2">租金从高到低</li>
-            <li data-so="so-4">面积从大到小</li>
-            <li data-so="so-3">面积从小到大</li>
-            <li data-so="so-5">发布时间从近到远</li>
+            <li data-so="so-0" class="chosed" data-bigdata="<%=item.DataParams.sortD%>">默认排序</li>
+            <li data-so="so-1" data-bigdata="<%=item.DataParams.sortltD%>">租金从低到高</li>
+            <li data-so="so-2" data-bigdata="<%=item.DataParams.sorttlD%>">租金从高到低</li>
+            <li data-so="so-4" data-bigdata="<%=item.DataParams.sortsqD%>">面积从大到小</li>
+            <li data-so="so-3" data-bigdata="<%=item.DataParams.sortSbD%>">面积从小到大</li>
+            <li data-so="so-5" data-bigdata="<%=item.DataParams.sortTimeD%>">发布时间从近到远</li>
         </ul>
     </div>
-
     <!--底部罩层-->
     <div class="bac" style="display: none"></div>
     <div class="wrong">
@@ -157,7 +156,7 @@
     </div>
     <!--排序按钮-->
     <%if(item.count > 0){%>
-    <div class="sort" id="sort">
+    <div class="sort" id="sort" data-bigdata="<%=item.DataParams.sortD%>" style="display: none">
         <i class="iconfont icon-paixu"></i>
         <span>排序</span>
     </div>
@@ -172,17 +171,16 @@
         <div class="show-no">
             <p class="disc-one">暂时没有符合条件的房源</p>
             <p class="disc-two">您可以扩大搜索范围，找到更多的房源</p>
-            <p class="clear clearOption">清除条件</p>
+            <p class="clear clearOption" data-bigdata="<%=item.DataParams.clearD%>">清除条件</p>
         </div>
+        <% if(item.guessLikeHouse.data.length){%>
         <div class="guess-like wk-panel">
             <div class="panel-header">猜你喜欢</div>
             <div class="">
-                <% if(item.guessLikeHouse){%>
                 <%- include("../components/rent-items" , {rentItems: item.guessLikeHouse.data}) %>
-                <%}%>
-
             </div>
         </div>
+        <%}%>
     </div>
     <%}%>
     <!--右侧滑出的选择内容-->
@@ -216,7 +214,7 @@
                 <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
                 <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
             </ul>
-            <p id="clearHistory">清除搜索历史</p>
+            <p id="clearHistory" data-bigdata="<%=item.DataParams.clearHistoryD%>">清除搜索历史</p>
         </div>
     </div>
     <div class="show-result" style="display: none">

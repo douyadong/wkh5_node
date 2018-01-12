@@ -11,7 +11,7 @@
 import AppRendererControllerBasic from "../../renderer" ;
 import ApiDataFilter from "../../../../system/libraries/apiDataFilter" ;
 import UrlParser from "../../../../system/libraries/urlParser" ;
-
+import guID from "../../../../system/libraries/guId" ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 创建一个渲染器实例
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -31,9 +31,11 @@ class Renderer extends AppRendererControllerBasic {
         let ipRent = ["rent" , "list", "ip"];
         try{
             let conditionGet = new UrlParser(this.req.originalUrl);
+            let guId = new guID();
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             console.log("Cookies=======================================================================: ", this.req.cookies);
+
             let cityId = 43 ;
             let ip = {
                 "ip":this.req.ip
@@ -171,9 +173,18 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  租房猜你喜欢列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let cookieId ='';
+            if(this.req.cookies.cookieId){
+                cookieId = this.req.cookies.cookieId
+            }else if (this.req.cookies.guId){
+                cookieId = this.req.cookies.guId
+            }else {
+                cookieId = guId.guid();
+                this.res.cookie('cookieId', cookieId, { maxAge: 900000, httpOnly: true })
+            }
             let guessLikeHouseData = {
                 "cityId":cityId,
-                "guId": this.req.cookies.guId ? this.req.cookies.guId : (this.req.cookies.cookieId || "5E93F94DB7E4751BF4D7BFB8CA3C207E")
+                "guId": cookieId
             };
             if (item.count < 1 ){
                 let apiSimilarData = await adf.request({

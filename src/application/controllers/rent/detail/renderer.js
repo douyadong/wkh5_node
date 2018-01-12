@@ -152,6 +152,7 @@ class Renderer extends AppRendererControllerBasic {
                         estate_id: item.subEstateId
                     }
                 }),
+                downloadBigDataParams : this.generateBigDataParams({ eventName: "1204024" })
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             租房标题和城市名称存起来，后面用

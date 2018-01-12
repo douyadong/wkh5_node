@@ -1,5 +1,5 @@
 <%- include("../components/head") %>
-<%- include("../components/download-app" ,{ bigDataParams: {} }) %>
+<%- include("../components/download-app" ,{ bigDataParams: item.bigDataParams && item.bigDataParams.downloadBigDataParams }) %>
 <div class="content-wrapper has-assistant"> 
     <input type="hidden" id="houseId" value="<%= item.houseId%>">
     <!--<i class="iconfont icon-back"></i>-->

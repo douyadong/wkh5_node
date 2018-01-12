@@ -288,6 +288,11 @@ class Renderer extends AppRendererControllerBasic {
                     eventName: '1202038',
                     type: 2
                 }),
+                //搜索历史清除
+                clearHistoryD : this.generateBigDataParams({
+                    eventName: '1203006',
+                    type: 2
+                }),
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

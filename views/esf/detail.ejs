@@ -5,6 +5,7 @@
     <!--<i class="iconfont icon-back"></i>-->
     <div class="highlight wk-panel">
         <p class="source-title" id="sourceTitle"><%= item.houseTitle  %></p>
+        <hr>
         <div class="outline">
             <div class="money">
                 <span class="hd">总价</span>
@@ -19,6 +20,7 @@
                 <span class="bd"><%= item.areaStr %></span>
             </div>
         </div>
+        <hr>
         <div class="tags">
             <% item.tagList && item.tagList.forEach(function(item){ %>
                <span ><%= item %></span>

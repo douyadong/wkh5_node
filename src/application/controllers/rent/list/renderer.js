@@ -62,10 +62,11 @@ class Renderer extends AppRendererControllerBasic {
                         "spaceAreas":[]
                     };
                     if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
+                        console.log("conditionObj['la']================="+conditionObj['la']);
                         if(conditionObj['la'] == 0){
                             conditionData['bedRoomSumLists'] =[];
                         }else {
-                            conditionData['bedRoomSumLists'].push(conditionObj.la)
+                            conditionData['bedRoomSumLists'].push(conditionObj['la'])
                         }
                     }else {
                         conditionData['bedRoomSumLists'] = conditionObj['la']

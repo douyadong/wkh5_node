@@ -1,5 +1,4 @@
 <%- include("../components/head") %>
-<%- include("../components/download-app" ,{ bigDataParams: item.bigDataParams && item.bigDataParams.downloadBigDataParams }) %>
 <div class="content-wrapper has-assistant"> 
     <input type="hidden" id="houseId" value="<%= item.houseId%>">
     <!--<i class="iconfont icon-back"></i>-->
@@ -139,4 +138,5 @@
     <% } %>
     <% if( item.houseState == 4 ) { %><a class="invalid-rent">该房源已下架</a><% } %>
 </div>
+<%- include("../components/download-app" ,{ bigDataParams: item.bigDataParams && item.bigDataParams.downloadBigDataParams }) %>
 <%- include("../components/footer") %>

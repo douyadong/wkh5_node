@@ -175,7 +175,8 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatImgUrl" : apiData.data.weChatShare.picUrl ,
                 "item" : item ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
-                "controllerJavascriptPath" : modulePathArray.join("/")
+                "controllerJavascriptPath" : modulePathArray.join("/") ,
+                "cityName" : cityName  //download-app里面有这样一个变量
             }) ;       
             
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

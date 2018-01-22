@@ -89,7 +89,8 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatContent" : apiData.data.wxShareDesc ,
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 
                 "matchStylesheetPath" : modulePathArray.join("/") ,
-                "controllerJavascriptPath" : modulePathArray.join("/")
+                "controllerJavascriptPath" : modulePathArray.join("/") ,
+                "cityName" : cityName  //download-app里面需要这个变量
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板大数据埋点数据

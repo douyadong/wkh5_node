@@ -200,6 +200,7 @@ class Renderer extends AppRendererControllerBasic {
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "extraJavascripts" : extraJavascript ,
                 "item" : item ,
+                "cityName" : shortName  //download-app里面有一个变量叫cityName
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

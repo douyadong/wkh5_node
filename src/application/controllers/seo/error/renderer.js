@@ -28,7 +28,8 @@ class Renderer extends AppRendererControllerBasic {
         Object.assign(this.templateData, { 
             "title" : "出错啦！" , 
             "matchStylesheetPath" : modulePathArray.join("/") ,             
-            "controllerJavascriptPath" : modulePathArray.join("/")
+            "controllerJavascriptPath" : modulePathArray.join("/") ,
+            "cityName" : "上海"
         }) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板

@@ -44,7 +44,7 @@
             </div>
             <div class="estateName" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>" data-subestateid = "<%= item.subEstateId %>" data-houseid = "<%= item.houseId %>" data-boutique = "<%= item.isTopHouse %>">
                 <span class="hd" >小区</span>
-                <a  class="bd" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtNameBigDataParams%>">
+                <a  class="bd" href="<%= domain %>/<%= cityPinyin %>/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtNameBigDataParams%>">
                     <i class="iconfont icon-next"></i>
                     <span><%= item.estateName %></span>                    
                 </a>
@@ -88,7 +88,7 @@
     <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body" href="<%= domain %>/city/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
+        <a class="panel-body" href="<%= domain %>/<%= cityPinyin %>/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
             <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estateName%></p>
             <span class="outline">
@@ -177,4 +177,8 @@
 </div>
 <% } %>
 <%- include("../components/download-app" ,{bigDataParams:item.DataParams.appBigDataParams}) %>
+<!--几个获取转接号的参数-->
+<input type="hidden" id="agentId" value="<%= item.houseAgent.agentId %>">
+<input type="hidden" id="houseId" value="<%= item.houseId %>">
+<input type="hidden" id="serviceType" value="2">
 <%- include("../components/footer") %>

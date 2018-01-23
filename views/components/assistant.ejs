@@ -36,7 +36,7 @@
             </div>                        
         </a>
         <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= wxBigDataParams%>">添加微信</a><% } %>        
-        <a href="tel:<%= agent.agentMobile%>" class="phone" data-bigdata="<%= mobileBigDataParams%>">电话咨询</a>
+        <a class="phone" data-bigdata="<%= mobileBigDataParams%>">电话咨询</a>
 </div>
 <%}%>
 

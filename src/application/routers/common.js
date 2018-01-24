@@ -11,26 +11,34 @@
 import express from "express" ;
 import CommonDialApiProvider from "../controllers/common/dialApiProvider" ;
 import CommonBigDataApiProvider from "../controllers/common/bigDataApiProvider" ;
+import CommonGetCityByLatLonApiProvider from "../controllers/common/getCityByLatLonApiProvider" ;
 import CommonCitySelectApiProvider from "../controllers/city/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/api/common/dial 的路由规则
+/api/common/dial 的路由规则，通过agentId , houseId , serviceType获得短接号
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/common/dial", function( req , res , next ) {      
     new CommonDialApiProvider(req, res, next) ;  
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/api/common/bigData 的路由规则
+/api/common/bigData 的路由规则，大数据埋点
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/common/bigData", function( req , res , next ) {      
     new CommonBigDataApiProvider(req, res, next) ;  
 }) ;
 
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/common/city/select 的路由规则
+/common/city/select 的路由规则，城市选择页面
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/common/city/select", function( req , res , next ) {
     new CommonCitySelectApiProvider(req, res, next) ;
+}) ;
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/common/getCityByLatLon 的路由规则，通过经纬度反查城市及开通业务
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/common/getCityByLatLon", function( req , res , next ) {
+    new CommonGetCityByLatLonApiProvider(req, res, next) ;
 }) ;
 
 export default router ;

@@ -49,6 +49,9 @@ export default {
         } ,
         "estate" : {
             "priceChart" : "estate/getEstateHistoricalPriceList.rest"
+        } ,
+        "city" : {
+            "cityList" : "houseMap/businessCityList.rest"
         }
     }
 };

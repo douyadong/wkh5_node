@@ -29,7 +29,7 @@ class Renderer extends AppRendererControllerBasic {
         let cityListPathArray = ["city" , "cityList"]; // 城市列表接口
         try {
             let adf = new ApiDataFilter(this.req.app) ;
-            let businessType = this.req.query['businessType'];
+            let businessType = this.req.query['businessType'];  // 获取query参数
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  城市列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -46,7 +46,8 @@ class Renderer extends AppRendererControllerBasic {
             /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据来源和国际是否有相应的模块业务，判断国际是否显示
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-            let businessId ='';
+            let businessId = '';
+            let overseaBusinessFlag = false;
             if (businessType== "old") {
                 businessId = 1
             } else if (businessType == "new") {
@@ -58,9 +59,16 @@ class Renderer extends AppRendererControllerBasic {
             }else if(businessType == "esfPrice") {
                 businessId = 1
             }
-            apiData.overseaCityList.filter((item)=>{
-                item.businessList.filter()
+            apiData.overseaCityList.forEach((item)=>{
+                if (item.businessList){
+                    item.businessList.forEach((itemB)=>{
+                        if (businessId == itemB.businessId){
+                            overseaBusinessFlag = true;
+                        }
+                    })
+                }
             });
+            item['overseaBusinessFlag'] = overseaBusinessFlag;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

@@ -1,6 +1,7 @@
 <%- include("../components/head") %>
   <div class="dic-name">
       <p>请手动选择城市</p>
+      <% if (item.overseaBusinessFlag){ %>
       <hr/>
       <div class="table-name">
           <ul>
@@ -8,6 +9,7 @@
               <li>国际</li>
           </ul>
       </div>
+      <%}%>
   </div>
 <div class="city-list">
     <div class="domestic-list">

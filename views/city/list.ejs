@@ -1,22 +1,55 @@
 <%- include("../components/head") %>
   <div class="dic-name">
       <p>请手动选择城市</p>
+      <% if (item.overseaBusinessFlag){ %>
       <hr/>
       <div class="table-name">
           <ul>
-              <li>国内</li>
+              <li class="table-active">国内</li>
               <li>国际</li>
           </ul>
       </div>
+      <%}%>
   </div>
 <div class="city-list">
-    <div class="inside-list">
-        <div class="inside-city-list">
+   <!-- 国内城市-->
+    <div class="domestic-list">
+        <div class="inside-city">
             <p>定位城市</p>
             <ul>
-                <li>上海</li> <li>上海</li> <li>上海</li>
+                <li class="location">上海</li>
             </ul>
         </div>
+        <%item.domesticCityList && item.domesticCityList.forEach(function (value) { %>
+           <div class="inside-city-list">
+               <p><%= value.firstWord%></p>
+               <ul>
+                   <%value.cityList.forEach(function (item) { %>
+                   <li data-cityid="<%= item.cityId%>" data-pinyin="<%= item.pinyin%>"><%= item.cityName%></li>
+                   <%});%>
+               </ul>
+           </div>
+        <%});%>
     </div>
+    <!--国际城市-->
+    <div class="oversea-list" style="display: none">
+        <div class="inside-city">
+            <p>定位城市</p>
+            <ul>
+                <li class="location">上海</li>
+            </ul>
+        </div>
+        <%item.overseaCityList && item.overseaCityList.forEach(function (value) { %>
+        <div class="inside-city-list">
+            <p><%= value.firstWord%></p>
+            <ul>
+                <%value.cityList.forEach(function (item) { %>
+                <li data-cityid="<%= item.cityId%>" data-pinyin="<%= item.pinyin%>"><%= item.cityName%></li>
+                <%});%>
+            </ul>
+        </div>
+        <%});%>
+    </div>
+
 </div>
 <%- include("../components/footer") %>

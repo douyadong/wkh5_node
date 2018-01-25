@@ -34,7 +34,7 @@ export default {
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
                 "acWord":"acWord.rest",
-                "getIp":"common/getCityId.rest"
+                "cityPinYin":"houseMap/cityInfoByCityPinYin.rest"
             }
         } ,
         "community" : {

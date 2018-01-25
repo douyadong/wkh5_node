@@ -29,25 +29,24 @@ class Renderer extends AppRendererControllerBasic {
         let errPathArray = [ "seo" , "exception" ] ; // 渲染的页面
         let rentListPathArray = ["rent" , "list", "rentHouseList"]; // 租房列表接口
         let guessLikeHouse = ["rent" , "list", "guessLikeHouse"]; // 猜你喜欢接口
-        let ipRent = ["rent" , "list", "getIp"];   // 用ip获取cityId
+        let cityPinYin = ["rent" , "list", "cityPinYin"];   // 用pinyin获取cityId
         try{
-            let conditionGet = new UrlParser(this.req.originalUrl);
-            let guId = new guID();
+            let conditionGet = new UrlParser(this.req.originalUrl); // new一个url处理的对象
+            let guId = new guID();   // new一个产生guid的对象
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             let cityId = 43 ;
-            let ip = {
-                "ip": this.req.ip || "10.0.93.45"
+            let pinyin = {
+                "pinyin": this.req.params.city || "shanghai"
             };
-            if(this.req.cookies.cityId ){
-                cityId = this.req.cookies.cityId
-            }else {
-                cityId = await adf.request({
-                    "apiPath" : ipRent.join("."),
-                    "data" : ip ,
+                let cityInfo = await adf.request({
+                    "apiPath" : cityPinYin.join("."),
+                    "data" : pinyin ,
                 }) ;
-                console.log("apiIpCity==========="+JSON.stringify(cityId))
-            }
+                cityId = cityInfo.cityId || 43;
+                this.res.cookie('cityId', cityInfo.cityId, {  httpOnly: false  }); // 设置cityId
+                this.res.cookie('cityName', cityInfo.cityName, {  httpOnly: false  });// 设置cityName
+                this.res.cookie('pinyin', cityInfo.cityPinyin, {  httpOnly: false  });// 设置城市pinyin
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");

@@ -38,13 +38,8 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
-            let itemData = {
-                domesticCityList: this.reSortData(apiData.domesticCityList),
-                overseaCityList: this.reSortData(apiData.overseaCityList)
-            };
-            let item = itemData;
             /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            根据来源和国际是否有相应的模块业务，判断国际是否显示
+            根据来源是否有相应的模块业务，判断国际是否显示
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
             let businessId = '';
             let overseaBusinessFlag = false;
@@ -68,6 +63,12 @@ class Renderer extends AppRendererControllerBasic {
                     })
                 }
             });
+
+            let itemData = {
+                domesticCityList: this.reSortData(apiData.domesticCityList,businessId),
+                overseaCityList: this.reSortData(apiData.overseaCityList,businessId)
+            };
+            let item = itemData;
             item['overseaBusinessFlag'] = overseaBusinessFlag;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
@@ -92,7 +93,7 @@ class Renderer extends AppRendererControllerBasic {
     /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     整理归纳城市列表，重构数据结构
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-    reSortData(cityList) {
+    reSortData(cityList,businessId) {
         let domesticPinYin = [];
         let domesticCityList = [];
         if (cityList) {
@@ -111,12 +112,18 @@ class Renderer extends AppRendererControllerBasic {
             domesticCityList.forEach((itemA, indexA) => {   // 循环对比赋值
                 cityList.forEach((item, index) => {
                     let firstW = item.pinyin.substr(0, 1).toUpperCase();
-                    if (itemA.firstWord == firstW) {
-                        domesticCityList[indexA].cityList.push(item)
-                    }
+                    item.businessList.forEach((itemBus)=>{
+                        if (itemA.firstWord == firstW && itemBus.businessId == businessId) {
+                            domesticCityList[indexA].cityList.push(item)
+                        }
+                    });
                 });
             });
+            domesticCityList =  domesticCityList.filter((item)=>{
+               return item.cityList.length > 0
+           })
         }
+
         return domesticCityList
     }
 }

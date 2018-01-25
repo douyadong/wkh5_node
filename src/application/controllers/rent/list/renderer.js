@@ -35,7 +35,6 @@ class Renderer extends AppRendererControllerBasic {
             let guId = new guID();
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
-            console.log("Cookies=======================================================================: ", this.req.cookies);
             let cityId = 43 ;
             let ip = {
                 "ip": this.req.ip || "10.0.93.45"
@@ -197,8 +196,6 @@ class Renderer extends AppRendererControllerBasic {
                     })
                 }
             }
-            // 额外的脚本样式 擦
-            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/jquery.cookie.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            大数据埋点参数
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -302,7 +299,6 @@ class Renderer extends AppRendererControllerBasic {
                     "title" :"租房" ,
                     "matchStylesheetPath" : modulePathArray.join("/") ,
                     "controllerJavascriptPath" : modulePathArray.join("/"),
-                    "extraJavascripts" : extraJavascript ,
                     "item" : item ,
                 }) ;
                 this.render(modulePathArray.join("/")) ;
@@ -311,7 +307,6 @@ class Renderer extends AppRendererControllerBasic {
                     "title" :"租房" ,
                     "matchStylesheetPath" : errPathArray.join("/") ,
                     "controllerJavascriptPath" : errPathArray.join("/"),
-                    "extraJavascripts" : extraJavascript ,
                     "item" : item ,
                 }) ;
                 this.render(errPathArray.join("/")) ;

@@ -9,7 +9,7 @@
 加载配置及工具
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import AppRendererControllerBasic from "../renderer" ;
-/*import ApiDataFilter from "../../../../system/libraries/apiDataFilter" ;*/
+import ApiDataFilter from "../../../system/libraries/apiDataFilter" ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 创建一个渲染器实例
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -28,16 +28,49 @@ class Renderer extends AppRendererControllerBasic {
         let modulePathArray = ["city", "list"];
         let cityListPathArray = ["city" , "cityList"]; // 城市列表接口
         try {
-
+            let adf = new ApiDataFilter(this.req.app) ;
+            let businessType = this.req.query['businessType'];
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板api数据  城市列表
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let apiData = await adf.request({
+                "apiPath" : cityListPathArray.join("."),
+                "method":"post",
+                "contentType":"application/json"
+            }) ;
+            let itemData = {
+                domesticCityList: this.reSortData(apiData.domesticCityList),
+                overseaCityList: this.reSortData(apiData.overseaCityList)
+            };
+            let item = itemData;
+            /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            根据来源和国际是否有相应的模块业务，判断国际是否显示
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+            let businessId ='';
+            if (businessType== "old") {
+                businessId = 1
+            } else if (businessType == "new") {
+                businessId = 3
+            } else if (businessType == "rent") {
+                businessId = 2
+            } else if(businessType == "xfPrice") {
+                businessId = 3
+            }else if(businessType == "esfPrice") {
+                businessId = 1
+            }
+            apiData.overseaCityList.filter((item)=>{
+                item.businessList.filter()
+            });
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title": "二手房-",
+                "title": "二手房",
                 "keywords": "二手房房源出售买卖",
                 "description": "二手房就上悟空找房网，百分百真实房源。",
                 "matchStylesheetPath": modulePathArray.join("/"),
                 "controllerJavascriptPath": modulePathArray.join("/"),
+                "item" : item ,
             });
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
@@ -47,6 +80,36 @@ class Renderer extends AppRendererControllerBasic {
         catch (ex) {
             this.next(ex);
         }
+    }
+    /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    整理归纳城市列表，重构数据结构
+    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+    reSortData(cityList) {
+        let domesticPinYin = [];
+        let domesticCityList = [];
+        if (cityList) {
+            cityList.forEach((item, index) => { // 取出所有首字母
+                let firstW = item.pinyin.substr(0, 1).toUpperCase();
+                domesticPinYin.push(firstW);
+            });
+            const domesticCity = new Set(domesticPinYin); // 去重
+            [...domesticCity].forEach((item) => {
+                let city = {
+                    firstWord: item,
+                    cityList: []
+                };
+                domesticCityList.push(city)
+            });
+            domesticCityList.forEach((itemA, indexA) => {   // 循环对比赋值
+                cityList.forEach((item, index) => {
+                    let firstW = item.pinyin.substr(0, 1).toUpperCase();
+                    if (itemA.firstWord == firstW) {
+                        domesticCityList[indexA].cityList.push(item)
+                    }
+                });
+            });
+        }
+        return domesticCityList
     }
 }
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

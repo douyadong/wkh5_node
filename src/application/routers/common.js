@@ -12,7 +12,6 @@ import express from "express" ;
 import CommonDialApiProvider from "../controllers/common/dialApiProvider" ;
 import CommonBigDataApiProvider from "../controllers/common/bigDataApiProvider" ;
 import CommonGetCityByLatLonApiProvider from "../controllers/common/getCityByLatLonApiProvider" ;
-import CommonCitySelectApiProvider from "../controllers/city/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /api/common/dial 的路由规则，通过agentId , houseId , serviceType获得短接号
@@ -25,13 +24,6 @@ router.get("/api/common/dial", function( req , res , next ) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/common/bigData", function( req , res , next ) {      
     new CommonBigDataApiProvider(req, res, next) ;  
-}) ;
-
-/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/common/city/select 的路由规则，城市选择页面
------------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/common/city/select", function( req , res , next ) {
-    new CommonCitySelectApiProvider(req, res, next) ;
 }) ;
 
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

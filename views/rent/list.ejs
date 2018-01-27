@@ -5,12 +5,15 @@
       <i class="iconfont icon-fanhui  back"   <%if(item.channel){%> style="display: none"<%}%>></i>
         <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
         <div class="search-input" <%if(item.channel){%>style="width:96%"<%}%>>
-            <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>
+           <!-- <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>-->
             <form action="" class="input-kw-form" <%if(item.channel){%>style="background-color:#F8F8F8"<%}%>>
+
                 <%if(item.channel){%>
                     <a class="location-all" href="/public/city/select?businessType=rent"><span><%=item.cityName%></span><i></i></a>
-                    <input id="searchInput" style="background-color:#F8F8F8;width:76%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
+                <i class="iconfont icon-search" ></i>
+                    <input id="searchInput" style="background-color:#F8F8F8;width:52%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
                 <%}else {%>
+                <i class="iconfont icon-search" ></i>
                     <input id="searchInput" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
                 <%}%>
             </form>

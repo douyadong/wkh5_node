@@ -207,7 +207,7 @@ class Renderer extends AppRendererControllerBasic {
                 "contentType":"application/json"
             }) ;
             let item = apiDat;
-            if (item.data){
+            if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
                     item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
                     item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, type: 2})

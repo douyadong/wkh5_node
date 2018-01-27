@@ -36,18 +36,58 @@ class Renderer extends AppRendererControllerBasic {
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             let cityId = 43 ;
-            let pinyin = {
+            let pinyin = {      // 组装拼音接口需要的数据
                 "pinyin": this.req.params.city || "shanghai"
             };
-                let cityInfo = await adf.request({
+            let cityInfo = {};
+            let defultName = this.req.cookies.userSelectedCityName;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            if(this.req.cookies && this.req.cookies.userSelectedCity) {  // 判断是否有客户选择的城市
+                cityInfo = await adf.request({
+                    "apiPath" : cityPinYin.join("."),
+                    "data" : { "pinyin": this.req.cookies.userSelectedCity} ,
+                }) ;
+               if( cityInfo.rentBusiness ){
+                   cityId =  cityInfo.cityId
+               } else {     // 客户选择的城市不支持租房业务
+                   cityInfo = await adf.request({
+                       "apiPath" : cityPinYin.join("."),
+                       "data" : pinyin ,
+                   }) ;
+                   if (cityInfo.rentBusiness ){
+                       cityId =  cityInfo.cityId;
+                       defultName = cityInfo.cityName;
+                   }else {      // 路由的不支持租房的业务 跳到上海
+                       cityId = 43;
+                       cityInfo['cityId']= cityId ;
+                       cityInfo['cityName']= "上海" ;
+                       cityInfo['cityPinyin']= "shanghai" ;
+                       defultName = cityInfo.cityName;
+                   }
+               }
+               /* this.res.cookie('userSelectedCity', "", {httpOnly: false}); // 设置userSelectedCity*/
+            }else {   // 没有用户选择的城市
+                cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
                     "data" : pinyin ,
                 }) ;
-            cityId = cityInfo.cityId || 43;
-            this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
-            this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
-            this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
-            this.res.cookie('citySelectionOpen', "" , {httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
+                if (cityInfo.rentBusiness ){
+                    cityId =  cityInfo.cityId;
+                    defultName = cityInfo.cityName;
+                }else {
+                    cityId = 43;
+                    cityInfo['cityId']= cityId ;
+                    cityInfo['cityName']= "上海" ;
+                    cityInfo['cityPinyin']= "shanghai" ;
+                    defultName = cityInfo.cityName;
+                }
+            }
+            this.res.cookie('cityId', cityInfo.cityId , {httpOnly: false}); // 设置cityId
+            this.res.cookie('cityName', cityInfo.cityName , {httpOnly: false});// 设置cityName
+            this.res.cookie('pinyin', cityInfo.cityPinyin , {httpOnly: false});// 设置城市pinyin
+            this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -136,8 +176,12 @@ class Renderer extends AppRendererControllerBasic {
                     "pageSize":10
                 };
             }
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+             查询query后面参数异步请求
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let channel= "";
             if (this.req.query){
-                if (this.req.query['districtId']){  // 查询？后面参数异步请求
+                if (this.req.query['districtId']){
                     conditionData['districtId'] = this.req.query['districtId'];
                 }else if (this.req.query['townId']){
                     conditionData['townId'] = this.req.query['townId'];
@@ -147,6 +191,9 @@ class Renderer extends AppRendererControllerBasic {
                     conditionData['subwayStation'] = this.req.query['subwayStation'];
                 }else if (this.req.query['subEstateId']){
                     conditionData['subEstateId'] = this.req.query['subEstateId'];
+                }
+                if(this.req.query['channel'] == "jrttsub"){
+                    channel = "jrttsub"
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -295,9 +342,10 @@ class Renderer extends AppRendererControllerBasic {
                 }),
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           城市的名称获取
+            城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['cityName'] =this.req.cookies.userSelectedCityName || this.req.cookies.location_cityName || "上海";
+            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.cityName;
+            item['channel'] = channel ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

@@ -40,24 +40,50 @@ class Renderer extends AppRendererControllerBasic {
                 "pinyin": this.req.params.city || "shanghai"
             };
             let cityInfo = {};
-/*            let defultName = this.req.cookies.userSelectedCityName;
-            if(this.req.cookie.cityId) {
+            let defultName = this.req.cookies.userSelectedCityName;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            if(this.req.cookie.userSelectedCity) {  // 判断是否有客户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
-                    "data" : { "pinyin": this.req.cookie.pinyin} ,
+                    "data" : { "pinyin": this.req.cookie.userSelectedCity} ,
                 }) ;
                if( cityInfo.rentBusiness ){
-                   cityId =  this.req.cookie.cityId
-               } else {
-                   cityId = 43
+                   cityId =  cityInfo.cityId
+               } else {     // 客户选择的城市不支持租房业务
+                   cityInfo = await adf.request({
+                       "apiPath" : cityPinYin.join("."),
+                       "data" : pinyin ,
+                   }) ;
+                   if (cityInfo.rentBusiness ){
+                       cityId =  cityInfo.cityId;
+                       defultName = cityInfo.cityName;
+                   }else {      // 路由的不支持租房的业务 跳到上海
+                       cityId = 43;
+                       cityInfo['cityId']= cityId ;
+                       cityInfo['cityName']= "上海" ;
+                       cityInfo['cityPinyin']= "shanghai" ;
+                       defultName = cityInfo.cityName;
+                   }
                }
-            }else {*/
+               /* this.res.cookie('userSelectedCity', "", {httpOnly: false}); // 设置userSelectedCity*/
+            }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
                     "data" : pinyin ,
                 }) ;
-                cityId = cityInfo.cityId || 43;
-          /*  }*/
+                if (cityInfo.rentBusiness ){
+                    cityId =  cityInfo.cityId;
+                    defultName = cityInfo.cityName;
+                }else {
+                    cityId = 43;
+                    cityInfo['cityId']= cityId ;
+                    cityInfo['cityName']= "上海" ;
+                    cityInfo['cityPinyin']= "shanghai" ;
+                    defultName = cityInfo.cityName;
+                }
+            }
             this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
             this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
             this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
@@ -311,7 +337,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['cityName'] = this.req.cookies.userSelectedCityName || this.req.cookies.location_cityName || cityInfo.cityName;
+            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.cityName;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

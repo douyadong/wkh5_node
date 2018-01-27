@@ -239,7 +239,7 @@ class Renderer extends AppRendererControllerBasic {
                     "data" : guessLikeHouseData,
                 }) ;
                 item['guessLikeHouse'] = apiSimilarData;
-                console.log("item.guessLikeHouse.data.length================="+item.guessLikeHouse.data);
+                console.log("item.guessLikeHouse.data.length================="+item.guessLikeHouse.data.length);
                 if (item.guessLikeHouse.data.length > 0){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
                         item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";

@@ -45,10 +45,10 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(this.req.cookie && this.req.cookie.userSelectedCity) {  // 判断是否有客户选择的城市
+            if(this.req.cookies && this.req.cookies.userSelectedCity) {  // 判断是否有客户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
-                    "data" : { "pinyin": this.req.cookie.userSelectedCity} ,
+                    "data" : { "pinyin": this.req.cookies.userSelectedCity} ,
                 }) ;
                if( cityInfo.rentBusiness ){
                    cityId =  cityInfo.cityId
@@ -85,9 +85,9 @@ class Renderer extends AppRendererControllerBasic {
                     defultName = cityInfo.cityName;
                 }
             }
-            this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
-            this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
-            this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
+            this.res.cookie('cityId', cityInfo.cityId , {httpOnly: false}); // 设置cityId
+            this.res.cookie('cityName', cityInfo.cityName , {httpOnly: false});// 设置cityName
+            this.res.cookie('pinyin', cityInfo.cityPinyin , {httpOnly: false});// 设置城市pinyin
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据

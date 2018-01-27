@@ -3,6 +3,12 @@
     <i class="iconfont icon-back"></i>
     经纪人
 </header>
+<!-- 底部助手条 --> 
+<%- include( "../components/assistant" , {
+        agent : agent , 
+        mobileBigDataParams : bigDataParams && bigDataParams.phone ,
+        wxBigDataParams : bigDataParams && bigDataParams.wx
+} ) %>
 <!--经纪人概况精华部分-->
 <div class="wk-panel highlight">
     <div class="panel-body">
@@ -72,8 +78,4 @@
 </div>
 <!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->
 <input type="hidden" id="agentId" value="<%= agentId %>">
-<div class="assistant">
-    <a href="tel:<%= agent.agentMobile %>" class="phone" data-bigdata="<%= bigDataParams.phone %>">电话咨询</a>
-    <% if(agent.agentWChatId) { %><a class="wx" data-agentwchartqrimgurl="<%= agent.agentWChartQRImgUrl %>" data-agentwchatid="<%= agent.agentWChatId %>" data-bigdata="<%= bigDataParams.wx %>">添加微信</a><% } %> 
-</div>
 <%- include("../components/footer") %>

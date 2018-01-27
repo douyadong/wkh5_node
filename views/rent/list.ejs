@@ -2,7 +2,7 @@
 <!--条件选择-->
 <div class="rent-list">
     <div class="rent-search">
-        <%if(item.channel){%> <i class="iconfont icon-fanhui  back" ></i> <%}%>
+      <i class="iconfont icon-fanhui  back"   <%if(item.channel){%> style="display: none"<%}%>></i>
         <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
         <div class="search-input" <%if(item.channel){%>style="width:96%"<%}%>>
             <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>

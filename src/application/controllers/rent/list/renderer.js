@@ -41,10 +41,11 @@ class Renderer extends AppRendererControllerBasic {
             };
             let cityInfo = {};
             let defultName = this.req.cookies.userSelectedCityName;
+        /*    let userSelectedCity = this.req.cookie.userSelectedCity;*/
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(this.req.cookie.userSelectedCity) {  // 判断是否有客户选择的城市
+            if(this.req.cookie && this.req.cookie.userSelectedCity) {  // 判断是否有客户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
                     "data" : { "pinyin": this.req.cookie.userSelectedCity} ,

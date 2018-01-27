@@ -44,9 +44,12 @@ class Renderer extends AppRendererControllerBasic {
                     "data" : pinyin ,
                 }) ;
                 cityId = cityInfo.cityId || 43;
-                this.res.cookie('cityId', cityInfo.cityId, {  httpOnly: false  }); // 设置cityId
-                this.res.cookie('cityName', cityInfo.cityName, {  httpOnly: false  });// 设置cityName
-                this.res.cookie('pinyin', cityInfo.cityPinyin, {  httpOnly: false  });// 设置城市pinyin
+                this.res.cookie('cityId', cityInfo.cityId || 43, {  httpOnly: false  }); // 设置cityId
+                this.res.cookie('cityName', cityInfo.cityName || "上海", {  httpOnly: false  });// 设置cityName
+                this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {  httpOnly: false  });// 设置城市pinyin
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            根据params.condition和query的值的情况重新组装数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;
                     let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");

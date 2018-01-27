@@ -41,7 +41,6 @@ class Renderer extends AppRendererControllerBasic {
             };
             let cityInfo = {};
             let defultName = this.req.cookies.userSelectedCityName;
-        /*    let userSelectedCity = this.req.cookie.userSelectedCity;*/
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -177,8 +176,12 @@ class Renderer extends AppRendererControllerBasic {
                     "pageSize":10
                 };
             }
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+             查询query后面参数异步请求
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let channel= "";
             if (this.req.query){
-                if (this.req.query['districtId']){  // 查询？后面参数异步请求
+                if (this.req.query['districtId']){
                     conditionData['districtId'] = this.req.query['districtId'];
                 }else if (this.req.query['townId']){
                     conditionData['townId'] = this.req.query['townId'];
@@ -188,6 +191,9 @@ class Renderer extends AppRendererControllerBasic {
                     conditionData['subwayStation'] = this.req.query['subwayStation'];
                 }else if (this.req.query['subEstateId']){
                     conditionData['subEstateId'] = this.req.query['subEstateId'];
+                }
+                if(this.req.query['channel'] == "jrttsub"){
+                    channel = "jrttsub"
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -339,6 +345,7 @@ class Renderer extends AppRendererControllerBasic {
             城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.cityName;
+            item['channel'] = channel ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

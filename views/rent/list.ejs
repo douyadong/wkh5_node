@@ -5,10 +5,14 @@
         <i class="iconfont icon-fanhui  back" ></i>
         <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
         <div class="search-input">
-            <i class="iconfont icon-search"></i>
+            <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>
             <form action="" class="input-kw-form">
-                <a class="location-all" href="/public/city/select?businessType=rent"><span><%=item.cityName%></span><i></i></a>
-               <input id="searchInput" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
+                <%if(item.channel){%>
+                    <a class="location-all" href="/public/city/select?businessType=rent"><span><%=item.cityName%></span><i></i></a>
+                    <input id="searchInput" style="background-color:#F8F8F8;width:76%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
+                <%}else {%>
+                    <input id="searchInput" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
+                <%}%>
             </form>
             <i class="iconfont icon-close conone"></i>
             <i class="iconfont icon-close contwo"></i>

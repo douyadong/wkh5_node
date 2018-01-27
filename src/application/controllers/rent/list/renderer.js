@@ -47,7 +47,7 @@ class Renderer extends AppRendererControllerBasic {
             this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
             this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
             this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
-            this.res.cookie('citySelectionOpen', " " , {httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
+            this.res.cookie('citySelectionOpen', "" , {httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

@@ -36,22 +36,31 @@ class Renderer extends AppRendererControllerBasic {
             let adf = new ApiDataFilter(this.req.app) ;
             let conditionData = {};
             let cityId = 43 ;
-            let pinyin = {
+            let pinyin = {      // 组装拼音接口需要的数据
                 "pinyin": this.req.params.city || "shanghai"
             };
-            if(this.req.cookie.cityId){
-                cityId = this.req.cookie.cityId
-            }else {
-                let cityInfo = await adf.request({
+            let cityInfo = {};
+/*            let defultName = this.req.cookies.userSelectedCityName;
+            if(this.req.cookie.cityId) {
+                cityInfo = await adf.request({
+                    "apiPath" : cityPinYin.join("."),
+                    "data" : { "pinyin": this.req.cookie.pinyin} ,
+                }) ;
+               if( cityInfo.rentBusiness ){
+                   cityId =  this.req.cookie.cityId
+               } else {
+                   cityId = 43
+               }
+            }else {*/
+                cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
                     "data" : pinyin ,
                 }) ;
                 cityId = cityInfo.cityId || 43;
-                this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
-                this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
-                this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
-            }
-
+          /*  }*/
+            this.res.cookie('cityId', cityInfo.cityId || 43, {httpOnly: false}); // 设置cityId
+            this.res.cookie('cityName', cityInfo.cityName || "上海", {httpOnly: false});// 设置cityName
+            this.res.cookie('pinyin', cityInfo.cityPinyin || "shanghai", {httpOnly: false});// 设置城市pinyin
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据
@@ -302,7 +311,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['cityName'] = this.req.cookies.userSelectedCityName || this.req.cookies.location_cityName || " ";
+            item['cityName'] = this.req.cookies.userSelectedCityName || this.req.cookies.location_cityName || cityInfo.cityName;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

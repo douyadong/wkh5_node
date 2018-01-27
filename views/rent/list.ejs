@@ -4,9 +4,9 @@
     <div class="rent-search">
         <i class="iconfont icon-fanhui  back" ></i>
         <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
-        <div class="search-input">
+        <div class="search-input" <%if(item.channel){%>style="width:96%"<%}%>>
             <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>
-            <form action="" class="input-kw-form">
+            <form action="" class="input-kw-form" <%if(item.channel){%>style="background-color:#F8F8F8"<%}%>>
                 <%if(item.channel){%>
                     <a class="location-all" href="/public/city/select?businessType=rent"><span><%=item.cityName%></span><i></i></a>
                     <input id="searchInput" style="background-color:#F8F8F8;width:76%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">

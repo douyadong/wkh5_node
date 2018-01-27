@@ -221,9 +221,9 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板api数据  租房猜你喜欢列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let cookieId ='';
-            if(this.req.cookies.cookieId){
+            if(this.req.cookies && this.req.cookies.cookieId){
                 cookieId = this.req.cookies.cookieId
-            }else if (this.req.cookies.guId){
+            }else if (this.req.cookies && this.req.cookies.guId){
                 cookieId = this.req.cookies.guId
             }else {
                 cookieId = guId.guid();
@@ -244,7 +244,8 @@ class Renderer extends AppRendererControllerBasic {
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
                         item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
                         item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, type: 2})
-                    })
+                    });
+                    console.log("item.guessLikeHouse.data====================="+JSON.stringify(item.guessLikeHouse.data))
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

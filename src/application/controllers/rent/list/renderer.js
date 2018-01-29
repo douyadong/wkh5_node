@@ -209,8 +209,8 @@ class Renderer extends AppRendererControllerBasic {
             let item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
-                    item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
-                    item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, type: 2})
+                    item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                    item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                 })
             }
             let pageData={};  // 定义页面储存的对象变量值不限
@@ -241,8 +241,8 @@ class Renderer extends AppRendererControllerBasic {
                 item['guessLikeHouse'] = apiSimilarData;
                 if (item.guessLikeHouse.data.length > 0){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
-                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
-                        item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, type: 2})
+                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                        item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                     });
                 }
             }
@@ -253,91 +253,109 @@ class Renderer extends AppRendererControllerBasic {
                 // 点击搜索框
                 searchD:this.generateBigDataParams({
                     eventName: '1202022',
+                    channel:channel || "",
                     type: 2
                 }),
                 // 点击区域筛选
                 areasD : this.generateBigDataParams({
                     eventName: '1202023',
+                    channel:channel || "",
                     type: 2
                 }),
                 // 点击租金筛选
                 rentPD : this.generateBigDataParams({
                     eventName: '1202024',
+                    channel:channel || "",
                     type: 2
                 }),
                 // 点击租金-自定义-确定
                 rentSelfPD : this.generateBigDataParams({
                     eventName: '1202025',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击户型筛选
                 typeD : this.generateBigDataParams({
                     eventName: '1202026',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击户型-确定
                 typeCoD : this.generateBigDataParams({
                     eventName: '1202027',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击更多筛选
                 moreD : this.generateBigDataParams({
                     eventName: '1202028',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击更多-确定
                 moreCoD : this.generateBigDataParams({
                     eventName: '1202029',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击更多-重置
                 moreRD : this.generateBigDataParams({
                     eventName: '1202030',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序按钮
                 sortD : this.generateBigDataParams({
                     eventName: '1202031',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-默认排序
                 sortDefD : this.generateBigDataParams({
                     eventName: '1202032',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-租金从低到高
                 sortltD : this.generateBigDataParams({
                     eventName: '1202033',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-租金从高到底
                 sorttlD : this.generateBigDataParams({
                     eventName: '1202034',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-面积从大到小
                 sortsqD : this.generateBigDataParams({
                     eventName: '1202035',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-面积从小到大
                 sortSbD : this.generateBigDataParams({
                     eventName: '1202036',
+                    channel:channel || "",
                     type: 2
                 }),
                 //点击排序-发布时间从近到远
                 sortTimeD : this.generateBigDataParams({
                     eventName: '1202037',
+                    channel:channel || "",
                     type: 2
                 }),
                 //筛选无结果点击清除条件按钮
                 clearD : this.generateBigDataParams({
                     eventName: '1202038',
+                    channel:channel || "",
                     type: 2
                 }),
                 //搜索历史清除
                 clearHistoryD : this.generateBigDataParams({
                     eventName: '1203006',
+                    channel:channel || "",
                     type: 2
                 }),
             };

@@ -33,6 +33,7 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/ 
              let houseId = this.req.params.houseId || "" ;
              let city = this.req.params.city || "" ;
+             let channel =  this.req.query['channel'] || "";
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -94,89 +95,104 @@ class Renderer extends AppRendererControllerBasic {
                 mobileBigDataParams: this.generateBigDataParams({
                     eventName: '1067027',
                     eventParam: {house_id: item.houseId,agent_id: agentid, boutique: item.isTopHouse},
+                    channel:channel,
                     type: 2
                 }),
                 // 微信埋点
                 wxBigDataParams: this.generateBigDataParams({
                     eventName: '1067086',
                     eventParam: {house_id: item.houseId, agent_id: agentid, boutique: item.isTopHouse},
+                    channel:channel,
                     type: 2
                 }),
                 // 经纪人头像点击
                 avatarBigDataParams: this.generateBigDataParams({
                     eventName: '1067043',
                     eventParam:{house_id: item.houseId ,agent_id: agentid, boutique: item.isTopHouse },
+                    channel:channel,
                     type: 2
                 }),
                 // 相册点击埋点
                 albumBigDataParams: this.generateBigDataParams({
                     eventName: '1067008',
                     eventParam:{house_id: item.houseId},
+                    channel:channel,
                     type: 2
                 }),
                  // 计算器
                 calculatorBigDataParams : this.generateBigDataParams({
                     eventName: '1067038',
                     eventParam: {house_id: item.houseId, boutique: item.isTopHouse},
+                    channel:channel,
                     type: 2
                 }),
                 // 小区名称埋点
                 communtNameBigDataParams: this.generateBigDataParams({
                     eventName: '1067006',
                     eventParam: {house_id: item.houseId, estate_id: item.subEstateId},
+                    channel:channel,
                     type: 2
                 }),
                 // 小区信息埋点
                 communtBigDataParams: this.generateBigDataParams({
                     eventName: '1067033',
                     eventParam: {house_id: item.houseId, estate_id: item.subEstateId},
+                    channel:channel,
                     type: 2
                 }),
                 // 在售房源
                 onSellBigDataParams: this.generateBigDataParams({
                     eventName:'1067034',
                     eventParam: {house_id: item.houseId},
+                    channel:channel,
                     type: 2
                 }),
                 // 成交历史
                 historyBigDataParams: this.generateBigDataParams({
                     eventName:'1067025',
                     eventParam:{house_id: item.houseId},
+                    channel:channel,
                     type: 2
                 }),
                 // 点评查看
                 commentBigDataParams: this.generateBigDataParams({
                     eventName:'1067040',
                     eventParam:{house_id: item.houseId },
+                    channel:channel,
                     type: 2
                 }),
                 // 点击去评论
                 goCommentBigDataParams: this.generateBigDataParams({
                     eventName:'1067013',
                     eventParam:{house_id: item.houseId  , estate_id: item.subEstateId},
+                    channel:channel,
                     type: 2
                 }),
                 // 位置及周边
                 mapBigDataParams: this.generateBigDataParams({
                     eventName:'1067087',
                     eventParam:{house_id: item.houseId , boutique: item.isTopHouse},
+                    channel:channel,
                     type: 2
                 }),
                 // 相似房源查看更多
                 similarBigDataParams: this.generateBigDataParams({
                     eventName:'1067045',
                     eventParam:{house_id: item.houseId },
+                    channel:channel,
                     type: 2
                 }),
                 // 基本信息查看更多
                 basecInfoBigDataParams:this.generateBigDataParams({
                     eventName:'1067046',
                     eventParam:{house_id: item.houseId },
+                    channel:channel,
                     type: 2
                 }),
                 // 下载app
                 appBigDataParams:this.generateBigDataParams({
                     eventName:'1067042',
+                    channel:channel,
                     type: 2
                 }),
 

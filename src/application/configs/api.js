@@ -15,7 +15,7 @@ export default {
         "dev": "http://m.test.wkzf",
         "test": "http://m.test.wkzf",
         "sim": "http://m.sim.wkzf",
-        "prod": "http://m.wkzf.com"
+        "prod": "https://m.wkzf.com"
     } ,
     "suffix": { //后缀代表接口去掉prefix的部分，这里可以是无限级的树状结构，根据自己的需要        
         "common" : {

@@ -239,13 +239,11 @@ class Renderer extends AppRendererControllerBasic {
                     "data" : guessLikeHouseData,
                 }) ;
                 item['guessLikeHouse'] = apiSimilarData;
-                console.log("item.guessLikeHouse.data.length================="+item.guessLikeHouse.data.length);
                 if (item.guessLikeHouse.data.length > 0){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
                         item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html";
                         item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, type: 2})
                     });
-                    console.log("item.guessLikeHouse.data====================="+JSON.stringify(item.guessLikeHouse.data))
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

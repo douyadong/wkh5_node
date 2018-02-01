@@ -194,8 +194,8 @@ class Renderer extends AppRendererControllerBasic {
                 }else if (this.req.query['subEstateId']){
                     conditionData['subEstateId'] = this.req.query['subEstateId'];
                 }
-                if(this.req.query['channel'] == "jrttsub"){
-                    channel = "jrttsub"
+                if(this.req.query['channel']){
+                    channel = this.req.query['channel'];
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

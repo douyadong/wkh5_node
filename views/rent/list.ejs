@@ -9,7 +9,7 @@
             <form action="" class="input-kw-form" <%if(item.channel){%>style="background-color:#F8F8F8"<%}%>>
 
                 <%if(item.channel){%>
-                    <a class="location-all" href="/public/city/select?businessType=rent"><span><%=item.cityName%></span><i></i></a>
+                    <a class="location-all" href="/public/city/select?businessType=rent&channel=<%=item.channel%>"><span><%=item.cityName%></span><i></i></a>
                 <i class="iconfont icon-search" ></i>
                     <input id="searchInput" style="background-color:#F8F8F8;width:52%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
                 <%}else {%>

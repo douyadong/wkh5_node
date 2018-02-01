@@ -56,7 +56,7 @@ class Renderer extends AppRendererControllerBasic {
                        "apiPath" : cityPinYin.join("."),
                        "data" : pinyin ,
                    }) ;
-                   if (cityInfo.rentBusiness ){
+                   if (cityInfo.rentBusiness ) {
                        cityId =  cityInfo.cityId;
                        defultName = cityInfo.cityName;
                    }else {      // 路由的不支持租房的业务 跳到上海
@@ -88,6 +88,8 @@ class Renderer extends AppRendererControllerBasic {
             this.res.cookie('cityName', cityInfo.cityName , {httpOnly: false});// 设置cityName
             this.res.cookie('pinyin', cityInfo.cityPinyin , {httpOnly: false});// 设置城市pinyin
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
+            this.res.cookie('location_noChose', "" , {httpOnly: false});// 避免循环跳转的标识
+
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

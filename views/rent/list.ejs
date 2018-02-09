@@ -1,30 +1,7 @@
 <%- include("../components/head") %>
 <!--条件选择-->
 <div class="rent-list">
-    <div class="rent-search">
-      <i class="iconfont icon-fanhui  back"   <%if(item.channel){%> style="display: none"<%}%>></i>
-        <i class="iconfont icon-fanhui  fanhui" style="display: none"></i>
-        <div class="search-input" <%if(item.channel){%>style="width:96%"<%}%>>
-           <!-- <i class="iconfont icon-search" <%if(item.channel){%>style="left:6.6rem"<%}%> ></i>-->
-            <form action="" class="input-kw-form" <%if(item.channel){%>style="background-color:#F8F8F8"<%}%>>
-
-                <%if(item.channel){%>
-                    <a class="location-all" href="/public/city/select?businessType=rent&channel=<%=item.channel%>"><span><%=item.cityName%></span><i></i></a>
-                <i class="iconfont icon-search" ></i>
-                    <input id="searchInput" style="background-color:#F8F8F8;width:52%" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
-                <%}else {%>
-                <i class="iconfont icon-search" ></i>
-                    <input id="searchInput" data-bigdata="<%=item.DataParams.searchD%>" type="search" autocomplete="off" placeholder="搜索小区或地址">
-                <%}%>
-            </form>
-            <i class="iconfont icon-close conone"></i>
-            <i class="iconfont icon-close contwo"></i>
-        </div>
-        <div class="channel">
-            <i class="iconfont icon-hanbao"  style="display: none"></i>
-            <p class="cancel-channel" style="display: none">取消</p>
-        </div>
-    </div>
+    <%- include("../components/search-input", {channel: item.channel,cityName:item.cityName,DataParams:item.DataParams.searchD}) %>
     <ul>
         <li id="dic" data-bigdata="<%=item.DataParams.areasD%>"><p>区域</p><span><i></i></span></li>
         <li id="price" data-bigdata="<%=item.DataParams.rentPD%>"><p>租金</p><span><i></i></span></li>
@@ -209,28 +186,6 @@
                 <i class="icon-chouTiDown wk_iconfont"></i>APP下载
             </a>
         </div>
-    </div>
-</div>
-<div class="search-result" style="display: none">
-    <div class="no-result" style="display: none">
-        <p>未找到该地址，请重新搜索</p>
-        <span>您可以更换其他关键字再试一次</span>
-    </div>
-    <div class="have-result" style="display: none">
-        <p class="history-name">搜索历史</p>
-        <div class="result-history">
-            <ul id="resultHistory">
-                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
-                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
-                <li><p>10 号线（虹桥火车站-新江湾城）</p><span>地铁线路</span></li>
-            </ul>
-            <p id="clearHistory" data-bigdata="<%=item.DataParams.clearHistoryD%>">清除搜索历史</p>
-        </div>
-    </div>
-    <div class="show-result" style="display: none">
-        <ul id="showResult">
-
-        </ul>
     </div>
 </div>
 <%- include("../components/footer") %>

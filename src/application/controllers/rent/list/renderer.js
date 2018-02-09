@@ -67,7 +67,6 @@ class Renderer extends AppRendererControllerBasic {
                        defultName = cityInfo.cityName;
                    }
                }
-               /* this.res.cookie('userSelectedCity', "", {httpOnly: false}); // 设置userSelectedCity*/
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
@@ -95,8 +94,7 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             if (this.req.params.condition) {
                     let conditionString = this.req.params.condition;
-                    let newConditionString  = conditionString.replace("to","townId").replace("li","subwayLine").replace("st","subwayStation");
-                    let conditionObj =  conditionGet.parseCondition({condition:newConditionString});
+                    let conditionObj =  conditionGet.parseCondition({condition:conditionString});
                     let spaceAreaStart =["0-50","50-70","70-90","90-110","110-130","130-150","150-0"];
                     conditionData = {
                         "cityId":cityId,
@@ -105,17 +103,25 @@ class Renderer extends AppRendererControllerBasic {
                         "renovations":[],
                         "spaceAreas":[]
                     };
-                    if(conditionObj['la'] && conditionObj['la'].length == 1){  // 判断是对象还是数组
-                        console.log("conditionObj['la']================="+conditionObj['la']);
-                        if(conditionObj['la'] == 0){
-                            conditionData['bedRoomSumLists'] =[];
-                        }else {
-                            conditionData['bedRoomSumLists'].push(conditionObj['la'])
-                        }
-                    }else {
-                        conditionData['bedRoomSumLists'] = conditionObj['la']
+                if (conditionObj['di']){ // 区域
+                    conditionData["districtId"] =conditionObj['di']
+                }
+                if(conditionObj['to']){   //town的获取赋值给接口需要的参数
+                    conditionData['townId'] = conditionObj['to'];
+                }
+                if (conditionObj['li']){  //地铁线路
+                    conditionData['subwayLine'] = conditionObj['li'];
+                }
+                if (conditionObj['st']){  // 地铁站点
+                    conditionData['subwayStation'] = conditionObj['st'];
+                }
+                if (conditionObj['la']){   // 房型检索条件
+                    if (  conditionObj['la'].constructor == Array) {
+                        conditionData['bedRoomSumLists'] = conditionObj['la'];
+                    } else {
+                        conditionObj['la'] == 0 ? conditionData['bedRoomSumLists'] = [] : conditionData['bedRoomSumLists'].push(conditionObj['la']);
                     }
-                    delete(conditionObj['la']);
+                }
                     if (conditionObj['pr']) {   // 价格选择
                         if(conditionObj['pr'].constructor == Array) {
                             conditionData["rentPriceStart"]= conditionObj['pr'][0];
@@ -124,54 +130,38 @@ class Renderer extends AppRendererControllerBasic {
                             conditionData["rentPriceStart"]= conditionObj['pr']
                         }
                     }
-                    delete(conditionObj['pr']);
                     if (conditionObj['cp']){  // 价格自定义
-                        let cpArray = conditionObj['cp'].split("townId");
-                  /*      if (cpArray[0] == 0){
-                            conditionData["rentPriceEnd"]= cpArray[1]  //价格
-                        }else if(cpArray[1] == 0){
-                            conditionData["rentPriceStart"]= cpArray[0] //价格
-                        }else {*/
+                        let cpArray = conditionObj['cp'].split("to");
                             conditionData["rentPriceStart"]= cpArray[0];
                             conditionData["rentPriceEnd"]= cpArray[1]
-                   /*     }*/
                     }
-                    delete(conditionObj['cp']);
                     if (conditionObj['ta']){
                         conditionData["isSubWay"] = conditionObj['ta'][0];  // 近地铁 0 任意  1 是
                         conditionData["priceDown"] = conditionObj['ta'][1]; // 降价  0 否  1 是
                         conditionData["isNewOnStore"] = conditionObj['ta'][2]; // 新上 0：否 1：是，
                         conditionData["orientation"] = conditionObj['ta'][3]; // 房屋朝向 1南北通透 0任意
                     }
-                    delete(conditionObj['ta']);
-                    if (conditionObj['ar']) {   // 面积选择
-                        if(conditionObj['ar'].length == 1) {
-                            conditionData["spaceAreas"].push(spaceAreaStart[conditionObj['ar']])
-                        }else {
-                            conditionObj['ar'].forEach(function (item) {
-                                conditionData["spaceAreas"].push(spaceAreaStart[item])
-                            });
-                        }
+                if (conditionObj['ar']) {   // 面积选择
+                    if(conditionObj['ar'].constructor == Array) {
+                        conditionObj['ar'].forEach(function (item) {
+                            conditionData['spaceAreas'].push(spaceAreaStart[item])
+                        });
+                    }else {
+                        conditionData['spaceAreas'].push(spaceAreaStart[conditionObj['ar']])
                     }
-                    delete(conditionObj['ar']);
-                    if (conditionObj['dt']) {  // 装修状况
-                        if (conditionObj['dt'].length == 1){
-                            conditionData["renovations"].push(conditionObj['dt'])
-                        }else {
-                            conditionData["renovations"] = conditionObj['dt'];
-                        }
-
+                }
+                if (conditionObj['dt']) {   // 装修状况
+                    if (conditionObj['dt'].constructor == Array){
+                        conditionData["renovations"] = conditionObj['dt'];
+                    }else {
+                        conditionData["renovations"].push(conditionObj['dt']);
                     }
-                    delete(conditionObj['dt']);
+                }
                     if (conditionObj['so']) { // 排序
                         conditionData["orderType"] = conditionObj['so'];
                     }
-                    delete(conditionObj['so']);
-                    if (conditionObj['di']){ // 区域
-                        conditionData["districtId"] =conditionObj['di']
-                    }
-                    delete(conditionObj['di']);
-                Object.assign(conditionData,conditionObj) ;
+
+              /*  Object.assign(conditionData,conditionObj) ;*/
             }else {
                 conditionData = {
                     "cityId":cityId,

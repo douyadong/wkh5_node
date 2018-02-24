@@ -6,6 +6,12 @@
       cityName: "" , // 定位城市的中文名
      bigDataParams: "", //点击事件埋点
     }
+    引入参考 （包括父标签的类rent-list和兄弟标签是ul）
+    <div class="rent-list">
+       include("../components/search-input", {channel: item.channel,cityName:item.cityName,DataParams:item.DataParams.searchD})
+        <ul>
+        </ul>
+    </div>
 %>
 
 

@@ -30,6 +30,17 @@ class Renderer extends AppRendererControllerBasic {
         try {
             let adf = new ApiDataFilter(this.req.app) ;
             let businessType = this.req.query['businessType'];  // 获取query参数
+            let location_cityName = '';
+            let location_cityPinyin = "";
+            let location_cityId = "";
+            if(this.req.cookies && this.req.cookies.location_cityName) {
+                location_cityName = this.req.cookies.location_cityName;
+                location_cityPinyin = this.req.cookies.location_cityPinyin;
+                location_cityId = this.req.cookies.location_cityId;
+            }else {
+                location_cityName="";
+            }
+
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据  城市列表
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -70,6 +81,9 @@ class Renderer extends AppRendererControllerBasic {
             };
             let item = itemData;
             item['overseaBusinessFlag'] = overseaBusinessFlag;
+            item['location_cityName'] = location_cityName;
+            item['location_cityPinyin'] = location_cityPinyin;
+            item['location_cityId']= location_cityId;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

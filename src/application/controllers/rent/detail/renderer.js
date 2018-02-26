@@ -25,6 +25,7 @@ class Renderer extends AppRendererControllerBasic {
         let modulePathArray = [ "rent" , "detail" ] ;   
         try {
             let houseId = this.req.params.houseId || "b5c3cf77006f3297" ;   //加密的houseId，b5c3cf77006f3297调试用
+            let  channel =this.req.query['channel'] || "";
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/  
@@ -71,6 +72,7 @@ class Renderer extends AppRendererControllerBasic {
                         eventParam: {
                             rent_house_id: house.houseId
                         },
+                        channel:channel,
                         type: 2
                     });
                 });            
@@ -93,6 +95,7 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {
                         rent_house_id: item.houseId
                     },
+                     channel:channel,
                     type: 2
                 }), //点击上部图片埋点参数
                 clickSubEstateBigDataParams : this.generateBigDataParams({
@@ -100,6 +103,7 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {
                         estate_id: item.subEstateId
                     },
+                     channel:channel,
                     type: 2
                 }), //点击小区链接埋点参数
                 clickSubEstateInfoBigDataParams : this.generateBigDataParams({
@@ -107,19 +111,22 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {
                         estate_id: item.subEstateId
                     },
+                     channel:channel,
                     type: 2
                 }), //点击小区信息埋点参数
                 clickMapBigDataParams : this.generateBigDataParams({
                     eventName: "1204011",
                     eventParam: {                
                     },
+                     channel:channel,
                     type: 2
                 }), //点击地图埋点参数
                 avatarBigDataParams : this.generateBigDataParams({
                     eventName: "1204014",
                     eventParam: {
                         agent_id: item.houseAgent && item.houseAgent.agentId
-                    }, 
+                    },
+                     channel:channel,
                     type: 2
                 }), //点击底部经纪人头像埋点参数
                 wxBigDataParams : this.generateBigDataParams({
@@ -127,7 +134,8 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {
                         agent_id: item.houseAgent && item.houseAgent.agentId,
                         rent_house_id: item.houseId
-                    }, 
+                    },
+                     channel:channel,
                     type: 2
                 }),
                 mobileBigDataParams : this.generateBigDataParams({
@@ -136,6 +144,7 @@ class Renderer extends AppRendererControllerBasic {
                         agent_id: item.houseAgent && item.houseAgent.agentId,
                         rent_house_id: item.houseId
                     },
+                     channel:channel,
                     type: 2
                 }),//点击评论总数埋点
                 clickCommentTotalBigDataParams: this.generateBigDataParams({
@@ -143,16 +152,20 @@ class Renderer extends AppRendererControllerBasic {
                     eventParam: {
                         house_id: item.houseId,
                         estate_id: item.subEstateId
-                    }
+                    },
+                     channel:channel,
+                    type: 2
                 }),//我来评论埋点
                 clickGoCommentBigDataParams: this.generateBigDataParams({
                     eventName: "1204023",
                     eventParam: {
                         house_id: item.houseId,
                         estate_id: item.subEstateId
-                    }
+                    },
+                    channel:channel,
+                    type: 2
                 }),
-                downloadBigDataParams : this.generateBigDataParams({ eventName: "1204024" })
+                downloadBigDataParams : this.generateBigDataParams({ eventName: "1204024" ,channel:channel})
             };
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             租房标题和城市名称存起来，后面用

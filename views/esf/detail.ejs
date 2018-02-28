@@ -20,10 +20,13 @@
             </div>
         </div>
         <hr>
-        <div class="tags">
-            <% item.tagList && item.tagList.forEach(function(item){ %>
-               <span ><%= item %></span>
-            <% }) ; %>
+        <div class="tags esf-tags">
+            <% item.tagList && item.tagList.forEach(function(tag){ %>
+                <% if(tag == "降价") { %><div class="promotion"><span><%= tag %></span></div>
+                <% } else if(tag == "新上") { %><div class="new"><span><%= tag %></span></div>
+                <% } else if(tag == "满二" || tag == "满五唯一") { %><div class="over"><span><%= tag %></span></div>
+                <% } else { %><div><span><%= tag %></span></div>               
+            <% }}) ; %> 
         </div>
         <div class="cols2-fields">
             <div><span class="hd">单价</span><span class="bd"><%= item.unitPriceStr %> </span></div>

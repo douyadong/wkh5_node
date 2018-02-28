@@ -19,8 +19,10 @@
             <dl><dt>开发商</dt><dd><%= item.developers %></dd></dl>
             <% if( item.subwayName || item.schoolName ) { %>
                 <div class="has-bottom-border"></div>
+            <div class="subway-school">
                 <% if( item.subwayName) { %><dl><dt>地铁</dt><dd><%= item.subwayName %></dd></dl><% } %>
                 <% if( item.schoolName) { %><dl><dt>学校</dt><dd><%= item.schoolName %></dd></dl><% } %>
+            </div>
             <% } %>
         </div>
     </div>
@@ -29,6 +31,13 @@
         <div class="panel-body"><%- include( "../components/subestate-comments" , { 
             comments : item.comment && item.comment.commentList || []
         }) %></div>
+    </div>
+    <div class="echart wk-panel" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>">
+        <div class="panel-header">价格走势</div>
+        <hr/>
+        <div id="main"></div>
+
+        <div class="panel-header onsell">在售房源 <span>4套</span></div>
     </div>
     <% if( item.longitude >0 &&  item.latitude > 0 ){ %>
        <%- include("../components/map" , {

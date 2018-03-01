@@ -46,6 +46,7 @@ class Renderer extends AppRendererControllerBasic {
             }
         }
         item.imgList = imgList;
+        item.encryptSubEstateId = subEstateId;
         
         //地图跳转路径
         item.mapUrl = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;  
@@ -57,6 +58,8 @@ class Renderer extends AppRendererControllerBasic {
         if(cityName && cityName.charAt(cityName.length - 1) === "市") {
             cityName = cityName.substring( 0 , cityName.length - 1) ;
         }
+        // 额外的脚本样式
+        let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -70,6 +73,7 @@ class Renderer extends AppRendererControllerBasic {
             "item" : item ,
             "matchStylesheetPath" : modulePathArray.join("/") ,
             "controllerJavascriptPath" : modulePathArray.join("/") ,
+            "extraJavascripts" : extraJavascript ,
             "cityName" : cityName  //download-app里面需要这个变量
         }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

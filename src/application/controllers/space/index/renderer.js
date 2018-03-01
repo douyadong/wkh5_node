@@ -79,10 +79,10 @@ class Renderer extends AppRendererControllerBasic {
                 cityName = cityName.substring( 0 , cityName.length - 1) ;
             }               
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            扩展模板常规数据
+            扩展模板常规数据  agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" ,
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, { 
-                "title" : agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" , 
+                "title" :  agentName + "的名片" ,
                 "keywords" : agentName + ",房产经纪人" + agentName + "," + cityName + "优秀房地产经纪人推荐" ,
                 "description" : "悟空找房网为您展示房地产经纪人" + agentName + "的房屋交易信息，客户评价等信息，让您真实了解到房产经纪人" + agentName + "的情况，更加放心去选择" + cityName + "靠谱经纪人，找房产经纪人就上悟空找房网。" ,
                 "wechatTitle" : apiData.data.wxShareTitle ,

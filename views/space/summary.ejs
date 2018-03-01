@@ -1,0 +1,18 @@
+<%- include("../components/head") %>
+<div class="all-info">
+    <div class="familiar">
+        <h3>熟悉商圈 </h3>
+        <p><%= item.agent.agentBizTown%></p>
+    </div>
+    <hr>
+    <div class="introduction">
+        <h3>自我介绍 </h3>
+        <p><%= item.agent.agentIntroduction%></p>
+    </div>
+    <hr>
+    <div class="story">
+        <h3>成交故事 </h3>
+        <p><%= item.agent.agentStory%></p>
+    </div>
+</div>
+<%- include("../components/footer") %>

@@ -12,25 +12,37 @@
 <!--经纪人概况精华部分-->
 <div class="wk-panel highlight">
     <div class="panel-body">
-        <dl class="card">
-            <dt><img src="<%= agent.agentHeadImgUrl %>" alt="<%= agent.agentName %>"></dt>
-            <dd>
+        <div class="card">
+            <div class="agent-pic"><img src="<%= agent.agentHeadImgUrl %>" alt="<%= agent.agentName %>"></div>
+            <div class="agent-info">
                 <div class="agent-name">
-                    <h1><%= agent.agentName %></h1>
-                    <% if(agent.isWellAgent) { %><span class="good">好</span><% } %>
+                    <span class="name"><%= agent.agentName %></span>
+                    <span class="company">| <%= agent.agentBelongToCompanyName %></span>
                 </div>
-                <div class="sign">
-                    <% if(agent.agentVerifiedStatus) { %><span>通过认证</span><i class="iconfont icon-authen"></i><% } %>
-                </div>
-            </dd>
-            <dd class="company"><%= agent.agentBelongToCompanyName %></dd>
-            <dd class="tags">
-                <% agent.wellAgentBizMessageList.forEach(function(wellAgentTag){ %>
-                <span><%= wellAgentTag %></span>
-                <% }) ; %>                
-            </dd>
-        </dl>
-        <div class="more">查看更多</div>
+            </div>
+        </div>
+        <hr>
+        <div class="agent-dec">
+            <div class="house-num">
+                <span>房源数</span>
+                <p><%= agent.houseCount %> 套</p>
+            </div>
+            <div class="serve-num">
+                <span>服务客户数</span>
+                <p><%= agent.customerCount %> 人</p>
+            </div>
+            <div class="serve-year">
+                <span>入驻悟空</span>
+                <p><%= agent.serviceYears %></p>
+            </div>
+        </div>
+        <hr>
+        <div class="familiar">
+            <p class="name">熟悉商圈    <% if(agent.agentStory || agent.agentIntroduction) { %><a href="/space/summary/<%= agentId %>">查看更多<i class="iconfont icon-next"></i></a><% } %></p>
+            <p class="dec"><%= agent.agentBizTown%></p>
+        </div>
+
+    <!--    <div class="more">查看更多</div>
         <div class="optional">
             <dl class="panel-item">
                 <dt>熟悉商圈：</dt>
@@ -57,17 +69,18 @@
                 <% } %>     
             </dl>
             <% } %>
-        </div>
+        </div>-->
     </div>
 </div>
 <!--三个tabs部分-->
 <div class="wk-tabs top-gap">
     <!--tabs-handle部分-->
+    <% if((oldHouseList && oldHouseList.length > 0) || (newHouseList && newHouseList.length > 0) || (rentHouseList && rentHouseList.length > 0)) { %>
     <% if(tabsCount > 1) { %>
     <ul class="wk-panel tabs-handle">
-        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">推荐二手房</a></li><% } %>
-        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">推荐新房</a></li><% } %>
-        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">推荐租房</a></li><% } %>
+        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">在售二手房</a></li><% } %>
+        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">在售新房</a></li><% } %>
+        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">在租房源</a></li><% } %>
     </ul>
     <% } %>
     <!--tabs-frame部分-->
@@ -75,6 +88,9 @@
     <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
     <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame rent-frame"><%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div><% } %>
     <!--tabs-frame内容结束-->
+    <% } else {%>
+    <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": false }  ) %>
+    <% } %>
 </div>
 <!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->
 <input type="hidden" id="agentId" value="<%= agentId %>">

@@ -46,7 +46,8 @@ export default {
             "house" : "store/getHouseList.rest"
         } ,
         "esf" : {
-            "detail" : "sellHouse/getSellHouseDetail.rest"
+            "detail" : "sellHouse/getSellHouseDetail.rest" ,
+            "houselist" : "wkzfH5/secondHouseList.rest"
         } ,
         "estate" : {
             "priceChart" : "estate/getEstateHistoricalPriceList.rest"

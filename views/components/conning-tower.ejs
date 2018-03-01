@@ -1,0 +1,65 @@
+<div class="conning-tower">
+    <div class="back"><i class="iconfont icon-back"></i></div>
+    <div class="hamburg-menu"><i class="iconfont icon-hanbao"></i></div>
+    <dl>
+        <dt><span>上海</span><i></i></dt>
+        <dd><i class="iconfont icon-search"></i> <span>请输入<% if( moduleType === "xf" ) { %>楼盘<% } else { %>小区<% } %>名称或地址</span></dd>
+    </dl>
+</div>
+<!--点击汉堡菜单弹出的子菜单-->
+<div class="navigator-mask"></div>
+<div class="navigator-pop">
+    <a href="/">首页</a>
+    <a href="/<%= cityPinyin %>/esf" <% if( moduleType === "esf" ) { %>class="on"<% } %>>二手房</a>
+    <a href="/<%= cityPinyin %>/xflist" <% if( moduleType === "xf" ) { %>class="on"<% } %>>新房</a>
+    <a href="/<%= cityPinyin %>/rent" <% if( moduleType === "rent" ) { %>class="on"<% } %>>租房</a>
+    <a href="/member/personal.html">个人中心</a>
+    <a href="/about.html">关于悟空</a>
+    <a class="app-download" href="javascript:void(0);"><i class="iconfont icon-chouTiDown"></i><span>APP下载</span></a>
+</div>
+<!--点击搜索框区域切换出来的搜索替身-->
+<div class="substitute-mask">
+    <div class="search-substitute">
+        <div class="back"><i class="iconfont icon-back"></i></div>
+        <div class="input-section">
+            <input placeholder="请输入您想搜索的内容">
+            <i class="iconfont icon-close"></i>
+        </div>
+    </div>
+    <hr>
+    <ul class="list">
+        <li class="no-data">
+            <dl>
+                <dt>未找到该地址，请重新搜索</dt>
+                <dd>您可以更换其他关键字再试一次</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>HOA中心</dt>
+                <dd>朝阳 左家庄左家庄西街266号</dd>
+            </dl>
+        </li>
+    </ul>    
+</div>
+<!--城市选择器-->
+<div class="city-selector">
+    <div class="oversea-tabs">
+        <p>请手动选择城市</p>
+        <ul class="tabs-handle">
+            <li>国内</li>
+            <li>国际</li>
+        </ul>
+        <div class="tabs-frame">
+            <span>定位城市</span>
+            <a>上海</a>
+            <span>G</span>
+            <a>广州</a>
+            <span>H</span>
+            <a>杭州</a>
+            <span>N</span>
+            <a>宁波</a>
+            <a>南京</a>
+        </div>
+    </div>
+</div>

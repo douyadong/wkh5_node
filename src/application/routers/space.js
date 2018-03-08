@@ -12,6 +12,12 @@ import express from "express" ;
 import SpaceIndexRenderer from "../controllers/space/index/renderer" ;
 import appraiseRenderer from "../controllers/space/appraise/renderer" ;
 import summaryRenderer from "../controllers/space/summary/renderer" ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+加载API资源
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+import newApiProvider from "../controllers/space/index/newApiProvider" ;
+import rentApiProvider from "../controllers/space/index/rentApiProvider" ;
+import secondApiProvider from "../controllers/space/index/secondApiProvider" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /space/index的路由规则
@@ -30,5 +36,23 @@ router.get("/space/appraise/(:agentId)", function(req, res, next) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/space/summary/(:agentId)", function(req, res, next) {
     new summaryRenderer(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/space/newApiProvider的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/space/newApiProvider", function(req, res, next) {
+    new newApiProvider(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/space/rentApiProvider的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/space/rentApiProvider", function(req, res, next) {
+    new rentApiProvider(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/space/secondApiProvider的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/space/secondApiProvider", function(req, res, next) {
+    new secondApiProvider(req, res, next) ;
 }) ;
 export default router ;

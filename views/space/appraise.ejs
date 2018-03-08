@@ -1,5 +1,42 @@
 <%- include("../components/head") %>
 <div class="total-appraise">
-
+    <div class="appraise-top">
+        <p>综合得分：
+            <% if(item.shi) {  for(var i = 0; i< item.shi; i++){%>
+            <i class="iconfont icon-quanxing"></i>
+            <% }} %>
+            <!-- <i class="iconfont icon-banxing"></i>-->
+            <% if(item.kong) {  for(var i = 0; i< item.kong; i++){%>
+            <i class="iconfont icon-kongxin"></i>
+            <% }} %>
+            <span><%= item.objScore%></span>
+        </p>
+        <ul>
+            <% item.tags && item.tags.forEach(function(item){ %>
+            <li><%= item.label%> [ <%= item.count%> ]</li>
+            <% }) %>
+       <!--     <li>比较专业 [ 23 ]</li>
+            <li>仪表整洁 [ 23 ]</li>
+            <li>诚实可信 [ 23 ]</li>
+            <li>熟悉房源 [ 23 ]</li>
+            <li>勤于联系 [ 23 ]</li>-->
+        </ul>
+    </div>
+    <% item.agentCommentList && item.agentCommentList.forEach(function(item){ %>
+    <hr>
+    <div class="comment-list">
+        <span>
+            <% if(item.shi) {  for(var i = 0; i< item.shi; i++){%>
+            <i class="iconfont icon-quanxing"></i>
+            <% }} %>
+            <!-- <i class="iconfont icon-banxing"></i>-->
+            <% if(item.kong) {  for(var i = 0; i< item.kong; i++){%>
+            <i class="iconfont icon-kongxin"></i>
+            <% }} %>
+        </span>
+        <p class="comment"><%= item.comment%></p>
+        <p class="name-time"><%= item.guestName%>  |  <%= item.createTime%></p>
+    </div>
+    <% }) %>
 </div>
 <%- include("../components/footer") %>

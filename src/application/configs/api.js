@@ -24,7 +24,10 @@ export default {
             "getCityByLatLon" : "citywap/getCityBusinessModel"
         } ,
         "space" : {
-            "index" : "agent/AgentDetail.rest"
+            "index" : "agent/AgentDetail.rest",
+            "secondHouseList":"/agent/moreAgentShopSecondeHouseList.rest",
+            "rentHouseList":"/agent/moreAgentShopRentHouseList.rest",
+            "newHouseList":"/agent/moreAgentShopNewHouseList.rest"
         } ,
         "rent" : {
             "detail" : "rent/queryHouseDetailForWkzf.rest",

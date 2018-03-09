@@ -15,8 +15,8 @@
                         <span class="bd"><%= store.avgPrice %><span>周边</span></span>
                     </div>
                     <div class="right">
-                        <span class="hd">环比上月</span>
-                        <span class="bd"><%= store.increase %><span>环比上月</span></span>
+                        <span class="hd">环比上月<i class="iconfont <% if(store.flag == 1) { %>icon-asc<% } else if (store.flag == -1){%>icon-desc<% } %>"></i></span>
+                        <span class="bd"><%= store.increase %><span>环比上月<i class="iconfont <% if(store.flag == 1) { %>icon-asc<% } else if (store.flag == -1){%>icon-desc<% } %>"></i></span></span>
                     </div>
                 </div>
             </div>

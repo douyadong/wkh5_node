@@ -12,6 +12,7 @@ import express from "express" ;
 import CommonDialApiProvider from "../controllers/common/dialApiProvider" ;
 import CommonBigDataApiProvider from "../controllers/common/bigDataApiProvider" ;
 import CommonGetCityByLatLonApiProvider from "../controllers/common/getCityByLatLonApiProvider" ;
+import CommonBusinessCityApiProvider from "../controllers/common/businessCityApiProvider" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /api/common/dial 的路由规则，通过agentId , houseId , serviceType获得短接号
@@ -31,6 +32,13 @@ router.get("/api/common/bigData", function( req , res , next ) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/common/getCityByLatLon", function( req , res , next ) {
     new CommonGetCityByLatLonApiProvider(req, res, next) ;
+}) ;
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/common/businessCity 的路由规则，通过业务类型查询开通此业务的城市清单
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/common/businessCity", function( req , res , next ) {
+    new CommonBusinessCityApiProvider(req, res, next) ;
 }) ;
 
 export default router ;

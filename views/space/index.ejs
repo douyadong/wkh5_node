@@ -68,8 +68,8 @@
     </ul>
     <% } %>
     <!--tabs-frame部分-->
-    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
-    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
+    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame esf-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
+    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame new-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
     <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame rent-frame"><%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div><% } %>
     <!--tabs-frame内容结束-->
     <% } else {%>

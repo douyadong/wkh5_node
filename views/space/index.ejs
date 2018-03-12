@@ -62,9 +62,9 @@
     <% if((oldHouseList && oldHouseList.length > 0) || (newHouseList && newHouseList.length > 0) || (rentHouseList && rentHouseList.length > 0)) { %>
     <% if(tabsCount > 1) { %>
     <ul class="wk-panel tabs-handle">
-        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">在售二手房</a></li><% } %>
-        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">在售新房</a></li><% } %>
-        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">在租房源</a></li><% } %>
+        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>" data-typehouse="secondHouseList"><a href="javascript:; ">在售二手房</a></li><% } %>
+        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>" data-typehouse="newHouseList"><a href="javascript:; ">在售新房</a></li><% } %>
+        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>" data-typehouse="rentHouseList"><a href="javascript:; ">在租房源</a></li><% } %>
     </ul>
     <% } %>
     <!--tabs-frame部分-->

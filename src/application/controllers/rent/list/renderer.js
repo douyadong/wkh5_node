@@ -220,7 +220,7 @@ class Renderer extends AppRendererControllerBasic {
             let item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
-                    item.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                    item.data[index]['url']="/"+ cityInfo.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
                     item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                 })
             }

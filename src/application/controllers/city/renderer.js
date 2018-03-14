@@ -26,7 +26,7 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
         let modulePathArray = ["city", "list"];
-        let cityListPathArray = ["city" , "cityList"]; // 城市列表接口
+        let cityListPathArray = ["common" , "cityList"]; // 城市列表接口
         try {
             let adf = new ApiDataFilter(this.req.app) ;
             let businessType = this.req.query['businessType'];  // 获取query参数

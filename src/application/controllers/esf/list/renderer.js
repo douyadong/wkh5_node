@@ -45,7 +45,7 @@ class Renderer extends AppRendererControllerBasic {
             通过拼音获取城市相关信息       
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let cityData = await adf.request({
-                "apiPath" : "common.cityPinyin" ,
+                "apiPath" : "common.cityPinYin" ,
                 "data" : { "pinyin" : this.req.params.city }
             }) ;
             Object.assign(this.templateData, {

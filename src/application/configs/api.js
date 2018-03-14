@@ -22,7 +22,7 @@ export default {
             "dial" : "call/getAgentDial.rest" ,
             "bigData" : "buriedPoint/sendData.rest" ,
             "getCityByLatLon" : "citywap/getCityBusinessModel",
-            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest",
+            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest",  //通过城市拼音获取城市信息
             "acWord":"acWord.rest",
             "cityList" : "houseMap/businessCityList.rest"
         } ,

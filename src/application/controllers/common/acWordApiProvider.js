@@ -25,7 +25,7 @@ class RestfulApi extends AppApiControllerBasic {
         try {
             let adf = new ApiDataFilter(this.req.app) ;
             this.jsonObject = await adf.request({
-                "apiPath" : "rent.list.acWord" ,
+                "apiPath" : "common.acWord" ,
                 "data" : this.req.query
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

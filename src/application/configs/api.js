@@ -22,7 +22,9 @@ export default {
             "dial" : "call/getAgentDial.rest" ,
             "bigData" : "buriedPoint/sendData.rest" ,
             "getCityByLatLon" : "citywap/getCityBusinessModel",
-            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest"
+            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest",
+            "acWord":"acWord.rest",
+            "cityList" : "houseMap/businessCityList.rest"
         } ,
         "space" : {
             "index" : "agent/AgentDetail.rest",
@@ -37,7 +39,6 @@ export default {
                 "cityAreas": "houseMap/getDicAndTowns.rest",
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
-                "acWord":"acWord.rest"
             }
         } ,
         "community" : {
@@ -55,8 +56,5 @@ export default {
         "estate" : {
             "priceChart" : "estate/getEstateHistoricalPriceList.rest"
         } ,
-        "city" : {
-            "cityList" : "houseMap/businessCityList.rest"
-        }
     }
 };

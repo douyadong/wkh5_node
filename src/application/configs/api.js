@@ -12,7 +12,7 @@ export default {
     "sessionExpireCode": 1502,   //restfulAPI返回的状态码status多少代表session失效
     "providerMail": "zhaohuagang@lifang.com;42547335@qq.com",  //当接口不通的时候发邮件给TA
     "prefix": {
-        "dev": "http://m.test.wkzf",
+        "dev": "http://10.0.16.78:8107",
         "test": "http://m.test.wkzf",
         "sim": "http://m.sim.wkzf",
         "prod": "https://m.wkzf.com"
@@ -54,6 +54,9 @@ export default {
         } ,
         "city" : {
             "cityList" : "houseMap/businessCityList.rest"
+        },
+        "xf": {
+            "list": "wkzfH5/newHouseList.rest"
         }
     }
 };

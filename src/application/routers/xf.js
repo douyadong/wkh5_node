@@ -11,6 +11,8 @@
 import express from "express" ;
 import XfDetailRenderer from "../controllers/xf/detail/renderer" ;
 import XfListDetailRenderer from "../controllers/xf/list/renderer";
+import XfDynamicRender from "../controllers/xf/dynamic/renderer";
+import XfBaseInfoRender from "../controllers/xf/baseinfo/renderer";
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /shanghai/xf/12345.html的路由规则
@@ -21,8 +23,28 @@ router.get("/:city/xf/(:houseId).html", function(req, res, next) {
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /shanghai/xf/12345.html的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/xflist", function(req, res, next) {   
+router.get("/:city/xflist/:condition*?", function(req, res, next) {   
     new XfListDetailRenderer(req, res, next) ;  
 }) ;
+
+router.get("/:city/xflist/", function(req, res, next) {   
+    new XfListDetailRenderer(req, res, next) ;  
+}) ;
+
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/:city/xf/(:houseId)/dynamic.html", function(req, res, next) {   
+    new XfDynamicRender(req, res, next) ;  
+}) ;
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/:city/xf/(:houseId)/baseinfo.html", function(req, res, next) {   
+    new XfBaseInfoRender(req, res, next) ;  
+}) ;
+
 
 export default router ;

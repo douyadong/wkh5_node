@@ -1,0 +1,62 @@
+<%- include("../components/head")%>
+<header class="header">
+    <i class="iconfont icon-back"></i>        
+    <div class="right">佳兆业君汇上品</div>
+</header>
+<div>
+    <dl>
+        <dt>楼盘地址</dt>
+        <dd><%= item.initName || "--"%></dd>
+    </dl>
+    <dl>
+        <dt>所属区域</dt>
+        <dd><%= item.districtName%> <%= item.townName%></dd>
+    </dl>
+    <dl>
+        <dt>开发商</dt>
+        <dd><%= item.developers%></dd>
+    </dl>
+    <dl>
+        <dt>售楼处地址</dt>
+        <dd><%= item.saleAddress%></dd>
+    </dl>
+    <hr/>
+    <dl>
+        <dt>产权年限</dt>
+        <dd><%= item.propertyRight%></dd>
+    </dl>
+    <dl>
+        <dt>装修标准</dt>
+        <dd><%if(item.buildDecoration == 1){%>毛坯<%}%><%if(item.buildDecoration == 2){%>精装<%}%><%if(item.buildDecoration == 3){%>豪装<%}%></dd>
+    </dl>
+    <dl>
+        <dt>规划户数</dt>
+        <dd><%= item.planRoom%> 户</dd>
+    </dl>
+    <dl>
+        <dt>规划车位</dt>
+        <dd><%= item.parkingSpace%></dd>
+    </dl>
+    <dl>
+        <dt>容积率</dt>
+        <dd><%= item.volumeRate%></dd>
+    </dl>
+    <dl>
+        <dt>绿化率</dt>
+        <dd><%= item.greenRate%></dd>
+    </dl>
+    <hr/>
+    <dl>
+        <dt>物业类型</dt>
+        <dd><%if(item.propertyType == 1){%>住宅<%}%><%if(item.propertyType == 2){%>商用<%}%></dd>
+    </dl>
+    <dl>
+        <dt>物业公司</dt>
+        <dd><%= item.propertyCompany%></dd>
+    </dl>
+    <dl>
+        <dt>物业费</dt>
+        <dd><%= item.propertyCharges%></dd>
+    </dl>
+</div>
+<%- include("../components/footer")%>

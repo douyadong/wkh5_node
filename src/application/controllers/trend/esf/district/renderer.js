@@ -5,6 +5,7 @@
 4. 备注：二手房价格行情区域页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import AppRendererControllerBasic from "../../../renderer";
+import ApiDataFilter from "../../../../../system/libraries/apiDataFilter";
 
 class Renderer extends AppRendererControllerBasic {
     constructor(req,res,next){
@@ -16,7 +17,17 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders(){
         let modulePathArray = [ "trend" , "esf" , "district" ] ;
+        let apiPathArray = [ "trend" , "esf" , "basePriceTrend" ] ;
         try{
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            调用接口获取数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let adf = new ApiDataFilter(this.req.app);
+            let apiData = await adf.request({
+                "apiPath" : apiPathArray.join(".") ,
+                "method":"post",
+                "data" : { "regionId" : 43 ,"regionType":1}
+            }) ;
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

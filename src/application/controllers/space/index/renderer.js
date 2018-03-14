@@ -25,7 +25,10 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
-        let modulePathArray = [ "space" , "index" ] ;
+        let modulePathArray = [ "space" , "index" ] ; // 经纪人详情
+        let newPathArray = [ "space" , "newHouseList" ] ; // 新房列表
+        let secondPathArray = [ "space" , "secondHouseList" ] ; // 二手房列表
+        let rentPathArray = [ "space" , "rentHouseList" ] ; // 租房列表
         try {
             let adf = new ApiDataFilter(this.req.app) ;   
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,27 +44,52 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "agentId" : agentId }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板新房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let newApiData = await adf.request({
+                "apiPath" : newPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板二手房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let secondApiData = await adf.request({
+                "apiPath" : secondPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板租房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let rentApiData = await adf.request({
+                "apiPath" : rentPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对推荐房源数据进行大数据埋点以及跳转地址的处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(apiData.data.oldHouseList) {
-                for(let n = 0 ; n < apiData.data.oldHouseList.length ; n ++) {
-                    apiData.data.oldHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
-                    apiData.data.oldHouseList[n].url = "/" + this.req.params.city + "/esf/" + apiData.data.oldHouseList[n].encryptHouseId + ".html" ;
+            if(secondApiData.data) {
+                for(let n = 0 ; n < secondApiData.data.length ; n ++) {
+                    secondApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    secondApiData.data[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data[n].encryptHouseId + ".html" ;
                 }
             }
-            if(apiData.data.newHouseList) {
-                for(let n = 0 ; n < apiData.data.newHouseList.length ; n ++) {
-                    apiData.data.newHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : apiData.data.newHouseList[n].subEstateId } } ) ;
-                    apiData.data.newHouseList[n].url = "/" + this.req.params.city + "/xfdetail/" + apiData.data.newHouseList[n].encryptSubEstateId + ".html" ;
+            if(newApiData.data) {
+                for(let n = 0 ; n < newApiData.data.length ; n ++) {
+                    newApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : newApiData.data[n].subEstateId } } ) ;
+                    newApiData.data[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data[n].encryptSubEstateId + ".html" ;
                 }
             }
-            if(apiData.data.rentHouseList) {
-                for(let n = 0 ; n < apiData.data.rentHouseList.length ; n ++) {                
-                    apiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/" + apiData.data.rentHouseList[n].encryptHouseId + ".html" ;
+            if(rentApiData.data) {
+                for(let n = 0 ; n < rentApiData.data.length ; n ++) {
+                    rentApiData.data[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data[n].encryptHouseId + ".html" ;
                 }
             }
-            
-            Object.assign(this.templateData , apiData.data ) ;
+            let houseList={
+                newHouseList:newApiData.data,
+                oldHouseList:secondApiData.data,
+                rentHouseList: rentApiData.data
+            };
+            Object.assign(this.templateData , apiData.data, houseList) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             判断是否需要显示tabs
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -90,7 +118,7 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "cityName" : cityName  //download-app里面需要这个变量
+                "cityName" : cityName , //download-app里面需要这个变量,
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板大数据埋点数据

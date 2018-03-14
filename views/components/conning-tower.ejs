@@ -1,8 +1,8 @@
-<div class="conning-tower">
+<div class="conning-tower release">
     <div class="back"><i class="iconfont icon-back"></i></div>
     <div class="hamburg-menu"><i class="iconfont icon-hanbao"></i></div>
     <dl>
-        <dt><span>上海</span><i></i></dt>
+        <dt><span><%= cityName %></span><i></i></dt>
         <dd><i class="iconfont icon-search"></i> <span>请输入<% if( moduleType === "xf" ) { %>楼盘<% } else { %>小区<% } %>名称或地址</span></dd>
     </dl>
 </div>
@@ -22,44 +22,41 @@
     <div class="search-substitute">
         <div class="back"><i class="iconfont icon-back"></i></div>
         <div class="input-section">
-            <input placeholder="请输入您想搜索的内容">
+            <input placeholder="请输入您想搜索的内容" data-last="">
             <i class="iconfont icon-close"></i>
         </div>
     </div>
     <hr>
-    <ul class="list">
-        <li class="no-data">
-            <dl>
-                <dt>未找到该地址，请重新搜索</dt>
-                <dd>您可以更换其他关键字再试一次</dd>
-            </dl>
-        </li>
-        <li>
-            <dl>
-                <dt>HOA中心</dt>
-                <dd>朝阳 左家庄左家庄西街266号</dd>
-            </dl>
-        </li>
-    </ul>    
+    <ul class="list"></ul>    
 </div>
 <!--城市选择器-->
 <div class="city-selector">
-    <div class="oversea-tabs">
+    <div class="caption">
         <p>请手动选择城市</p>
-        <ul class="tabs-handle">
-            <li>国内</li>
-            <li>国际</li>
-        </ul>
-        <div class="tabs-frame">
-            <span>定位城市</span>
-            <a>上海</a>
-            <span>G</span>
-            <a>广州</a>
-            <span>H</span>
-            <a>杭州</a>
-            <span>N</span>
-            <a>宁波</a>
-            <a>南京</a>
-        </div>
+    </div>    
+</div>
+<!--招商页面-->
+<div class="notopen-investment hidden">
+    <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
+    <p>
+        <span class="current-city">石家庄</span>
+        <span>的房源正在逐步上线中</span>
+    </p>
+    <p>
+        <span>先看看其他城市的房源</span>
+        <a class="change">切换城市</a>
+    </p>
+    <a href="#" class="apply">城市加盟申请</a>
+    <div class="contact">
+        <dl>
+            <dt><i class="iconfont icon-logotuxing"></i></dt>
+            <dd>共享今日头条7亿流量</dd>
+            <dd>联系我们：4008215365</dd>
+        </dl>
     </div>
 </div>
+<!--几个隐藏域，fe用来记录最后访问过的城市的cookie就从这里取-->
+<input type="hidden" id="visitedCityId" value="<%= cityId %>">
+<input type="hidden" id="visitedCityName" value="<%= cityName %>">
+<input type="hidden" id="visitedCityPinyin" value="<%= cityPinyin %>">
+<input type="hidden" id="visitedCityChina" value="<%= cityChina %>">

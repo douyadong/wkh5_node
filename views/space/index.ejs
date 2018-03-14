@@ -19,6 +19,19 @@
                     <span class="name"><%= agent.agentName %></span>
                     <span class="company">| <%= agent.agentBelongToCompanyName %></span>
                 </div>
+                <% if(agentCommentCount) { %>
+                <div class="star">
+                    <% if(shi) {  for(var i = 0; i< shi; i++){%>
+                         <i class="iconfont icon-quanxing"></i>
+                    <% }} %>
+                   <!-- <i class="iconfont icon-banxing"></i>-->
+                    <% if(kong) {  for(var i = 0; i< kong; i++){%>
+                         <i class="iconfont icon-kongxin"></i>
+                    <% }} %>
+                    <span><%=objScore %></span>
+                    <a href="">全部评价<i class="iconfont icon-next"></i></a>
+                </div>
+            <% } %>
             </div>
         </div>
         <hr>
@@ -41,35 +54,6 @@
             <p class="name">熟悉商圈    <% if(agent.agentStory || agent.agentIntroduction) { %><a href="/space/summary/<%= agentId %>">查看更多<i class="iconfont icon-next"></i></a><% } %></p>
             <p class="dec"><%= agent.agentBizTown%></p>
         </div>
-
-    <!--    <div class="more">查看更多</div>
-        <div class="optional">
-            <dl class="panel-item">
-                <dt>熟悉商圈：</dt>
-                <dd><%= agent.agentBizTown %></dd>
-            </dl>
-            <% if(agent.agentIntroduction) { %>
-            <dl class="panel-item">
-                <dt>自我介绍：</dt>
-                <dd class="long-text"><%= agent.agentIntroduction %></dd>
-                <dd class="switch"><i class="iconfont icon-down"></i></dd>
-            </dl>
-            <% } %>
-            <% if(agent.agentStory) { %>
-            <dl class="panel-item">
-                <dt>成交故事：</dt>
-                <dd class="long-text"><%= agent.agentStory %></dd>
-                <dd class="switch"><i class="iconfont icon-down"></i></dd>
-                <% if(agent.myBizStoryImgUrls) { %>
-                <dd class="picts">
-                    <% agent.myBizStoryImgUrls.forEach(function(pict){ %>
-                    <img src="<%= pict %>">
-                    <% }) ; %>                    
-                </dd>
-                <% } %>     
-            </dl>
-            <% } %>
-        </div>-->
     </div>
 </div>
 <!--三个tabs部分-->
@@ -78,14 +62,14 @@
     <% if((oldHouseList && oldHouseList.length > 0) || (newHouseList && newHouseList.length > 0) || (rentHouseList && rentHouseList.length > 0)) { %>
     <% if(tabsCount > 1) { %>
     <ul class="wk-panel tabs-handle">
-        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>"><a href="javascript:; ">在售二手房</a></li><% } %>
-        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>"><a href="javascript:; ">在售新房</a></li><% } %>
-        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>"><a href="javascript:; ">在租房源</a></li><% } %>
+        <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>" data-typehouse="secondHouseList"><a href="javascript:; ">在售二手房</a></li><% } %>
+        <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>" data-typehouse="newHouseList"><a href="javascript:; ">在售新房</a></li><% } %>
+        <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>" data-typehouse="rentHouseList"><a href="javascript:; ">在租房源</a></li><% } %>
     </ul>
     <% } %>
     <!--tabs-frame部分-->
-    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
-    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
+    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame esf-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
+    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame new-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
     <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame rent-frame"><%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div><% } %>
     <!--tabs-frame内容结束-->
     <% } else {%>

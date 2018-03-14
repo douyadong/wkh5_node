@@ -21,10 +21,16 @@ export default {
         "common" : {
             "dial" : "call/getAgentDial.rest" ,
             "bigData" : "buriedPoint/sendData.rest" ,
-            "getCityByLatLon" : "citywap/getCityBusinessModel"
+            "getCityByLatLon" : "citywap/getCityBusinessModel",
+            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest",  //通过城市拼音获取城市信息
+            "acWord":"acWord.rest",
+            "cityList" : "houseMap/businessCityList.rest"
         } ,
         "space" : {
-            "index" : "agent/AgentDetail.rest"
+            "index" : "agent/AgentDetail.rest",
+            "secondHouseList":"agent/moreAgentShopSecondeHouseList.rest",
+            "rentHouseList":"agent/moreAgentShopRentHouseList.rest",
+            "newHouseList":"agent/moreAgentShopNewHouseList.rest"
         } ,
         "rent" : {
             "detail" : "rent/queryHouseDetailForWkzf.rest",
@@ -33,8 +39,6 @@ export default {
                 "cityAreas": "houseMap/getDicAndTowns.rest",
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
-                "acWord":"acWord.rest",
-                "cityPinYin":"houseMap/cityInfoByCityPinYin.rest"
             }
         } ,
         "community" : {
@@ -52,11 +56,13 @@ export default {
         "estate" : {
             "priceChart" : "estate/getEstateHistoricalPriceList.rest"
         } ,
-        "city" : {
-            "cityList" : "houseMap/businessCityList.rest"
+        "trend":{
+            "esf":{
+                "basePriceTrend":"esf/basePriceTrend.rest" //二手房价格走势
         },
         "xf": {
             "list": "wkzfH5/newHouseList.rest"
         }
+    }
     }
 };

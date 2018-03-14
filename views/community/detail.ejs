@@ -37,7 +37,7 @@
         <hr/>
         <div id="main"></div>
 
-        <div class="panel-header onsell">在售房源 <span>4套</span></div>
+        <div class="panel-header onsell">在售房源 <span><%= item.sellHouseCount %>套</span></div>
     </div>
     <% if( item.longitude >0 &&  item.latitude > 0 ){ %>
        <%- include("../components/map" , {

@@ -59,7 +59,7 @@ class Renderer extends AppRendererControllerBasic {
             cityName = cityName.substring( 0 , cityName.length - 1) ;
         }
         // 额外的脚本样式
-        let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
+        let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

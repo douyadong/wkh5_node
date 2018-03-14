@@ -6,7 +6,7 @@
         <li id="dic" data-bigdata="<%=item.DataParams.areasD%>"><p>区域</p><span><i></i></span></li>
         <li id="price" data-bigdata="<%=item.DataParams.rentPD%>"><p>租金</p><span><i></i></span></li>
         <li id="type" data-bigdata="<%=item.DataParams.typeD%>"><p>户型</p><span><i></i></span></li>
-        <li id="more" data-bigdata="<%=item.DataParams.moreD%>"><p>更多</p><span><i></i></span></li>
+        <li id="sortTop" data-bigdata="<%=item.DataParams.moreD%>"><p>排序</p><span><i></i></span></li>
     </ul>
     <hr/>
 </div>
@@ -15,7 +15,7 @@
     <!--房源总数-->
     <%if(item.count > 0){%>
     <div class="total-num">
-        <p>共找到<%=item.count%>套房源</p>
+        <p>共找到<span><%=item.count%></span>套房源</p>
     </div>
     <%}%>
     <!--区域查询对应模块-->
@@ -30,7 +30,7 @@
             <div class="dic-content" >
                 <div class="content-left content-hight">
                     <ul id="dicAreas">
-
+                        <li data-location="location">附近/<span class="location-name"></span></li>
                     </ul>
                 </div>
                 <div class="content-right content-hight">
@@ -75,20 +75,64 @@
         </div>
     </div>
     <!--房型查询对应模块-->
-    <div class="house-type" style="display: none">
+    <div class="house-type more" style="display: none">
         <div class="house-list">
+            <p>户型</p>
             <ul>
                 <% item.pageData.layout && item.pageData.layout.forEach(function(item,index){ %>
                 <li data-la="<%='la-'+index%>"><%=item%></li>
                 <% }) ; %>
             </ul>
         </div>
-        <div class="house-conf">
-            <button id="houseCmfir" data-bigdata="<%=item.DataParams.typeCoD%>">确定</button>
+        <hr>
+        <div class="more-spec">
+            <p>特色</p>
+            <ul>
+                <li>近地铁</li>
+                <li>降价</li>
+                <li>新上</li>
+                <li>朝南</li>
+            </ul>
         </div>
+        <div class="rent-way">
+            <p>租赁方式</p>
+            <ul>
+                <li data-rw="er-1">整租</li>
+                <li data-rw="fs-1">合租</li>
+            </ul>
+        </div>
+        <div class="area">
+            <p>面积[㎡]</p>
+            <ul>
+                <li data-ar="ar-0">50以下</li>
+                <li data-ar="ar-1">50-70</li>
+                <li data-ar="ar-2">70-90</li>
+                <li data-ar="ar-3">90-110</li>
+                <li data-ar="ar-4">110-130</li>
+                <li data-ar="ar-5">130-150</li>
+                <li data-ar="ar-6">150以上</li>
+            </ul>
+        </div>
+        <div class="decoration">
+            <p>装修</p>
+            <ul>
+                <li data-dt="dt-1">毛坯</li>
+                <li data-dt="dt-2">简装</li>
+                <li data-dt="dt-3">中装</li>
+                <li data-dt="dt-4">精装</li>
+                <li data-dt="dt-5">豪装</li>
+            </ul>
+        </div>
+        <div class="butt-group">
+            <p id="cancelMore" class="canl" data-bigdata="<%=item.DataParams.moreRD%>" >重置</p>
+            <p id="moreComf" class="conf" data-bigdata="<%=item.DataParams.moreCoD%>">确定</p>
+        </div>
+<!--        <div class="house-conf">
+            <button id="houseCmfir" data-bigdata="<%=item.DataParams.typeCoD%>">确定</button>
+        </div>-->
     </div>
     <!--更多查询对应模块-->
-    <div class="more" style="display: none">
+<!--    <div class="more" style="display: none">
         <div class="more-spec">
             <p>特色</p>
             <ul>
@@ -124,7 +168,7 @@
             <p id="cancelMore" class="canl" data-bigdata="<%=item.DataParams.moreRD%>" >重置</p>
             <p id="moreComf" class="conf" data-bigdata="<%=item.DataParams.moreCoD%>">确定</p>
         </div>
-    </div>
+    </div>-->
     <!--房源排序选项-->
     <div id="sortChose" class="sort-chose" style="display: none">
         <ul>
@@ -143,10 +187,10 @@
     </div>
     <!--排序按钮-->
     <%if(item.count > 0){%>
-    <div class="sort" id="sort" data-bigdata="<%=item.DataParams.sortD%>" style="display: none">
+<!--    <div class="sort" id="sort" data-bigdata="<%=item.DataParams.sortD%>" style="display: none">
         <i class="iconfont icon-paixu"></i>
         <span>排序</span>
-    </div>
+    </div>-->
     <%}%>
     <!--租房具体房源列表-->
     <%if(item.count > 0){%>

@@ -60,10 +60,23 @@
             <hr>
             <div class="one-column-container">
                 <% if( item.houseChildType != 27) { %>
-                <dl>
-                    <dt>小区</dt>
-                    <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams %>" href="<%= item.subEstateUrl %>"><%= item.subEstateName %></a></dd>
-                </dl>
+                   <dl>
+                       <dt>小区</dt>
+                       <dd class="has-arrow"><a data-bigdata="<%= item.bigDataParams.clickSubEstateBigDataParams %>" href="<%= item.subEstateUrl %>"><%= item.subEstateName %></a></dd>
+                   </dl>
+                <% } %>
+                <% if( item.subWayLineModels && item.subWayLineModels.length > 0) { %>
+                <div class="subway">
+                    <span class="name">地铁</span>
+                    <ul>
+                        <%item.subWayLineModels && item.subWayLineModels.forEach(function (itemL,index) {%>
+                              <li>距<%= itemL.lineName%>号线<%=itemL.stationName%>站<%=itemL.distance%>米</li>
+                        <%})%>
+                    </ul>
+                    <%if(item.subWayLineModels.length > 1){%>
+                    <span class="more-line">更多</span>
+                    <% }%>
+                </div>
                 <% } %>
             </div>
         </div>
@@ -106,7 +119,8 @@
                 </a>                
             </div>
         </div>
-    </div>    
+    </div>
+    <% if( item.houseChildType != 27) { %>
     <div class="wk-panel rent-comments has-right-padding">
         <hr>
         <div class="panel-header">
@@ -125,6 +139,7 @@
         <%}%>     
         <hr>   
     </div>
+    <%}%>
     <% if( item.longitude > 0 &&  item.latitude > 0 ){ %>
          <%- include("../components/map" , {
              bigDataParams : item.bigDataParams.clickMapBigDataParams ,

@@ -1,0 +1,43 @@
+<%- include("../../components/head") %>
+<div class="container">
+  <!--  头部header部分-->
+    <div class="header">
+        <div class="left">
+            <span class="city-name">上海</span>
+            <i></i>
+        </div>
+        <div class="middle">
+            <ul>
+                <li>二手房</li>
+                <li>新房</li>
+            </ul>
+        </div>
+        <div class="right">
+            <i class="iconfont icon-search"></i>
+        </div>
+    </div>
+   <!-- 描述-->
+    <div class="description">
+        <h3>价格行情</h3>
+        <div class="description-detail">
+            <div class="unit-price">
+                <span>最新均价</span>
+                <p>462987 元/㎡</p>
+            </div>
+            <div class="up-down">
+                <span>环比上月</span>
+                <p>-0.05%</p>
+            </div>
+            <div class="tot-house">
+                <span>在售房源</span><i class="iconfont icon-next"></i>
+                <p>10900 套</p>
+            </div>
+        </div>
+    </div>
+   <!-- 价格走势-->
+    <div class="echart wk-panel">
+        <div id="main"></div>
+    </div>
+</div>
+
+<%- include("../../components/footer") %>

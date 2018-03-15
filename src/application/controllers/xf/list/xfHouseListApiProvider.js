@@ -29,9 +29,9 @@ class RestfulApi extends AppApiControllerBasic {
                 cityId: 43,
                 pageSize: 10
             };
-
-            if(this.req.params.condition){
-                param = new ParamGenerator().getParamObj(this.req.params.condition, param);
+                        
+            if(this.req.body){
+                param = new ParamGenerator().getParamObj(ParamGenerator.normalize(this.req.body), param);
             }
 
             this.jsonObject = await adf.request({

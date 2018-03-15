@@ -59,10 +59,10 @@ export default {
         "trend":{
             "esf":{
                 "basePriceTrend":"esf/basePriceTrend.rest" //二手房价格走势
+            }
         },
         "xf": {
             "list": "wkzfH5/newHouseList.rest"
         }
-    }
     }
 };

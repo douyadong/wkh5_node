@@ -36,7 +36,7 @@
     </div>    
 </div>
 <!--招商页面-->
-<div class="notopen-investment hidden">
+<div class="notopen-investment <% if(cityOpen) { %>hidden<% } else { %>visible<% } %>">
     <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
     <p>
         <span class="current-city">石家庄</span>

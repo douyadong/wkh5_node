@@ -47,9 +47,10 @@ class Renderer extends AppRendererControllerBasic {
             let cityData = await adf.request({
                 "apiPath" : "common.cityPinYin" ,
                 "data" : { "pinyin" : this.req.params.city }
-            }) ;
+            }) ;           
             Object.assign(this.templateData, {
-                "cityData" : cityData.data
+                "cityData" : cityData.data ,
+                "cityOpen" : cityData.data.oldBusiness
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             分析:condition参数值来拼接查询参数     

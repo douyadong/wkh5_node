@@ -1,17 +1,23 @@
-<% newHouseList && newHouseList.forEach(function(xf){ %>
-    <a href="<%= xf.url %>" class="xf-item" data-bigdata="<%= xf.bigDataParams %>">
-        <dl>
-            <dt><img src="<%= xf.imageUrl %>?x-oss-process=image/resize,w_150" class="img-responsive" alt="<%= xf.estateName %>"></dt>
-            <dd class="title"><%= xf.estateName %></dd>
-            <dd class="summary"> <%= xf.districtName %> <%= xf.townName %> <%= xf.startSpace %>-<%= xf.endSpace %> ㎡ </dd>            
-            <dd class="tags">
-                <% if( xf.isSoonOpen === '1' ) { %><span>即将开盘</span>
-                <% } else { %><span>在售楼盘</span><% } %>
-                <% if( xf.hasActivity === '1' ) { %><span>有优惠</span><% } %>
-                <% if( xf.isSubwayEstate === '1' ) { %><span>地铁</span><% } %>
-                <% if( xf.hasVideo === '1' ) { %><span>有视频</span><% } %>                                 
-            </dd>
-            <dd class="price"><%= xf.avgPriceWou %> 元/㎡</dd>
-        </dl>
-    </a>
-<% }) ; %>
+<%if(items && items.length){%>
+    <%for(var i = 0; i < items.length; i++){%>
+        <% let item = items[i]; %>
+        <a class="xf-item" href="/<%= citynPinyin%>/xf/<%= item.subEstateId%>.html?channel=<%= channel%>">
+            <div class="img">
+                <img src="<%= item.imageUrl%>">
+                <%if(item.activitys && item.activitys[0]){%>
+                    <div class="yh"><%= item.activitys[0].title%></div>
+                <%}%>                
+            </div>
+            <div class="info">
+                <h3><%= item.estateName + " " + item.subEstateName%></h3>
+                <p class="district-town-area">
+                    <span><%= item.districtName + " " + item.townName%></span><span>78m-120m</span>
+                </p>
+                <ul class="tags">
+                    <%if(item.activitys && item.activitys.length){%><li class="yh">有优惠</li><%}%><%if(item.isSubWayEstate){%><li class="dt">近地铁</li><%}%><%if(item.isOnSale){%><li class="">在售楼盘</li><%} else {%><li class="">即将开盘</li><%}%><%if(item.estateVideoResponse){%><li class="">有视频</li><%}%>
+                </ul>
+                <p class="unit-price"><span><%= item.unitPrice%></span> <span>元/m</span></p>
+            </div>
+        </a>
+    <%}%>    
+<%}%>

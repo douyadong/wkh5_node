@@ -44,18 +44,21 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             通过拼音获取城市相关信息       
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let cityData = await adf.request({
-                "apiPath" : "common.cityPinYin" ,
-                "data" : { "pinyin" : this.req.params.city }
-            }) ;           
-            Object.assign(this.templateData, {
-                "cityData" : cityData.data ,
-                "cityOpen" : cityData.data.oldBusiness
-            }) ;
+            let cityData = await adf.request({"apiPath" : "common.cityPinYin" , "data" : { "pinyin" : this.req.params.city } }) ;
+            let cityModel = cityData.data ;
+            cityModel.cityOpen = cityModel.oldBusiness ;
+            Object.assign(this.templateData, { "cityModel" : cityModel }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            分析:condition参数值来拼接查询参数     
+            埋点参数配置 
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-
+            Object.assign(this.templateData, {
+                "bigDataParams" : {
+                    "conningTower" : {
+                        "search" : this.generateBigDataParams( { "eventName" : 1068017 , "eventParam" : {} } ) ,
+                        "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } )
+                    }
+                }
+            }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/        

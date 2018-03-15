@@ -1,4 +1,4 @@
-<div class="conning-tower release">
+<div class="conning-tower <% if(release) { %>release<% } %>">
     <div class="back"><i class="iconfont icon-back"></i></div>
     <div class="hamburg-menu"><i class="iconfont icon-hanbao"></i></div>
     <dl>
@@ -36,10 +36,10 @@
     </div>    
 </div>
 <!--招商页面-->
-<div class="notopen-investment hidden">
+<div class="notopen-investment <% if(cityOpen) { %>hidden<% } else { %>visible<% } %>">
     <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
     <p>
-        <span class="current-city">石家庄</span>
+        <span class="current-city"><%= cityName %></span>
         <span>的房源正在逐步上线中</span>
     </p>
     <p>

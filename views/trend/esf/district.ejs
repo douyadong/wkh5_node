@@ -1,6 +1,6 @@
 <%- include("../../components/head") %>
 <div class="container">
-  <!--  头部header部分-->
+    <!--  头部header部分-->
     <div class="header">
         <div class="left">
             <span class="city-name">上海</span>
@@ -16,40 +16,45 @@
             <i class="iconfont icon-search"></i>
         </div>
     </div>
-   <!-- 描述-->
+    <!-- 描述-->
     <div class="description">
         <h3>价格行情</h3>
         <div class="description-detail">
             <div class="unit-price">
                 <span>最新均价</span>
-                <p>462987 元/㎡</p>
+                <p><%= item.housePrice.avgPrice %> 元/㎡</p>
             </div>
             <div class="up-down">
                 <span>环比上月</span>
-                <p>-0.05%</p>
+                <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
                 <span>在售房源</span><i class="iconfont icon-next"></i>
-                <p>10900 套</p>
+                <p><%= item.housePrice.houseCount %> 套</p>
             </div>
         </div>
     </div>
    <!-- 价格走势-->
-    <div class="echart wk-panel">
+    <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
-<!--    区域模块信息-->
+    <!--区域模块信息-->
     <div class="district-town wk-panel">
         <div class="panel-header">当前各区参考均价<span>查看所有房源<i class="iconfont icon-next"></i></span></div>
-        <div class="wk-body">
+        <div class="wk-body district">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
-                <li class="content"><p>静安区静安区静安区静安区静安区静安区静安区静安区</p>
-                    <p class="unit-price">87900 元/㎡</p>
-                    <p>＋2.81%</p>
+                <%item.districtUponCityPriceList && item.districtUponCityPriceList.forEach(function (itemL,index) {%>
+                <li class="content" style="<%if( index >4 ){%>display:none<% }%>">
+                    <a href="/trend/esf/town/<%= itemL.regionId %>">
+                        <p><%= itemL.name %> </p>
+                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
+                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
+                    </a>
                 </li>
+                <%})%>
             </ul>
-            <button>加载全部</button>
+            <button id="districtMore">加载全部</button>
         </div>
     </div>
     <!--    板块模块信息-->
@@ -58,14 +63,22 @@
         <div class="wk-body">
             <ul>
                 <li class="top-name"> <span>板块</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
-                <li class="content"><p>静安区静安区静安区静安区静安区静安区静安区静安区</p>
-                    <p class="unit-price">87900 元/㎡</p>
-                    <p>＋2.81%</p>
+                <%item.townUponCityPriceList && item.townUponCityPriceList.forEach(function (itemL,index) {%>
+                <%if( index <10 ){%>
+                    <li class="content">
+                    <a href="">
+                        <p><%= itemL.name %> </p>
+                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
+                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
+                    </a>
                 </li>
+                <% }%>
+                <%})%>
             </ul>
-            <button>加载全部</button>
+            <button id="townMore">查看全部</button>
         </div>
     </div>
 </div>
+<%- include("../../components/trend-search") %>
 
 <%- include("../../components/footer") %>

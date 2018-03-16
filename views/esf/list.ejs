@@ -2,10 +2,9 @@
 <!--导入司令塔-->
 <%- include("../components/conning-tower" , { 
     "moduleType" : "esf" , 
-    "cityId" : cityData.cityId ,
-    "cityName" : cityData.cityName ,
-    "cityPinyin" : cityData.cityPinyin ,
-    "cityChina" : cityData.china
+    "release" : false ,  //是否投放页面，比如今日头条投放，齐家投放，投放页面是没有汉堡菜单和返回按钮的
+    "cityModel" : cityModel ,    
+    "bigDataParams" : bigDataParams.conningTower
  } ) %>
  <!--导入二手房条目-->
  

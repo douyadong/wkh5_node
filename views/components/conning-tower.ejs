@@ -1,18 +1,19 @@
-<div class="conning-tower release">
+<div class="conning-tower <% if(release) { %>release<% } %>">
     <div class="back"><i class="iconfont icon-back"></i></div>
-    <div class="hamburg-menu"><i class="iconfont icon-hanbao"></i></div>
+    <div class="hamburg-menu" <% if(bigDataParams.hamburg) { %>data-bigdata="<%= bigDataParams.hamburg %>"<% } %>><i class="iconfont icon-hanbao"></i></div>
     <dl>
-        <dt><span><%= cityName %></span><i></i></dt>
-        <dd><i class="iconfont icon-search"></i> <span>请输入<% if( moduleType === "xf" ) { %>楼盘<% } else { %>小区<% } %>名称或地址</span></dd>
-    </dl>
+        <dt><span><%= cityModel.cityName %></span><i></i></dt>
+        <dd <% if(bigDataParams.search) { %>data-bigdata="<%= bigDataParams.search %>" <% } %>><i class="iconfont icon-search"></i> <span>请输入<% if( moduleType === "xf" ) { %>楼盘<% } else { %>小区<% } %>名称或地址</span></dd>
+    </dl>    
 </div>
+<hr>
 <!--点击汉堡菜单弹出的子菜单-->
 <div class="navigator-mask"></div>
 <div class="navigator-pop">
     <a href="/">首页</a>
-    <a href="/<%= cityPinyin %>/esf" <% if( moduleType === "esf" ) { %>class="on"<% } %>>二手房</a>
-    <a href="/<%= cityPinyin %>/xflist" <% if( moduleType === "xf" ) { %>class="on"<% } %>>新房</a>
-    <a href="/<%= cityPinyin %>/rent" <% if( moduleType === "rent" ) { %>class="on"<% } %>>租房</a>
+    <a href="/<%= cityModel.cityPinyin %>/esf" <% if( moduleType === "esf" ) { %>class="on"<% } %>>二手房</a>
+    <a href="/<%= cityModel.cityPinyin %>/xflist" <% if( moduleType === "xf" ) { %>class="on"<% } %>>新房</a>
+    <a href="/<%= cityModel.cityPinyin %>/rent" <% if( moduleType === "rent" ) { %>class="on"<% } %>>租房</a>
     <a href="/member/personal.html">个人中心</a>
     <a href="/about.html">关于悟空</a>
     <a class="app-download" href="javascript:void(0);"><i class="iconfont icon-chouTiDown"></i><span>APP下载</span></a>
@@ -36,10 +37,10 @@
     </div>    
 </div>
 <!--招商页面-->
-<div class="notopen-investment hidden">
+<div class="notopen-investment <% if(cityModel.cityOpen) { %>hidden<% } else { %>visible<% } %>">
     <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
     <p>
-        <span class="current-city">石家庄</span>
+        <span class="current-city"><%= cityModel.cityName %></span>
         <span>的房源正在逐步上线中</span>
     </p>
     <p>
@@ -56,7 +57,7 @@
     </div>
 </div>
 <!--几个隐藏域，fe用来记录最后访问过的城市的cookie就从这里取-->
-<input type="hidden" id="visitedCityId" value="<%= cityId %>">
-<input type="hidden" id="visitedCityName" value="<%= cityName %>">
-<input type="hidden" id="visitedCityPinyin" value="<%= cityPinyin %>">
-<input type="hidden" id="visitedCityChina" value="<%= cityChina %>">
+<input type="hidden" id="visitedCityId" value="<%= cityModel.cityId %>">
+<input type="hidden" id="visitedCityName" value="<%= cityModel.cityName %>">
+<input type="hidden" id="visitedCityPinyin" value="<%= cityModel.cityPinyin %>">
+<input type="hidden" id="visitedCityChina" value="<%= cityModel.cityChina %>">

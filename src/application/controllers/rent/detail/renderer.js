@@ -26,13 +26,14 @@ class Renderer extends AppRendererControllerBasic {
         try {
             let houseId = this.req.params.houseId || "b5c3cf77006f3297" ;   //加密的houseId，b5c3cf77006f3297调试用
             let  channel =this.req.query['channel'] || "";
+            let  agentId=this.req.query['agentId'] || "";
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/  
             let adf = new ApiDataFilter(this.req.app) ; 
             let apiData = await adf.request({
                 "apiPath" : modulePathArray.join(".") ,
-                "data" : { "houseId" : houseId }
+                "data" : { "houseId" : houseId ,"agentId":agentId}
             }) ;        
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             处理返回数据供模板使用

@@ -18,7 +18,7 @@
     </div>
     <!-- 描述-->
     <div class="description">
-        <h3>价格行情</h3>
+        <h3><%= item.housePrice.name %></h3>
         <div class="description-detail">
             <div class="unit-price">
                 <span>最新均价</span>
@@ -34,18 +34,18 @@
             </div>
         </div>
     </div>
-   <!-- 价格走势-->
+    <!-- 价格走势-->
     <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
-    <!--区域模块信息-->
+    <!--板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各区参考均价<span>查看所有房源<i class="iconfont icon-next"></i></span></div>
-        <div class="wk-body district">
+        <div class="panel-header">当前各板块参考价格<span>查看所有房源<i class="iconfont icon-next"></i></span></div>
+        <div class="wk-body flag">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
-                <%item.districtUponCityPriceList && item.districtUponCityPriceList.forEach(function (itemL,index) {%>
-                <li class="content" style="<%if( index >4 ){%>display:none<% }%>">
+                <%item.townUponDistrictPriceList && item.townUponDistrictPriceList.forEach(function (itemL,index) {%>
+                <li class="content" style="<%if( index >9 ){%>display:none<% }%>">
                     <a href="/trend/esf/town/<%= itemL.regionId %>">
                         <p><%= itemL.name %> </p>
                         <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
@@ -55,27 +55,6 @@
                 <%})%>
             </ul>
             <button id="districtMore">加载全部</button>
-        </div>
-    </div>
-    <!--    板块模块信息-->
-    <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考均价<span>查看所有房源<i class="iconfont icon-next"></i></span></div>
-        <div class="wk-body">
-            <ul>
-                <li class="top-name"> <span>板块</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
-                <%item.townUponCityPriceList && item.townUponCityPriceList.forEach(function (itemL,index) {%>
-                <%if( index <10 ){%>
-                    <li class="content">
-                    <a href="">
-                        <p><%= itemL.name %> </p>
-                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
-                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
-                    </a>
-                </li>
-                <% }%>
-                <%})%>
-            </ul>
-            <button id="townMore">查看全部</button>
         </div>
     </div>
 </div>

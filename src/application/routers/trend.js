@@ -9,26 +9,33 @@
 加载相关资源
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 import express from "express" ;
+import esfCityRenderer from "../controllers/trend/esf/city/renderer" ;
 import esfDistrictRenderer from "../controllers/trend/esf/district/renderer" ;
 import esfTownRenderer from "../controllers/trend/esf/town/renderer" ;
 import esfCommunityRenderer from "../controllers/trend/esf/community/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/district/:id的路由规则
+/trend/esf/city/(:regionId)的路由规则  城市ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/district/(:id)", function(req, res, next) {
+router.get("/trend/esf/city/(:regionId)", function(req, res, next) {
+    new esfCityRenderer(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/trend/esf/city/(:regionId)的路由规则 区域ID
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/trend/esf/district/(:regionId)", function(req, res, next) {
     new esfDistrictRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/town/:id的路由规则
+/trend/esf/district/(:regionId)的路由规则 板块ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/town/(:id)", function(req, res, next) {
+router.get("/trend/esf/town/(:regionId)", function(req, res, next) {
     new esfTownRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/community/:id的路由规则
+/trend/esf/community/(:regionId)的路由规则 小区ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/community/(:id)", function(req, res, next) {
+router.get("/trend/esf/community/(:regionId)", function(req, res, next) {
     new esfCommunityRenderer(req, res, next) ;
 }) ;
 export default router ;

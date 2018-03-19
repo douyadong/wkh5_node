@@ -58,12 +58,11 @@ export default {
         } ,
         "trend":{
             "esf":{
-                "basePriceTrend":"esf/basePriceTrend.rest" , //二手房价格走势
-                "estatePriceTrend":"esf/estatePriceTrend.rest" // 小区房价走势
+                "basePriceTrend":"esf/basePriceTrend.rest" //二手房价格走势
+            }
         },
         "xf": {
             "list": "wkzfH5/newHouseList.rest"
         }
-    }
     }
 };

@@ -13,6 +13,7 @@ import XfDetailRenderer from "../controllers/xf/detail/renderer" ;
 import XfListDetailRenderer from "../controllers/xf/list/renderer";
 import XfDynamicRender from "../controllers/xf/dynamic/renderer";
 import XfBaseInfoRender from "../controllers/xf/baseinfo/renderer";
+import XfListApiProvider from "../controllers/xf/list/xfHouseListApiProvider";
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /shanghai/xf/12345.html的路由规则
@@ -46,5 +47,12 @@ router.get("/:city/xf/(:houseId)/baseinfo.html", function(req, res, next) {
     new XfBaseInfoRender(req, res, next) ;  
 }) ;
 
+
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.post("/api/xf/list", function(req, res, next) {   
+    new XfListApiProvider(req, res, next) ;  
+}) ;
 
 export default router ;

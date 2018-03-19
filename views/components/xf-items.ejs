@@ -1,7 +1,7 @@
 <%if(items && items.length){%>
     <%for(var i = 0; i < items.length; i++){%>
         <% let item = items[i]; %>
-        <a class="xf-item" href="/<%= citynPinyin%>/xf/<%= item.subEstateId%>.html?channel=<%= channel%>">
+        <a class="xf-item" href="/<%= 'shanghai' %>/xf/<%= item.subEstateId%>.html">
             <div class="img">
                 <img src="<%= item.imageUrl%>">
                 <%if(item.activitys && item.activitys[0]){%>
@@ -9,7 +9,7 @@
                 <%}%>                
             </div>
             <div class="info">
-                <h3><%= item.estateName + " " + item.subEstateName%></h3>
+                <h3><%= item.estateName%></h3>
                 <p class="district-town-area">
                     <span><%= item.districtName + " " + item.townName%></span><span>78m-120m</span>
                 </p>

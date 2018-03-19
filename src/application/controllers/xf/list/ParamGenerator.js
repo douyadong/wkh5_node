@@ -199,6 +199,7 @@ ParamGenerator.DEFAULT = {
     "lon": ParamGenerator.createMappingFunc(1, "localLon"),// 经度
     "lat": ParamGenerator.createMappingFunc(1, "localLat"),// 纬度
     "ar": ParamGenerator.createMappingFunc(1, "multipleSpace"),// 面积，二手房用
+    
 };
 
 // 数组字段会有[]，移除它

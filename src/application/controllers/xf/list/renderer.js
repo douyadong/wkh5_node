@@ -40,12 +40,9 @@ class Renderer extends AppRendererControllerBasic {
             let data = null;
 
             // 如果有查询条件，按照查询条件加载数据，否则不加载数据
-            if(this.req.params.condition){
-                console.log("condition:", this.req.params.condition);
-                let conditionObj = urlParser.parseCondition({condition: this.req.params.condition});
-                console.log("conditionObj:", conditionObj);
-                param = this.generateParams(conditionObj, param);
-                console.log("params:", param);
+            if(this.req.params.condition){                
+                let conditionObj = urlParser.parseCondition({condition: this.req.params.condition});             
+                param = this.generateParams(conditionObj, param);                
                 data = await adf.request({
                     "apiPath" : modulePathArray.join("."),
                     "data" : param,
@@ -69,7 +66,12 @@ class Renderer extends AppRendererControllerBasic {
     // 根据查询条件生成后端接口需要的查询参数
     generateParams(conditionObj, initObj) {
 
-        return new ParamGenerator().getParamObj(conditionObj, initObj);
+        return new ParamGenerator({
+            of: function(ret, data){
+                ret.offset = 0;
+                ret.pageSize = data;
+            }
+        }).getParamObj(conditionObj, initObj);
     }
 }
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 // 查询条件生成器
 class ParamGenerator {
     constructor(funcs) {
-        this.funcs = funcs || ParamGenerator.DEFAULT;
+        this.funcs = Object.assign({}, ParamGenerator.DEFAULT, funcs);
     }
 
     getParamObj(conditionObj, initObj) {
@@ -20,22 +20,27 @@ class ParamGenerator {
     }
 }
 
+ParamGenerator.createMappingFunc = function(type, fieldName){
+    if(type == 1){// 单数
+        return function(ret, data){
+            ret[fieldName] = data;
+        };
+    }else{//数组
+        return function(ret, data){
+            if (data.constructor == Array) {
+                ret[fieldName] = data;
+            } else {
+                ret[fieldName] = [data];                     
+            }
+        };
+    }    
+};
+
 ParamGenerator.DEFAULT = {
-    "di": function(ret, data){// 区域id
-        ret.districtId = data;
-    },
-
-    "to": function(ret, data){// 板块id
-        ret.townId = data;
-    },
-
-    "li": function(ret, data){// 地铁id
-        ret.subwayLineId = data;
-    },
-
-    "st": function(ret, data){// 地铁站id
-        ret.subwayStationId = data;
-    },
+    "di": ParamGenerator.createMappingFunc(1, "districtId"),// 区域id
+    "to": ParamGenerator.createMappingFunc(1, "townId"),// 板块id
+    "li": ParamGenerator.createMappingFunc(1, "subwayLineId"),// 地铁id
+    "st": ParamGenerator.createMappingFunc(1, "subwayStationId"),// 地铁站id
 
     "cp": function(ret, data){// 价格 xxtoxx, 自定义
         let cpArray = data.split("to");
@@ -81,7 +86,7 @@ ParamGenerator.DEFAULT = {
             },
             "9": {
                 min: 2000,
-                max: 0
+                max: 100000000
             },
 
             // 二手房
@@ -119,7 +124,7 @@ ParamGenerator.DEFAULT = {
             },
             "19": {
                 min: 2000,
-                max: 0
+                max: 100000000
             },
 
             // 租房
@@ -129,17 +134,10 @@ ParamGenerator.DEFAULT = {
 
         if(tmp){
             ret.minPrice = tmp.min;
-            ret.maxPrice = tmp.max;
+            ret.maxPrice = tmp.max ;
         }
     },
-
-    "la": function(ret, data){ // 房型 1-一室 2-二室 3-三室 4-四室 5-五室及以上
-        if (  data.constructor == Array) {
-            ret.bedroomType = data;
-        } else {
-            ret.bedroomType = [data];                     
-        }
-    },
+    "la": ParamGenerator.createMappingFunc(2, "bedroomType"),// 房型 1-一室 2-二室 3-三室 4-四室 5-五室及以上
 
     "ta": function(ret, data){// 标签
         var tagFuncs = {
@@ -168,7 +166,7 @@ ParamGenerator.DEFAULT = {
                 data.fullFive = 1;
             },
             "m2": function(data){// 满2，二手房
-                data.fullTwo;
+                data.fullTwo = 1;
             },
             "s": function(data){// 近学校，二手房
                 data.schoolHouse = 1;
@@ -178,110 +176,29 @@ ParamGenerator.DEFAULT = {
             }
         }
 
+        if(data.constructor != Array){
+            data = [data];
+        }
         data.forEach(function(tag){
             let tagFunc = tagFuncs[tag];
             tagFunc(ret);                    
         });
     },
-
-    "ty": function(ret, data){// 物业类型
-        if (data.constructor == Array){
-            ret.propertyType = data;
-        }else {
-            ret.propertyType = [data];
-        }
-    },
-
-    "ht": function(ret, data){// 房屋类型
-        if(data.constructor == Array){
-            ret.houseType = data;
-        }else{
-            ret.houseType = [data];
-        }
-    },
-
-    "dt": function(ret, data){// 装修类型 新房 1：毛坯，2：精装，3：豪装 二手房 1: 毛坯 2:简装 3:中装 4: 精装 5: 豪装
-        if (data.constructor == Array){
-            ret.decorationType = data;
-        }else {
-            ret.decorationType = [data];
-        }
-    },
-
-    "so": function(ret, data){// 排序 1：均价从低到高，2：均价从高到低，3：面积从小到大，4：面积从大到小
-        ret.orderBy = data;
-    },
+    "ty": ParamGenerator.createMappingFunc(2, "propertyType"),// 物业类型
+    "ht": ParamGenerator.createMappingFunc(2, "houseType"),// 房屋类型
+    "dt": ParamGenerator.createMappingFunc(2, "decorationType"),// 装修类型 新房 1：毛坯，2：精装，3：豪装 二手房 1: 毛坯 2:简装 3:中装 4: 精装 5: 豪装
+    "so": ParamGenerator.createMappingFunc(1, "orderBy"),// 排序 1：均价从低到高，2：均价从高到低，3：面积从小到大，4：面积从大到小
 
     "pa": function(ret, data){
-        ret.offset = (+data - 1) * 10; // 页大小定位10，pa从1开始
+        // 此处供列表页使用，代表依次性加载多少页的数据
+        ret.offset = 0;
+        ret.pageSize = data * 10;
     },
-  
-    "ag": function(ret, data) {// 房龄
-        if(data.constructor == Array){
-            ret.houseAgeType = data;
-        } else {
-            ret.houseAgeType = [data];
-        }
-    },
-
-    "m": function(ret, data){// 附近米数
-        ret.endMetres = data;
-    },
-
-    "lon": function(ret, data) {// 经度
-        ret.localLon = data;
-    },
-
-    "lat": function(ret, data){// 纬度
-        ret.localLat = data;
-    },
-
-    "ar": function(ret, data){// 面积，二手房
-        var arr = {
-            "1": {
-                min: 0,
-                max: 50
-            },
-            "2": {
-                min: 50,
-                max: 70
-            },
-            "3": {
-                min: 70,
-                max: 90
-            },
-            "4": {
-                min: 90,
-                max: 110
-            },
-            "5": {
-                min: 110,
-                max: 130
-            },
-            "6": {
-                min: 130,
-                max: 150
-            },
-            "7": {
-                min: 150,
-                max: 200
-            },
-            "8": {
-                min: 200,
-                max: 300
-            },
-            "9": {
-                min: 300,
-                max: 0
-            }
-        }
-
-        var tmp = arr[data];
-        if(tmp){
-            ret.minSpace = tmp.min;
-            ret.maxSpace = tmp.max;
-        }
-    }
+    "ag": ParamGenerator.createMappingFunc(2, "houseAgeType"),// 房龄
+    "m": ParamGenerator.createMappingFunc(1, "endMetres"),// 附近米数
+    "lon": ParamGenerator.createMappingFunc(1, "localLon"),// 经度
+    "lat": ParamGenerator.createMappingFunc(1, "localLat"),// 纬度
+    "ar": ParamGenerator.createMappingFunc(1, "multipleSpace"),// 面积，二手房用
 };
 
 // 数组字段会有[]，移除它
@@ -291,12 +208,17 @@ ParamGenerator.normalize = function(obj){
     for(var i = 0; i < keys.length; i++){
         let key = keys[i];
         if(key.endsWith('[]')){
-            ret[key.replace('[]','')] = ret[key];
+            if(ret[key].constructor != Array){
+                ret[key.replace('[]','')] = [ret[key]];
+            }else{
+                ret[key.replace('[]','')] = ret[key];
+            }            
             delete ret[key];
         }
     }
 
     return ret;
 };
+
 
 export default ParamGenerator;

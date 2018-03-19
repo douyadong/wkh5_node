@@ -34,7 +34,7 @@ router.get("/:city/esf/:condition", function(req, res, next) {
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /api/esf/houselist的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/api/esf/houselist", function(req, res, next) {   
+router.post("/api/esf/houselist", function(req, res, next) {   
     new EsfHouselistApiProvider(req, res, next) ;  
 }) ;
 

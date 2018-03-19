@@ -1,6 +1,6 @@
 /*++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. 项目名称：ares
-2. 文件名：src -> application -> controllers -> trend -> esf -> district -> renderer.js
+2. 文件名：src -> application -> controllers -> trend -> esf -> town -> renderer.js
 3. 作者：liyang@lifang.com
 4. 备注：二手房价格行情区域页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -23,11 +23,12 @@ class Renderer extends AppRendererControllerBasic {
             调用接口获取数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app);
+            let regionId = this.req.params.regionId || 46; // 区域Id
             let apiData = await adf.request({
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
                 "contentType":"application/json",
-                "data" : { "regionId" : 43 ,"regionType":1}
+                "data" : { "regionId" : regionId,"regionType": 2 }
             }) ;
             let item = apiData.data;
             // 额外的脚本样式

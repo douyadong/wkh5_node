@@ -15,13 +15,13 @@ let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /rent/detail的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/community/(:subEstateId).html", function(req, res, next) {   
+router.get("/:city/town/(:subEstateId).html", function(req, res, next) {   
     new CommunityDetailRenderer(req, res, next) ;  
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/api/community/detail/chart 的路由规则
+/api/town/detail/chart 的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/api/community/detail/chart", function(req, res, next) {   
+router.get("/api/town/detail/chart", function(req, res, next) {   
     new CommunityDetailChartApiProvider(req, res, next) ;  
 }) ;
 

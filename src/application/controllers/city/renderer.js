@@ -49,6 +49,7 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
+            let itemApiData = apiData.data;
             /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据来源是否有相应的模块业务，判断国际是否显示
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -65,7 +66,7 @@ class Renderer extends AppRendererControllerBasic {
             }else if(businessType == "esfPrice") {
                 businessId = 1
             }
-            apiData.overseaCityList.forEach((item)=>{
+            itemApiData.overseaCityList.forEach((item)=>{
                 if (item.businessList){
                     item.businessList.forEach((itemB)=>{
                         if (businessId == itemB.businessId){
@@ -76,8 +77,8 @@ class Renderer extends AppRendererControllerBasic {
             });
 
             let itemData = {
-                domesticCityList: this.reSortData(apiData.domesticCityList,businessId),
-                overseaCityList: this.reSortData(apiData.overseaCityList,businessId)
+                domesticCityList: this.reSortData(itemApiData.domesticCityList,businessId),
+                overseaCityList: this.reSortData(itemApiData.overseaCityList,businessId)
             };
             let item = itemData;
             item['overseaBusinessFlag'] = overseaBusinessFlag;

@@ -43,14 +43,17 @@ class Renderer extends AppRendererControllerBasic {
             if(this.req.params.condition){                
                 let conditionObj = urlParser.parseCondition({condition: this.req.params.condition});             
                 param = this.generateParams(conditionObj, param);                
-                data = await adf.request({
-                    "apiPath" : modulePathArray.join("."),
-                    "data" : param,
-                    "method":"post",
-                    "contentType":"application/json"
-                }) ;
+                
+            }else{
+                
             }            
 
+            data = await adf.request({
+                "apiPath" : modulePathArray.join("."),
+                "data" : param,
+                "method":"post",
+                "contentType":"application/json"
+            }) ;
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),

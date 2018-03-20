@@ -61,9 +61,9 @@ class Renderer extends AppRendererControllerBasic {
                 businessId = 3
             } else if (businessType == "rent") {
                 businessId = 2
-            } else if(businessType == "xfPrice") {
+            } else if(businessType == "xfPrice" || businessType == "newTrend") {
                 businessId = 3
-            }else if(businessType == "esfPrice") {
+            }else if(businessType == "esfPrice" || businessType == "esfTrend") {
                 businessId = 1
             }
             itemApiData.overseaCityList.forEach((item)=>{
@@ -85,6 +85,8 @@ class Renderer extends AppRendererControllerBasic {
             item['location_cityName'] = location_cityName;
             item['location_cityPinyin'] = location_cityPinyin;
             item['location_cityId']= location_cityId;
+            // 额外的脚本样式
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/url/url.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -94,6 +96,7 @@ class Renderer extends AppRendererControllerBasic {
                 "description": "悟空找房网为您提供了全国100多个城市的房产信息，整合了全国多个城市的二手房，新房，租房，商铺，写字楼，公寓，地铁房等最新房产消息，找房，查询全国各城市房价，买卖二手房就上悟空找房网，百分百真实房源。",
                 "matchStylesheetPath": modulePathArray.join("/"),
                 "controllerJavascriptPath": modulePathArray.join("/"),
+                "extraJavascripts" : extraJavascript ,
                 "item" : item ,
             });
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -41,6 +41,13 @@ ParamGenerator.DEFAULT = {
     "to": ParamGenerator.createMappingFunc(1, "townId"),// 板块id
     "li": ParamGenerator.createMappingFunc(1, "subwayLineId"),// 地铁id
     "st": ParamGenerator.createMappingFunc(1, "subwayStationId"),// 地铁站id
+    "id": ParamGenerator.createMappingFunc(1, "subEstateId"),// subestate
+
+    "sdi": ParamGenerator.createMappingFunc(1, "districtId"),// 区域id
+    "sto": ParamGenerator.createMappingFunc(1, "townId"),// 板块id
+    "sli": ParamGenerator.createMappingFunc(1, "subwayLineId"),// 地铁id
+    "sst": ParamGenerator.createMappingFunc(1, "subwayStationId"),// 地铁站id
+    "sid": ParamGenerator.createMappingFunc(1, "subEstateId"),// subestate    
 
     "cp": function(ret, data){// 价格 xxtoxx, 自定义
         let cpArray = data.split("to");
@@ -199,6 +206,7 @@ ParamGenerator.DEFAULT = {
     "lon": ParamGenerator.createMappingFunc(1, "localLon"),// 经度
     "lat": ParamGenerator.createMappingFunc(1, "localLat"),// 纬度
     "ar": ParamGenerator.createMappingFunc(1, "multipleSpace"),// 面积，二手房用
+    
     
 };
 

@@ -55,7 +55,8 @@ class Renderer extends AppRendererControllerBasic {
                 "bigDataParams" : {
                     "conningTower" : {
                         "search" : this.generateBigDataParams( { "eventName" : 1068017 , "eventParam" : {} } ) ,
-                        "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } )
+                        "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } ) ,
+                        "clearSearchHistory" : this.generateBigDataParams( { "eventName" : 1068015 } )
                     }
                 }
             }) ;

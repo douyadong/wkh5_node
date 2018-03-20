@@ -70,7 +70,7 @@ class Renderer extends AppRendererControllerBasic {
             if(secondApiData.data) {
                 for(let n = 0 ; n < secondApiData.data.length ; n ++) {
                     secondApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
-                    secondApiData.data[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data[n].encryptHouseId + ".html" ;
+                    secondApiData.data[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data[n].encryptHouseId + ".html?agentId="+agentId ;
                 }
             }
             if(newApiData.data) {
@@ -81,7 +81,7 @@ class Renderer extends AppRendererControllerBasic {
             }
             if(rentApiData.data) {
                 for(let n = 0 ; n < rentApiData.data.length ; n ++) {
-                    rentApiData.data[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data[n].encryptHouseId + ".html" ;
+                    rentApiData.data[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data[n].encryptHouseId + ".html?agentId="+agentId;
                 }
             }
             let houseList={

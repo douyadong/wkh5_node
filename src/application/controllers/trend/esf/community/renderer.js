@@ -1,6 +1,6 @@
 /*++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. 项目名称：ares
-2. 文件名：src -> application -> controllers -> trend -> esf -> town -> renderer.js
+2. 文件名：src -> application -> controllers -> trend -> esf -> community -> renderer.js
 3. 作者：liyang@lifang.com
 4. 备注：二手房价格行情区域页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -16,19 +16,19 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders(){
-        let modulePathArray = [ "trend" , "esf" , "district" ] ;
-        let apiPathArray = [ "trend" , "esf" , "basePriceTrend" ] ;
+        let modulePathArray = [ "trend" , "esf" , "community" ] ;
+        let apiPathArray = [ "trend" , "esf" , "estatePriceTrend" ] ;
         try{
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app);
-            let regionId = this.req.params.regionId || 46; // 区域Id
+            let regionId  = this.req.params.regionId || 17832; //板块Id
             let apiData = await adf.request({
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
                 "contentType":"application/json",
-                "data" : { "regionId" : regionId,"regionType": 2 }
+                "data" : { "regionId" : regionId}
             }) ;
             let item = apiData.data;
             // 额外的脚本样式

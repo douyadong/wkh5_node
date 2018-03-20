@@ -34,12 +34,13 @@ class Renderer extends AppRendererControllerBasic {
              let houseId = this.req.params.houseId || "" ;
              let city = this.req.params.city || "" ;
              let channel =  this.req.query['channel'] || "";
+             let  agentId =this.req.query['agentId'] || "";
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
                let apiData = await adf.request({
                    "apiPath" : modulePathArray.join("."),
-                   "data" : { "houseId" : houseId }
+                   "data" : { "houseId" : houseId ,"agentId":agentId}
                }) ;
              let item = apiData.data;
              let  agentid =  "0";

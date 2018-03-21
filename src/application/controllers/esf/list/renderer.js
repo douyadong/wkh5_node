@@ -96,6 +96,15 @@ class Renderer extends AppRendererControllerBasic {
                 "contentType":"application/json"
             }) ;
 
+            // 处理data给每个条目添加url和bigDataParams
+            let channel = this.req.query.channel;
+            if(data && data.data && data.data.houseList){
+                data.data.houseList.forEach(function(item){
+                    item.url = "/"+cityModel.cityPinyin+"/esf/"+item.encryptHouseId+".html"+(channel&&"?channel="+channel||"");
+                    item.bigDataParams = encodeURIComponent('{"eventName": "1068028", "eventParam": {"house_id": "'+item.houseId+'"}}');
+                });
+            }
+
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),

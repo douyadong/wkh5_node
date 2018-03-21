@@ -82,10 +82,21 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
+
+            // 遍历添加bigDataParams
+            let channel = this.req.query.channel;
+            if(data && data.data && data.data.newHouseDataListModelList){
+                data.data.newHouseDataListModelList.forEach(function(item){
+                    item.url = "/" + cityModel.cityPinyin + "/xf/" + item.subEstateId + ".html" + (channel&&"?channel=" + channel||"");
+                    item.bigDataParams = encodeURIComponent('{"eventName": "1050025", "eventParam": { "new_house_id": "'+item.subEstateId+'" } }');
+                });
+            }
+
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),
-                "data": data
+                "data": data,
+                "channel": channel
             }) ;      
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

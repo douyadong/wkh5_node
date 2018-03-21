@@ -2,7 +2,7 @@
 <%- include("../components/conning-tower", {release: true, cityModel: cityModel, bigDataParams: bigDataParams.conningTower, "moduleType" : "xf" , })%>
 <%- include("../components/filter") %>
 <div class="container">
-
+<input type="hidden" id="channel" value="<%= channel%>">
 <div class="total">
     <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: ""%></span> <span>套房源</span>
 </div>

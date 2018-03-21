@@ -63,7 +63,10 @@ export default {
             }
         },
         "xf": {
-            "list": "wkzfH5/newHouseList.rest"
+            "list": "wkzfH5/newHouseList.rest" ,
+            "detail" : "wkzfH5/newHouseDetail.rest" ,
+            "dynamic" : "wkzfH5/newHouseDynamicList.rest" ,
+            "baseinfo" : "wkzfH5/briefNewHouseDetail.rest"
         }
     }
-};
+} ;

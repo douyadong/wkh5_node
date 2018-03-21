@@ -18,9 +18,9 @@ class Renderer extends AppRendererControllerBasic {
         super(req, res, next) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         获取subEstateId 获取city并给出默认值
-        测试环境subEstateId：12329 12330 12331 12332 12333 12334 12335 12336 12337 12338 12339
+        测试环境subEstateId：22292 22405 22409 24021 24534 24640
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/ 
-        this.subEstateId = this.req.params.subEstateId || "12329" ;
+        this.subEstateId = this.req.params.subEstateId || 81515 ;
         this.cityPinyin = this.req.params.city || "shanghai" ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
@@ -38,29 +38,51 @@ class Renderer extends AppRendererControllerBasic {
             获取api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let apiData = await adf.request({
-                "apiPath" : modulePathArray.join("."),
-                "data" : { "subEstateId" : this.subEstateId }
+                "apiPath" : modulePathArray.join(".") ,
+                "method" : "post" ,
+                "contentType" : "application/json" ,
+                "data" : { "subEstateId" : this.subEstateId , "cityPY" : this.cityPinyin }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            新房详情数据
+            api数据分拣
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-             let item = apiData.data.newHouseDetailModel ;
+             let estateModel = apiData.data.newHouseDetailModel ;
+             let cityModel = apiData.data.cityBusinessModel ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对城市的字段进行处理（去掉"市"字）
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let shortName = this.throwShiSuffix(item.cityName) ;                   
+            let shortName = this.throwShiSuffix(cityModel.cityName) ;                   
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" : shortName + item.estateName + "二手房-" + item.houseTitle+"二手房房源出售买卖-悟空找房" ,
-                "keywords" : item.houseTitle+item.estateName+"优质二手房，"+item.estateName+"二手房房源出售买卖" ,
-                "description" : "悟空找房网为您提供"+shortName+item.estateName+item.houseTitle+"的二手房房源信息，买"+item.estateName+"二手房就上悟空找房网，百分百真实房源。" ,
+                "title" : estateModel.estateName + "-新房出售-悟空找房" ,
+                "keywords" : estateModel.estateName + "," + shortName + estateModel.estateName + ",新房出售" ,
+                "description" : estateModel.estateName + "新房出售,买" + estateModel.estateName + "新房，了解更多关于新楼盘详情信息就上" + shortName + "悟空找房网，百分百真实房源。"  ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
-                "controllerJavascriptPath" : modulePathArray.join("/") ,                
-                "item" : item ,
+                "controllerJavascriptPath" : modulePathArray.join("/") , 
+                "item" : estateModel ,
                 "cityName" : shortName ,  //download-app里面有一个变量叫cityName
                 "cityPinyin" : this.cityPinyin
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            大数据埋点参数
+            @dynamicTotalClick 这个key的埋点参数在系统里面找不到
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData , {
+                "bigDataParams" : {
+                    "albumPictClick" : this.generateBigDataParams( { "eventName" : 1045012 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "mapClick" : this.generateBigDataParams( { "eventName" : 1045056 } )
+                }
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            api数据赋予模板
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData , {
+                "item" : estateModel ,
+                "commentGroupModel" : apiData.data.commentGroupModel ,
+                "aroundNewHouseList" : apiData.data.aroundNewHouseList
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

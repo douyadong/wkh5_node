@@ -1,6 +1,6 @@
 /*++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. 项目名称：ares
-2. 文件名：src -> application -> controllers -> trend -> esf -> district -> renderer.js
+2. 文件名：src -> application -> controllers -> trend -> esf -> city -> renderer.js
 3. 作者：liyang@lifang.com
 4. 备注：二手房价格行情区域页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -31,6 +31,8 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "regionId" : cityId ,"regionType":1}
             }) ;
             let item = apiData.data;
+            item.cityPinYin = this.req.cookies.pinyin || this.req.cookies.location_cityPinyin || "shanghai";
+            item.channel = "";
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -16,19 +16,19 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders(){
-        let modulePathArray = [ "trend" , "esf" , "district" ] ;
+        let modulePathArray = [ "trend" , "new" , "town" ] ;
         let apiPathArray = [ "trend" , "esf" , "basePriceTrend" ] ;
         try{
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app);
-            let regionId = this.req.params.regionId || 46; // 区域Id
+            let regionId  = this.req.params.regionId || 46; //板块Id
             let apiData = await adf.request({
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
                 "contentType":"application/json",
-                "data" : { "regionId" : regionId,"regionType": 2 }
+                "data" : { "regionId" : regionId,"regionType":3}
             }) ;
             let item = apiData.data;
             item.cityPinYin = this.req.cookies.pinyin || this.req.cookies.location_cityPinyin || "shanghai";

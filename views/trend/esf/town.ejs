@@ -3,13 +3,15 @@
     <!--  头部header部分-->
     <div class="header">
         <div class="left">
-            <span class="city-name">上海</span>
+            <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>">
+                <span class="city-name"><%=item.housePrice.name%></span>
+            </a>
             <i></i>
         </div>
         <div class="middle">
             <ul>
-                <li>二手房</li>
-                <li>新房</li>
+                <li><a href="/trend/esf/town/<%=item.housePrice.regionId%>">二手房</a> </li>
+                <li><a href="/trend/new/town/<%=item.housePrice.regionId%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -29,8 +31,10 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <span>在售房源</span><i class="iconfont icon-next"></i>
-                <p><%= item.housePrice.houseCount %> 套</p>
+                <a href="/<%=item.cityPinYin%>/esf">
+                    <span>在售房源</span><i class="iconfont icon-next"></i>
+                    <p><%= item.housePrice.houseCount %> 套</p>
+                </a>
             </div>
         </div>
     </div>
@@ -40,7 +44,7 @@
     </div>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各小区参考价格<span>查看所有房源<i class="iconfont icon-next"></i></span></div>
+        <div class="panel-header">当前各小区参考价格<a href="/<%=item.cityPinYin%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body flag">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
@@ -55,7 +59,7 @@
                 <%})%>
             </ul>
             <%if( item.estatePriceList && item.estatePriceList.length >20 ){%>
-            <button id="districtMore">加载全部</button>
+             <button id="districtMore">加载全部</button>
             <% }%>
         </div>
     </div>

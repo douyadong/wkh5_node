@@ -1,12 +1,11 @@
 <%- include("../components/head") %>
-<%- include("../components/conning-tower", {release: true, cityModel: cityModel, bigDataParams: {}, "moduleType" : "xf" , })%>
+<%- include("../components/conning-tower", {release: true, cityModel: cityModel, bigDataParams: bigDataParams.conningTower, "moduleType" : "xf" , })%>
 <%- include("../components/filter") %>
 <div class="container">
 
 <div class="total">
     <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: ""%></span> <span>套房源</span>
 </div>
-<input type="hidden" id="offset" value="<%= data && data.data && data.data.newHouseDataListModelList ? data.data.newHouseDataListModelList.length : 0%>">
 <div id="list">
 <%if(data && data.data && data.data.newHouseDataListModelList && data.data.newHouseDataListModelList.length > 0){%>
     <%- include("../components/xf-items", {items: data.data.newHouseDataListModelList}) %>
@@ -19,15 +18,5 @@
     <button type="button">清除条件</button>
 </div>
 <%}%>
-
-<div class="reach-bottom">
-    <p class="inner">到底了</p>
-</div>
-
-<div class="page-loading">
-    <div class="page-loading-inner">
-        <img src="<%= appStaticPrefix %>/images/common/loading.gif">
-    </div>
-</div>
 </div>
 <%- include("../components/footer") %>

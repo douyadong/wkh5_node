@@ -45,7 +45,7 @@ class Renderer extends AppRendererControllerBasic {
                 param = this.generateParams(conditionObj, param);                
                 
             }else{
-                
+                // do nothing
             }            
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,11 +53,28 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let cityData = await adf.request({"apiPath" : "common.cityPinYin" , "data" : { "pinyin" : this.req.params.city } }) ;
             let cityModel = null;
-            if(cityData){            
+            let defaultCityModel = {
+                "cityId":43,
+                "cityPinyin":"shanghai",
+                "cityName":"上海",
+                "oldBusiness":true,
+                "newBusiness":true,
+                "rentBusiness":true,
+                "china":true,
+                "cityOpen": true
+            };
+            
+            if(cityData && cityData.data && cityData.data.cityId){            
                 cityModel = cityData.data ;
-                cityModel.cityOpen = cityModel.newBusiness ;
-                Object.assign(this.templateData, { "cityModel" : cityModel }) ;
-            }            
+                cityModel.cityOpen = cityModel.newBusiness ;                
+            }else{                
+                // 跳转到上海
+                this.res.redirect('/shanghai/xflist/');
+                return;
+            }                        
+
+            Object.assign(this.templateData, { "cityModel" : cityModel }) ;
+            param.cityId = cityModel.cityId;
 
             data = await adf.request({
                 "apiPath" : modulePathArray.join("."),
@@ -70,6 +87,20 @@ class Renderer extends AppRendererControllerBasic {
                 "controllerJavascriptPath" : modulePathArray.join("/"),
                 "data": data
             }) ;      
+
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            埋点参数配置 
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData, {
+                "bigDataParams" : {
+                    "conningTower" : {
+                        "search" : this.generateBigDataParams( { "eventName" : 1068017 , "eventParam" : {} } ) ,
+                        "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } ) ,
+                        "clearSearchHistory" : this.generateBigDataParams( { "eventName" : 1068015 } )
+                    }
+                }
+            }) ;
+
 
             this.render(modulePathArray.join("/")) ;
         }catch (err){

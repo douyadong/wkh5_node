@@ -52,7 +52,7 @@ export default {
         } ,
         "esf" : {
             "detail" : "sellHouse/getSellHouseDetail.rest" ,
-            "houselist" : "wkzfH5/secondHouseList.rest"
+            "list" : "wkzfH5/secondHouseList.rest"
         } ,
         "estate" : {
             "priceChart" : "estate/getEstateHistoricalPriceList.rest"

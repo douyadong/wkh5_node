@@ -45,17 +45,36 @@ class Renderer extends AppRendererControllerBasic {
                 param = this.generateParams(conditionObj, param);                
                 
             }else{
-                
+                // do nothing
             }            
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             通过拼音获取城市相关信息       
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let cityData = await adf.request({"apiPath" : "common.cityPinYin" , "data" : { "pinyin" : this.req.params.city } }) ;
-            let cityModel = cityData.data ;
-            cityModel.cityOpen = cityModel.newBusiness ;
-            Object.assign(this.templateData, { "cityModel" : cityModel }) ;
+            let cityModel = null;
+            let defaultCityModel = {
+                "cityId":43,
+                "cityPinyin":"shanghai",
+                "cityName":"上海",
+                "oldBusiness":true,
+                "newBusiness":true,
+                "rentBusiness":true,
+                "china":true,
+                "cityOpen": true
+            };
             
+            if(cityData && cityData.data && cityData.data.cityId){            
+                cityModel = cityData.data ;
+                cityModel.cityOpen = cityModel.newBusiness ;                
+            }else{                
+                // 跳转到上海
+                this.res.redirect('/shanghai/xflist/');
+                return;
+            }                        
+
+            Object.assign(this.templateData, { "cityModel" : cityModel }) ;
+            param.cityId = cityModel.cityId;
 
             data = await adf.request({
                 "apiPath" : modulePathArray.join("."),
@@ -63,11 +82,36 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
+
+            // 遍历添加bigDataParams
+            let channel = this.req.query.channel;
+            if(data && data.data && data.data.newHouseDataListModelList){
+                data.data.newHouseDataListModelList.forEach(function(item){
+                    item.url = "/" + cityModel.cityPinyin + "/xf/" + item.subEstateId + ".html" + (channel&&"?channel=" + channel||"");
+                    item.bigDataParams = encodeURIComponent('{"eventName": "1050025", "eventParam": { "new_house_id": "'+item.subEstateId+'" } }');
+                });
+            }
+
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),
-                "data": data
+                "data": data,
+                "channel": channel
             }) ;      
+
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            埋点参数配置 
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            Object.assign(this.templateData, {
+                "bigDataParams" : {
+                    "conningTower" : {
+                        "search" : this.generateBigDataParams( { "eventName" : 1068017 , "eventParam" : {} } ) ,
+                        "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } ) ,
+                        "clearSearchHistory" : this.generateBigDataParams( { "eventName" : 1068015 } )
+                    }
+                }
+            }) ;
+
 
             this.render(modulePathArray.join("/")) ;
         }catch (err){

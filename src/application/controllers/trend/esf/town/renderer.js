@@ -28,9 +28,11 @@ class Renderer extends AppRendererControllerBasic {
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
                 "contentType":"application/json",
-                "data" : { "regionId" : 3609,"regionType":3}
+                "data" : { "regionId" : regionId,"regionType":3}
             }) ;
             let item = apiData.data;
+            item.cityPinYin = this.req.cookies.pinyin || this.req.cookies.location_cityPinyin || "shanghai";
+            item.channel = "";
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

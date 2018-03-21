@@ -31,6 +31,8 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "regionId" : regionId}
             }) ;
             let item = apiData.data;
+            item.cityPinYin = this.req.cookies.pinyin || this.req.cookies.location_cityPinyin || "shanghai";
+            item.channel = "";
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

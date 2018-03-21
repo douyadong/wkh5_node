@@ -3,15 +3,15 @@
     <!--  头部header部分-->
     <div class="header">
         <div class="left">
-            <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>">
+            <a href="/public/city/select?businessType=newTrend&channel=<%= item.channel%>">
                 <span class="city-name"><%=item.housePrice.name%></span>
             </a>
             <i></i>
         </div>
         <div class="middle">
             <ul>
-                <li><a href="/trend/esf/community/<%=item.housePrice.regionId%>">二手房</a> </li>
-                <li><a href="/trend/new/community/<%=item.housePrice.regionId%>">新房</a> </li>
+                <li><a href="/trend/esf/district/<%=item.housePrice.regionId%>">二手房</a> </li>
+                <li><a href="/trend/new/district/<%=item.housePrice.regionId%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -43,22 +43,26 @@
         <div id="main"></div>
     </div>
     <!--板块模块信息-->
-    <% if(item.houseList && item.houseList.length > 0) { %>
     <div class="district-town wk-panel">
-        <div class="panel-header">小区在售房源</div>
-        <hr>
+        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPinYin%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body flag">
-            <%- include("../../components/esf-items" , { "oldHouseList" : item.houseList } ) %>
-            <a class="more-esf" href="">查看更多</a>
+            <ul>
+                <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
+                <%item.townUponDistrictPriceList && item.townUponDistrictPriceList.forEach(function (itemL,index) {%>
+                <li class="content" style="<%if( index > 9 ){%>display:none<% }%>">
+                    <a href="/trend/esf/town/<%= itemL.regionId %>">
+                        <p><%= itemL.name %> </p>
+                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
+                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
+                    </a>
+                </li>
+                <%})%>
+            </ul>
+            <%if( item.townUponDistrictPriceList && item.townUponDistrictPriceList.length >10 ){%>
+              <button id="districtMore">加载全部</button>
+            <% }%>
         </div>
     </div>
-    <div class="wk-panel">
-        <hr>
-        <div class="panel-header more-link"><a href="">小区详情 <i class="iconfont icon-next"></i></a> </div>
-        <hr>
-        <div class="panel-header more-link"><a href="">成交历史<i class="iconfont icon-next"></i></a> </div>
-    </div>
-    <% } %>
 </div>
 <%- include("../../components/trend-search") %>
 

@@ -1,7 +1,7 @@
 <%if(items && items.length){%>
     <%for(var i = 0; i < items.length; i++){%>
         <% let item = items[i]; %>
-        <a class="xf-item" href="<%= item.url%>" data-bigdata="<%= item.bigDataParams%>">
+        <a class="xf-item" href="<%= item.url%>" data-bigdata="<%= item.bigDataParams %>">
             <div class="img">
                 <img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= item.imageUrl%>">
                 <%if(item.activitys && item.activitys[0]){%>

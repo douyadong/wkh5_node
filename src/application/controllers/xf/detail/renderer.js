@@ -48,6 +48,15 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
              let estateModel = apiData.data.newHouseDetailModel ;
              let cityModel = apiData.data.cityBusinessModel ;
+             let aroundXfModel = apiData.data.aroundNewHouseList ;
+             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            对周边楼盘数据进行：
+            1.  bigDataParams以及url的处理
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            aroundXfModel && aroundXfModel.length && aroundXfModel.forEach((aroundXf) => {
+                aroundXf.url = aroundXf.id + ".html" ;
+                aroundXf.bigDataParams = this.generateBigDataParams( { "eventName" : 1045015 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ;
+            }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对城市的字段进行处理（去掉"市"字）
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -82,7 +91,7 @@ class Renderer extends AppRendererControllerBasic {
             Object.assign(this.templateData , {
                 "item" : estateModel ,
                 "commentGroupModel" : apiData.data.commentGroupModel ,
-                "aroundNewHouseList" : apiData.data.aroundNewHouseList
+                "aroundNewHouseList" : aroundXfModel
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

@@ -37,7 +37,7 @@
 
     <!-- 最新动态 -->
     <% if( item.newHouseDynamicCount ) { %>
-    <a class="wk-panel top-gap has-right-padding xf-dynamics" href="<%= item.id %>/dynamic.html?cityName=<%= encodeURIComponent(cityName) %>&subEstateName=<%= encodeURIComponent(item.estateName) %>" data-bigdata="<%= bigDataParams.dynamicTotalClick %>">
+    <a class="wk-panel top-gap has-right-padding xf-dynamics" href="<%= item.id %>/dynamic.html?cityName=<%= encodeURIComponent(cityName) %>&subEstateName=<%= encodeURIComponent(item.estateName) %>&tel=<%= item.salePhone %>" data-bigdata="<%= bigDataParams.dynamicTotalClick %>">
         <div class="panel-header">            
             <div class="pull-left">最新动态</div>                
             <div class="pull-right"><%= item.newHouseDynamicCount %> 条<i class="iconfont icon-next"></i></div>                

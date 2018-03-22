@@ -50,7 +50,8 @@ class Renderer extends AppRendererControllerBasic {
                 "description" : "悟空找房网为您提供" + shortName + subEstateName + "楼盘详情信息，在这里你可以知道" + subEstateName + "楼盘开发商，" + subEstateName + "售楼处，楼盘地址，物业，户型等详细介绍，了解更多关于" + subEstateName + "楼盘详情，就上悟空找房网。" ,                                
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "items" : subEstateData
+                "items" : subEstateData ,
+                "tel" : this.req.query.tel
             }) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

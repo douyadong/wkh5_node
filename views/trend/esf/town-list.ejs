@@ -1,0 +1,23 @@
+<%- include("../../components/head") %>
+<div class="top-header-name">
+    <%= item.cityName %>当前各板块参考均价
+</div>
+<!--板块模块信息-->
+<div class="district-town wk-panel">
+    <div class="panel-header">当前各小区参考价格</div>
+    <div class="wk-body flag">
+        <ul>
+            <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
+            <%item.list && item.list.forEach(function (itemL,index) {%>
+            <li class="content">
+                <a href="/<%= item.cityPY%>/trend/esf/community/<%= itemL.regionId %>">
+                    <p><%= itemL.name %> </p>
+                    <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
+                    <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
+                </a>
+            </li>
+            <%})%>
+        </ul>
+    </div>
+</div>
+<%- include("../../components/footer") %>

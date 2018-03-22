@@ -4,14 +4,14 @@
     <div class="header">
         <div class="left">
             <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>">
-                <span class="city-name"><%=item.housePrice.name%></span>
+                <span class="city-name"><%= item.cityName%></span>
             </a>
             <i></i>
         </div>
         <div class="middle">
             <ul>
-                <li><a href="/trend/esf/community/<%=item.housePrice.regionId%>">二手房</a> </li>
-                <li><a href="/trend/new/community/<%=item.housePrice.regionId%>">新房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/esf/community/<%=item.regionId%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/community/<%=item.regionId%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -19,6 +19,7 @@
         </div>
     </div>
     <!-- 描述-->
+    <%if(item.housePrice){%>
     <div class="description">
         <h3><%= item.housePrice.name %></h3>
         <div class="description-detail">
@@ -31,17 +32,20 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPinYin%>/esf">
+                <a href="/<%=item.cityPY%>/esf">
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
             </div>
         </div>
     </div>
+    <% }%>
     <!-- 价格走势-->
+    <%if(item.priceTrendChartList){%>
     <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
+    <% }%>
     <!--板块模块信息-->
     <% if(item.houseList && item.houseList.length > 0) { %>
     <div class="district-town wk-panel">
@@ -49,12 +53,14 @@
         <hr>
         <div class="wk-body flag">
             <%- include("../../components/esf-items" , { "oldHouseList" : item.houseList } ) %>
-            <a class="more-esf" href="">查看更多</a>
+            <% if(item.houseList && item.houseList.length > 4) { %>
+              <a class="more-esf" href="/<%=item.cityPY%>/trend/esf/houseList/<%= item.encrptRegion %>">查看更多</a>
+            <% } %>
         </div>
     </div>
     <div class="wk-panel">
         <hr>
-        <div class="panel-header more-link"><a href="">小区详情 <i class="iconfont icon-next"></i></a> </div>
+        <div class="panel-header more-link"><a href="/<%= item.cityPY %>/town/<%= item.encrptRegion %>.html">小区详情 <i class="iconfont icon-next"></i></a> </div>
         <hr>
         <div class="panel-header more-link"><a href="">成交历史<i class="iconfont icon-next"></i></a> </div>
     </div>

@@ -16,6 +16,7 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders(){
+        let cityPathArray = [ "common" , "cityPinYin"] ;
         let modulePathArray = [ "trend" , "esf" , "town" ] ;
         let apiPathArray = [ "trend" , "esf" , "basePriceTrend" ] ;
         try{
@@ -24,6 +25,11 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app);
             let regionId  = this.req.params.regionId || 46; //板块Id
+            let cityPinYin = this.req.params.city || "shanghai"; // 城市pinyin
+            let cityInfo = await adf.request({     // 通过拼音获取城市信息
+                "apiPath" : cityPathArray.join(".") ,
+                "data" : { "pinyin" : cityPinYin }
+            }) ;
             let apiData = await adf.request({
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
@@ -31,7 +37,11 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "regionId" : regionId,"regionType":3}
             }) ;
             let item = apiData.data;
-            item.cityPinYin = this.req.cookies.pinyin || this.req.cookies.location_cityPinyin || "shanghai";
+            this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
+            this.res.cookie('pinyin', cityPinYin , { httpOnly: false});
+            item.cityPY = cityPinYin;
+            item.cityName = cityInfo.data.cityName;
+            item.regionId = regionId;
             item.channel = "";
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];

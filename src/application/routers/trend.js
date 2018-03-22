@@ -17,53 +17,67 @@ import newCityRenderer from "../controllers/trend/new/city/renderer" ;
 import newDistrictRenderer from "../controllers/trend/new/district/renderer" ;
 import newTownRenderer from "../controllers/trend/new/town/renderer" ;
 import newCommunityRenderer from "../controllers/trend/new/community/renderer" ;
+import esfTownListRenderer from "../controllers/trend/esf/town-list/renderer" ;
+import esfHouseListRenderer from "../controllers/trend/esf/house-list/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/city/(:regionId)的路由规则  城市ID
+/:city/trend/esf的路由规则  城市ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/city/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/esf", function(req, res, next) {
     new esfCityRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/city/(:regionId)的路由规则 区域ID
+/:city/trend/esf/city/(:regionId)的路由规则 区域ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/district/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/esf/district/(:regionId)", function(req, res, next) {
     new esfDistrictRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/district/(:regionId)的路由规则 板块ID
+/:city/trend/esf/district/(:regionId)的路由规则 板块ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/town/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/esf/town/(:regionId)", function(req, res, next) {
     new esfTownRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/esf/community/(:regionId)的路由规则 小区ID
+/:city/trend/esf/community/(:regionId)的路由规则 小区ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/esf/community/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/esf/community/(:regionId)", function(req, res, next) {
     new esfCommunityRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/new/city/(:regionId)的路由规则  城市ID
+/:city/trend/new/city的路由规则  城市ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/new/city/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/new", function(req, res, next) {
     new newCityRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/new/city/(:regionId)的路由规则 区域ID
+/:city/trend/new/city/(:regionId)的路由规则 区域ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/new/district/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/new/district/(:regionId)", function(req, res, next) {
     new newDistrictRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/new/district/(:regionId)的路由规则 板块ID
+/:city/trend/new/district/(:regionId)的路由规则 板块ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/new/town/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/new/town/(:regionId)", function(req, res, next) {
     new newTownRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/trend/new/community/(:regionId)的路由规则 小区ID
+/:city/trend/new/community/(:regionId)的路由规则 小区ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/trend/new/community/(:regionId)", function(req, res, next) {
+router.get("/:city/trend/new/community/(:regionId)", function(req, res, next) {
     new newCommunityRenderer(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/:city/trend/new/townList/(:regionId)的路由规则 城市ID
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/:city/trend/esf/townList/(:regionId)", function(req, res, next) {
+    new esfTownListRenderer(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/:city/trend/new/houseList/(:regionId)的路由规则 城市ID
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/:city/trend/esf/houseList/(:regionId)", function(req, res, next) {
+    new esfHouseListRenderer(req, res, next) ;
 }) ;
 export default router ;

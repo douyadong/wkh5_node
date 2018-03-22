@@ -60,7 +60,10 @@ export default {
         "trend":{
             "esf":{
                 "basePriceTrend":"esf/basePriceTrend.rest", //二手房价格走势
-                "estatePriceTrend":"esf/estatePriceTrend.rest" // 小区价格走势
+                "estatePriceTrend":"esf/estatePriceTrend.rest", // 小区价格走势
+                "townPriceTrend":"esf/townPriceTrend.rest" ,// 板块价格
+                "sameEstateHouseList":"esf/sameEstateHouseList.rest" , // 小区内所有房源
+                "historicalTransactionList":"estate/historicalTransactionList.rest"
             },
             "new":{
                 "basePriceTrend":"xf/basePriceTrend.rest", // 新房价格走势

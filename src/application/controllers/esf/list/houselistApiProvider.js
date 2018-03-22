@@ -31,15 +31,30 @@ class RestfulApi extends AppApiControllerBasic {
             };
                         
             if(this.req.body){
-                param = new ParamGenerator().getParamObj(ParamGenerator.normalize(this.req.body), param);
+                param = new ParamGenerator({
+                    pa: function(ret, data){
+                        ret.offset = (data - 1) * 10;
+                        ret.pageSize = 10;
+                    },
+                    of: function(ret, data){// 偏移量
+                        ret.offset = data;
+                        ret.pageSize = 10;
+                    }
+                }).getParamObj(ParamGenerator.normalize(this.req.body), param);
             }
 
             this.jsonObject = await adf.request({
-                "apiPath" : "esf.houselist" ,
+                "apiPath" : "esf.list" ,
                 "data" : param,
                 "method":"post",
                 "contentType":"application/json"
             }) ;
+
+            if(this.jsonObject.data){// 为了pullload
+                this.jsonObject.count = this.jsonObject.data.total;
+            }else{
+                this.jsonObject.count = 0;
+            }
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             输出内容

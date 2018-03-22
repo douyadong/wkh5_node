@@ -16,6 +16,7 @@ import ApiDataFilter from "../../../../system/libraries/apiDataFilter" ;
 class Renderer extends AppRendererControllerBasic {
     constructor(req, res, next) {
         super(req, res, next) ;
+        this.subEstateId = this.req.params.subEstateId || 81515 ;
         this.renders() ;
     }
     /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -24,53 +25,34 @@ class Renderer extends AppRendererControllerBasic {
     async renders() {
         let modulePathArray = [ "xf" , "dynamic" ] ;   
         try {
-            let houseId = this.req.params.houseId || "b5c3cf77006f3297" ;   //加密的houseId，b5c3cf77006f3297调试用
-            let  channel =this.req.query['channel'] || "";            
+            let adf = new ApiDataFilter(this.req.app) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            租房标题和城市名称存起来，后面用
+            获取api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let houseTitle = "houseTitle";// apiData.data.houseTitle ;
-            let subEstateName = "subEstateName"; //apiData.data.subEstateName ;
-            let cityName = "cityName"; //apiData.data.cityName ;
-            if(cityName && cityName.charAt(cityName.length - 1) === "市") {
-                cityName = cityName.substring( 0 , cityName.length - 1) ;
-            }
+            let apiData = await adf.request({
+                "apiPath" : modulePathArray.join(".") ,
+                "method" : "post" ,
+                "contentType" : "application/json" ,
+                "data" : { "subEstateId" : this.subEstateId }
+            }) ;
+            let subEstateData = apiData.data ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            对城市的字段进行处理（去掉"市"字）
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let shortName = this.throwShiSuffix(subEstateData.cityName) ;     
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/            
             Object.assign(this.templateData, { 
-                "title" : houseTitle + "_" + cityName + subEstateName + "租房-悟空找房" , 
-                "keywords" : houseTitle + "，" + subEstateName + "租房，真实房屋出租" ,
-                "description" : "悟空找房网为您提供" + subEstateName + "租房信息，整租合租" + cityName + subEstateName + "的房屋就上悟空找房网站，百分百真实房源。" ,
-                "wechatTitle" : "",// apiData.data.weChatShare.title ,
-                "wechatContent" : "",//apiData.data.weChatShare.content ,
-                "wechatImgUrl" : "",// apiData.data.weChatShare.picUrl ,                
+                "title" : "-悟空找房" , 
+                "keywords" : "" ,
+                "description" : "" ,                                
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "cityName" : cityName,  //download-app里面有这样一个变量
-                "items": [{
-                    title: "在售97-140m2高层房源",
-                    publishTimeStr: "2016-06-23 10:59:14",
-                    content: "在售19#、25#楼房，以上房源预计xxx交付见客户说代缴塑料袋家乐福据了解家具店两架飞机案件都放假啦京东方 拉绝地反击拉法基"
-                },{
-                    title: "在售97-140m2高层房源",
-                    publishTimeStr: "2016-06-23 10:59:14",
-                    content: "在售19#、25#楼房，以上房源预计xxx交付见客户说代缴塑料袋家乐福据了解家具店两架飞机案件都放假啦京东方 拉绝地反击拉法基"
-                },{
-                    title: "在售97-140m2高层房源",
-                    publishTimeStr: "2016-06-23 10:59:14",
-                    content: "在售19#、25#楼房，以上房源预计xxx交付见客户说代缴塑料袋家乐福据了解家具店两架飞机案件都放假啦京东方 拉绝地反击拉法基"
-                },{
-                    title: "在售97-140m2高层房源",
-                    publishTimeStr: "2016-06-23 10:59:14",
-                    content: "在售19#、25#楼房，以上房源预计xxx交付见客户说代缴塑料袋家乐福据了解家具店两架飞机案件都放假啦京东方 拉绝地反击拉法基"
-                },{
-                    title: "在售97-140m2高层房源",
-                    publishTimeStr: "2016-06-23 10:59:14",
-                    content: "在售19#、25#楼房，以上房源预计xxx交付见客户说代缴塑料袋家乐福据了解家具店两架飞机案件都放假啦京东方 拉绝地反击拉法基"
-                }]
-            }) ;                                                
-            
+                "cityName" : shortName ,  //download-app里面有这样一个变量
+                "cityPinyin" : subEstateData.cityPinyin ,
+                "item" : subEstateData
+            }) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/              

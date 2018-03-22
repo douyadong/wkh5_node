@@ -2,83 +2,88 @@
 <div class="content-wrapper has-assistant"> 
     <!-- 轮播相册图片 -->    
     <div class="wk-panel remove-left-padding">
-        <%- include( "../components/album" , {
-            imgList : item.imgList , 
-            bigDataParams : item.bigDataParams.clickImageBigDataParams
-        })%>
+        <%- include( "../components/album" , { "imgList" : item.cImageList , "bigDataParams" : bigDataParams.albumPictClick } ) %>
     </div>
     <!-- 户型等信息 -->
     <div class="wk-panel has-right-padding base-info">
         <h1 class="house-title"><%= item.estateName + " " + item.subEstateName %></h1>
-        <h2><%= item.sellPoint || '埋点。。。'%></h2>
-        <p class="unit-price"><%= item.unitPrice%> 元 / m<small>参考价格</small> <i class="calc wk-icon icon-jiajianchengchu"></i></p>                
+        <h2><%= item.sellPoint %></h2>
+        <p class="unit-price">
+            <span><%= item.unitPrice %> 元 / ㎡</span>
+            <small>参考价格</small>
+            <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>"><i class="calc iconfont icon-jisuanqi"></i></a>
+        </p>                
         <div class="panel-body">            
-            <hr/>
+            <hr>
             <div class="tags">            
-                    <% if( item.hasActivity ) { %><span class="tag yh">有优惠</span><% } %><% if( item.isSubwayEstate ) { %><span class="tag dt">近地铁</span><% } %><% if( item.hasVideo ) { %><span class="tag">有视频</span><% } %><% if( item.isSoonOpen ) { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
+                    <% if( item.hasActivity ) { %><span class="tag yh">有优惠</span><% } %>
+                    <% if( item.isSubwayEstate ) { %><span class="tag dt">近地铁</span><% } %>
+                    <% if( item.hasVideo ) { %><span class="tag">有视频</span><% } %>
+                    <% if( item.isSoonOpen ) { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
             </div>
             <div class="time">
                 <dl><dt>开盘时间</dt><dd><%= item.openTimeStr || "--" %></dd></dl>
                 <dl><dt>交房时间</dt><dd><%= item.launchTimeStr || "--" %></dd></dl>                
             </div>
-            <%if(item.activitys && item.activitys.length){%>
+            <% if( item.activityList && item.activityList.length ) { %>
             <div class="activity">
+                <hr>
                 <ul>
-                    <%for(var i = 0; i < item.activitys.length; i++){%>
-                    <li><span></span><%= item.activitys[i].title%></li>
-                    <%}%>
+                    <% item.activityList.forEach(function(activity){ %>
+                    <li><span></span><%= activity.title%></li>
+                    <% }) ; %>                    
                 </ul>
             </div>
-            <%}%>
+            <% } %>
         </div>
     </div>
 
     <!-- 最新动态 -->
-    <%if(item.newHouseDynamicCount){%>
-    <div class="wk-panel top-gap has-right-padding xf-dynamics">
-        <div class="panel-header">
-            <a class="box" href="<%= item.newHouseDynamicCount > 0 ? 'dynamic/' + item.subEstateId + '.html': '#' %>" data-bigdata="<%= item.bigDataParams.clickDynamicTotalBigDataParams%>">
-                <div class="left">最新动态</div>
-                <%if(item.newHouseDynamicCount > 0){%>
-                <div class="right"><%= item.newHouseDynamicCount%> 条<i class="iconfont icon-next"></i></div>
-                <%}%>
-            </a>
+    <% if( item.newHouseDynamicCount ) { %>
+    <a class="wk-panel top-gap has-right-padding xf-dynamics" href="<%= item.newHouseDynamicCount > 0 ? item.id + '/dynamic.html': 'javascript:void(0);' %>" data-bigdata="<%= bigDataParams.dynamicTotalClick %>">
+        <div class="panel-header">            
+            <div class="pull-left">最新动态</div>                
+            <div class="pull-right"><%= item.newHouseDynamicCount %> 条<i class="iconfont icon-next"></i></div>                
         </div>
-        <%if(item.newHouseDynamicList && item.newHouseDynamicList[0]){%>
-        <div class="panel-body">
-            <%- include("../components/xf-dynamic", {dynamics: item.newHouseDynamicList})%>
-        </div>
-        <%}%>
-    </div>
-    <%}%>
-
+        <div class="panel-body"><%- include( "../components/xf-dynamic" , { "dynamics" : item.newHouseDynamicList.slice( 0 , 1 ) } ) %></div>
+    </a>
+    <% } %>
     <!-- 在售户型 -->
-    <%if(item.houseTypeImages && item.houseTypeImages.length >0 ){%>
+    <% if( item.houseTypeImages && item.houseTypeImages.length ) { %>
     <div class="wk-panel top-gap house-type">
         <h1 class="panel-header">在售户型</h1>
-        <div class="panel-body"><%for(var i = 0; i < item.houseTypeImages.length; i++){%><div class="house-type-item"><img src="<%= item.houseTypeImages[i].imgKey%>"><h3><%= item.houseTypeImages[i].name%></h3><p class="type-area"><%= item.houseTypeImages[i].bedRoomSum + '室' + item.houseTypeImages[i].livingRoomSum + '厅' + item.houseTypeImages[i].wcSum + '卫' + ' ' + item.houseTypeImages[i].spaceArea + 'm'%></p><p class="total-price"><%= item.houseTypeImages[i].price%>万起<p></div><%}%></div>
+        <div class="panel-body">
+            <% item.houseTypeImages.forEach(function(layout){ %>
+            <div class="house-type-item">
+                <img src="<%= layout.imgKey %>">
+                <h3><%=layout.name %></h3>
+                <p class="type-area"><%= layout.bedRoomSum + '室' + layout.livingRoomSum + '厅' + layout.wcSum + '卫' + ' ' + layout.spaceArea + 'm' %></p>
+                <p class="total-price"><%= layout.price %>万起<p>
+            </div>
+            <% }) ; %>        
+        </div>
     </div>
-    <%}%>
+    <% } %>
 
     <!-- 项目特色 -->
-    <%if(item.projectFeatureList && item.projectFeatureList.length > 0){%>
-    <div class="wk-panel project-feature">
+    <% if( item.projectFeatureList && item.projectFeatureList.length ) { %>
+    <div class="wk-panel top-gap has-right-padding project-feature">
         <h1 class="panel-header">项目特色</h1>
         <div class="panel-body">
             <ul>
-                <%for(var i = 0; i < item.projectFeatureList.length; i++){%>
+                <% item.projectFeatureList.forEach(function(feature) { %>
                 <li>
-                    <img src="<%= appStaticPrefix %>/images/xf/special_<%= item.projectFeatureList[i].featureType%>.png">
+                    <img src="<%= appStaticPrefix %>/images/xf/special_<%= feature.featureType %>.png">
                     <div>
-                        <h3><%= item.projectFeatureList[i].featureName%></h3>
-                        <p><%= item.projectFeatureList[i].featureDescription%></p>
+                        <h3><%= feature.featureName %></h3>
+                        <p><%= feature.featureDescription %></p>
                     </div>
                 </li>
-                <%}%>
+                <% }) ; %>                
             </ul>
         </div>
     </div>
-    <%}%>
+    <% } %>
 
     <!-- 楼盘信息 -->    
     <div class="wk-panel top-gap has-right-padding building-info">
@@ -86,104 +91,100 @@
         <div class="panel-body one">
             <div>
                 <span>产权年限</span>
-                <span><%= item.propertyRight%> 年</span>
+                <span><%= item.propertyRight %> 年</span>
             </div>                   
             <div>
                 <span>规划户数</span>
-                <span><%= item.planRoom%> 户</span>
+                <span><%= item.planRoom %> 户</span>
             </div>                   
             <div>
                 <span>装修标准</span>
-                <%if(item.buildDecoration == 1){%>
-                <span>毛坯</span>
-                <%}%>
-                <%if(item.buildDecoration == 2){%>
-                <span>精装</span>
-                <%}%>
-                <%if(item.buildDecoration == 3){%>
-                <span>豪装</span>
-                <%}%>
+                <% if( item.buildDecoration == 1 ) { %><span>毛坯</span>
+                <% } else if( item.buildDecoration == 2 ) { %><span>精装</span>
+                <% } else if( item.buildDecoration == 3 ) { %><span>豪装</span>
+                <% } %>
             </div>                   
             <div>
                 <span>物业类型</span>
-                <span><%= item.propertyTypeStr%></span>
+                <span><%= item.propertyTypeStr %></span>
             </div>                               
         </div>        
         <div class="panel-body two">
             <hr/>
             <div>
                 <span>规划车位</span>
-                <span><%= item.parkingSpace || "--"%></span>
+                <span><%= item.parkingSpace || "--" %></span>
             </div>                   
             <div>
                 <span>楼盘地址</span>
-                <span><%= item.initName%></span>
+                <span><%= item.initName %></span>
             </div>                   
             <div>
                 <span>开发商</span>
-                <span><%= item.developers%></span>
+                <span><%= item.developers %></span>
             </div>                   
-            <a href="" class="more">查看更多</a>                
+            <a href="<%= item.id %>/baseinfo.html" class="more">查看更多</a>                
         </div>
     </div>
     
     <!-- 楼盘画报 -->
-    <%if(item.newHouseMagazineList && item.newHouseMagazineList.length > 0){%>
+    <% if( item.newHouseMagazineList && item.newHouseMagazineList.length ) { %>
     <div class="wk-panel top-gap has-right-padding magazine">
         <div class="panel-header">楼盘画报</div>
         <div class="panel-body">
-            <h3><%= item.newHouseMagazineList[0].title%></h3>
-            <h4><%= item.newHouseMagazineList[0].publishTimeStr%></h4>
-            <img src="<%= item.newHouseMagazineList[0].fileKey%>">
-            <p><%= item.newHouseMagazineList[0].content%></p>
-            <a href="#" class="more">查看更多</a>
+            <h3><%= item.newHouseMagazineList[0].title %></h3>
+            <h4><%= item.newHouseMagazineList[0].publishTimeStr %></h4>
+            <img src="<%= item.newHouseMagazineList[0].fileKey %>">
+            <p><%= item.newHouseMagazineList[0].content %></p>
+            <a href="javascript:void(0);" class="more">查看更多</a>
         </div>
     </div>
-    <%}%>    
+    <% } %>
 
-    <%if(commentGroupModel){%>
     <!-- 用户评论 -->
-    <div class="wk-panel rent-comments has-right-padding">        
+    <% if( commentGroupModel ) { %>    
+    <div class="wk-panel top-gap has-right-padding">        
         <div class="panel-header">
-            <a class="box" href="<%= item.commentTotal > 0 ? domain + '/estate/moreComment.html?commentLocation=1&subEstateId='+ item.subEstateId: '#' %>" data-bigdata="<%= item.bigDataParams.clickCommentTotalBigDataParams%>">
+            <a class="box" href="<%= item.commentTotal > 0 ? domain + '/estate/moreComment.html?commentLocation=1&subEstateId='+ item.subEstateId: 'javascript:void(0);' %>">
                 <div class="left">用户评论</div>
-                <%if(commentGroupModel.commentList && commentGroupModel.commentList.length > 0){%>
-                <div class="right"><%= item.commentTotal%> 条<i class="iconfont icon-next"></i></div>
-                <%}%>
+                <% if( commentGroupModel.commentList && commentGroupModel.commentList.length ) { %>
+                <div class="right"><%= commentGroupModel.commentList.length %> 条<i class="iconfont icon-next"></i></div>
+                <% } %>
             </a>
         </div>        
             <div class="panel-body">
-              <%if(!commentGroupModel || !commentGroupModel.commentList || commentGroupModel.commentList.length <=0){%>
+              <% if( ! commentGroupModel || ! commentGroupModel.commentList || commentGroupModel.commentList.length ==0 ) { %>
                 <span>当前暂无评论，快来抢沙发吧！</span>
                 <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=rent&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
-                <%}else{%> 
-                <%- include("../components/subestate-comments", {comments: commentGroupModel.commentList})%>
-                <hr/>
+                <% } else { %> 
+                <%- include("../components/subestate-comments", { comments : commentGroupModel.commentList } ) %>
+                <hr>
                 <a href="#" class="go-comment">我来评论</a>
-                <%}%>
+                <% } %>
             </div>
         <hr>   
     </div>
-    <%}%>
-    <% if( item.longitude > 0 &&  item.latitude > 0 ){ %>
+    <% } %>
+
+    <!--位置及周边的地图-->
+    <% if( item.longitude &&  item.latitude  ) { %>
          <%- include("../components/map" , {
-             bigDataParams : item.bigDataParams.clickMapBigDataParams ,
+             bigDataParams : bigDataParams.mapClick ,
              longitude : item.longitude ,
              latitude : item.latitude , 
-             address : item.estateAddr||"这是地址。。。" , 
+             address : item.initName , 
              subEstateName : item.subEstateName , 
-             mapUrl : item.mapUrl
+             mapUrl : "/esf/map.html?longitude=" + item.longitude + "&latitude=" + item.latitude + "&houseName=" + item.initName + "&houseAddress="
           }) %>
     <% } %>
 
     <!-- 周边楼盘 -->
-    <% if( aroundNewHouseList && aroundNewHouseList.length > 0) { %>
+    <% if( aroundNewHouseList && aroundNewHouseList.length ) { %>
     <div class="wk-panel top-gap around-building">
         <div class="panel-header">周边楼盘</div>
         <div class="panel-body">
-        <%- include( "../components/xf-items" , { items : aroundNewHouseList }) %>
-        <hr/>
-        <a href="#" class="more">查看更多</a>
+        <%- include( "../components/xf-items" , { items : aroundNewHouseList }) %>        
+        <a href="javascript:void(0);" class="more">查看更多</a>
         </div>
     </div>  
     <% } %>          
@@ -192,5 +193,5 @@
 </div>
 
 
-<%- include("../components/download-app" ,{ bigDataParams: item.bigDataParams && item.bigDataParams.downloadBigDataParams }) %>
+<%- include("../components/download-app" , { bigDataParams : bigDataParams && bigDataParams.downloadAppClick }) %>
 <%- include("../components/footer") %>

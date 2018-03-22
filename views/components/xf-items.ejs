@@ -1,9 +1,9 @@
 <%if(items && items.length){%>
     <%for(var i = 0; i < items.length; i++){%>
         <% let item = items[i]; %>
-        <a class="xf-item" href="/<%= 'shanghai' %>/xf/<%= item.subEstateId%>.html">
+        <a class="xf-item" href="<%= item.url%>" data-bigdata="<%= item.bigDataParams%>">
             <div class="img">
-                <img src="<%= item.imageUrl%>">
+                <img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= item.imageUrl%>">
                 <%if(item.activitys && item.activitys[0]){%>
                     <div class="yh"><%= item.activitys[0].title%></div>
                 <%}%>                
@@ -11,10 +11,10 @@
             <div class="info">
                 <h3><%= item.estateName%></h3>
                 <p class="district-town-area">
-                    <span><%= item.districtName + " " + item.townName%></span><span>78m-120m</span>
+                    <span><%= item.districtName + " " + item.townName%></span><span>78m²-120m²</span>
                 </p>
                 <ul class="tags">
-                    <%if(item.activitys && item.activitys.length){%><li class="yh">有优惠</li><%}%><%if(item.isSubWayEstate){%><li class="dt">近地铁</li><%}%><%if(item.isOnSale){%><li class="">在售楼盘</li><%} else {%><li class="">即将开盘</li><%}%><%if(item.estateVideoResponse){%><li class="">有视频</li><%}%>
+                    <%if(item.hasActivity){%><li class="yh">有优惠</li><%}%><%if(item.isSubwayEstate){%><li class="dt">近地铁</li><%}%><%if(!item.isSoonOpen){%><li class="">在售楼盘</li><%} else {%><li class="">即将开盘</li><%}%><%if(item.hasVideo){%><li class="">有视频</li><%}%>
                 </ul>
                 <p class="unit-price"><span><%= item.unitPrice%></span> <span>元/m</span></p>
             </div>

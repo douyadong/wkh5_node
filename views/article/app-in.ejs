@@ -1,0 +1,44 @@
+<%- include("../components/head")%>
+
+<div class="details-container">
+    <div class="details-Info">
+        <div class="title"><%= item.articleDetailModel.title%></div>
+        <div class="article-info">
+            <div class="left"><span><%= item.articleDetailModel.publishTime%></span></div>
+            <div class="right"><span><%= item.articleDetailModel.viewNumStr%></span>次浏览</div>
+        </div>
+        <div class="article-content">
+            <%= item.articleDetailModel.content%>
+        </div>
+        <div class="operation">
+            <div class="left txt-left sub-operation">
+                <span class="collect"><i class="wk_iconfont icon-shoucang"></i>收藏</span> <span class="zan">
+                        <i class="wk_iconfont icon-appraise"></i>
+                    <span></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="comment mt-10" id="comment-box">
+        <div class="title">
+            评论（<span class="count"><%= item.articleDetailModel.commentNumStr%></span>）
+        </div>
+        <div class="write pb-10">
+            <form action="">
+                <div class="commentArea">
+                    <textarea name="comment" id="" placeholder="写下你的评论"></textarea>
+                </div>
+            </form>
+            <div class="operation">
+                <span class="cancel">取消</span><span class="submit">评论</span>
+            </div>
+        </div>
+        <div class="comment-list">
+        </div>
+        <div class="pagination">
+        </div>
+    </div>
+    <%}%>
+</div>
+
+<%- include("../components/footer")%>

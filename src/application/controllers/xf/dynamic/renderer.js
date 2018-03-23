@@ -39,19 +39,19 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对城市的字段进行处理（去掉"市"字）
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let shortName = this.throwShiSuffix(subEstateData.cityName) ;     
+            let shortName = decodeURIComponent(this.req.query.cityName) ; 
+            let subEstateName = decodeURIComponent(this.req.query.subEstateName) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/            
             Object.assign(this.templateData, { 
-                "title" : "-悟空找房" , 
-                "keywords" : "" ,
-                "description" : "" ,                                
+                "title" : subEstateName + "楼盘详情_" + shortName + subEstateName + "售楼处-悟空找房" , 
+                "keywords" : subEstateName + "楼盘详情," + shortName + subEstateName + "售楼处" ,
+                "description" : "悟空找房网为您提供" + shortName + subEstateName + "楼盘详情信息，在这里你可以知道" + subEstateName + "楼盘开发商，" + subEstateName + "售楼处，楼盘地址，物业，户型等详细介绍，了解更多关于" + subEstateName + "楼盘详情，就上悟空找房网。" ,                                
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "cityName" : shortName ,  //download-app里面有这样一个变量
-                "cityPinyin" : subEstateData.cityPinyin ,
-                "item" : subEstateData
+                "items" : subEstateData ,
+                "tel" : this.req.query.tel
             }) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

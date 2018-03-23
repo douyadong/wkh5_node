@@ -63,10 +63,11 @@ export default {
                 "estatePriceTrend":"esf/estatePriceTrend.rest", // 小区价格走势
                 "townPriceTrend":"esf/townPriceTrend.rest" ,// 板块价格
                 "sameEstateHouseList":"esf/sameEstateHouseList.rest" , // 小区内所有房源
-                "historicalTransactionList":"estate/historicalTransactionList.rest"
+                "historicalTransactionList":"estate/historicalTransactionList.rest" // 交易历史
             },
             "new":{
                 "basePriceTrend":"xf/basePriceTrend.rest", // 新房价格走势
+                "loupanPrice":"estate/loupanPrice.rest" ,// 新房楼盘介绍
             }
         },
         "xf": {

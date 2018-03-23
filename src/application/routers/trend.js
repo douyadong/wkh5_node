@@ -19,6 +19,7 @@ import newTownRenderer from "../controllers/trend/new/town/renderer" ;
 import newCommunityRenderer from "../controllers/trend/new/community/renderer" ;
 import esfTownListRenderer from "../controllers/trend/esf/town-list/renderer" ;
 import esfHouseListRenderer from "../controllers/trend/esf/house-list/renderer" ;
+import esfSoldHistoryRenderer from "../controllers/trend/esf/sold-history/renderer" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /:city/trend/esf的路由规则  城市ID
@@ -75,9 +76,15 @@ router.get("/:city/trend/esf/townList/(:regionId)", function(req, res, next) {
     new esfTownListRenderer(req, res, next) ;
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/:city/trend/new/houseList/(:regionId)的路由规则 城市ID
+/:city/trend/new/houseList/(:regionId)的路由规则 小区ID
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/:city/trend/esf/houseList/(:regionId)", function(req, res, next) {
     new esfHouseListRenderer(req, res, next) ;
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/:city/trend/new/soldHistory/(:regionId)的路由规则 小区ID
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/:city/trend/esf/soldHistory/(:regionId)", function(req, res, next) {
+    new esfSoldHistoryRenderer(req, res, next) ;
 }) ;
 export default router ;

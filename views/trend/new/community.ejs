@@ -19,28 +19,45 @@
         </div>
     </div>
     <!-- 描述-->
-    <%if(item.housePrice){%>
+
     <div class="description">
-        <h3><%= item.housePrice.name %></h3>
+        <%if(item){%>
+        <h3><%= item.estateName %></h3>
         <div class="description-detail">
             <div class="unit-price">
                 <span>最新均价</span>
-                <p><%= item.housePrice.avgPrice %> 元/㎡</p>
+                <p><%= item.avgPrice  || "--"%> 元/㎡</p>
             </div>
             <div class="up-down">
                 <span>环比上月</span>
-                <p><%= item.housePrice.increase %></p>
+                <p><%= item.increase || "--"%></p>
             </div>
             <div class="tot-house">
                 <a href="/<%=item.cityPY%>/esf">
                     <span>在售房源</span><i class="iconfont icon-next"></i>
-                    <p><%= item.housePrice.houseCount %> 套</p>
+                    <p><%= item.houseCount || "--"%> 套</p>
                 </a>
             </div>
         </div>
+        <% }%>
     </div>
-    <% }%>
+
     <!--板块模块信息-->
+    <div class="info">
+        <a href="/<%= item.cityPY%>/xf/<%=item.regionId%>.html">楼盘信息<span>查看详情 <i class="iconfont icon-next"></i></span></a>
+        <hr>
+        <ul>
+            <li>开盘时间<span><%= item.openTimeStr %></span></li>
+            <li>交房时间<span><%= item.launchTimeStr %></span></li>
+            <li>产权年限<span><%= item.propertyRight %> 年</span></li>
+            <li>规划户数<span><%= item.planRoom %> 户</span></li>
+            <li>装修标准<span><% if (item.buildDecoration == 1) {%>毛坯 <% } else if(item.buildDecoration == 2){ %> 精装 <% } else if(item.buildDecoration == 3){ %>豪装<% }else { %>--<% } %></span></li>
+            <li>物业类型<span><% if(item.propertyType == 1){ %>住宅<% } else if(item.propertyType == 2){ %> 商用<% } else { %>--<% } %></span></li>
+            <li>规划车位<span><%= item.parkingSpace || "--" %></span></li>
+            <li>楼盘地址<span><%= item.initName || "--" %></span></li>
+            <li>开发商<span><%= item.developers || "--" %></span></li>
+        </ul>
+    </div>
 
 </div>
 <%- include("../../components/trend-search") %>

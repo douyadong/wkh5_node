@@ -45,7 +45,9 @@
     <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
+    <div class="empty-color"></div>
     <% }%>
+    <%if(item.districtUponCityPriceList || item.townUponCityPriceList){%>
     <!--区域模块信息-->
     <div class="district-town wk-panel">
         <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
@@ -86,6 +88,7 @@
             <a href="/<%=item.cityPY%>/trend/esf/townList/<%= item.regionId %>" id="townMore">查看全部</a>
         </div>
     </div>
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

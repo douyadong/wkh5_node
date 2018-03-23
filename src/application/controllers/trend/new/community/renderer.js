@@ -18,7 +18,7 @@ class Renderer extends AppRendererControllerBasic {
     async renders(){
         let cityPathArray = [ "common" , "cityPinYin"] ;
         let modulePathArray = [ "trend" , "new" , "community" ] ;
-        let apiPathArray = [ "trend" , "new" , "basePriceTrend" ] ;
+        let apiPathArray = [ "trend" , "new" , "loupanPrice" ] ;
         try{
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据
@@ -34,7 +34,7 @@ class Renderer extends AppRendererControllerBasic {
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
                 "contentType":"application/json",
-                "data" : { "regionId" : regionId,"regionType":4}
+                "data" : { "subEstateId" : regionId }
             }) ;
             let item = apiData.data;
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）

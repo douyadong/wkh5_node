@@ -37,7 +37,7 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "subEstateId" : regionId}
             }) ;
             let item = {
-                houseList:apiData,
+                houseList:apiData.data,
                 cityPY:cityPinYin,
                 cityName : cityInfo.data.cityName,
                 regionId: regionId,

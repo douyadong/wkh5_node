@@ -40,12 +40,7 @@
         </div>
     </div>
     <% }%>
-   <!-- 价格走势-->
-<!--    <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
-        <div id="main"></div>
-    </div>
-    <% }%>-->
+    <%if( item.priceList && item.priceList.length >0){%>
     <!--区域模块信息-->
     <div class="district-town wk-panel">
         <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/xflist/"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
@@ -64,27 +59,9 @@
             </ul>
         </div>
     </div>
-    <!--    板块模块信息-->
-   <!-- <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考均价<a href="/<%=item.cityPY%>/xflist/"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
-        <div class="wk-body">
-            <ul>
-                <li class="top-name"> <span>板块</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
-                <%item.townUponCityPriceList && item.townUponCityPriceList.forEach(function (itemL,index) {%>
-                <%if( index <10 ){%>
-                    <li class="content">
-                    <a href="/<%= item.cityPY%>/trend/new/town/<%= itemL.regionId %>">
-                        <p><%= itemL.name %> </p>
-                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
-                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
-                    </a>
-                </li>
-                <% }%>
-                <%})%>
-            </ul>
-            <a href="" id="townMore">查看全部</a>
-        </div>
-    </div>-->
+    <% } else {%>
+    <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

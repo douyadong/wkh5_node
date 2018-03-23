@@ -45,7 +45,9 @@
     <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
+    <div class="empty-color"></div>
     <% }%>
+    <%if(item.townUponDistrictPriceList && item.townUponDistrictPriceList > 0){%>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
         <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
@@ -67,6 +69,9 @@
             <% }%>
         </div>
     </div>
+    <% } else {%>
+    <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

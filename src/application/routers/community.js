@@ -13,7 +13,7 @@ import CommunityDetailRenderer from "../controllers/community/detail/renderer" ;
 import CommunityDetailChartApiProvider from "../controllers/community/detail/chartApiProvider" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/rent/detail的路由规则
+/:city/community/的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/:city/community/(:subEstateId).html", function(req, res, next) {
     new CommunityDetailRenderer(req, res, next) ;  

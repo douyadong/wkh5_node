@@ -220,7 +220,7 @@ class Renderer extends AppRendererControllerBasic {
             let item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
-                    item.data[index]['url']="/"+ cityInfo.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                    item.data[index]['url']="/"+ cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
                     item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                 })
             }
@@ -252,7 +252,7 @@ class Renderer extends AppRendererControllerBasic {
                 item['guessLikeHouse'] = apiSimilarData;
                 if (item.guessLikeHouse.data.length > 0){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
-                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                        item.guessLikeHouse.data[index]['url']="/"+cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
                         item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                     });
                 }
@@ -373,7 +373,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.cityName;
+            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.data.cityName;
             item['channel'] = channel ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

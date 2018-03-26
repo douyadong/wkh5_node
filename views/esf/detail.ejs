@@ -36,7 +36,7 @@
             <div><span class="hd">装修</span><span class="bd"><%= item.decorationStr %></span></div>
             <div><span class="hd">朝向</span><span class="bd"><%= item.orientationStr %></span></div>
         </div>
-        <hr/>
+        <hr>
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
@@ -101,14 +101,17 @@
             <span class="address"><%= item.estateAddr %></span>
         </a>
          <div class="echart">
-             <hr/>
-             <div class="panel-header">价格走势</div>
+             <hr>
+             <div class="panel-header">
+                <span>小区价格走势</span>
+                <a href="/<%= cityPinyin %>/trend/esf">查看<%= cityName %>房价<i class="iconfont icon-next"></i></a>
+             </div>
              <div id="main"></div>
          </div>
 
         <%if(item.sameEstateHouseAmount){%>
              <div >
-            <hr/>
+            <hr>
             <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.onSellBigDataParams%>">
                 <p>在售房源</p>
                 <span>
@@ -120,7 +123,7 @@
         <%}%>
         <%if(item.historicalTransactionAmount){%>
            <div >
-            <hr/>
+            <hr>
             <a class="total-item"  href="<%= domain %>/estate/historicalTransactionList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.historyBigDataParams%>">
                 <p>成交历史</p>
                 <span>
@@ -131,7 +134,7 @@
         </div>
         <%}%>
           <div>
-            <hr/>
+            <hr>
             <%if(item.commentTotal ){%>
               <a class="total-item" href="<%= domain %>/estate/moreComment.html?subEstateId=<%= item.subEstateId %>&commentLocation=1" data-bigdata="<%= item.DataParams.commentBigDataParams%>">
                 <p>小区评论</p>

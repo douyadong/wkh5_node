@@ -74,6 +74,12 @@ export default {
             "detail" : "wkzfH5/newHouseDetail.rest" ,
             "dynamic" : "wkzfH5/newHouseDynamicList.rest" ,
             "baseinfo" : "wkzfH5/briefNewHouseDetail.rest"
+        },
+        "article": {
+            "detail": "yfyk/quJingShareArticleDetail.rest",// 用的跟有房有客一样的接口，这是后端定的
+            "commentList": "article/queryArticleCommentList.rest",// 文章评论列表查询接口
+            "comment": "article/commentArticle.rest", //文章评论接口
+            "zan": "article/thumbUp.rest",// 赞接口
         }
     }
 } ;

@@ -108,7 +108,8 @@ class Renderer extends AppRendererControllerBasic {
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),
-                "data": data
+                "data": data,
+                "channel": channel
             }) ;     
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             埋点参数配置 

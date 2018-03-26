@@ -4,8 +4,8 @@
 3. 作者：liyang@lifang.com
 4. 备注：二手房价格行情页面渲染器
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-import AppRendererControllerBasic from "../../../renderer";
-import ApiDataFilter from "../../../../../system/libraries/apiDataFilter";
+import AppRendererControllerBasic from "../../renderer";
+import ApiDataFilter from "../../../../system/libraries/apiDataFilter";
 
 class Renderer extends AppRendererControllerBasic {
     constructor(req,res,next){
@@ -17,8 +17,8 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders(){
         let cityPathArray = [ "common" , "cityPinYin"] ;
-        let modulePathArray = [ "trend" , "esf" , "house-list" ] ;
-        let apiPathArray = [ "trend" , "esf" , "sameEstateHouseList" ] ;
+        let modulePathArray = [  "community" , "same" ] ;
+        let apiPathArray = [ "community" , "sameEstateHouseList" ] ;
         try{
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用接口获取数据

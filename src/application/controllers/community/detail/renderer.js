@@ -23,6 +23,7 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() { 
         let subEstateId = this.req.params.subEstateId || "" ;   //加密的houseId
+        let cityPinYin = this.req.params.city || "" ;   //city拼音
         let modulePathArray = [ "community" , "detail" ] ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         调用接口获取数据
@@ -47,7 +48,14 @@ class Renderer extends AppRendererControllerBasic {
         }
         item.imgList = imgList;
         item.encryptSubEstateId = subEstateId;
-        
+        item.cityPinYin = cityPinYin;
+        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        判断来源 是否显示折线图
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+        item.echartShow = false;
+        if(this.req.query['origin'] == "esf"){
+            item.echartShow = true;
+        }
         //地图跳转路径
         item.mapUrl = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;  
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

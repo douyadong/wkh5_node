@@ -42,7 +42,7 @@
     <% }%>
    <!-- 价格走势-->
     <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
+    <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
     <div class="empty-color"></div>

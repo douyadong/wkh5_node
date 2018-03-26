@@ -17,10 +17,10 @@ class Renderer extends AppRendererControllerBasic {
     constructor(req, res, next) {
         super(req, res, next) ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        获取subEstateId 获取city并给出默认值
-        测试环境subEstateId：22292 22405 22409 24021 24534 24640
+        获取encryptSubEstateId 获取city并给出默认值
+        测试环境encryptSubEstateId：22292 22405 22409 24021 24534 24640
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/ 
-        this.subEstateId = this.req.params.subEstateId || 81515 ;
+        this.encryptSubEstateId = this.req.params.encryptSubEstateId || 81515 ;
         this.cityPinyin = this.req.params.city || "shanghai" ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         渲染模板
@@ -41,7 +41,7 @@ class Renderer extends AppRendererControllerBasic {
                 "apiPath" : modulePathArray.join(".") ,
                 "method" : "post" ,
                 "contentType" : "application/json" ,
-                "data" : { "subEstateId" : this.subEstateId , "cityPY" : this.cityPinyin }
+                "data" : { "encrptySubEstateId" : this.encryptSubEstateId , "cityPY" : this.cityPinyin }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             api数据分拣
@@ -55,13 +55,13 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             aroundXfModel && aroundXfModel.length && aroundXfModel.forEach((aroundXf) => {
                 aroundXf.url = aroundXf.id + ".html" ;
-                aroundXf.bigDataParams = this.generateBigDataParams( { "eventName" : 1045015 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ;
+                aroundXf.bigDataParams = this.generateBigDataParams( { "eventName" : 1045015 , "eventParam" : { "new_house_id" : estateModel.id } } ) ;
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             要给每个户型图赋予大数据埋点
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             estateModel && estateModel.houseTypeImages && estateModel.houseTypeImages.forEach((layout) => {
-                layout.bigDataParams = this.generateBigDataParams( { "eventName" : 1045013 , "eventParam" : { "new_house_id" : this.subEstateId , "house_image_id" : layout.id } } ) ;
+                layout.bigDataParams = this.generateBigDataParams( { "eventName" : 1045013 , "eventParam" : { "new_house_id" : estateModel.id , "house_image_id" : layout.id } } ) ;
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对城市的字段进行处理（去掉"市"字）
@@ -86,13 +86,13 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData , {
                 "bigDataParams" : {
-                    "albumPictClick" : this.generateBigDataParams( { "eventName" : 1045012 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "loanCalClick" : this.generateBigDataParams( { "eventName" : 1045007 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "magazineMoreClick" : this.generateBigDataParams( { "eventName" : 1045011 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,                    
-                    "baseinfoMoreClick" : this.generateBigDataParams( { "eventName" : 1045002 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "mapClick" : this.generateBigDataParams( { "eventName" : 1045004 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "consultClick" : this.generateBigDataParams( { "eventName" : 1045020 , "eventParam" : { "new_house_id" : this.subEstateId } } )
+                    "albumPictClick" : this.generateBigDataParams( { "eventName" : 1045012 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "loanCalClick" : this.generateBigDataParams( { "eventName" : 1045007 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "magazineMoreClick" : this.generateBigDataParams( { "eventName" : 1045011 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,                    
+                    "baseinfoMoreClick" : this.generateBigDataParams( { "eventName" : 1045002 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "mapClick" : this.generateBigDataParams( { "eventName" : 1045004 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "consultClick" : this.generateBigDataParams( { "eventName" : 1045020 , "eventParam" : { "new_house_id" : estateModel.id } } )
                 }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

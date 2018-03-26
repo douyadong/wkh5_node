@@ -11,7 +11,7 @@
         <p class="unit-price">
             <span><%= item.unitPrice %> 元 / ㎡</span>
             <small>参考价格</small>
-            <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>"><i class="calc iconfont icon-jisuanqi"></i></a>
+            <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>" data-bigdata="<%= bigDataParams.loanCalClick %>"><i class="calc iconfont icon-jisuanqi"></i></a>
         </p>                
         <div class="panel-body">            
             <hr>
@@ -45,18 +45,19 @@
         <div class="panel-body"><%- include( "../components/xf-dynamic" , { "dynamics" : item.newHouseDynamicList.slice( 0 , 1 ) } ) %></div>
     </a>
     <% } %>
+
     <!-- 在售户型 -->
     <% if( item.houseTypeImages && item.houseTypeImages.length ) { %>
     <div class="wk-panel top-gap house-type">
         <h1 class="panel-header">在售户型</h1>
         <div class="panel-body">
-            <% item.houseTypeImages.forEach(function(layout){ %>
-            <div class="house-type-item">
+            <% item.houseTypeImages.forEach(function( layout , index ){ %>
+            <a class="house-type-item" href="/xfdetail/houseTypeDetail.html?subEstateId=<%= item.encryptSubEstateId %>&index=<%= index + 1 %>" data-bigdata="<%= layout.bigDataParams %>">
                 <img src="<%= layout.imgKey %>">
                 <h3><%=layout.name %></h3>
                 <p class="type-area"><%= layout.bedRoomSum + '室' + layout.livingRoomSum + '厅' + layout.wcSum + '卫' + ' ' + layout.spaceArea + 'm' %></p>
-                <p class="total-price"><%= layout.price %>万起<p>
-            </div>
+                <p class="total-price"><%= layout.price %>万起</p>
+            </a>
             <% }) ; %>        
         </div>
     </div>
@@ -120,7 +121,7 @@
                 <span>开发商</span>
                 <span><%= item.developers %></span>
             </div>                   
-            <a href="<%= item.id %>/baseinfo.html" class="more">查看更多</a>                
+            <a href="<%= item.id %>/baseinfo.html" class="more" data-bigdata="<%= bigDataParams.baseinfoMoreClick %>">查看更多</a>                
         </div>
     </div>
     
@@ -133,7 +134,7 @@
             <h4><%= item.newHouseMagazineList[0].publishTimeStr %></h4>
             <img src="<%= item.newHouseMagazineList[0].fileKey %>">
             <p><%= item.newHouseMagazineList[0].content %></p>
-            <a href="/xfdetail/magazineList.html?subEstateId=<%= item.encryptSubEstateId %>" class="more">查看更多</a>
+            <a href="/xfdetail/magazineList.html?subEstateId=<%= item.encryptSubEstateId %>" class="more" data-bigdata="<%= bigDataParams.magazineMoreClick %>">查看更多</a>
         </div>
     </div>
     <% } %>
@@ -180,7 +181,7 @@
     </div>  
     <% } %>          
 
-    <a class="consult-phone" href="tel:<%= item.salePhone %>">电话咨询</a>  
+    <a class="consult-phone" href="tel:<%= item.salePhone %>" data-bigdata="<%= bigDataParams.consultClick %>">电话咨询</a>  
 </div>
 
 

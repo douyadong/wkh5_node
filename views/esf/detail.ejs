@@ -180,8 +180,10 @@
 </div>
 <% } %>
 <%- include("../components/download-app" ,{bigDataParams:item.DataParams.appBigDataParams}) %>
-<!--几个获取转接号的参数-->
+<!--几个获取转接号的参数 item.houseAgent-->
+<% if(item.houseAgent ){ %>
 <input type="hidden" id="agentId" value="<%= item.houseAgent.agentId %>">
+<% } %>
 <input type="hidden" id="houseId" value="<%= item.houseId %>">
 <input type="hidden" id="serviceType" value="2">
 <%- include("../components/footer") %>

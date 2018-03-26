@@ -32,7 +32,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/esf">
+                <a href="/<%=item.cityPY%>/esf" data-bigdata="<%= item.DataParams.topOnSell%>">
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -45,10 +45,12 @@
     <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
+    <div class="empty-color"></div>
     <% }%>
+    <%if(item.districtUponCityPriceList || item.townUponCityPriceList){%>
     <!--区域模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
+        <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/esf" data-bigdata="<%= item.DataParams.district%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
         <div class="wk-body district">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
@@ -67,7 +69,7 @@
     </div>
     <!--    板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考均价<a href="/<%=item.cityPY%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="panel-header">当前各板块参考均价<a href="/<%=item.cityPY%>/esf" data-bigdata="<%= item.DataParams.town%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body">
             <ul>
                 <li class="top-name"> <span>板块</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
@@ -86,6 +88,7 @@
             <a href="/<%=item.cityPY%>/trend/esf/townList/<%= item.regionId %>" id="townMore">查看全部</a>
         </div>
     </div>
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

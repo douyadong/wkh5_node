@@ -1,0 +1,14 @@
+<%- include("../../components/head") %>
+<div class="top-header-name">
+    小区在售房源
+</div>
+<div class="history-list">
+    <%item.houseList.transactionModelList && item.houseList.transactionModelList.forEach(function (itemL,index) {%>
+ <div class="single-item">
+     <h3><%= itemL.estateName %></h3>
+     <p><%= itemL.coveredArea %>㎡ ｜<%= itemL.unitPrice %>元/㎡</p>
+     <p><%= itemL.tradeTime %> <span><%= itemL.totalPrice %> 万</span></p>
+ </div>
+    <%})%>
+</div>
+<%- include("../../components/footer") %>

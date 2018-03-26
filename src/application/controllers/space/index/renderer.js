@@ -67,27 +67,27 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对推荐房源数据进行大数据埋点以及跳转地址的处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(secondApiData.data) {
-                for(let n = 0 ; n < secondApiData.data.length ; n ++) {
-                    secondApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
-                    secondApiData.data[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data[n].encryptHouseId + ".html?agentId="+agentId ;
+            if(secondApiData.data && secondApiData.data.houseList) {
+                for(let n = 0 ; n < secondApiData.data.houseList.length ; n ++) {
+                    secondApiData.data.houseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    secondApiData.data.houseList[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data.houseList[n].encryptHouseId + ".html?agentId="+agentId ;
                 }
             }
-            if(newApiData.data) {
-                for(let n = 0 ; n < newApiData.data.length ; n ++) {
-                    newApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : newApiData.data[n].subEstateId } } ) ;
-                    newApiData.data[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data[n].encryptSubEstateId + ".html" ;
+            if(newApiData.data && newApiData.data.houseList) {
+                for(let n = 0 ; n < newApiData.data.houseList.length ; n ++) {
+                    newApiData.data.houseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : newApiData.data.houseList[n].subEstateId } } ) ;
+                    newApiData.data.houseList[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data.houseList[n].encryptSubEstateId + ".html" ;
                 }
             }
-            if(rentApiData.data) {
-                for(let n = 0 ; n < rentApiData.data.length ; n ++) {
-                    rentApiData.data[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data[n].encryptHouseId + ".html?agentId="+agentId;
+            if(rentApiData.data && rentApiData.data.rentHouseList) {
+                for(let n = 0 ; n < rentApiData.data.rentHouseList.length ; n ++) {
+                    rentApiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data.rentHouseList[n].encryptHouseId + ".html?agentId="+agentId;
                 }
             }
             let houseList={
-                newHouseList:newApiData.data,
-                oldHouseList:secondApiData.data,
-                rentHouseList: rentApiData.data
+                newHouseList:newApiData.data && newApiData.data.houseList ? newApiData.data.houseList : '',
+                oldHouseList:secondApiData.data && secondApiData.data.houseList ? secondApiData.data.houseList : '',
+                rentHouseList:rentApiData.data && rentApiData.data.rentHouseList ? rentApiData.data.rentHouseList : ''
             };
             Object.assign(this.templateData , apiData.data, houseList) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -58,6 +58,12 @@ class Renderer extends AppRendererControllerBasic {
                 aroundXf.bigDataParams = this.generateBigDataParams( { "eventName" : 1045015 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ;
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            要给每个户型图赋予大数据埋点
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            estateModel && estateModel.houseTypeImages && estateModel.houseTypeImages.forEach((layout) => {
+                layout.bigDataParams = this.generateBigDataParams( { "eventName" : 1045013 , "eventParam" : { "new_house_id" : this.subEstateId , "house_image_id" : layout.id } } ) ;
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对城市的字段进行处理（去掉"市"字）
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let shortName = this.throwShiSuffix(cityModel.cityName) ;                   
@@ -81,8 +87,12 @@ class Renderer extends AppRendererControllerBasic {
             Object.assign(this.templateData , {
                 "bigDataParams" : {
                     "albumPictClick" : this.generateBigDataParams( { "eventName" : 1045012 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
-                    "mapClick" : this.generateBigDataParams( { "eventName" : 1045056 } )
+                    "loanCalClick" : this.generateBigDataParams( { "eventName" : 1045007 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "magazineMoreClick" : this.generateBigDataParams( { "eventName" : 1045011 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,                    
+                    "baseinfoMoreClick" : this.generateBigDataParams( { "eventName" : 1045002 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "mapClick" : this.generateBigDataParams( { "eventName" : 1045004 , "eventParam" : { "new_house_id" : this.subEstateId } } ) ,
+                    "consultClick" : this.generateBigDataParams( { "eventName" : 1045020 , "eventParam" : { "new_house_id" : this.subEstateId } } )
                 }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

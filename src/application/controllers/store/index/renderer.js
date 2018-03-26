@@ -94,7 +94,9 @@ class Renderer extends AppRendererControllerBasic {
             Object.assign(this.templateData, { 
                 "bigDataParams" : {
                     "esfTab" : this.generateBigDataParams( { "eventName" : 1222002 , "eventParam" : { "store_id" : storeId } } ) ,
-                    "agentTab" : this.generateBigDataParams( { "eventName" : 1222003 , "eventParam" : { "store_id" : storeId } } ) 
+                    "agentTab" : this.generateBigDataParams( { "eventName" : 1222003 , "eventParam" : { "store_id" : storeId } } ),
+                    "noHouse" : this.generateBigDataParams( { "eventName" : 1220011 , "eventParam" : { "store_id" : storeId } } ),
+                    "noAgent" : this.generateBigDataParams( { "eventName" : 1220012 , "eventParam" : { "store_id" : storeId } } ),
                 }
             }) ;        
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

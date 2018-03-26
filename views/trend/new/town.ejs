@@ -32,7 +32,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/esf">
+                <a href="/<%=item.cityPY%>/xflist/">
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -40,15 +40,10 @@
         </div>
     </div>
     <% }%>
-    <!-- 价格走势-->
-    <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
-        <div id="main"></div>
-    </div>
-    <% }%>
+    <%if( item.priceList && item.priceList.length >0){%>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各小区参考价格<a href="/<%=item.cityPY%>/xflist/"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="panel-header">当前各小区参考价格<a href="/<%=item.cityPY%>/xflist/" ><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body flag">
             <ul>
                 <li class="top-name"> <span>楼盘名称</span><span class="unit-price">开盘时间</span><span>参考均价</span></li>
@@ -64,6 +59,9 @@
             </ul>
         </div>
     </div>
+    <% } else {%>
+    <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

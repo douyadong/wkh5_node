@@ -6,7 +6,7 @@
     <img src="https://img.wkzf.com/7f5d84e32c6f4474b7f7d1b2b35669dc" alt="无数据">
     <p><%= wordOne %></p>
     <p><%= wordTwo %></p>
-    <% if(linkFlag) { %>
-    <a>去看看其他房源</a>
+    <% if(linkFlag && bigDataParams) { %>
+    <a href="/<%= pinyin %>/esf" data-bigdata="<%= bigDataParams %>">去看看其他房源</a>
     <% } %>
 </div>

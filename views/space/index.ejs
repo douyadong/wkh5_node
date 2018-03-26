@@ -68,9 +68,9 @@
     </ul>
     <% } %>
     <!--tabs-frame部分-->
-    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame esf-frame"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div><% } %>
-    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame new-frame"><%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div><% } %>
-    <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame rent-frame"><%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div><% } %>
+    <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="esf-frame"> <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div></div><% } %>
+    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="new-frame"> <%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div></div><% } %>
+    <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="rent-frame"> <%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div></div><% } %>
     <!--tabs-frame内容结束-->
     <% } else {%>
     <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": false }  ) %>

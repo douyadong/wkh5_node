@@ -32,7 +32,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/esf">
+                <a href="/<%=item.cityPY%>/xflist/">
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -46,6 +46,7 @@
         <div id="main"></div>
     </div>
     <% }%>-->
+    <%if( item.priceList && item.priceList.length > 0){%>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
         <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/xflist/"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
@@ -62,11 +63,11 @@
                 </li>
                 <%})%>
             </ul>
-       <!--     <%if( item.townUponDistrictPriceList && item.townUponDistrictPriceList.length >10 ){%>
-              <button id="districtMore">加载全部</button>
-            <% }%>-->
         </div>
     </div>
+    <% } else {%>
+      <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
+    <% }%>
 </div>
 <%- include("../../components/trend-search") %>
 

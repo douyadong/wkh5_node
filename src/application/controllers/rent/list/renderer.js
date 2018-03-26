@@ -50,22 +50,22 @@ class Renderer extends AppRendererControllerBasic {
                     "apiPath" : cityPinYin.join("."),
                     "data" : { "pinyin": this.req.cookies.userSelectedCity} ,
                 }) ;
-               if( cityInfo.rentBusiness ){
-                   cityId =  cityInfo.cityId
+               if( cityInfo.data.rentBusiness ){
+                   cityId =  cityInfo.data.cityId
                } else {     // 客户选择的城市不支持租房业务
                    cityInfo = await adf.request({
                        "apiPath" : cityPinYin.join("."),
                        "data" : pinyin ,
                    }) ;
-                   if (cityInfo.rentBusiness ) {
-                       cityId =  cityInfo.cityId;
-                       defultName = cityInfo.cityName;
+                   if (cityInfo.data.rentBusiness ) {
+                       cityId =  cityInfo.data.cityId;
+                       defultName = cityInfo.data.cityName;
                    }else {      // 路由的不支持租房的业务 跳到上海
                        cityId = 43;
                        cityInfo['cityId']= cityId ;
                        cityInfo['cityName']= "上海" ;
                        cityInfo['cityPinyin']= "shanghai" ;
-                       defultName = cityInfo.cityName;
+                       defultName = cityInfo.data.cityName;
                    }
                }
             }else {   // 没有用户选择的城市
@@ -73,20 +73,20 @@ class Renderer extends AppRendererControllerBasic {
                     "apiPath" : cityPinYin.join("."),
                     "data" : pinyin ,
                 }) ;
-                if (cityInfo.rentBusiness ){
-                    cityId =  cityInfo.cityId;
-                    defultName = cityInfo.cityName;
+                if (cityInfo.data.rentBusiness ){
+                    cityId =  cityInfo.data.cityId;
+                    defultName = cityInfo.data.cityName;
                 }else {
                     cityId = 43;
                     cityInfo['cityId']= cityId ;
                     cityInfo['cityName']= "上海" ;
                     cityInfo['cityPinyin']= "shanghai" ;
-                    defultName = cityInfo.cityName;
+                    defultName = cityInfo.data.cityName;
                 }
             }
-            this.res.cookie('cityId', cityInfo.cityId , {httpOnly: false}); // 设置cityId
-            this.res.cookie('cityName', cityInfo.cityName , {httpOnly: false});// 设置cityName
-            this.res.cookie('pinyin', cityInfo.cityPinyin , {httpOnly: false});// 设置城市pinyin
+            this.res.cookie('cityId', cityInfo.data.cityId , {httpOnly: false}); // 设置cityId
+            this.res.cookie('cityName', cityInfo.data.cityName , {httpOnly: false});// 设置cityName
+            this.res.cookie('pinyin', cityInfo.data.cityPinyin , {httpOnly: false});// 设置城市pinyin
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             this.res.cookie('location_noChose', "" , {httpOnly: false});// 避免循环跳转的标识
 
@@ -220,7 +220,7 @@ class Renderer extends AppRendererControllerBasic {
             let item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
-                    item.data[index]['url']="/"+ cityInfo.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                    item.data[index]['url']="/"+ cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
                     item.data[index]['bigDataParams'] = this.generateBigDataParams({ eventName:'1202021',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                 })
             }
@@ -252,7 +252,7 @@ class Renderer extends AppRendererControllerBasic {
                 item['guessLikeHouse'] = apiSimilarData;
                 if (item.guessLikeHouse.data.length > 0){
                     item.guessLikeHouse.data.forEach((itemI, index)=> {
-                        item.guessLikeHouse.data[index]['url']="/shanghai/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
+                        item.guessLikeHouse.data[index]['url']="/"+cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
                         item.guessLikeHouse.data[index]['bigDataParams']=this.generateBigDataParams({ eventName:'1202039',eventParam:{rent_house_id:itemI.houseId }, channel:channel || "", type: 2})
                     });
                 }
@@ -373,7 +373,7 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             城市的定位名称获取
            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.cityName;
+            item['cityName'] = defultName || this.req.cookies.location_cityName || cityInfo.data.cityName;
             item['channel'] = channel ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

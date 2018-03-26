@@ -43,7 +43,8 @@ export default {
             }
         } ,
         "community" : {
-            "detail" : "estate/estateInfo.rest"
+            "detail" : "estate/estateInfo.rest",
+            "sameEstateHouseList":"esf/sameEstateHouseList.rest" , // 小区内所有房源
         } ,
         "store" : {
             "store" : "store/getStorePriceInfo.rest" ,
@@ -62,7 +63,6 @@ export default {
                 "basePriceTrend":"esf/basePriceTrend.rest", //二手房价格走势
                 "estatePriceTrend":"esf/estatePriceTrend.rest", // 小区价格走势
                 "townPriceTrend":"esf/townPriceTrend.rest" ,// 板块价格
-                "sameEstateHouseList":"esf/sameEstateHouseList.rest" , // 小区内所有房源
                 "historicalTransactionList":"estate/historicalTransactionList.rest" // 交易历史
             },
             "new":{

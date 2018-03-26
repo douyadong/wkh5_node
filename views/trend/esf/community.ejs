@@ -42,7 +42,7 @@
     <% } %>
     <!-- 价格走势-->
     <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
+    <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
     <div class="empty-color"></div>
@@ -55,7 +55,7 @@
         <div class="wk-body flag">
             <%- include("../../components/esf-items" , { "oldHouseList" : item.houseList } ) %>
             <% if(item.houseList && item.houseList.length > 4) { %>
-              <a class="more-esf" href="/<%=item.cityPY%>/trend/esf/houseList/<%= item.encrptRegion %>">查看更多</a>
+              <a class="more-esf" href="/<%=item.cityPY%>/community/houseList/<%= item.encrptRegion %>">查看更多</a>
             <% } %>
         </div>
     </div>

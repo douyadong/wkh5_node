@@ -1,3 +1,11 @@
+<%
+    if(typeof title == 'undefined'){
+        var title = title || "今日好房，都在悟空找房！";
+    }
+    if(typeof desc == 'undefined'){
+        var desc = desc || (cityName + "房价资讯，一手掌握！");
+    }    
+%>
 <div class="download-app">    
     <div class="pull-right">
         <a href="javascript:;" class="download" data-bigdata="<%= bigDataParams %>">打开APP</a>
@@ -5,7 +13,7 @@
     </div>
     <dl>
         <dt><i class="iconfont icon-logotuxing"></i></dt>
-        <dd>今日好房，都在悟空找房！</dd>
-        <dd><%= cityName %>房价资讯，一手掌握！</dd>
+        <dd><%= title%></dd>
+        <dd><%= desc %></dd>
     </dl>
 </div>

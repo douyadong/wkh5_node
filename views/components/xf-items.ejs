@@ -3,7 +3,7 @@
         <% let item = items[i]; %>
         <a class="xf-item" href="<%= item.url%>" data-bigdata="<%= item.bigDataParams %>">
             <div class="img">
-                <img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= item.imageUrl%>">
+                <img src="<%= appStaticPrefix %>/images/common/loading.jpg" class="lazy" data-src="<%= item.imageUrl%>">
                 <%if(item.activitys && item.activitys[0]){%>
                     <div class="yh"><%= item.activitys[0].title%></div>
                 <%}%>                
@@ -11,7 +11,7 @@
             <div class="info">
                 <h3><%= item.estateName%></h3>
                 <p class="district-town-area">
-                    <span><%= item.districtName + " " + item.townName%></span><span>78m²-120m²</span>
+                    <span><%= item.districtName + " " + item.townName%></span><span><%= item.startSpace%>m²-<%= item.endSpace%>m²</span>
                 </p>
                 <ul class="tags">
                     <%if(item.hasActivity){%><li class="yh">有优惠</li><%}%><%if(item.isSubwayEstate){%><li class="dt">近地铁</li><%}%><%if(!item.isSoonOpen){%><li class="">在售楼盘</li><%} else {%><li class="">即将开盘</li><%}%><%if(item.hasVideo){%><li class="">有视频</li><%}%>

@@ -29,7 +29,7 @@
                          <i class="iconfont icon-kongxin"></i>
                     <% }} %>
                     <span><%=objScore %></span>
-                    <a href="">全部评价<i class="iconfont icon-next"></i></a>
+                    <a href="/space/appraise/<%= agentId %>">全部评价<i class="iconfont icon-next"></i></a>
                 </div>
             <% } %>
             </div>
@@ -69,7 +69,7 @@
     <% } %>
     <!--tabs-frame部分-->
     <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="esf-frame"> <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div></div><% } %>
-    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="new-frame"> <%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div></div><% } %>
+    <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="xf-frame"> <%- include("../components/xf-items" , { "newHouseList" : newHouseList } ) %></div></div><% } %>
     <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="rent-frame"> <%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div></div><% } %>
     <!--tabs-frame内容结束-->
     <% } else {%>

@@ -21,7 +21,7 @@ router.get("/:city/town/(:subEstateId).html", function(req, res, next) {
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /api/town/detail/chart 的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/api/town/detail/chart", function(req, res, next) {   
+router.get("/api/community/detail/chart", function(req, res, next) {
     new CommunityDetailChartApiProvider(req, res, next) ;  
 }) ;
 

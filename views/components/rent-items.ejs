@@ -16,8 +16,9 @@
             <div class="left">
                 <img data-src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>" class="lazy">
                 <%if(item.houseTag.isZeroCommission){%>
-                   <span>0 佣金</span>
+                   <span class="commission">0 佣金</span>
                 <%}%>
+                 <!--<span class="video"><i class="iconfont icon-Rectangle1"></i></span>-->
             </div>
             <div class="right">
                 <h4><%= item.houseTitle%></h4>

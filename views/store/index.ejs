@@ -31,7 +31,7 @@
                 <% if(oldHouseList ) { %>
                 <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %>
                 <% } else {%>
-                <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": true }  ) %>
+                <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noHouse}  ) %>
                 <% } %>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     </dl>
                 <% }) ; %>
                 <% } else {%>
-                <%- include("../components/store-nodata",{ "wordOne" : "经纪人马上就来~","wordTwo":"先去看看其他房源吧" ,"linkFlag":true }  ) %>
+                <%- include("../components/store-nodata",{ "wordOne" : "经纪人马上就来~","wordTwo":"先去看看其他房源吧" ,"linkFlag":true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noAgent}  ) %>
                 <% } %>
             </div>
         </div>

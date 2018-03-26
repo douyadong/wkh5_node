@@ -55,7 +55,7 @@ export default {
             "list" : "wkzfH5/secondHouseList.rest"
         } ,
         "estate" : {
-            "priceChart" : "estate/getEstateHistoricalPriceList.rest"
+            "priceChart" : "estate/getEstateHistoricalPriceList.rest" // 小区价格走势图
         } ,
         "trend":{
             "esf":{

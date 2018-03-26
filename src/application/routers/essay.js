@@ -11,6 +11,13 @@
 import express from "express" ;
 import EssayIndexRenderer from "../controllers/essay/index/renderer" ;
 import EssayListRenderer from "../controllers/essay/list/renderer" ;
+
+import HybridArticleDetailRenderer from "../controllers/essay/app-in/detail/renderer";// app内的取经文章详情页
+import ShareArticleDetailRenderer from "../controllers/essay/app-share/detail/renderer";// 分享的取经文章详情页
+import ArticleCommentListApiProvider from "../controllers/essay/articleCommentListApiProvider";// 文章评论列表接口
+import ArticleCommentApiProvider from "../controllers/essay/articleCommentApiProvider";// 文章品论接口
+import ArticleZanApiProvider from "../controllers/essay/articleZanApiProvider";// 文章点赞接口
+
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 取经频道首页的路由规则
@@ -19,10 +26,34 @@ router.get("/:city/essay", function(req, res, next) {
     new EssayIndexRenderer(req, res, next) ;  
 }) ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-取经频道列表页的路由规则
+/essay/app-in-xxx.html的路由规则
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-router.get("/:city/essay/(:condition).html", function(req, res, next) {   
-    new EssayListRenderer(req, res, next) ;  
+router.get("/essay/app-in.(:articleId).html", function(req, res, next) {   
+    new HybridArticleDetailRenderer(req, res, next) ;  
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/essay/app-share-xxx.html的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/essay/app-share.(:articleId).html", function(req, res, next) {   
+    new ShareArticleDetailRenderer(req, res, next) ;  
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/essay/articleCommentlist的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/essay/commentList", function(req, res, next) {   
+    new ArticleCommentListApiProvider(req, res, next) ;  
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/essay/articleComment的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/essay/comment", function(req, res, next) {   
+    new ArticleCommentApiProvider(req, res, next) ;  
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/essay/zan的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/essay/zan", function(req, res, next) {   
+    new ArticleZanApiProvider(req, res, next) ;  
 }) ;
 
 export default router ;

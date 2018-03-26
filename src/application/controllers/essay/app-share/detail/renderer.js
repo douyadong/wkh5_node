@@ -69,7 +69,7 @@ class Renderer extends AppRendererControllerBasic {
                 "bigDataParams": {
                     zan: encodeURIComponent('{"eventName": "1022003", "eventParam": { "article_id": "'+articleId+'"}}'),  
                     comment: encodeURIComponent('{"eventName": "1022002", "eventParam": {"article_id": "'+articleId+'"}}'),  
-                    phone: encodeURIComponent('{"eventName":"1022007", "eventParam": { "article_id": "'+agentId+'" }}')                
+                    phone: encodeURIComponent('{"eventName":"1022007", "eventParam": { "article_id": "'+articleId+'" }}')                
                 }
             }) ;                 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

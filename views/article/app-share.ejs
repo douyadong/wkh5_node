@@ -71,7 +71,7 @@
     </div>
     <%}%>    
 </div>
-<%- include("../components/assistant" , { agent: item.agentModel, mobileBigDataParams: bigDataParams.phone}) %>
+<%- include("../components/assistant" , { agent: item.agentModel, mobileBigDataParams: bigDataParams.phone, bt: "simple"}) %>
 <%- include("../components/download-app" ,{bigDataParams: "", cityName: "上海", title: "取经", desc: "取经子栏目"}) %>
 <input type="hidden" id="cityId" value="<%= cityId%>">
 <input type="hidden" id="categoryId" value="<%= item.hybirdCategoryModelResponse.id%>">

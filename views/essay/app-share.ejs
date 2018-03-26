@@ -58,7 +58,7 @@
         <div class="title">推荐阅读</div>
         <%for(var i = 0; i < item.recommendArticleList.length; i++){%>
         <% var article = item.recommendArticleList[i]; %>
-        <div class="item">
+        <div class="item" data-bigdata="<%= article.bigDataParam%>">
             <a href="/article/app-share.<%= article.articleId%>.html?cityId=<%= cityId%>">
                 <div class="left" style="background:url('<%= article.articleCoverUrl%>') no-repeat scroll center;background-size: cover;"></div>
                 <div class="left details">
@@ -71,8 +71,8 @@
     </div>
     <%}%>    
 </div>
-<%- include("../components/assistant" , { agent: item.agentModel}) %>
-<%- include("../components/download-app" ,{bigDataParams: "", cityName: "上海", title: "取经", desc: "取经子栏目"}) %>
+<%- include("../components/assistant" , { agent: item.agentModel, mobileBigDataParams: bigDataParams.phone, type: "simple"}) %>
+<%- include("../components/download-app" ,{bigDataParams: "", cityName: "上海", title: "取经频道", desc: item.hybirdCategoryModelResponse.title}) %>
 <input type="hidden" id="cityId" value="<%= cityId%>">
 <input type="hidden" id="categoryId" value="<%= item.hybirdCategoryModelResponse.id%>">
 <input type="hidden" id="articleId" value="<%= item.articleDetailModel.articleId%>">

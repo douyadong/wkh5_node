@@ -41,6 +41,9 @@ class Renderer extends AppRendererControllerBasic {
             this.res.cookie('pinyin', cityPinYin , { httpOnly: false});
             item.cityPY = cityPinYin;
             item.cityName = cityInfo.data.cityName;
+            if(item.cityName && item.cityName.charAt(item.cityName.length - 1) === "市") {
+                item.cityName = item.cityName.substring( 0 , item.cityName.length - 1) ;
+            }
             item.regionId = regionId;
             item.channel = "";
             // 额外的脚本样式

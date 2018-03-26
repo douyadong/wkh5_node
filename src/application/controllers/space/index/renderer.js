@@ -105,7 +105,12 @@ class Renderer extends AppRendererControllerBasic {
             let cityName = apiData.data.agent.cityName ;
             if(cityName && cityName.charAt(cityName.length - 1) === "市") {
                 cityName = cityName.substring( 0 , cityName.length - 1) ;
-            }               
+            }
+            let cityPinYin = apiData.data.agent.cityPinYin;
+            if(cityPinYin && cityPinYin.substr(cityPinYin.length - 3) =="shi"){
+                cityPinYin = cityPinYin.substring(0,cityPinYin.length-3)
+            }
+            this.res.cookie('pinyin', cityPinYin , {httpOnly: false}); // 设置cityPinYin
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据  agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" ,
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

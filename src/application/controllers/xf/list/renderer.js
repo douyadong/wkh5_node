@@ -87,7 +87,7 @@ class Renderer extends AppRendererControllerBasic {
             let channel = this.req.query.channel;
             if(data && data.data && data.data.newHouseDataListModelList){
                 data.data.newHouseDataListModelList.forEach(function(item){
-                    item.url = "/" + cityModel.cityPinyin + "/xf/" + item.subEstateId + ".html" + (channel&&"?channel=" + channel||"");
+                    item.url = "/" + cityModel.cityPinyin + "/xf/" + item.encryptSubEstateId + ".html" + (channel&&"?channel=" + channel||"");
                     item.bigDataParams = encodeURIComponent('{"eventName": "1050025", "eventParam": { "new_house_id": "'+item.subEstateId+'" } }');
                 });
             }

@@ -96,7 +96,7 @@ class Renderer extends AppRendererControllerBasic {
             if (this.req.params.condition) {
                 let conditionString = this.req.params.condition;
                 let conditionObj = conditionGet.parseCondition({condition: conditionString});
-                let spaceAreaStart = ["0-50", "50-70", "70-90", "90-110", "110-130", "130-150", "150-0"];
+                let spaceAreaStart = ["0-50","50-70","70-90","90-110","110-130","130-150","150-200","200-300","300-0"];
                 conditionData = {
                     "cityId": cityId,
                     "pageSize": 10,
@@ -137,10 +137,12 @@ class Renderer extends AppRendererControllerBasic {
                     conditionData["rentPriceEnd"] = cpArray[1]
                 }
                 if (conditionObj['ta']) {
-                    conditionData["isSubWay"] = conditionObj['ta'][0];  // 近地铁 0 任意  1 是
-                    conditionData["priceDown"] = conditionObj['ta'][1]; // 降价  0 否  1 是
-                    conditionData["isNewOnStore"] = conditionObj['ta'][2]; // 新上 0：否 1：是，
-                    conditionData["orientation"] = conditionObj['ta'][3]; // 房屋朝向 1南北通透 0任意
+                    conditionData["isZeroCommission"] = conditionObj['ta'][0];  // 0佣金 0 否  1 是
+                    conditionData["isSubWay"] = conditionObj['ta'][1];  // 近地铁 0 任意  1 是
+                    conditionData["priceDown"] = conditionObj['ta'][2]; // 降价  0 否  1 是
+                    conditionData["isNewOnStore"] = conditionObj['ta'][3]; // 新上 0：否 1：是，
+                    conditionData["isShortRent"] = conditionObj['ta'][4]; // 新上 0：否 1：是，
+                    conditionData["orientation"] = conditionObj['ta'][5]; // 房屋朝向 1南北通透 0任意
                 }
                 if (conditionObj['ar']) {   // 面积选择
                     if (conditionObj['ar'].constructor == Array) {

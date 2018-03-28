@@ -15,11 +15,10 @@
         <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.url%>">
             <div class="left">
                 <img data-src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>" class="lazy">
-                <% if(item.hasVideo) { %><span class="play"><i></i></span><% } %>
+                <% if(item.houseTag.hasVideo == 1) { %><span class="play"><i></i></span><% } %>
                 <%if(item.houseTag.isZeroCommission){%>
                    <span class="commission">0 佣金</span>
                 <%}%>
-                 <!--<span class="video"><i class="iconfont icon-Rectangle1"></i></span>-->
             </div>
             <div class="right">
                 <h4><%= item.houseTitle%></h4>

@@ -51,7 +51,8 @@ class Renderer extends AppRendererControllerBasic {
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
                 "cityName" : shortName ,  //download-app里面有这样一个变量
                 "cityPinyin" : subEstateData.cityPinyin ,
-                "item" : subEstateData
+                "item" : subEstateData ,
+                "subEstateId" : this.subEstateId
             }) ;                                                
             
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

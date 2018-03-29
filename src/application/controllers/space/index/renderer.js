@@ -79,15 +79,15 @@ class Renderer extends AppRendererControllerBasic {
                     newApiData.data.houseList[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data.houseList[n].encryptSubEstateId + ".html" ;
                 }
             }
-            if(rentApiData.data && rentApiData.data.rentHouseList) {
-                for(let n = 0 ; n < rentApiData.data.rentHouseList.length ; n ++) {
-                    rentApiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data.rentHouseList[n].encryptHouseId + ".html?agentId="+agentId;
+            if(rentApiData.data && rentApiData.data.houseList) {
+                for(let n = 0 ; n < rentApiData.data.houseList.length ; n ++) {
+                    rentApiData.data.houseList[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data.houseList[n].encryptHouseId + ".html?agentId="+agentId;
                 }
             }
             let houseList={
                 newHouseList:newApiData.data && newApiData.data.houseList ? newApiData.data.houseList : '',
                 oldHouseList:secondApiData.data && secondApiData.data.houseList ? secondApiData.data.houseList : '',
-                rentHouseList:rentApiData.data && rentApiData.data.rentHouseList ? rentApiData.data.rentHouseList : ''
+                rentHouseList:rentApiData.data && rentApiData.data.houseList ? rentApiData.data.houseList : ''
             };
             Object.assign(this.templateData , apiData.data, houseList) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

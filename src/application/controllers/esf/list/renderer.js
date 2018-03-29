@@ -121,7 +121,10 @@ class Renderer extends AppRendererControllerBasic {
                         "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } ) ,
                         "clearSearchHistory" : this.generateBigDataParams( { "eventName" : 1068015 } )
                     }
-                }
+                },
+                "title": cityModel.cityName + "二手房交易_"+cityModel.cityName+"二手房房源出售信息_"+cityModel.cityName+"二手房买卖-悟空找房",
+                "description": cityModel.cityName + "二手房，"+cityModel.cityName+"二手房交易，二手房买卖，"+cityModel.cityName+"二手房房源出售信息",
+                "keywords": "悟空找房网二手房网专业为您整合"+cityModel.cityName+"各地区的二手房房源和各区域二手房房源的买卖出售信息,"+cityModel.cityName+"地铁房二手房在售信息，全"+cityModel.cityName+"的二手房房源信息在这里都应有尽有，买二手房就上"+cityModel.cityName+"悟空找房网，真实可靠的房源、真诚的服务、安全的交易，让二手房买卖变得高效又安全。"
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

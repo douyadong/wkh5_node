@@ -1,9 +1,9 @@
 <%
-    if(typeof title == 'undefined'){
-        var title = title || "今日好房，都在悟空找房！";
+    if(typeof downloadTitle == 'undefined'){
+        var downloadTitle = downloadTitle || "今日好房，都在悟空找房！";
     }
-    if(typeof desc == 'undefined'){
-        var desc = desc || (cityName + "房价资讯，一手掌握！");
+    if(typeof downloadDesc == 'undefined'){
+        var downloadDesc = downloadDesc || (cityName + "房价资讯，一手掌握！");
     }    
 %>
 <div class="download-app">    
@@ -13,7 +13,7 @@
     </div>
     <dl>
         <dt><i class="iconfont icon-logotuxing"></i></dt>
-        <dd><%= title%></dd>
-        <dd><%= desc %></dd>
+        <dd><%= downloadTitle%></dd>
+        <dd><%= downloadDesc %></dd>
     </dl>
 </div>

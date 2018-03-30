@@ -51,7 +51,8 @@ class Renderer extends AppRendererControllerBasic {
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
                 "items" : subEstateData ,
-                "tel" : this.req.query.tel
+                "tel" : this.req.query.tel ,
+                "subEstateId" : this.subEstateId
             }) ; 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             渲染模板

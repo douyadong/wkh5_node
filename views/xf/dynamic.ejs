@@ -5,5 +5,6 @@
 <p class="no-more">
     没有更多动态了
 </p>
-<a class="consult-phone" href="tel:<%= tel %>">电话咨询</a>
+<a class="consult-phone" data-href="tel:<%= tel %>" href="javascript:void(0);">电话咨询</a>
+<input type="hidden" id="subEstateId" value="<%= subEstateId %>">
 <%- include("../components/footer")%>

@@ -151,13 +151,7 @@
     <div class="wrong">
         <p>请输入正确的价格区间</p>
     </div>
-    <!--排序按钮-->
-    <%if(item.count > 0){%>
-<!--    <div class="sort" id="sort" data-bigdata="<%=item.DataParams.sortD%>" style="display: none">
-        <i class="iconfont icon-paixu"></i>
-        <span>排序</span>
-    </div>-->
-    <%}%>
+
     <!--租房具体房源列表-->
     <%if(item.count > 0){%>
     <div class="rent-items" >
@@ -195,6 +189,27 @@
             <a href="/download/transit?from=oldHouseList">
                 <i class="icon-chouTiDown wk_iconfont"></i>APP下载
             </a>
+        </div>
+    </div>
+
+    <!--招商页面-->
+    <div class="notopen-investment " style="display: none">
+        <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
+        <p>
+            <span class="current-city"><%= item.cityName %></span>
+            <span>的房源正在逐步上线中</span>
+        </p>
+        <p>
+            <span>先看看其他城市的房源</span>
+            <a href="/public/city/select?businessType=rent&channel=<%= item.channel%>" class="change">切换城市</a>
+        </p>
+        <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+        <div class="contact">
+            <dl>
+                <dt><i class="iconfont icon-logotuxing"></i></dt>
+                <dd>共享今日头条7亿流量</dd>
+                <dd>联系我们：4008215365</dd>
+            </dl>
         </div>
     </div>
 </div>

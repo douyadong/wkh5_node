@@ -44,7 +44,7 @@
                     <% if( item.houseTag.isSubwayHouse ) { %><span class="tag nears">近地铁</span><% } %>
                     <% if( item.houseTag.isPriceDown ) { %><span class="tag priced">降价</span><% } %>
                     <% if( item.houseTag.isNewHouse ) { %><span class="tag newup">新上</span><% } %>
-                    <% if( item.houseTag.isShortRent ) { %><span class="tag newup">新上</span><% } %>
+                    <% if( item.houseTag.isShortRent == 1 ) { %><span class="tag short-rent">短租</span><% } %>
                     <% if( item.houseTag.isHardcover == 1 ) { %><span class="tag anthert">精装</span><% } %>
                     <% if( item.houseTag.isHardcover == 2 ) { %><span class="tag anthert">豪装</span><% } %>
                     <% if( item.houseTag.isSouth ) { %><span class="tag anthert">朝南</span><% } %>

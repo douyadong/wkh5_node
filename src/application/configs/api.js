@@ -12,6 +12,7 @@ export default {
     "sessionExpireCode": 1502,   //restfulAPI返回的状态码status多少代表session失效
     "providerMail": "zhaohuagang@lifang.com;42547335@qq.com",  //当接口不通的时候发邮件给TA
     "prefix": {
+        //"dev": "http://10.0.16.78:8107",
         "dev": "http://m.test.wkzf",
         "test": "http://m.test.wkzf",
         "sim": "http://m.sim.wkzf",
@@ -21,10 +22,16 @@ export default {
         "common" : {
             "dial" : "call/getAgentDial.rest" ,
             "bigData" : "buriedPoint/sendData.rest" ,
-            "getCityByLatLon" : "citywap/getCityBusinessModel"
+            "getCityByLatLon" : "citywap/getCityBusinessModel",
+            "cityPinYin": "houseMap/cityInfoByCityPinYin.rest",  //通过城市拼音获取城市信息
+            "acWord":"acWord.rest",
+            "cityList" : "houseMap/businessCityList.rest"
         } ,
         "space" : {
-            "index" : "agent/AgentDetail.rest"
+            "index" : "agent/AgentDetail.rest",
+            "secondHouseList":"agent/moreAgentShopSecondeHouseList.rest",
+            "rentHouseList":"agent/moreAgentShopRentHouseList.rest",
+            "newHouseList":"agent/moreAgentShopNewHouseList.rest"
         } ,
         "rent" : {
             "detail" : "rent/queryHouseDetailForWkzf.rest",
@@ -33,12 +40,11 @@ export default {
                 "cityAreas": "houseMap/getDicAndTowns.rest",
                 "citySubway" : "houseMap/getCitySubwayLines.rest",
                 "guessLikeHouse":"rent/guessLikeHouse.rest",
-                "acWord":"acWord.rest",
-                "cityPinYin":"houseMap/cityInfoByCityPinYin.rest"
             }
         } ,
         "community" : {
-            "detail" : "estate/estateInfo.rest"
+            "detail" : "estate/estateInfo.rest",
+            "sameEstateHouseList":"esf/sameEstateHouseList.rest" , // 小区内所有房源
         } ,
         "store" : {
             "store" : "store/getStorePriceInfo.rest" ,
@@ -46,13 +52,35 @@ export default {
             "house" : "store/getHouseList.rest"
         } ,
         "esf" : {
-            "detail" : "sellHouse/getSellHouseDetail.rest"
+            "detail" : "sellHouse/getSellHouseDetail.rest" ,
+            "list" : "wkzfH5/secondHouseList.rest"
         } ,
         "estate" : {
-            "priceChart" : "estate/getEstateHistoricalPriceList.rest"
+            "priceChart" : "estate/getEstateHistoricalPriceList.rest" // 小区价格走势图
         } ,
-        "city" : {
-            "cityList" : "houseMap/businessCityList.rest"
+        "trend":{
+            "esf":{
+                "basePriceTrend":"esf/basePriceTrend.rest", //二手房价格走势
+                "estatePriceTrend":"esf/estatePriceTrend.rest", // 小区价格走势
+                "townPriceTrend":"esf/townPriceTrend.rest" ,// 板块价格
+                "historicalTransactionList":"estate/historicalTransactionList.rest" // 交易历史
+            },
+            "new":{
+                "basePriceTrend":"xf/basePriceTrend.rest", // 新房价格走势
+                "loupanPrice":"estate/loupanPrice.rest" ,// 新房楼盘介绍
+            }
+        },
+        "xf": {
+            "list": "wkzfH5/newHouseList.rest" ,
+            "detail" : "wkzfH5/newHouseDetail.rest" ,
+            "dynamic" : "wkzfH5/newHouseDynamicList.rest" ,
+            "baseinfo" : "wkzfH5/briefNewHouseDetail.rest"
+        },
+        "article": {
+            "detail": "yfyk/quJingShareArticleDetail.rest",// 用的跟有房有客一样的接口，这是后端定的
+            "commentList": "article/queryArticleCommentList.rest",// 文章评论列表查询接口
+            "comment": "article/commentArticle.rest", //文章评论接口
+            "zan": "article/thumbUp.rest",// 赞接口
         }
     }
-};
+} ;

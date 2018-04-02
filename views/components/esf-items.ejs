@@ -1,13 +1,19 @@
 <% oldHouseList && oldHouseList.forEach(function(esf){ %>
     <a href="<%= esf.url %>" class="esf-item" data-bigdata="<%= esf.bigDataParams %>">
         <dl>
-            <dt><img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>" class="lazy"></dt>
+            <dt>
+                <img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>" class="lazy">
+                <% if(esf.hasVideo == 1) { %><span class="play"><i></i></span><% } %>
+            </dt>
             <dd class="title"><%= esf.houseTitle %></dd>
             <dd><%= esf.houseChild %> <%= esf.areaStr %> | <%= esf.district %> <%= esf.town %></dd>
             <dd class="tags">
                 <% if(esf.tagList) { esf.tagList.forEach(function(tag) { %>
-                    <span><%= tag %></span>
-                <% }) ; } %>                
+                    <% if(tag == "降价") { %><div class="promotion"><span><%= tag %></span></div>
+                    <% } else if(tag == "新上") { %><div class="new"><span><%= tag %></span></div>
+                    <% } else if(tag == "满二" || tag == "满五唯一") { %><div class="over"><span><%= tag %></span></div>
+                    <% } else { %><div><span><%= tag %></span></div>
+                <% }}) ; } %>               
             </dd>   
             <dd>
                  <span class="money"><%= esf.totalPrice %>万</span>

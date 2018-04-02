@@ -1,0 +1,83 @@
+<%- include("../components/head")%>
+
+<div class="details-container">
+    <div class="details-Info">
+        <div class="title"><%= item.articleDetailModel.title%></div>
+        <div class="article-info">
+            <div class="left"><span><%= item.articleDetailModel.publishTime%></span></div>
+            <div class="right"><span><%= item.articleDetailModel.viewNumStr%></span>次浏览</div>
+        </div>
+        <div class="article-content">
+            <%- item.articleDetailModel.content%>
+        </div>
+        <div class="operation">
+            <div class="left txt-left sub-operation">
+                <span class="zan" data-bigdata="<%= bigDataParams.zan%>">
+                        <i class="iconfont icon-praise"></i><span><%= item.articleDetailModel.thumbUpNumStr%></span>                    
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="comment mt-10" id="comment-box">
+        <div class="title">
+            评论（<span class="count"><%= item.articleDetailModel.commentNumStr%></span>）
+        </div>
+        <div class="write pb-10">
+            <form action="">
+                <div class="commentArea">
+                    <textarea name="comment" id="" placeholder="写下你的评论"></textarea>
+                </div>
+            </form>
+            <div class="operation">
+                <span class="cancel">取消</span><span class="submit" data-bigdata="<%= bigDataParams.comment%>">评论</span>
+            </div>
+        </div>
+        <div class="comment-list">
+        </div>
+        <div class="pagination">
+        </div>
+    </div>
+    <%if(item.hybirdCategoryModelResponse){%>
+    <div class="belongs mt-10">
+        <div class="title">
+            <a href="javascript:;"><span class="left">文章收录于以下栏目</span></a>
+        </div>
+        <div class="item">
+            <a href="/category/app.<%= item.hybirdCategoryModelResponse.id%>.html?cityId=<%= cityId%>">
+                <div class="left" style="background:url('<%= item.hybirdCategoryModelResponse.imageUrl%>') no-repeat scroll center;background-size: cover;"></div>
+                <div class="left details">
+                    <p class="title"><%= item.hybirdCategoryModelResponse.title%></p>
+                    <p class="desc"><%= item.hybirdCategoryModelResponse.categoryContent%></p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <%}%>
+    <%if(item.recommendArticleList && item.recommendArticleList.length) {%>
+    <div class="recommend mt-10">
+        <div class="title">推荐阅读</div>
+        <%for(var i = 0; i < item.recommendArticleList.length; i++){%>
+        <% var article = item.recommendArticleList[i]; %>
+        <div class="item" data-bigdata="<%= article.bigDataParam%>">
+            <a href="/article/app-share.<%= article.articleId%>.html?cityId=<%= cityId%>">
+                <div class="left" style="background:url('<%= article.articleCoverUrl%>') no-repeat scroll center;background-size: cover;"></div>
+                <div class="left details">
+                    <p class="title"><%= article.articleTitle%></p>
+                    <p class="desc"><%= article.articleIntro%></p>
+                </div>
+            </a>
+        </div>   
+        <%}%>                 
+    </div>
+    <%}%>    
+</div>
+<%- include("../components/assistant" , { agent: item.agentModel, mobileBigDataParams: bigDataParams.phone, type: "simple"}) %>
+<%- include("../components/download-app" ,{bigDataParams: "", cityName: "上海", downloadTitle: "取经频道", downloadDesc: item.hybirdCategoryModelResponse.title}) %>
+<input type="hidden" id="cityId" value="<%= cityId%>">
+<input type="hidden" id="categoryId" value="<%= item.hybirdCategoryModelResponse.id%>">
+<input type="hidden" id="articleId" value="<%= item.articleDetailModel.articleId%>">
+<input type="hidden" id="coverUrl" value="<%= item.articleDetailModel.coverUrl%>">
+<input type="hidden" id="wechatTitle" value="<%= item.articleDetailModel.shareTitle%>">
+<input type="hidden" id="wechatContent" value="<%= item.articleDetailModel.shareContent%>">
+<input type="hidden" id="wechatImgUrl" value="<%= item.articleDetailModel.shareImageUrl%>">
+<%- include("../components/footer")%>

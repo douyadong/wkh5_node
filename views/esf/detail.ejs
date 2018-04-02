@@ -20,10 +20,13 @@
             </div>
         </div>
         <hr>
-        <div class="tags">
-            <% item.tagList && item.tagList.forEach(function(item){ %>
-               <span ><%= item %></span>
-            <% }) ; %>
+        <div class="tags esf-tags">
+            <% item.tagList && item.tagList.forEach(function(tag){ %>
+                <% if(tag == "降价") { %><div class="promotion"><span><%= tag %></span></div>
+                <% } else if(tag == "新上") { %><div class="new"><span><%= tag %></span></div>
+                <% } else if(tag == "满二" || tag == "满五唯一") { %><div class="over"><span><%= tag %></span></div>
+                <% } else { %><div><span><%= tag %></span></div>               
+            <% }}) ; %> 
         </div>
         <div class="cols2-fields">
             <div><span class="hd">单价</span><span class="bd"><%= item.unitPriceStr %> </span></div>
@@ -33,7 +36,7 @@
             <div><span class="hd">装修</span><span class="bd"><%= item.decorationStr %></span></div>
             <div><span class="hd">朝向</span><span class="bd"><%= item.orientationStr %></span></div>
         </div>
-        <hr/>
+        <hr>
         <div class="cols1-fields">
             <div class="estateName">
                 <span class="hd">预算</span>
@@ -88,7 +91,7 @@
     <!-- 小区信息模块-->
     <div class="estate wk-panel top-gap">
         <div class="panel-header">小区信息</div>
-        <a class="panel-body" href="<%= domain %>/<%= cityPinyin %>/community/<%=item.encryptSubEstateId%>.html" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
+        <a class="panel-body" href="<%= domain %>/<%= cityPinyin %>/community/<%=item.encryptSubEstateId%>.html?origin=esf" data-bigdata="<%= item.DataParams.communtBigDataParams%>">
             <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estateName%></p>
             <span class="outline">
@@ -97,15 +100,21 @@
             </span>
             <span class="address"><%= item.estateAddr %></span>
         </a>
-         <div class="echart">
-             <hr/>
-             <div class="panel-header">价格走势</div>
-             <div id="main"></div>
+         <div class="echart" id="estateName">
+             <hr>
+             <div class="panel-header">
+                <span>小区价格走势</span>
+                <a href="/<%= cityPinyin %>/trend/esf">查看<%= cityName %>房价<i class="iconfont icon-next"></i></a>
+             </div>
+             <div class="echart-pic">
+                 <div id="main"></div>
+             </div>
+
          </div>
 
         <%if(item.sameEstateHouseAmount){%>
              <div >
-            <hr/>
+            <hr>
             <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.onSellBigDataParams%>">
                 <p>在售房源</p>
                 <span>
@@ -117,7 +126,7 @@
         <%}%>
         <%if(item.historicalTransactionAmount){%>
            <div >
-            <hr/>
+            <hr>
             <a class="total-item"  href="<%= domain %>/estate/historicalTransactionList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.historyBigDataParams%>">
                 <p>成交历史</p>
                 <span>
@@ -128,7 +137,7 @@
         </div>
         <%}%>
           <div>
-            <hr/>
+            <hr>
             <%if(item.commentTotal ){%>
               <a class="total-item" href="<%= domain %>/estate/moreComment.html?subEstateId=<%= item.subEstateId %>&commentLocation=1" data-bigdata="<%= item.DataParams.commentBigDataParams%>">
                 <p>小区评论</p>
@@ -177,8 +186,10 @@
 </div>
 <% } %>
 <%- include("../components/download-app" ,{bigDataParams:item.DataParams.appBigDataParams}) %>
-<!--几个获取转接号的参数-->
+<!--几个获取转接号的参数 item.houseAgent-->
+<% if(item.houseAgent ){ %>
 <input type="hidden" id="agentId" value="<%= item.houseAgent.agentId %>">
+<% } %>
 <input type="hidden" id="houseId" value="<%= item.houseId %>">
 <input type="hidden" id="serviceType" value="2">
 <%- include("../components/footer") %>

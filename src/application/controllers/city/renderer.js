@@ -26,7 +26,7 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
         let modulePathArray = ["city", "list"];
-        let cityListPathArray = ["city" , "cityList"]; // 城市列表接口
+        let cityListPathArray = ["common" , "cityList"]; // 城市列表接口
         try {
             let adf = new ApiDataFilter(this.req.app) ;
             let businessType = this.req.query['businessType'];  // 获取query参数
@@ -49,6 +49,7 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
+            let itemApiData = apiData.data;
             /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据来源是否有相应的模块业务，判断国际是否显示
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -60,12 +61,12 @@ class Renderer extends AppRendererControllerBasic {
                 businessId = 3
             } else if (businessType == "rent") {
                 businessId = 2
-            } else if(businessType == "xfPrice") {
+            } else if(businessType == "xfPrice" || businessType == "newTrend") {
                 businessId = 3
-            }else if(businessType == "esfPrice") {
+            }else if(businessType == "esfPrice" || businessType == "esfTrend") {
                 businessId = 1
             }
-            apiData.overseaCityList.forEach((item)=>{
+            itemApiData.overseaCityList.forEach((item)=>{
                 if (item.businessList){
                     item.businessList.forEach((itemB)=>{
                         if (businessId == itemB.businessId){
@@ -76,14 +77,16 @@ class Renderer extends AppRendererControllerBasic {
             });
 
             let itemData = {
-                domesticCityList: this.reSortData(apiData.domesticCityList,businessId),
-                overseaCityList: this.reSortData(apiData.overseaCityList,businessId)
+                domesticCityList: this.reSortData(itemApiData.domesticCityList,businessId),
+                overseaCityList: this.reSortData(itemApiData.overseaCityList,businessId)
             };
             let item = itemData;
             item['overseaBusinessFlag'] = overseaBusinessFlag;
             item['location_cityName'] = location_cityName;
             item['location_cityPinyin'] = location_cityPinyin;
             item['location_cityId']= location_cityId;
+            // 额外的脚本样式
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/url/url.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -93,6 +96,7 @@ class Renderer extends AppRendererControllerBasic {
                 "description": "悟空找房网为您提供了全国100多个城市的房产信息，整合了全国多个城市的二手房，新房，租房，商铺，写字楼，公寓，地铁房等最新房产消息，找房，查询全国各城市房价，买卖二手房就上悟空找房网，百分百真实房源。",
                 "matchStylesheetPath": modulePathArray.join("/"),
                 "controllerJavascriptPath": modulePathArray.join("/"),
+                "extraJavascripts" : extraJavascript ,
                 "item" : item ,
             });
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

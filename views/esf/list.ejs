@@ -1,0 +1,29 @@
+<%- include("../components/head") %>
+<!--导入司令塔-->
+<%- include("../components/conning-tower" , { 
+    "moduleType" : "esf" , 
+    "release" : !!channel ,  //是否投放页面，比如今日头条投放，齐家投放，投放页面是没有汉堡菜单和返回按钮的
+    "cityModel" : cityModel ,    
+    "bigDataParams" : bigDataParams.conningTower
+ } ) %>
+ <%- include("../components/filter") %>
+ <!--导入二手房条目-->
+ <div class="container">
+
+<div class="total">
+    <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: ""%></span> <span>套房源</span>
+</div>
+<div id="list">
+<%if(data && data.data && data.data.houseList && data.data.houseList.length > 0){%>
+    <%- include("../components/esf-items", {oldHouseList: data.data.houseList}) %>
+<%}%>
+</div>
+<%if(!data || !data.data || !data.data.total){%>
+<div class="no-data">
+    <p>暂时没有符合条件的房源</p>
+    <p>您可以扩大搜索范围，找到更多房源</p>
+    <button type="button">清除条件</button>
+</div>
+<%}%>
+</div>
+<%- include("../components/footer") %>

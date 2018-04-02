@@ -39,7 +39,12 @@ class Renderer extends AppRendererControllerBasic {
             let storeApiData = await adf.request({
                 "apiPath" : "store.store" ,
                 "data" : { "storeId" : storeId }
-            }) ; 
+            }) ;
+            let cityPinYin = storeApiData.data.priceModel.pinyin ? storeApiData.data.priceModel.pinyin : this.req.params.city;
+            if(cityPinYin && cityPinYin.substr(cityPinYin.length-3) =="shi"){
+                cityPinYin = cityPinYin.substring(0,cityPinYin.length-3);
+                storeApiData.data.priceModel.pinyin = cityPinYin;
+            }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             调用门店经纪人接口获取数据，这里是一次性加载，所以把pageSize设置得比较高
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/             
@@ -52,7 +57,7 @@ class Renderer extends AppRendererControllerBasic {
                     agentApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1222004 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
                     agentApiData.data[n].phoneBigDataParams = this.generateBigDataParams( { "eventName" : 1222006 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
                     agentApiData.data[n].wxBigDataParams = this.generateBigDataParams( { "eventName" : 1222005 , "eventParam" : { "store_id" : storeId , "agent_id" : agentApiData.data[n].agentId } } ) ;
-                    agentApiData.data[n].url = "/" + this.req.params.city + "/space/" + agentApiData.data[n].agentId + ".html" ;
+                    agentApiData.data[n].url = "/" + cityPinYin + "/space/" + agentApiData.data[n].agentId + ".html" ;
                 }
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,7 +70,7 @@ class Renderer extends AppRendererControllerBasic {
             if(houseApiData.data) {
                 for(let n = 0 ; n < houseApiData.data.length ; n ++) {
                     houseApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1222001 , "eventParam" : { "store_id" : storeId , "house_id" : houseApiData.data[n].houseId } } ) ;
-                    houseApiData.data[n].url = "/" + this.req.params.city + "/esf/" + houseApiData.data[n].encryptHouseId + ".html" ;
+                    houseApiData.data[n].url = "/" + cityPinYin + "/esf/" + houseApiData.data[n].encryptHouseId + ".html" ;
                 }
             }    
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,7 +99,9 @@ class Renderer extends AppRendererControllerBasic {
             Object.assign(this.templateData, { 
                 "bigDataParams" : {
                     "esfTab" : this.generateBigDataParams( { "eventName" : 1222002 , "eventParam" : { "store_id" : storeId } } ) ,
-                    "agentTab" : this.generateBigDataParams( { "eventName" : 1222003 , "eventParam" : { "store_id" : storeId } } ) 
+                    "agentTab" : this.generateBigDataParams( { "eventName" : 1222003 , "eventParam" : { "store_id" : storeId } } ),
+                    "noHouse" : this.generateBigDataParams( { "eventName" : 1220011 , "eventParam" : { "store_id" : storeId } } ),
+                    "noAgent" : this.generateBigDataParams( { "eventName" : 1220012 , "eventParam" : { "store_id" : storeId } } ),
                 }
             }) ;        
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

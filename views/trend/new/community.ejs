@@ -1,0 +1,84 @@
+<%- include("../../components/head") %>
+<div class="container">
+    <!--  头部header部分-->
+    <div class="header">
+        <div class="left">
+            <a href="/public/city/select?businessType=newTrend&channel=<%= item.channel%>">
+                <span class="city-name"><%= item.cityName%></span>
+            </a>
+            <i></i>
+        </div>
+        <div class="middle">
+            <ul>
+                <li><a href="/<%= item.cityPY%>/trend/esf/community/<%=item.regionId%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/community/<%=item.regionId%>">新房</a> </li>
+            </ul>
+        </div>
+        <div class="right">
+            <i class="iconfont icon-search"></i>
+        </div>
+    </div>
+    <!-- 描述-->
+
+    <div class="description">
+        <%if(item){%>
+        <h3><%= item.estateName %></h3>
+        <div class="description-detail">
+            <div class="unit-price">
+                <span>最新均价</span>
+                <p><%= item.avgPrice  || "--"%> 元/㎡</p>
+            </div>
+            <div class="up-down">
+                <span>环比上月</span>
+                <p><%= item.increase || "--"%></p>
+            </div>
+            <div class="tot-house">
+                <a href="/<%=item.cityPY%>/xflist/">
+                    <span>在售房源</span><i class="iconfont icon-next"></i>
+                    <p><%= item.houseCount || "--"%> 套</p>
+                </a>
+            </div>
+        </div>
+        <% }%>
+    </div>
+
+    <!--板块模块信息-->
+    <div class="info">
+        <a href="/<%= item.cityPY%>/xf/<%=item.regionId%>.html">楼盘信息<span>查看详情 <i class="iconfont icon-next"></i></span></a>
+        <hr>
+        <ul>
+            <li>开盘时间<span><%= item.openTimeStr %></span></li>
+            <li>交房时间<span><%= item.launchTimeStr %></span></li>
+            <li>产权年限<span><%= item.propertyRight %> 年</span></li>
+            <li>规划户数<span><%= item.planRoom %> 户</span></li>
+            <li>装修标准<span><% if (item.buildDecoration == 1) {%>毛坯 <% } else if(item.buildDecoration == 2){ %> 精装 <% } else if(item.buildDecoration == 3){ %>豪装<% }else { %>--<% } %></span></li>
+            <li>物业类型<span><% if(item.propertyType == 1){ %>住宅<% } else if(item.propertyType == 2){ %> 商用<% } else { %>--<% } %></span></li>
+            <li>规划车位<span><%= item.parkingSpace || "--" %></span></li>
+            <li>楼盘地址<span><%= item.initName || "--" %></span></li>
+            <li>开发商<span><%= item.developers || "--" %></span></li>
+        </ul>
+    </div>
+    <!--招商页面-->
+    <div class="notopen-investment " style="display: none">
+        <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
+        <p>
+            <span class="current-city"><%= item.cityName %></span>
+            <span>暂无房价数据</span>
+        </p>
+        <p>
+            <span>先看看其他城市的房价</span>
+            <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>" class="change">切换城市</a>
+        </p>
+        <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+        <div class="contact">
+            <dl>
+                <dt><i class="iconfont icon-logotuxing"></i></dt>
+                <dd>共享今日头条7亿流量</dd>
+                <dd>联系我们：4008215365</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<%- include("../../components/trend-search") %>
+
+<%- include("../../components/footer") %>

@@ -25,7 +25,10 @@ class Renderer extends AppRendererControllerBasic {
     渲染页面
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() {
-        let modulePathArray = [ "space" , "index" ] ;
+        let modulePathArray = [ "space" , "index" ] ; // 经纪人详情
+        let newPathArray = [ "space" , "newHouseList" ] ; // 新房列表
+        let secondPathArray = [ "space" , "secondHouseList" ] ; // 二手房列表
+        let rentPathArray = [ "space" , "rentHouseList" ] ; // 租房列表
         try {
             let adf = new ApiDataFilter(this.req.app) ;   
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,27 +44,52 @@ class Renderer extends AppRendererControllerBasic {
                 "data" : { "agentId" : agentId }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板新房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let newApiData = await adf.request({
+                "apiPath" : newPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板二手房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let secondApiData = await adf.request({
+                "apiPath" : secondPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            扩展模板租房api数据
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let rentApiData = await adf.request({
+                "apiPath" : rentPathArray.join(".") ,
+                "data" : { "agentId" : agentId ,"pageIndex":0,"pageSize":10}
+            }) ;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对推荐房源数据进行大数据埋点以及跳转地址的处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(apiData.data.oldHouseList) {
-                for(let n = 0 ; n < apiData.data.oldHouseList.length ; n ++) {
-                    apiData.data.oldHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
-                    apiData.data.oldHouseList[n].url = "/" + this.req.params.city + "/esf/" + apiData.data.oldHouseList[n].encryptHouseId + ".html" ;
+            if(secondApiData.data && secondApiData.data.houseList) {
+                for(let n = 0 ; n < secondApiData.data.houseList.length ; n ++) {
+                    secondApiData.data.houseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002017 , "eventParam" : { } } ) ;
+                    secondApiData.data.houseList[n].url = "/" + this.req.params.city + "/esf/" + secondApiData.data.houseList[n].encryptHouseId + ".html?agentId="+agentId ;
                 }
             }
-            if(apiData.data.newHouseList) {
-                for(let n = 0 ; n < apiData.data.newHouseList.length ; n ++) {
-                    apiData.data.newHouseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : apiData.data.newHouseList[n].subEstateId } } ) ;
-                    apiData.data.newHouseList[n].url = "/" + this.req.params.city + "/xfdetail/" + apiData.data.newHouseList[n].encryptSubEstateId + ".html" ;
+            if(newApiData.data && newApiData.data.houseList) {
+                for(let n = 0 ; n < newApiData.data.houseList.length ; n ++) {
+                    newApiData.data.houseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : newApiData.data.houseList[n].subEstateId } } ) ;
+                    newApiData.data.houseList[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data.houseList[n].encryptSubEstateId + ".html" ;
                 }
             }
-            if(apiData.data.rentHouseList) {
-                for(let n = 0 ; n < apiData.data.rentHouseList.length ; n ++) {                
-                    apiData.data.rentHouseList[n].url = "/" + this.req.params.city + "/rent/" + apiData.data.rentHouseList[n].encryptHouseId + ".html" ;
+            if(rentApiData.data && rentApiData.data.houseList) {
+                for(let n = 0 ; n < rentApiData.data.houseList.length ; n ++) {
+                    rentApiData.data.houseList[n].url = "/" + this.req.params.city + "/rent/" + rentApiData.data.houseList[n].encryptHouseId + ".html?agentId="+agentId;
                 }
             }
-            
-            Object.assign(this.templateData , apiData.data ) ;
+            let houseList={
+                newHouseList:newApiData.data && newApiData.data.houseList ? newApiData.data.houseList : '',
+                oldHouseList:secondApiData.data && secondApiData.data.houseList ? secondApiData.data.houseList : '',
+                rentHouseList:rentApiData.data && rentApiData.data.houseList ? rentApiData.data.houseList : ''
+            };
+            Object.assign(this.templateData , apiData.data, houseList) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             判断是否需要显示tabs
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -77,12 +105,17 @@ class Renderer extends AppRendererControllerBasic {
             let cityName = apiData.data.agent.cityName ;
             if(cityName && cityName.charAt(cityName.length - 1) === "市") {
                 cityName = cityName.substring( 0 , cityName.length - 1) ;
-            }               
+            }
+            let cityPinYin = apiData.data.agent.cityPinYin;
+            if(cityPinYin && cityPinYin.substr(cityPinYin.length - 3) =="shi"){
+                cityPinYin = cityPinYin.substring(0,cityPinYin.length-3)
+            }
+            this.res.cookie('pinyin', cityPinYin , {httpOnly: false}); // 设置cityPinYin
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            扩展模板常规数据
+            扩展模板常规数据  agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" ,
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, { 
-                "title" : agentName + "_" + cityName + "优秀房产经纪人推荐-悟空找房" , 
+                "title" :  agentName + "的名片" ,
                 "keywords" : agentName + ",房产经纪人" + agentName + "," + cityName + "优秀房地产经纪人推荐" ,
                 "description" : "悟空找房网为您展示房地产经纪人" + agentName + "的房屋交易信息，客户评价等信息，让您真实了解到房产经纪人" + agentName + "的情况，更加放心去选择" + cityName + "靠谱经纪人，找房产经纪人就上悟空找房网。" ,
                 "wechatTitle" : apiData.data.wxShareTitle ,
@@ -90,7 +123,7 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatImgUrl" : apiData.data.wxShareImgUrl , 
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "cityName" : cityName  //download-app里面需要这个变量
+                "cityName" : cityName , //download-app里面需要这个变量,
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板大数据埋点数据

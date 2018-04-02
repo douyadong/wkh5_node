@@ -23,6 +23,7 @@ class Renderer extends AppRendererControllerBasic {
     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
     async renders() { 
         let subEstateId = this.req.params.subEstateId || "" ;   //加密的houseId
+        let cityPinYin = this.req.params.city || "" ;   //city拼音
         let modulePathArray = [ "community" , "detail" ] ;
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         调用接口获取数据
@@ -46,7 +47,15 @@ class Renderer extends AppRendererControllerBasic {
             }
         }
         item.imgList = imgList;
-        
+        item.encryptSubEstateId = subEstateId;
+        item.cityPinYin = cityPinYin;
+        /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        判断来源 是否显示折线图
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+        item.echartShow = false;
+        if(this.req.query['origin'] == "esf"){
+            item.echartShow = true;
+        }
         //地图跳转路径
         item.mapUrl = this.templateData.domain + '/esf/map.html?longitude=' + item.longitude + '&latitude=' + item.latitude + '&houseName=' + item.subEstateName + '&houseAddress=' + item.estateAddr;  
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -57,6 +66,8 @@ class Renderer extends AppRendererControllerBasic {
         if(cityName && cityName.charAt(cityName.length - 1) === "市") {
             cityName = cityName.substring( 0 , cityName.length - 1) ;
         }
+        // 额外的脚本样式
+        let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         扩展模板常规数据
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -70,6 +81,7 @@ class Renderer extends AppRendererControllerBasic {
             "item" : item ,
             "matchStylesheetPath" : modulePathArray.join("/") ,
             "controllerJavascriptPath" : modulePathArray.join("/") ,
+            "extraJavascripts" : extraJavascript ,
             "cityName" : cityName  //download-app里面需要这个变量
         }) ;       
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

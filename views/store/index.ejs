@@ -7,13 +7,19 @@
                 <i class="iconfont icon-back"></i>
                 <span><%= title %></span>
             </div>
-            <dl class="banner">
-                <dt class="store-name"><%= store.name || "悟空找房门店" %></dt>
-                <dd class="market">
-                    <span class="hd">周边房源均价</span>
-                    <span class="bd"><%= store.avgPrice %></span>
-                </dd>
-            </dl>        
+            <div class="banner">
+                <h3 class="store-name"><%= store.name || "悟空找房门店" %></h3>
+                <div class="market">
+                    <div class="left">
+                        <span class="hd">周边房源均价</span>
+                        <span class="bd"><%= store.avgPrice %><span>周边</span></span>
+                    </div>
+                    <div class="right">
+                        <span class="hd">环比上月<i class="iconfont <% if(store.flag == 1) { %>icon-asc<% } else if (store.flag == -1){%>icon-desc<% } %>"></i></span>
+                        <span class="bd"><%= store.increase %><span>环比上月<i class="iconfont <% if(store.flag == 1) { %>icon-asc<% } else if (store.flag == -1){%>icon-desc<% } %>"></i></span></span>
+                    </div>
+                </div>
+            </div>
             <ul class="tabs-handle">
                 <li data-bigdata="<%= bigDataParams.esfTab %>"><a>推荐好房</a></li>
                 <li data-bigdata="<%= bigDataParams.agentTab %>"><a>推荐经纪人</a></li>                
@@ -21,10 +27,17 @@
         </header>
         <!--两个tabs-frame内容-->
         <div class="tabs-frame wk-panel esf-items">
-            <div class="list-container"><%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div>
+            <div class="list-container">
+                <% if(oldHouseList ) { %>
+                <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %>
+                <% } else {%>
+                <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noHouse}  ) %>
+                <% } %>
+            </div>
         </div>
         <div class="tabs-frame wk-panel agent-items">
             <div class="list-container">
+                <% if(agentList ) { %>
                 <% agentList && agentList.forEach((agent)=>{ %>
                     <dl class="agent">
                         <dd class="tel" data-bigdata="<%= agent.phoneBigDataParams %>"><a href="tel:<%= agent.agentMobile %>"><span><i class="iconfont icon-phone"></i></span><span class="memo">电话咨询</span></a></dd>
@@ -39,6 +52,9 @@
                         </dt>
                     </dl>
                 <% }) ; %>
+                <% } else {%>
+                <%- include("../components/store-nodata",{ "wordOne" : "经纪人马上就来~","wordTwo":"先去看看其他房源吧" ,"linkFlag":true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noAgent}  ) %>
+                <% } %>
             </div>
         </div>
         <!--tabs下内容结束-->

@@ -34,12 +34,13 @@ class Renderer extends AppRendererControllerBasic {
              let houseId = this.req.params.houseId || "" ;
              let city = this.req.params.city || "" ;
              let channel =  this.req.query['channel'] || "";
+             let  agentId =this.req.query['agentId'] || "";
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
                let apiData = await adf.request({
                    "apiPath" : modulePathArray.join("."),
-                   "data" : { "houseId" : houseId }
+                   "data" : { "houseId" : houseId ,"agentId":agentId}
                }) ;
              let item = apiData.data;
              let  agentid =  "0";
@@ -52,8 +53,8 @@ class Renderer extends AppRendererControllerBasic {
             }
             // 相似房源更多的Url
             item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
-            // 额外的脚本样式
-            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
+            // 额外的脚本样式 折线图
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             相册的视频和图片的数据的组装处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

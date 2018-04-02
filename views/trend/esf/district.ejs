@@ -1,0 +1,98 @@
+<%- include("../../components/head") %>
+<div class="container">
+    <!--  头部header部分-->
+    <div class="header">
+        <div class="left">
+            <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>">
+                <span class="city-name"><%= item.cityName%></span>
+            </a>
+            <i></i>
+        </div>
+        <div class="middle">
+            <ul>
+                <li><a href="/<%= item.cityPY%>/trend/esf/district/<%=item.regionId%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/district/<%=item.regionId%>">新房</a> </li>
+            </ul>
+        </div>
+        <div class="right">
+            <i class="iconfont icon-search"></i>
+        </div>
+    </div>
+    <!-- 描述-->
+    <%if(item.housePrice){%>
+    <div class="description">
+        <h3><%= item.housePrice.name %></h3>
+        <div class="description-detail">
+            <div class="unit-price">
+                <span>最新均价</span>
+                <p><%= item.housePrice.avgPrice %> 元/㎡</p>
+            </div>
+            <div class="up-down">
+                <span>环比上月</span>
+                <p><%= item.housePrice.increase %></p>
+            </div>
+            <div class="tot-house">
+                <a href="/<%=item.cityPY%>/esf">
+                    <span>在售房源</span><i class="iconfont icon-next"></i>
+                    <p><%= item.housePrice.houseCount %> 套</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <% }%>
+    <!-- 价格走势-->
+    <%if(item.priceTrendChartList){%>
+    <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
+        <div id="main"></div>
+    </div>
+    <div class="empty-color"></div>
+    <% }%>
+    <%if(item.townUponDistrictPriceList && item.townUponDistrictPriceList > 0){%>
+    <!--板块模块信息-->
+    <div class="district-town wk-panel">
+        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/esf"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="wk-body flag">
+            <ul>
+                <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
+                <%item.townUponDistrictPriceList && item.townUponDistrictPriceList.forEach(function (itemL,index) {%>
+                <li class="content" style="<%if( index > 9 ){%>display:none<% }%>">
+                    <a href="/<%= item.cityPY%>/trend/esf/town/<%= itemL.regionId %>">
+                        <p><%= itemL.name %> </p>
+                        <p class="unit-price"><%= itemL.avgPrice %> 元/㎡</p>
+                        <p class="<%if( itemL.flag == 1 ){ %>increase-red<% }else if (itemL.flag == -1){%>increase-blue<%}%>"><%= itemL.increase %></p>
+                    </a>
+                </li>
+                <%})%>
+            </ul>
+            <%if( item.townUponDistrictPriceList && item.townUponDistrictPriceList.length >10 ){%>
+              <button id="districtMore">加载全部</button>
+            <% }%>
+        </div>
+    </div>
+    <% } else {%>
+    <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
+    <% }%>
+    <!--招商页面-->
+    <div class="notopen-investment " style="display: none">
+        <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
+        <p>
+            <span class="current-city"><%= item.cityName %></span>
+            <span>暂无房价数据</span>
+        </p>
+        <p>
+            <span>先看看其他城市的房价</span>
+            <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>" class="change">切换城市</a>
+        </p>
+        <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+        <div class="contact">
+            <dl>
+                <dt><i class="iconfont icon-logotuxing"></i></dt>
+                <dd>共享今日头条7亿流量</dd>
+                <dd>联系我们：4008215365</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<%- include("../../components/trend-search") %>
+
+<%- include("../../components/footer") %>

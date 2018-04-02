@@ -1,0 +1,189 @@
+<%- include("../components/head") %>
+<div class="content-wrapper has-assistant"> 
+    <!-- 轮播相册图片 -->    
+    <div class="wk-panel remove-left-padding">
+        <%- include( "../components/album" , { "imgList" : item.cImageList , "bigDataParams" : bigDataParams.albumPictClick } ) %>
+    </div>
+    <!-- 户型等信息 -->
+    <div class="wk-panel has-right-padding base-info">
+        <h1 class="house-title"><%= item.estateName + " " + item.subEstateName %></h1>
+        <h2><%= item.sellPoint %></h2>
+        <p class="unit-price">
+            <span><%= item.unitPrice %> 元 / ㎡</span>
+            <small>参考价格</small>
+            <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>" data-bigdata="<%= bigDataParams.loanCalClick %>"><i class="calc iconfont icon-jisuanqi"></i></a>
+        </p>                
+        <div class="panel-body">            
+            <hr>
+            <div class="tags">            
+                    <% if( item.hasActivity ) { %><span class="tag yh">有优惠</span><% } %><% if( item.isSubwayEstate ) { %><span class="tag dt">近地铁</span><% } %><% if( item.hasVideo ) { %><span class="tag">有视频</span><% } %><% if( item.isSoonOpen ) { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
+            </div>
+            <div class="time">
+                <dl><dt>开盘时间</dt><dd><%= item.openTimeStr || "--" %></dd></dl>
+                <dl><dt>交房时间</dt><dd><%= item.launchTimeStr || "--" %></dd></dl>                
+            </div>
+            <% if( item.activityList && item.activityList.length ) { %>
+            <div class="activity">
+                <hr>
+                <ul>
+                    <% item.activityList.forEach(function(activity){ %>
+                    <li><span></span><%= activity.title%></li>
+                    <% }) ; %>                    
+                </ul>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- 最新动态 -->
+    <% if( item.newHouseDynamicCount ) { %>
+    <a class="wk-panel top-gap has-right-padding xf-dynamics" href="<%= item.id %>/dynamic.html?cityName=<%= encodeURIComponent(cityName) %>&subEstateName=<%= encodeURIComponent(item.estateName) %>&tel=<%= item.salePhone %>" data-bigdata="<%= bigDataParams.dynamicTotalClick %>">
+        <div class="panel-header">            
+            <div class="pull-left">最新动态</div>                
+            <div class="pull-right"><%= item.newHouseDynamicCount %> 条<i class="iconfont icon-next"></i></div>                
+        </div>
+        <div class="panel-body"><%- include( "../components/xf-dynamic" , { "dynamics" : item.newHouseDynamicList.slice( 0 , 1 ) } ) %></div>
+    </a>
+    <% } %>
+
+    <!-- 在售户型 -->
+    <% if( item.houseTypeImages && item.houseTypeImages.length ) { %>
+    <div class="wk-panel top-gap house-type">
+        <h1 class="panel-header">在售户型</h1>
+        <div class="panel-body">
+            <% item.houseTypeImages.forEach(function( layout , index ){ %>
+            <a class="house-type-item" href="/xfdetail/houseTypeDetail.html?subEstateId=<%= item.encryptSubEstateId %>&index=<%= index + 1 %>" data-bigdata="<%= layout.bigDataParams %>">
+                <img src="<%= layout.imgKey %>">
+                <h3><%=layout.name %></h3>
+                <p class="type-area"><%= layout.bedRoomSum + '室' + layout.livingRoomSum + '厅' + layout.wcSum + '卫' + ' ' + layout.spaceArea + 'm' %></p>
+                <p class="total-price"><%= layout.price %>万起</p>
+            </a>
+            <% }) ; %>        
+        </div>
+    </div>
+    <% } %>
+
+    <!-- 项目特色 -->
+    <% if( item.projectFeatureList && item.projectFeatureList.length ) { %>
+    <div class="wk-panel top-gap has-right-padding project-feature">
+        <h1 class="panel-header">项目特色</h1>
+        <div class="panel-body">
+            <ul>
+                <% item.projectFeatureList.forEach(function(feature) { %>
+                <li>
+                    <img src="<%= appStaticPrefix %>/images/xf/special_<%= feature.featureType %>.png">
+                    <div>
+                        <h3><%= feature.featureName %></h3>
+                        <p><%= feature.featureDescription %></p>
+                    </div>
+                </li>
+                <% }) ; %>                
+            </ul>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- 楼盘信息 -->    
+    <div class="wk-panel top-gap has-right-padding building-info">
+        <div class="panel-header">楼盘信息</div>
+        <div class="panel-body one">
+            <div>
+                <span>产权年限</span>
+                <span><%= item.propertyRight %> 年</span>
+            </div>                   
+            <div>
+                <span>规划户数</span>
+                <span><%= item.planRoom %> 户</span>
+            </div>                   
+            <div>
+                <span>装修标准</span>
+                <% if( item.buildDecoration == 1 ) { %><span>毛坯</span>
+                <% } else if( item.buildDecoration == 2 ) { %><span>精装</span>
+                <% } else if( item.buildDecoration == 3 ) { %><span>豪装</span>
+                <% } %>
+            </div>                   
+            <div>
+                <span>物业类型</span>
+                <span><%= item.propertyTypeStr %></span>
+            </div>                               
+        </div>        
+        <div class="panel-body two">
+            <hr/>
+            <div>
+                <span>规划车位</span>
+                <span><%= item.parkingSpace || "--" %></span>
+            </div>                   
+            <div>
+                <span>楼盘地址</span>
+                <span><%= item.initName %></span>
+            </div>                   
+            <div>
+                <span>开发商</span>
+                <span><%= item.developers %></span>
+            </div>                   
+            <a href="<%= item.id %>/baseinfo.html" class="more" data-bigdata="<%= bigDataParams.baseinfoMoreClick %>">查看更多</a>                
+        </div>
+    </div>
+    
+    <!-- 楼盘画报 -->
+    <% if( item.newHouseMagazineList && item.newHouseMagazineList.length ) { %>
+    <div class="wk-panel top-gap has-right-padding magazine">
+        <div class="panel-header">楼盘画报</div>
+        <div class="panel-body">
+            <h3><%= item.newHouseMagazineList[0].title %></h3>
+            <h4><%= item.newHouseMagazineList[0].publishTimeStr %></h4>
+            <img src="<%= item.newHouseMagazineList[0].fileKey %>">
+            <p><%= item.newHouseMagazineList[0].content %></p>
+            <a href="/xfdetail/magazineList.html?subEstateId=<%= item.encryptSubEstateId %>" class="more" data-bigdata="<%= bigDataParams.magazineMoreClick %>">查看更多</a>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- 用户评论 -->
+    <% if( commentGroupModel ) { %>    
+    <div class="wk-panel estate-comments top-gap has-right-padding">        
+        <div class="panel-header">            
+            <div class="pull-left">用户评论</div>
+            <% if( commentGroupModel.commentList && commentGroupModel.commentList.length ) { %>
+            <a  href="/estate/moreComment.html?commentLocation=2&subEstateId=<%= item.id %>" class="pull-right"><%= commentGroupModel.commentList.length %> 条<i class="iconfont icon-next"></i></a>
+            <% } %>
+        </div>        
+        <div class="panel-body">
+            <% if( ! commentGroupModel || ! commentGroupModel.commentList || commentGroupModel.commentList.length ==0 ) { %>
+            <span>当前暂无评论，快来抢沙发吧！</span>
+            <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=rent&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
+            <% } else { %> 
+            <%- include("../components/subestate-comments", { comments : commentGroupModel.commentList } ) %>
+            <!--<hr><a href="#" class="go-comment">我来评论</a>-->
+            <% } %>
+        </div>
+        
+    </div>
+    <% } %>
+
+    <!--位置及周边的地图-->
+    <% if( item.longitude &&  item.latitude  ) { %>
+         <%- include("../components/map" , {
+             bigDataParams : bigDataParams.mapClick ,
+             longitude : item.longitude ,
+             latitude : item.latitude , 
+             address : item.initName , 
+             subEstateName : item.subEstateName , 
+             mapUrl : "/esf/map.html?longitude=" + item.longitude + "&latitude=" + item.latitude + "&houseName=" + item.initName + "&houseAddress="
+          }) %>
+    <% } %>
+
+    <!-- 周边楼盘 -->
+    <% if( aroundNewHouseList && aroundNewHouseList.length ) { %>
+    <div class="wk-panel top-gap around-building">
+        <div class="panel-header">周边楼盘</div>
+        <div class="panel-body"><%- include( "../components/xf-items" , { items : aroundNewHouseList }) %></div>
+    </div>  
+    <% } %>          
+
+    <a class="consult-phone" href="javascript:void(0);" data-href="tel:<%= item.salePhone %>" data-bigdata="<%= bigDataParams.consultClick %>">电话咨询</a>  
+</div>
+
+
+<%- include("../components/download-app" , { bigDataParams : bigDataParams && bigDataParams.downloadAppClick }) %>
+<%- include("../components/footer") %>

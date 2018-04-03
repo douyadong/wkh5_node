@@ -26,12 +26,14 @@
             <% } %>
         </div>
     </div>
+    <% if( item.comment && item.comment.commentList){ %>
     <div class="wk-panel has-right-padding top-gap">
         <div class="panel-header">小区评论</div>
         <div class="panel-body"><%- include( "../components/subestate-comments" , { 
             comments : item.comment && item.comment.commentList || []
         }) %></div>
     </div>
+    <% } %>
     <% if( item.echartShow || true){ %>
     <div class="echart wk-panel" id="estateName" data-encryptSubEstateId = "<%= item.encryptSubEstateId %>">
         <div class="panel-header">价格走势</div>

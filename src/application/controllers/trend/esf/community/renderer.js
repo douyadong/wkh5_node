@@ -45,7 +45,7 @@ class Renderer extends AppRendererControllerBasic {
                 item.cityName = item.cityName.substring( 0 , item.cityName.length - 1) ;
             }
             item.regionId = regionId;
-            item.channel = "";
+            item.channel = this.req.query['channel'] || "";
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 <%- include("../components/filter") %>
 <div class="container">
 <input type="hidden" id="channel" value="<%= channel%>">
-<input type="hidden" id="oldBusiness" value="<%= cityModel.oldBusiness && '1' : ''%>">
+<input type="hidden" id="oldBusiness" value="<%= cityModel.oldBusiness && '1' || ''%>">
 <div class="total">
     <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: ""%></span> <span>套房源</span>
 </div>

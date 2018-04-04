@@ -54,7 +54,7 @@ class Renderer extends AppRendererControllerBasic {
             // 相似房源更多的Url
             item['similarHousesUrl'] = this.templateData.domain +'/esf/similarList.html?enCryptHouseId='+item.encryptHouseId;
             // 额外的脚本样式 折线图
-            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
+            let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             相册的视频和图片的数据的组装处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

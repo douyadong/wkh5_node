@@ -33,14 +33,12 @@
     </div>
     <!--国际城市-->
     <div class="oversea-list" style="display: none">
-        <%if(item.location_cityName){ %>
         <div class="inside-city inside-city-list">
             <p>定位城市</p>
             <ul>
                 <li class="location" data-cityid="<%= item.location_cityId%>" data-pinyin="<%= item.location_cityPinyin%>">上海</li>
             </ul>
         </div>
-        <%}%>
         <%item.overseaCityList && item.overseaCityList.forEach(function (value) { %>
         <div class="inside-city-list">
             <p><%= value.firstWord%></p>

@@ -95,7 +95,7 @@
             <img src="<%= item.estateImgUrl%>?x-oss-process=image/resize,w_120" >
             <p class="name"><%= item.estateName%></p>
             <span class="outline">
-                <span><%if(item.completedStr !== "--"){%><%= item.completedStr %> 竣工  | <%}%>  <%= item.totalHouse %></span>
+                <span><%if(item.completedStr !== "--"){%><%= item.completedStr %> 竣工  <%}%><%if(item.completedStr !== "--" && item.totalHouse ){%> | <%}%>  <%= item.totalHouse %></span>
                 <span class="iconfont icon-next"></span>
             </span>
             <span class="address"><%= item.estateAddr %></span>
@@ -115,7 +115,7 @@
         <%if(item.sameEstateHouseAmount){%>
              <div >
             <hr>
-            <a class="total-item" href="<%= domain %>/estate/sameEstateHouseList.html?subEstateId=<%= item.encryptSubEstateId %>" data-bigdata="<%= item.DataParams.onSellBigDataParams%>">
+            <a class="total-item" href="<%= domain %>/<%=cityPinyin%>/community/houseList/<%=item.encryptSubEstateId%>" data-bigdata="<%= item.DataParams.onSellBigDataParams%>">
                 <p>在售房源</p>
                 <span>
                     <span><%= item.sameEstateHouseAmount || 0 %> 套</span>

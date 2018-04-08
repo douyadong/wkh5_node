@@ -45,12 +45,13 @@
     <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
-    <div class="empty-color"></div>
+
     <% }%>
-    <%if(item.districtUponCityPriceList || item.townUponCityPriceList){%>
+    <%if(item.districtUponCityPriceList && item.districtUponCityPriceList.length >0 ){%>
+    <div class="empty-color"></div>
     <!--区域模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/esf" data-bigdata="<%= item.DataParams.district%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
+        <div class="panel-header">当前各区参考均价 <a href="/<%=item.cityPY%>/esf?channel=<%=item.channel%>" data-bigdata="<%= item.DataParams.district%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a> </div>
         <div class="wk-body district">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
@@ -67,10 +68,12 @@
             <button id="districtMore">加载全部</button>
         </div>
     </div>
+    <% }%>
+    <%if(item.townUponCityPriceList && item.townUponCityPriceList.length >0 ){%>
     <!--    板块模块信息-->
     <div class="empty-color"></div>
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考均价<a href="/<%=item.cityPY%>/esf" data-bigdata="<%= item.DataParams.town%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="panel-header">当前各板块参考均价<a href="/<%=item.cityPY%>/esf?channel=<%=item.channel%>" data-bigdata="<%= item.DataParams.town%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body">
             <ul>
                 <li class="top-name"> <span>板块</span><span class="unit-price">参考均价</span><span>涨幅</span></li>

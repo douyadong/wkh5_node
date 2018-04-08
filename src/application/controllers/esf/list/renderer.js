@@ -80,7 +80,7 @@ class Renderer extends AppRendererControllerBasic {
             
             if(cityData && cityData.data && cityData.data.cityId){            
                 cityModel = cityData.data ;
-                cityModel.cityOpen = cityModel.newBusiness ;                
+                cityModel.cityOpen = cityModel.oldBusiness ;                
             }else{                
                 // 跳转到上海
                 this.res.redirect('/shanghai/esf/');

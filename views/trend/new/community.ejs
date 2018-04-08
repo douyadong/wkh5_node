@@ -33,8 +33,8 @@
                 <p><%= item.increase || "--"%></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/xflist/">
-                    <span>在售房源</span><i class="iconfont icon-next"></i>
+                <a href="/<%= item.cityPY%>/xf/<%=item.regionId%>.html">
+                    <span>在售楼盘</span><i class="iconfont icon-next"></i>
                     <p><%= item.houseCount || "--"%> 套</p>
                 </a>
             </div>

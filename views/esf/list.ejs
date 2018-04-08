@@ -6,6 +6,8 @@
     "cityModel" : cityModel ,    
     "bigDataParams" : bigDataParams.conningTower
  } ) %>
+ <input type="hidden" id="channel" value="<%= channel%>">
+ <input type="hidden" id="newBusiness" value="<%= cityModel.newBusiness && '1' || ''%>">
  <%- include("../components/filter") %>
  <!--导入二手房条目-->
  <div class="container">

@@ -37,6 +37,7 @@ class Renderer extends AppRendererControllerBasic {
             let meta={}; // meta展示
             let conditionData = {};
             let cityId = 43 ;   // 城市Id
+            let item= {};
             let pinyin = {      // 组装拼音接口需要的数据
                 "pinyin": this.req.params.city || "shanghai"
             };
@@ -45,15 +46,16 @@ class Renderer extends AppRendererControllerBasic {
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            if(this.req.cookies && this.req.cookies.userSelectedCity) {  // 判断是否有客户选择的城市
+            item['rentBusiness'] = true;
+            if(this.req.cookies && this.req.cookies.selectedCityPinyin) {  // 判断是否有客户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
-                    "data" : { "pinyin": this.req.cookies.userSelectedCity} ,
+                    "data" : { "pinyin": this.req.cookies.selectedCityPinyin} ,
                 }) ;
                if( cityInfo.data.rentBusiness ){
                    cityId =  cityInfo.data.cityId
                } else {     // 客户选择的城市不支持租房业务
-                   cityInfo = await adf.request({
+          /*         cityInfo = await adf.request({
                        "apiPath" : cityPinYin.join("."),
                        "data" : pinyin ,
                    }) ;
@@ -66,7 +68,8 @@ class Renderer extends AppRendererControllerBasic {
                        cityInfo['cityName']= "上海" ;
                        cityInfo['cityPinyin']= "shanghai" ;
                        defultName = cityInfo.data.cityName;
-                   }
+                   }*/
+                item['rentBusiness'] = cityInfo.data.rentBusiness
                }
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
@@ -219,7 +222,7 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
-            let item = apiDat;
+            item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
                     item.data[index]['url']="/"+ cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";

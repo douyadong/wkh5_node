@@ -37,16 +37,15 @@ class Renderer extends AppRendererControllerBasic {
             let meta={}; // meta展示
             let conditionData = {};
             let cityId = 43 ;   // 城市Id
-            let item= {};
             let pinyin = {      // 组装拼音接口需要的数据
                 "pinyin": this.req.params.city || "shanghai"
             };
             let cityInfo = {};
-            let defultName = this.req.cookies.userSelectedCityName;
+            let defultName = this.req.cookies.selectedCityName;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            item['rentBusiness'] = true;
+            let rentBusinessSpurt = true;
             if(this.req.cookies && this.req.cookies.selectedCityPinyin) {  // 判断是否有客户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPinYin.join("."),
@@ -69,7 +68,7 @@ class Renderer extends AppRendererControllerBasic {
                        cityInfo['cityPinyin']= "shanghai" ;
                        defultName = cityInfo.data.cityName;
                    }*/
-                item['rentBusiness'] = cityInfo.data.rentBusiness
+                   rentBusinessSpurt = cityInfo.data.rentBusiness
                }
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
@@ -80,13 +79,15 @@ class Renderer extends AppRendererControllerBasic {
                     cityId =  cityInfo.data.cityId;
                     defultName = cityInfo.data.cityName;
                 }else {
-                    cityId = 43;
+                /*    cityId = 43;
                     cityInfo['cityId']= cityId ;
                     cityInfo['cityName']= "上海" ;
                     cityInfo['cityPinyin']= "shanghai" ;
-                    defultName = cityInfo.data.cityName;
+                    defultName = cityInfo.data.cityName;*/
+                    rentBusinessSpurt = cityInfo.data.rentBusiness
                 }
             }
+       /*     console.log(rentBusinessSpurt+"item['rentBusiness']-----------------------------------------");*/
             this.res.cookie('cityId', cityInfo.data.cityId , {httpOnly: false}); // 设置cityId
             this.res.cookie('cityName', cityInfo.data.cityName , {httpOnly: false});// 设置cityName
             this.res.cookie('pinyin', cityInfo.data.cityPinyin , {httpOnly: false});// 设置城市pinyin
@@ -222,7 +223,7 @@ class Renderer extends AppRendererControllerBasic {
                 "method":"post",
                 "contentType":"application/json"
             }) ;
-            item = apiDat;
+           let item = apiDat;
             if (item.count > 0){
                 item.data.forEach((itemI, index) =>{
                     item.data[index]['url']="/"+ cityInfo.data.cityPinyin+"/rent/"+itemI.encryptHouseId+".html?channel="+ channel || "";
@@ -391,6 +392,7 @@ class Renderer extends AppRendererControllerBasic {
                     "matchStylesheetPath" : modulePathArray.join("/") ,
                     "controllerJavascriptPath" : modulePathArray.join("/"),
                     "item" : item ,
+                    "rentBusinessSput":rentBusinessSpurt
                 }) ;
                 this.render(modulePathArray.join("/")) ;
             }else {
@@ -399,6 +401,7 @@ class Renderer extends AppRendererControllerBasic {
                     "matchStylesheetPath" : errPathArray.join("/") ,
                     "controllerJavascriptPath" : errPathArray.join("/"),
                     "item" : item ,
+                    "rentBusinessSput":rentBusinessSpurt
                 }) ;
                 this.render(errPathArray.join("/")) ;
             }

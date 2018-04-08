@@ -1,7 +1,7 @@
 <%- include("../components/head") %>
 <header>
     <i class="iconfont icon-back"></i>
-    经纪人
+    <span><%= title %></span>
 </header>
 <!-- 底部助手条 --> 
 <%- include( "../components/assistant" , {
@@ -49,11 +49,13 @@
                 <p><%= agent.serviceYears %></p>
             </div>
         </div>
+        <% if(agent.agentBizTown) { %>
         <hr>
         <div class="familiar">
             <p class="name">熟悉商圈    <% if(agent.agentStory || agent.agentIntroduction) { %><a href="/space/summary/<%= agentId %>">查看更多<i class="iconfont icon-next"></i></a><% } %></p>
             <p class="dec"><%= agent.agentBizTown%></p>
         </div>
+        <% } %>
     </div>
 </div>
 <!--三个tabs部分-->

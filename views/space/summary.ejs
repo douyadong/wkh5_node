@@ -5,14 +5,18 @@
         <p><%= item.agent.agentBizTown%></p>
     </div>
     <hr>
+    <% if(item.agent.agentIntroduction) { %>
     <div class="introduction">
         <h3>自我介绍 </h3>
         <p><%= item.agent.agentIntroduction%></p>
     </div>
     <hr>
+    <% } %>
+    <% if(item.agent.agentStory) { %>
     <div class="story">
         <h3>成交故事 </h3>
         <p><%= item.agent.agentStory%></p>
     </div>
+    <% } %>
 </div>
 <%- include("../components/footer") %>

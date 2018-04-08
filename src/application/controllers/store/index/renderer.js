@@ -70,7 +70,7 @@ class Renderer extends AppRendererControllerBasic {
             if(houseApiData.data) {
                 for(let n = 0 ; n < houseApiData.data.length ; n ++) {
                     houseApiData.data[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1222001 , "eventParam" : { "store_id" : storeId , "house_id" : houseApiData.data[n].houseId } } ) ;
-                    houseApiData.data[n].url = "/" + cityPinYin + "/esf/" + houseApiData.data[n].encryptHouseId + ".html" ;
+                    houseApiData.data[n].url = "/" + cityPinYin + "/esf/" + houseApiData.data[n].encryptHouseId + ".html"+"?storeId="+storeId ;
                 }
             }    
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

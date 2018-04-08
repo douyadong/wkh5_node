@@ -52,7 +52,7 @@
                     <a href="/<%= item.cityPY%>/trend/new/community/<%= itemL.regionId %>">
                         <p><%= itemL.name %> </p>
                         <p class="unit-price"><%= itemL.openTime %></p>
-                        <p ><%= itemL.avgPrice %> 元/㎡</p>
+                        <p ><%if (itemL.avgPrice == null) { %> 价格持平 <% }else {%><%= itemL.avgPrice %>元/㎡<%}%></p>
                     </a>
                 </li>
                 <%})%>

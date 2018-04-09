@@ -71,7 +71,7 @@
                     <span class="name">地铁</span>
                     <ul>
                         <%item.subWayLineModels && item.subWayLineModels.forEach(function (itemL,index) {%>
-                              <li>距<%= itemL.lineName%>号线<%=itemL.stationName%>站<%=itemL.distance%>米</li>
+                              <li>距<%=itemL.stationName%>站<%=itemL.distance%>米</li>
                         <%})%>
                     </ul>
                     <%if(item.subWayLineModels.length > 1){%>

@@ -1,5 +1,6 @@
 <%- include("../components/head") %>
     <input type="hidden" id="storeId" value="<%= storeId %>">
+    <input type="hidden" id="cityPinYin" value="<%= cityPinYin %>">
     <div class="wk-tabs">
         <!--头部根据滚动条可以变fixed的内容，包括banner和tabs-handle-->
         <header class="header">
@@ -27,12 +28,10 @@
         </header>
         <!--两个tabs-frame内容-->
         <div class="tabs-frame wk-panel esf-items">
-            <div class="list-container">
-                <% if(oldHouseList ) { %>
-                <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %>
-                <% } else {%>
-                <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noHouse}  ) %>
-                <% } %>
+            <div class="list-container ">
+                <div class="nodata-store" style="display: none">
+                    <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": true ,"pinyin":store.pinyin,"bigDataParams":bigDataParams.noHouse}  ) %>
+                </div>
             </div>
         </div>
         <div class="tabs-frame wk-panel agent-items">

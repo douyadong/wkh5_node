@@ -58,7 +58,8 @@ class Renderer extends AppRendererControllerBasic {
             1.  bigDataParams以及url的处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             aroundXfModel && aroundXfModel.length && aroundXfModel.forEach((aroundXf) => {
-                aroundXf.url = aroundXf.id + ".html" ;
+                aroundXf.url = aroundXf.encryptSubEstateId + ".html" ;
+                
                 aroundXf.bigDataParams = this.generateBigDataParams( { "eventName" : 1045015 , "eventParam" : { "new_house_id" : estateModel.id } } ) ;
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

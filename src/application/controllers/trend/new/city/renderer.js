@@ -44,7 +44,7 @@ class Renderer extends AppRendererControllerBasic {
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPathArray.join("."),
-                    "data" : cityPinYin ,
+                    "data" : { "pinyin" : cityPinYin }
                 }) ;
                 if (cityInfo.data.newBusiness ){
                     let  cityId =  cityInfo.data.cityId;

@@ -25,10 +25,37 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app);
             let cityPinYin = this.req.params.city || "shanghai"; // 城市pinyin
-            let cityInfo = await adf.request({     // 通过拼音获取城市信息
-                "apiPath" : cityPathArray.join(".") ,
-                "data" : { "pinyin" : cityPinYin }
-            }) ;
+            let defultName = this.req.cookies.selectedCityName;
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            切换业务模块的情况下，由其他模块跳入租房业务，首先判断有客户选择城市有没有租房业务，没有就查看默认路由拼音是否支持租房业务，不支持跳到上海
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let BusinessSpurt = true;
+            let cityInfo = {};
+            if(this.req.cookies && this.req.cookies.selectedCityPinyin) {  // 判断是否有客户选择的城市
+                cityInfo = await adf.request({
+                    "apiPath" : cityPathArray.join("."),
+                    "data" : { "pinyin": this.req.cookies.selectedCityPinyin} ,
+                }) ;
+                if( cityInfo.data.oldBusiness ){
+                    let cityId =  cityInfo.data.cityId
+                } else {     // 客户选择的城市不支持租房业务
+                    BusinessSpurt = cityInfo.data.oldBusiness
+                }
+            }else {   // 没有用户选择的城市
+                cityInfo = await adf.request({
+                    "apiPath" : cityPathArray.join("."),
+                    "data" : cityPinYin ,
+                }) ;
+                if (cityInfo.data.oldBusiness ){
+                    let  cityId =  cityInfo.data.cityId;
+                }else {
+                    BusinessSpurt = cityInfo.data.oldBusiness
+                }
+            }
+            /*     let cityInfo = await adf.request({     // 通过拼音获取城市信息
+                     "apiPath" : cityPathArray.join(".") ,
+                     "data" : { "pinyin" : cityPinYin }
+                 }) ;*/
             let apiData = await adf.request({   // 请求城市价格走势
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",
@@ -80,7 +107,8 @@ class Renderer extends AppRendererControllerBasic {
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
                 "extraJavascripts" : extraJavascript ,
-                "item": item
+                "item": item,
+                "BusinessSpurt":BusinessSpurt
             }) ;
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

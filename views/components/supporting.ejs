@@ -25,8 +25,9 @@
 <%
     let mapping = {
         bed: ['hasBad','床'],
+        desk: ['hasDesk','桌椅'],
         tv: ['hasTV','电视'],
-        internet: ['hasInternet','宽带'],
+        internet: ['hasInternet','WIFI'],
         airconditioner: ['hasAirConditioning','空调'],
         washer: ['hasWashMachine','洗衣机'],
         wardrobe: ['hasWardrobe','衣柜'],
@@ -35,7 +36,11 @@
         balcony: ['hasBalcony','阳台'],
         gas: ['hasGas','煤气'],
         microwave: ['hasMicrowave','微波炉'],
-        refrigerator: ['hasFridge','冰箱']
+        refrigerator: ['hasFridge','冰箱'],
+        Kitchen: ['hasKitchen','厨房'],
+        WCRoom: ['hasWCRoom','卫生间'],
+        parkingSpace: ['hasParkingSpace','车位']
+
     };    
 %>
 <%if(houseSupporting){%>

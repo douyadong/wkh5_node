@@ -69,7 +69,7 @@
       <img src="https://cdn.wkzf.com/wkwap_fe/img/source/price/Group.png" alt="">
     <% }%>
     <!--招商页面-->
-    <div class="notopen-investment " style="display: none">
+    <div class="notopen-investment " style=" <%if(BusinessSpurt){%> display: none <%} else {%> display: block <%}%>">
         <p><img src="<%= appStaticPrefix %>/images/common/notopen.png"></p>
         <p>
             <span class="current-city"><%= item.cityName %></span>

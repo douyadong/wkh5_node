@@ -63,7 +63,7 @@ class Renderer extends AppRendererControllerBasic {
                 "contentType":"application/json",
                 "data" : { "subEstateId" : regionId }
             }) ;
-            let item = apiData.data;
+            let item = apiData.data ?  apiData.data: { };
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             this.res.cookie('pinyin', cityPinYin , { httpOnly: false});
             item.cityPY = cityPinYin;

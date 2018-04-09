@@ -75,23 +75,25 @@ class Renderer extends AppRendererControllerBasic {
 
             Object.assign(this.templateData, { "cityModel" : cityModel }) ;
             param.cityId = cityModel.cityId;
-
-            data = await adf.request({
-                "apiPath" : modulePathArray.join("."),
-                "data" : param,
-                "method":"post",
-                "contentType":"application/json"
-            }) ;
-
-            // 遍历添加bigDataParams
             let channel = this.req.query.channel;
-            if(data && data.data && data.data.newHouseDataListModelList){
-                data.data.newHouseDataListModelList.forEach(function(item){
-                    item.url = "/" + cityModel.cityPinyin + "/xf/" + item.encryptSubEstateId + ".html" + (channel&&"?channel=" + channel||"");
-                    item.bigDataParams = encodeURIComponent('{"eventName": "1050025", "eventParam": { "new_house_id": "'+item.subEstateId+'" } }');
-                    item.hasVideo = parseInt(item.hasVideo) || 0;
-                });
-            }
+
+            if(cityModel.cityOpen){
+                data = await adf.request({
+                    "apiPath" : modulePathArray.join("."),
+                    "data" : param,
+                    "method":"post",
+                    "contentType":"application/json"
+                }) ;
+    
+                // 遍历添加bigDataParams            
+                if(data && data.data && data.data.newHouseDataListModelList){
+                    data.data.newHouseDataListModelList.forEach(function(item){
+                        item.url = "/" + cityModel.cityPinyin + "/xf/" + item.encryptSubEstateId + ".html" + (channel&&"?channel=" + channel||"");
+                        item.bigDataParams = encodeURIComponent('{"eventName": "1050025", "eventParam": { "new_house_id": "'+item.subEstateId+'" } }');
+                        item.hasVideo = parseInt(item.hasVideo) || 0;
+                    });
+                }
+            }            
 
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),

@@ -75,7 +75,7 @@
     <% if(rentHouseList && rentHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="rent-frame"> <%- include("../components/rent-items" , { "rentItems" : rentHouseList } ) %></div></div><% } %>
     <!--tabs-frame内容结束-->
     <% } else {%>
-    <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来扫一扫吧" ,"linkFlag": false }  ) %>
+    <%- include("../components/store-nodata",{ "wordOne" : "房源正在努力录入中哦~","wordTwo":"晚些再来看看吧" ,"linkFlag": false }  ) %>
     <% } %>
 </div>
 <!--下面这个隐藏域是在埋点的时候取得agent_id参数用的-->

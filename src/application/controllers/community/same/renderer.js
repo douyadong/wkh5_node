@@ -36,6 +36,11 @@ class Renderer extends AppRendererControllerBasic {
                 "contentType":"application/json",
                 "data" : { "subEstateId" : regionId}
             }) ;
+            if (apiData.data && apiData.data.length>0){
+                apiData.data.forEach((iteme , index)=>{
+                    apiData.data[index]['url']=`/${this.req.params.city }/esf/${iteme.encryptHouseId}.html`
+                })
+            }
             let item = {
                 houseList:apiData.data,
                 cityPY:cityPinYin,

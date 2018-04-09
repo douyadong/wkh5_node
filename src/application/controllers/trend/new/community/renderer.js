@@ -63,7 +63,7 @@ class Renderer extends AppRendererControllerBasic {
                 "contentType":"application/json",
                 "data" : { "subEstateId" : regionId }
             }) ;
-            let item = apiData.data;
+            let item = apiData.data ?  apiData.data: { };
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             this.res.cookie('pinyin', cityPinYin , { httpOnly: false});
             item.cityPY = cityPinYin;
@@ -79,8 +79,8 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" : "租房-悟空找房" ,
-                "keywords" :  "租房，真实房屋出租" ,
+                "title" : "新房价格走势-悟空找房" ,
+                "keywords" :  "新房价格走势，真实房屋出租" ,
                 "description" : "悟空找房网为您提供" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,

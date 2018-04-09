@@ -45,7 +45,7 @@ class Renderer extends AppRendererControllerBasic {
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPathArray.join("."),
-                    "data" : cityPinYin ,
+                    "data" : { "pinyin" : cityPinYin }
                 }) ;
                 if (cityInfo.data.oldBusiness ){
                     let  cityId =  cityInfo.data.cityId;
@@ -73,14 +73,19 @@ class Renderer extends AppRendererControllerBasic {
             }
             item.regionId = regionId;
             item.channel = this.req.query['channel'] || "";
+            if (item.houseList && item.houseList.length>0){
+                item.houseList.forEach((iteme , index)=>{
+                    item.houseList[index]['url']=`/${this.req.params.city }/esf/${iteme.encryptHouseId}.html`
+                })
+            }
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" : "租房-悟空找房" ,
-                "keywords" :  "租房，真实房屋出租" ,
+                "title" : "二手房价格走势-悟空找房" ,
+                "keywords" :  "二手房价格走势，真实房屋出租" ,
                 "description" : "悟空找房网为您提供" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,

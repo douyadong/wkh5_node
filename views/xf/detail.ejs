@@ -22,14 +22,15 @@
                 <dl><dt>开盘时间</dt><dd><%= item.openTimeStr || "--" %></dd></dl>
                 <dl><dt>交房时间</dt><dd><%= item.launchTimeStr || "--" %></dd></dl>                
             </div>
+            <hr>
             <% if( item.activityList && item.activityList.length ) { %>
-            <div class="activity">
-                <hr>
+            <div class="activity">                
                 <ul>
                     <% item.activityList.forEach(function(activity){ %>
                     <li><span></span><%= activity.title%></li>
                     <% }) ; %>                    
                 </ul>
+                <i class="iconfont icon-next"></i>                
             </div>
             <% } %>
         </div>

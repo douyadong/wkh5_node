@@ -45,7 +45,7 @@ class Renderer extends AppRendererControllerBasic {
             }else {   // 没有用户选择的城市
                 cityInfo = await adf.request({
                     "apiPath" : cityPathArray.join("."),
-                    "data" : cityPinYin ,
+                    "data" : { "pinyin" : cityPinYin }
                 }) ;
                 if (cityInfo.data.newBusiness ){
                     let  cityId =  cityInfo.data.cityId;
@@ -79,8 +79,8 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" : "租房-悟空找房" ,
-                "keywords" :  "租房，真实房屋出租" ,
+                "title" : "新房价格走势-悟空找房" ,
+                "keywords" :  "新房价格走势，真实房屋出租" ,
                 "description" : "悟空找房网为您提供" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,

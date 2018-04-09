@@ -50,8 +50,8 @@ class Renderer extends AppRendererControllerBasic {
             扩展模板常规数据
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             Object.assign(this.templateData, {
-                "title" : "租房-悟空找房" ,
-                "keywords" :  "租房，真实房屋出租" ,
+                "title" : "价格走势-悟空找房" ,
+                "keywords" :  "价格走势，真实房屋出租" ,
                 "description" : "悟空找房网为您提供" ,
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,

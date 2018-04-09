@@ -9,7 +9,7 @@
         <h1 class="house-title"><%= item.estateName + " " + item.subEstateName %></h1>
         <h2><%= item.sellPoint %></h2>
         <p class="unit-price">
-            <span><%= item.unitPrice %> 元 / ㎡</span>
+            <span><%= item.avgPriceWu %></span>
             <small>参考价格</small>
             <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>" data-bigdata="<%= bigDataParams.loanCalClick %>"><i class="calc iconfont icon-jisuanqi"></i></a>
         </p>                

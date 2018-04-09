@@ -9,14 +9,14 @@
         <h1 class="house-title"><%= item.estateName + " " + item.subEstateName %></h1>
         <h2><%= item.sellPoint %></h2>
         <p class="unit-price">
-            <span><%= item.unitPrice %> 元 / ㎡</span>
+            <span><%= item.avgPriceWu %></span>
             <small>参考价格</small>
             <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>" data-bigdata="<%= bigDataParams.loanCalClick %>"><i class="calc iconfont icon-jisuanqi"></i></a>
         </p>                
         <div class="panel-body">            
             <hr>
             <div class="tags">            
-                    <% if( item.hasActivity ) { %><span class="tag yh">有优惠</span><% } %><% if( item.isSubwayEstate ) { %><span class="tag dt">近地铁</span><% } %><% if( item.hasVideo ) { %><span class="tag">有视频</span><% } %><% if( item.isSoonOpen ) { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
+                    <% if( item.hasActivity == "1") { %><span class="tag yh">有优惠</span><% } %><% if( item.isSubwayEstate == "1") { %><span class="tag dt">近地铁</span><% } %><% if( item.hasVideo == "1") { %><span class="tag">有视频</span><% } %><% if( item.isSoonOpen == "1") { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
             </div>
             <div class="time">
                 <dl><dt>开盘时间</dt><dd><%= item.openTimeStr || "--" %></dd></dl>

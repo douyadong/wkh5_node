@@ -236,7 +236,10 @@ ParamGenerator.DEFAULT = {
         ret.pageSize = data * 10;
     },
     "ag": ParamGenerator.createMappingFunc(2, "houseAgeType"),// 房龄
-    "m": ParamGenerator.createMappingFunc(1, "endMetres"),// 附近米数
+    //"m": ParamGenerator.createMappingFunc(1, "endMetres"),// 附近米数
+    "m": function(ret, data){
+        ret.endMetres = data || 5000;
+    },
     "lon": ParamGenerator.createMappingFunc(1, "localLon"),// 经度
     "lat": ParamGenerator.createMappingFunc(1, "localLat"),// 纬度
     "ar": ParamGenerator.createMappingFunc(1, "multipleSpace"),// 面积，二手房用

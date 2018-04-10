@@ -1,4 +1,5 @@
 <%- include("../components/head") %>
+<input type="hidden" id="houseId" value="<%= item.id%>">
 <!--点击优惠弹出的图层-->
 <% if( item.activityList && item.activityList.length ) { %>
 <div class="activity-pop">
@@ -27,7 +28,7 @@
         <h1 class="house-title"><%= item.estateName + " " + item.subEstateName %></h1>
         <h2><%= item.sellPoint %></h2>
         <p class="unit-price">
-            <span><%= item.avgPriceWu %></span>
+            <span><%= item.avgPriceWou=="0"?"价格待定":item.avgPriceWu %></span>
             <small>参考价格</small>
             <a href="/houseLoanCalculator.html?totalPrice=<%= item.lowestTotalPrice %>" data-bigdata="<%= bigDataParams.loanCalClick %>"><i class="calc iconfont icon-jisuanqi"></i></a>
         </p>                

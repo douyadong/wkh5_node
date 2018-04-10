@@ -92,6 +92,10 @@ class Renderer extends AppRendererControllerBasic {
             this.res.cookie('pinyin', cityInfo.data.cityPinyin , {httpOnly: false});// 设置城市pinyin
             this.res.cookie('citySelectionOpen', "" , { httpOnly: false}); // 首次进入租房列表页设置标识（在城市列表页不选择城市但返回的时候用到判断标识）
             this.res.cookie('location_noChose', "" , {httpOnly: false});// 避免循环跳转的标识
+            this.res.cookie('visitedCityChina', cityInfo.data.china , {httpOnly: false});// 新房二手房 需要
+            this.res.cookie('visitedCityName', cityInfo.data.cityName , {httpOnly: false});// 新房二手房 需要
+            this.res.cookie('visitedCityId', cityInfo.data.cityId , {httpOnly: false});// 新房二手房 需要
+            this.res.cookie('visitedCityPinyin', cityInfo.data.cityPinyin , {httpOnly: false});// 新房二手房 需要
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             根据params.condition和query的值的情况重新组装数据

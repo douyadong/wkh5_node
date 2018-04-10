@@ -12,6 +12,7 @@ import express from "express" ;
 import StoreIndexRenderer from "../controllers/store/index/renderer" ;
 import StoreIndexHouseApiProvider from "../controllers/store/index/houseApiProvider" ;
 import StoreIndexAgentApiProvider from "../controllers/store/index/agentApiProvider" ;
+import positionApiProvider from "../controllers/store/index/positionApiProvider" ;
 let router = express.Router() ;
 /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /shanghai/store/12345.html的路由规则
@@ -30,5 +31,11 @@ router.get("/api/store/index/house", function(req, res, next) {
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
 router.get("/api/store/index/agent", function(req, res, next) {   
     new StoreIndexAgentApiProvider(req, res, next) ;  
+}) ;
+/*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/api/store/index/wxmpStore的路由规则
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+router.get("/api/store/index/wxmpStore", function(req, res, next) {
+    new positionApiProvider(req, res, next) ;
 }) ;
 export default router ;

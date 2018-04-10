@@ -49,8 +49,7 @@ export default {
         "store" : {
             "store" : "store/getStorePriceInfo.rest" ,
             "agent" : "store/getAgentList.rest" ,
-            "house" : "store/getHouseList.rest",
-            "wxmpStore":"wxmpStore/getPosition.rest" //根据门店id获取经纬度信息
+            "house" : "store/getHouseList.rest"
         } ,
         "esf" : {
             "detail" : "sellHouse/getSellHouseDetail.rest" ,

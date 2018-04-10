@@ -52,10 +52,9 @@ class Renderer extends AppRendererControllerBasic {
                     BusinessSpurt = cityInfo.data.oldBusiness
                 }
             }
-            /*     let cityInfo = await adf.request({     // 通过拼音获取城市信息
-                     "apiPath" : cityPathArray.join(".") ,
-                     "data" : { "pinyin" : cityPinYin }
-                 }) ;*/
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            获取数据信息
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let apiData = await adf.request({   // 请求城市价格走势
                 "apiPath" : apiPathArray.join(".") ,
                 "method":"post",

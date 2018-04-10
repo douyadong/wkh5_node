@@ -72,6 +72,24 @@ class Renderer extends AppRendererControllerBasic {
             }
             item.regionId = regionId;
             item.channel = this.req.query['channel'] || "";
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+           大数据埋点参数
+           -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            item['DataParams'] ={
+
+                //区域部分-查看所有房源入口
+                district : this.generateBigDataParams({
+                    eventName: '1112002',
+                    eventParam:{city_id:item.regionId },
+                    type: 2
+                }),
+                //板块部分-查看所有房源入口
+                town : this.generateBigDataParams({
+                    eventName: '1112003',
+                    eventParam:{city_id:item.regionId },
+                    type: 2
+                }),
+            };
             // 额外的脚本样式
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

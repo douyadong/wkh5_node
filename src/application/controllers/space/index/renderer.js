@@ -76,7 +76,7 @@ class Renderer extends AppRendererControllerBasic {
             if(newApiData.data && newApiData.data.houseList) {
                 for(let n = 0 ; n < newApiData.data.houseList.length ; n ++) {
                     newApiData.data.houseList[n].bigDataParams = this.generateBigDataParams( { "eventName" : 1002010 , "eventParam" : { "new_house_id" : newApiData.data.houseList[n].subEstateId } } ) ;
-                    newApiData.data.houseList[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data.houseList[n].encryptSubEstateId + ".html" ;
+                    newApiData.data.houseList[n].url = "/" + this.req.params.city + "/xfdetail/" + newApiData.data.houseList[n].encryptSubEstateId + ".html?agentId="+agentId ;
                 }
             }
             if(rentApiData.data && rentApiData.data.houseList) {

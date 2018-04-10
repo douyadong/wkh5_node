@@ -59,7 +59,7 @@
                     <a href="/<%= item.cityPY%>/trend/new/town/<%= itemL.regionId %>">
                         <p><%= itemL.name %> </p>
                         <p class="unit-price"><%= itemL.houseCount %></p>
-                        <p ><%if (itemL.avgPrice == "价格待定") { %> 价格待定 <% }else {%><%= itemL.avgPrice %> 元/㎡<%}%></p>
+                        <p ><%if (itemL.avgPrice == "价格待定" || itemL.avgPrice == null) { %> 价格待定 <% }else {%><%= itemL.avgPrice %> 元/㎡<%}%></p>
                     </a>
                 </li>
                 <%})%>

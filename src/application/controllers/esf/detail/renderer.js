@@ -58,23 +58,8 @@ class Renderer extends AppRendererControllerBasic {
             let  extraJavascript = [this.templateData.utilStaticPrefix+'/wkzf/js/util/echarts/echarts.3.2.3.min.js'];
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             相册的视频和图片的数据的组装处理
-            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
-            let imgList = [];
-            if(item.houseVideos){
-                item.houseVideos['isVideo'] = true ;
-                item.houseVideos['url'] = item.houseVideos.videoUrl;
-                item.houseVideos['videoPlayUrl'] = "/" + city + '/videoplay/index?src=' + encodeURIComponent(item.houseVideos.videoUrl);
-                imgList.push(item.houseVideos)
-            }
-            if (item.houseImages){
-                item.houseImages.forEach(function (eachItem) {
-                    imgList.push({
-                        isVideo:false,
-                        url:eachItem
-                    })
-                })
-            }
-            item['imgList'] = imgList ;
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/            
+            item['imgList'] = this.recombingAlbumData({ apiData : item , city : city }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
              给相似房源添加埋点和点击调往页面的Url
              -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/

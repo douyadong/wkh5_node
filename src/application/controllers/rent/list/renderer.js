@@ -87,7 +87,6 @@ class Renderer extends AppRendererControllerBasic {
                     rentBusinessSpurt = cityInfo.data.rentBusiness
                 }
             }
-       /*     console.log(rentBusinessSpurt+"item['rentBusiness']-----------------------------------------");*/
             this.res.cookie('cityId', cityInfo.data.cityId , {httpOnly: false}); // 设置cityId
             this.res.cookie('cityName', cityInfo.data.cityName , {httpOnly: false});// 设置cityName
             this.res.cookie('pinyin', cityInfo.data.cityPinyin , {httpOnly: false});// 设置城市pinyin

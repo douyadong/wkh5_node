@@ -85,7 +85,8 @@ class Renderer extends AppRendererControllerBasic {
                 "wechatImgUrl" : storeApiData.data.picUrl , 
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
-                "storeId" : storeId
+                "storeId" : storeId,
+                "cityPinYin":cityPinYin
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据

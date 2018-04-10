@@ -80,7 +80,7 @@ class Renderer extends AppRendererControllerBasic {
             }
 
             //小区跳转路径
-            item.subEstateUrl = "/" + this.req.params.city + '/town/' + item.encryptSubEstateId + ".html" ;
+            item.subEstateUrl = "/" + this.req.params.city + '/community/' + item.encryptSubEstateId + ".html" ;
 
             //经纪人跳转路径
             item.houseAgent.url = "/" + this.req.params.city + '/space/' + item.houseAgent.agentId + ".html" ;

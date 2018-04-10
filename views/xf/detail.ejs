@@ -1,8 +1,26 @@
 <%- include("../components/head") %>
+<!--点击优惠弹出的图层-->
+<% if( item.activityList && item.activityList.length ) { %>
+<div class="activity-pop">
+    <h2>优惠说明</h2>
+    <ul>
+        <% item.activityList.forEach(function(activity){ %>
+        <li>
+            <span>惠</span>
+            <h3><%= activity.title %></h3>
+            <p><%= activity.details %></p>
+            <hr>            
+        </li>
+        <% }) ; %>  
+    </ul>
+    <div class="close"><span><i class="iconfont icon-remove"></i></span></div>
+</div>
+<% } %>
+
 <div class="content-wrapper has-assistant"> 
     <!-- 轮播相册图片 -->    
     <div class="wk-panel remove-left-padding">
-        <%- include( "../components/album" , { "imgList" : item.cImageList , "bigDataParams" : bigDataParams.albumPictClick } ) %>
+        <%- include( "../components/album" , { "imgList" : item.imgList , "bigDataParams" : bigDataParams.albumPictClick } ) %>
     </div>
     <!-- 户型等信息 -->
     <div class="wk-panel has-right-padding base-info">
@@ -36,7 +54,7 @@
         </div>
     </div>
 
-    <!-- 最新动态 -->
+        <!-- 最新动态 -->
     <% if( item.newHouseDynamicCount ) { %>
     <a class="wk-panel top-gap has-right-padding xf-dynamics" href="<%= item.id %>/dynamic.html?cityName=<%= encodeURIComponent(cityName) %>&subEstateName=<%= encodeURIComponent(item.estateName) %>&tel=<%= item.salePhone %>" data-bigdata="<%= bigDataParams.dynamicTotalClick %>">
         <div class="panel-header">            

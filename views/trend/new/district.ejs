@@ -33,7 +33,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/xflist/di-<%=item.regionId%>?channel=<%=item.channel%>">
+                <a href="/<%=item.cityPY%>/xflist/di-<%=item.regionId%>?channel=<%=item.channel%>" data-bigdata="<%= item.DataParams.topOnSell%>">
                     <span>在售楼盘</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -50,7 +50,7 @@
     <%if( item.priceList && item.priceList.length > 0){%>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/xflist/di-<%=item.regionId%>?channel=<%=item.channel%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/xflist/di-<%=item.regionId%>?channel=<%=item.channel%>" data-bigdata="<%= item.DataParams.district%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body flag">
             <ul>
                 <li class="top-name"> <span>板块名称</span><span class="unit-price">楼盘数</span><span>参考均价</span></li>

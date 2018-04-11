@@ -97,7 +97,8 @@ class Renderer extends AppRendererControllerBasic {
                     "dynamicTotalClick" : this.generateBigDataParams( { "eventName" : 1045001 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,                    
                     "baseinfoMoreClick" : this.generateBigDataParams( { "eventName" : 1045002 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
                     "mapClick" : this.generateBigDataParams( { "eventName" : 1045004 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
-                    "consultClick" : this.generateBigDataParams( { "eventName" : 1045020 , "eventParam" : { "new_house_id" : estateModel.id } } )
+                    "consultClick" : this.generateBigDataParams( { "eventName" : 1045020 , "eventParam" : { "new_house_id" : estateModel.id } } ) ,
+                    "clickGoCommentBigDataParams" : this.generateBigDataParams({ "eventName": 1045064, "eventParam": { new_house_id : estateModel.id } }),
                 }
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

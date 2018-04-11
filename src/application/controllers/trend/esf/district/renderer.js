@@ -80,13 +80,13 @@ class Renderer extends AppRendererControllerBasic {
                 //区域部分-查看所有房源入口
                 district : this.generateBigDataParams({
                     eventName: '1112002',
-                    eventParam:{city_id:item.regionId },
+                    eventParam:{city_id:cityInfo.data.cityId },
                     type: 2
                 }),
                 //板块部分-查看所有房源入口
                 town : this.generateBigDataParams({
                     eventName: '1112003',
-                    eventParam:{city_id:item.regionId },
+                    eventParam:{city_id:cityInfo.data.cityId },
                     type: 2
                 }),
             };

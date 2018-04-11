@@ -33,7 +33,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/community/houseList/<%= item.encrptRegion %>" data-bigdata="<%= item.DataParams.town%>">
+                <a href="/<%=item.cityPY%>/community/houseList/<%= item.encrptRegion %>" >
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -43,7 +43,7 @@
     <% } %>
     <!-- 价格走势-->
     <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
+    <div class="echart wk-panel" id="estateEchart" >
         <div id="main"></div>
     </div>
     <div class="empty-color"></div>

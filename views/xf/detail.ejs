@@ -159,27 +159,25 @@
     </div>
     <% } %>
 
-    <!-- 用户评论 -->
-    <% if( commentGroupModel ) { %>    
+    <!-- 用户评论 -->   
     <div class="wk-panel estate-comments top-gap has-right-padding">        
         <div class="panel-header">            
             <div class="pull-left">用户评论</div>
-            <% if( commentGroupModel.commentList && commentGroupModel.commentList.length ) { %>
-            <a  href="/estate/moreComment.html?commentLocation=2&subEstateId=<%= item.id %>" class="pull-right"><%= commentGroupModel.commentList.length %> 条<i class="iconfont icon-next"></i></a>
+            <% if( commentGroupModel && commentGroupModel.commentList && commentGroupModel.commentList.length ) { %>
+            <a  href="/estate/moreComment.html?commentLocation=2&subEstateId=<%= item.id %>" class="pull-right"><%= commentGroupModel && commentGroupModel.commentList.length %> 条<i class="iconfont icon-next"></i></a>
             <% } %>
         </div>        
         <div class="panel-body">
             <% if( ! commentGroupModel || ! commentGroupModel.commentList || commentGroupModel.commentList.length ==0 ) { %>
             <span>当前暂无评论，快来抢沙发吧！</span>
-            <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=rent&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
+            <p><a style="line-height: 30px; font-size: 14px; color: #4081D6" href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.id %>&source=xf&businessId=<%= item.encryptSubEstateId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.id %>" data-bigdata="<%= bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
             <% } else { %> 
             <%- include("../components/subestate-comments", { comments : commentGroupModel.commentList } ) %>
             <!--<hr><a href="#" class="go-comment">我来评论</a>-->
             <% } %>
         </div>
         
-    </div>
-    <% } %>
+    </div>    
 
     <!--位置及周边的地图-->
     <% if( item.longitude &&  item.latitude  ) { %>

@@ -52,7 +52,7 @@ class Renderer extends AppRendererControllerBasic {
              /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             相册的视频和图片的数据的组装处理
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/            
-            estateModel['imgList'] = this.recombingAlbumData({ apiData : estateModel , city : this.cityPinyin , pictKey : "imageList" }) ;            
+            estateModel['imgList'] = this.recombingAlbumData({ apiData : estateModel , city : this.cityPinyin , pictKey : "imageList", videoKey: "estateVideoResponse" }) ;            
              /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             对周边楼盘数据进行：
             1.  bigDataParams以及url的处理

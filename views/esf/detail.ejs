@@ -147,11 +147,11 @@
                 </span>
             </a>
             <%}else{%>
-               <div class="total-item">
-                <p>小区评论</p>
+               <div class="total-item" id="communityComments">
+                <p class="caption">小区评论</p>
                 <div>
-                    <span>当前暂无评论，快来抢沙发吧！</span>
-                    <p><a href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.DataParams.goCommentBigDataParams%>">我来点评</a></p>
+                    <span id="noComments">当前暂无评论，快来抢沙发吧！</span>
+                    <p><a id="toComment" href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.subEstateId %>&source=esf&businessId=<%= item.encryptHouseId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.houseId %>" data-bigdata="<%= item.DataParams.goCommentBigDataParams%>">我来点评</a></p>
                 </div>
             </div>
             <%}%>
@@ -163,7 +163,7 @@
     <%}%>
    <!-- 相似房源推荐-->
     <%if(item.similarHouses){%>
-    <div class="similar wk-panel">
+    <div class="similar wk-panel <% if( ! item.latitude || ! item.longitude) { %> top-gap<% } %>">
         <div class="panel-header">相似房源推荐</div>
         <div class="panel-body similar-house">
             <%- include("../components/esf-items",{ oldHouseList: item.similarFiveHouses}) %>

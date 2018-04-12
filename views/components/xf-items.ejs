@@ -4,7 +4,7 @@
         <a class="xf-item" href="<%= item.url%>" data-bigdata="<%= item.bigDataParams %>">
             <div class="img">
                 <img src="<%= appStaticPrefix %>/images/common/loading.jpg" class="lazy" data-src="<%= item.imageUrl%>">
-                <% if( item.hasVideo  == 1) { %><span class="play"><i></i></span><% } %>
+                <% if( item.hasVideo  == 1) { %><span class="play"></span><% } %>
                 <%if(item.activitys && item.activitys[0]){%>
                     <div class="yh"><%= item.activitys[0].title%></div>
                 <%}%>                

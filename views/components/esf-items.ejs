@@ -3,7 +3,7 @@
         <dl>
             <dt>
                 <img src="<%= appStaticPrefix %>/images/common/loading.jpg" data-src="<%= esf.houseImgUrl %>?x-oss-process=image/resize,w_150" alt="<%= esf.estateName %>" class="lazy">
-                <% if(esf.hasVideo == 1) { %><span class="play"><i></i></span><% } %>
+                <% if(esf.hasVideo == 1) { %><span class="play"></span><% } %>
             </dt>
             <dd class="title"><%= esf.houseTitle %></dd>
             <dd><%= esf.houseChild %> <%= esf.areaStr %> | <%= esf.district %> <%= esf.town %></dd>
@@ -16,7 +16,7 @@
                 <% }}) ; } %>               
             </dd>   
             <dd>
-                 <span class="money"><%= esf.totalPrice %></span><span class="unit">万</span>&nbsp;<span class="price"><%= esf.unitPrice %> 元/㎡</span>
+                 <span class="money"><%= esf.totalPrice %></span> <span class="unit">万</span>&nbsp;<span class="price"><%= esf.unitPrice %> 元/㎡</span>
             </dd>                             
         </dl>
     </a>

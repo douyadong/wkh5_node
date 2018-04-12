@@ -49,7 +49,7 @@
         配套设施
     </div>
     <ul class="panel-body supporting"> 
-        <%for(let key in mapping){%><li class="<%= (houseSupporting[mapping[key][0]]?'':'strike')%>"><i class="icon iconfont icon-<%= key%>"></i><span> <%= mapping[key][1]%></span></li><%}%>        
+        <%for(let key in mapping){%><li class="<%= (houseSupporting[mapping[key][0]]?'':'strike')%>"><span class="icon iconfont icon-<%= key%>"> <%= mapping[key][1]%></span></li><%}%>
     </ul>
 </div> 
 <%}%>

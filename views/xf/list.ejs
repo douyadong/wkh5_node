@@ -5,7 +5,7 @@
 <input type="hidden" id="channel" value="<%= channel%>">
 <input type="hidden" id="oldBusiness" value="<%= cityModel.oldBusiness && '1' || ''%>">
 <div class="total">
-    <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: ""%></span> <span>套房源</span>
+    <span>共找到</span> <span class="count"><%= data && data.data? data.data.total: "0"%></span> <span>套房源</span>
 </div>
 <div id="list">
 <%if(data && data.data && data.data.newHouseDataListModelList && data.data.newHouseDataListModelList.length > 0){%>

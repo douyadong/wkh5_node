@@ -169,7 +169,7 @@
         </div>        
         <div class="panel-body">
             <% if( ! commentGroupModel || ! commentGroupModel.commentList || commentGroupModel.commentList.length ==0 ) { %>
-            <span>当前暂无评论，快来抢沙发吧！</span>
+            <span class="no-comments">当前暂无评论，快来抢沙发吧！</span>
             <p><a style="line-height: 30px; font-size: 14px; color: #4081D6" href="<%= domain %>/estate/commentEstate.html?subEstateId=<%= item.id %>&source=xf&businessId=<%= item.encryptSubEstateId %>&commentLocation=1&boutique=0&hotSpotId=<%= item.id %>" data-bigdata="<%= bigDataParams.clickGoCommentBigDataParams%>">我来点评</a></p>
             <% } else { %> 
             <%- include("../components/subestate-comments", { comments : commentGroupModel.commentList } ) %>

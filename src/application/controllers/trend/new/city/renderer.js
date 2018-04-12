@@ -101,7 +101,10 @@ class Renderer extends AppRendererControllerBasic {
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
                 "extraJavascripts" : extraJavascript ,
                 "item": item,
-                "BusinessSpurt":BusinessSpurt
+                "BusinessSpurt":BusinessSpurt,
+           /*     "wechatTitle" : item.weChatShare.title || '',
+                "wechatContent" : item.weChatShare.content || '',
+                "wechatImgUrl" : item.weChatShare.picUrl || '',*/
             }) ;
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

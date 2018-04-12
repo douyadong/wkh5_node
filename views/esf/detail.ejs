@@ -169,6 +169,7 @@
             <%- include("../components/esf-items",{ oldHouseList: item.similarFiveHouses}) %>
         </div>
         <% if(item.similarHouseCount > 5){ %>
+        <hr>
         <div class="esf-more">
             <a href="<%= domain %>/esf/similarList.html?enCryptHouseId=<%= item.encryptHouseId %>" data-bigdata="<%= item.DataParams.similarBigDataParams%>">查看更多</a>
         </div>

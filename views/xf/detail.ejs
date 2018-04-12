@@ -34,8 +34,8 @@
         </p>                
         <div class="panel-body">            
             <hr>
-            <div class="tags">            
-                    <% if( item.hasActivity == "1") { %><span class="tag yh">有优惠</span><% } %><% if( item.isSubwayEstate == "1") { %><span class="tag dt">近地铁</span><% } %><% if( item.hasVideo == "1") { %><span class="tag">有视频</span><% } %><% if( item.isSoonOpen == "1") { %><span class="tag">即将开盘</span><% } else {%><span class="tag">在售楼盘</span><%}%>                
+            <div class="tags">  
+                    <% if( item.hasActivity == "1") { %><div class="yh"><span>有优惠</span></div><% } %><% if( item.isSubwayEstate == "1") { %><div class="dt"><span>近地铁</span></div><% } %><% if( item.hasVideo == "1") { %><div><span>有视频</span></div><% } %><% if( item.isSoonOpen == "1") { %><div><span>即将开盘</span></div><% } else {%><div><span>在售楼盘</span></div><%}%>                
             </div>
             <div class="time">
                 <dl><dt>开盘时间</dt><dd><%= item.openTimeStr || "--" %></dd></dl>

@@ -103,9 +103,9 @@ class Renderer extends AppRendererControllerBasic {
                 "extraJavascripts" : extraJavascript ,
                 "item": item,
                 "BusinessSpurt":BusinessSpurt,
-                "wechatTitle" : item.weChatShare.title || '',
+             /*   "wechatTitle" : item.weChatShare.title || '',
                 "wechatContent" : item.weChatShare.content || '',
-                "wechatImgUrl" : item.weChatShare.picUrl || '',
+                "wechatImgUrl" : item.weChatShare.picUrl || '',*/
             }) ;
 
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

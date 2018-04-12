@@ -35,6 +35,7 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             let adf = new ApiDataFilter(this.req.app) ;           
             let urlParser = new UrlParser(this.req.originalUrl); // new一个url处理的对象
+            let channel = this.req.query.channel;
 
             let param ={
                 cityId: 43/*cityId*/,
@@ -83,7 +84,7 @@ class Renderer extends AppRendererControllerBasic {
                 cityModel.cityOpen = cityModel.oldBusiness ;                
             }else{                
                 // 跳转到上海
-                this.res.redirect('/shanghai/esf/');
+                this.res.redirect('/shanghai/esf/' + (channel&&("?channel="+channel)||""));
                 return;
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,7 +94,7 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             if( this.req.cookies.visitedCityId && this.req.cookies.visitedCityId != cityModel.cityId && this.req.cookies.selectedCityId && this.req.cookies.selectedCityId != cityModel.cityId ) {
                 console.log("先前访问过H5城市，并且选择过城市，这两个城市值都不等于路由城市，所以跳转到先前访问城市") ;
-                this.res.redirect("/" + this.req.cookies.visitedCityPinyin + "/esf" ) ;
+                this.res.redirect("/" + this.req.cookies.visitedCityPinyin + "/esf" +(channel&&("?channel=" + channel)||"") ) ;
                 return ;
             }
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -102,7 +103,7 @@ class Renderer extends AppRendererControllerBasic {
 
             Object.assign(this.templateData, { "cityModel" : cityModel }) ;
             param.cityId = cityModel.cityId;
-            let channel = this.req.query.channel;
+            
             if(cityModel.cityOpen){// 只在开通业务时才发请求获取列表数据
                 data = await adf.request({
                     "apiPath" : modulePathArray.join("."),

@@ -395,7 +395,8 @@ class Renderer extends AppRendererControllerBasic {
                     "matchStylesheetPath" : modulePathArray.join("/") ,
                     "controllerJavascriptPath" : modulePathArray.join("/"),
                     "item" : item ,
-                    "rentBusinessSput":rentBusinessSpurt
+                    "rentBusinessSput":rentBusinessSpurt,
+
                 }) ;
                 this.render(modulePathArray.join("/")) ;
             }else {

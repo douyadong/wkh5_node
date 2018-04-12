@@ -103,8 +103,8 @@
          <div class="echart" id="estateNameEcharts">
              <hr>
              <div class="panel-header">
-                <span>小区价格走势</span>
-                <a href="/<%= cityPinyin %>/trend/esf">查看<%= cityName %>房价<i class="iconfont icon-next"></i></a>
+                <span>小区价格走势</span>                               
+                <a data-bigdata="<%= encodeURIComponent(JSON.stringify({eventName:"1067091", eventParam:{estate_id: item.subEstateId, house_id: item.houseId}}))%>" href="/<%= cityPinyin %>/trend/esf">查看<%= cityName %>房价<i class="iconfont icon-next"></i></a>
              </div>
              <div class="echart-pic">
                  <div id="main"></div>

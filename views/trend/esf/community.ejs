@@ -11,8 +11,8 @@
         </div>
         <div class="middle">
             <ul>
-                <li><a href="/<%= item.cityPY%>/trend/esf/community/<%=item.regionId%>">二手房</a> </li>
-                <li><a href="/<%= item.cityPY%>/trend/new/community/<%=item.regionId%>">新房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/esf/community/<%=item.regionId%>?channel=<%item.channel%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/community/<%=item.regionId%>?channel=<%item.channel%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -33,7 +33,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/community/houseList/<%= item.encrptRegion %>">
+                <a href="/<%=item.cityPY%>/community/houseList/<%= item.encrptRegion %>" >
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -43,7 +43,7 @@
     <% } %>
     <!-- 价格走势-->
     <%if(item.priceTrendChartList){%>
-    <div class="echart wk-panel" id="estateEchart" data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
+    <div class="echart wk-panel" id="estateEchart"  data-echart="<%=JSON.stringify(item.priceTrendChartList)  %>">
         <div id="main"></div>
     </div>
     <div class="empty-color"></div>
@@ -83,7 +83,7 @@
         <span>先看看其他城市的房价</span>
         <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>" class="change">切换城市</a>
     </p>
-    <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+    <a href="https://m.wkzf.com/citywap/fang/index.html" class="apply">城市加盟申请</a>
     <div class="contact">
         <dl>
             <dt><i class="iconfont icon-logotuxing"></i></dt>

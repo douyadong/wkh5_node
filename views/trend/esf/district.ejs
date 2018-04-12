@@ -11,8 +11,8 @@
         </div>
         <div class="middle">
             <ul>
-                <li><a href="/<%= item.cityPY%>/trend/esf/district/<%=item.regionId%>">二手房</a> </li>
-                <li><a href="/<%= item.cityPY%>/trend/new/district/<%=item.regionId%>">新房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/esf/district/<%=item.regionId%>?channel=<%= item.channel%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/district/<%=item.regionId%>?channel=<%= item.channel%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -33,7 +33,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/esf/di-<%=item.regionId%>?channel=<%=item.channel%>">
+                <a href="/<%=item.cityPY%>/esf/di-<%=item.regionId%>?channel=<%=item.channel%>" >
                     <span>在售房源</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -51,7 +51,7 @@
     <%if(item.townUponDistrictPriceList && item.townUponDistrictPriceList.length > 0){%>
     <!--板块模块信息-->
     <div class="district-town wk-panel">
-        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/esf/di-<%=item.regionId%>?channel=<%=item.channel%>"><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
+        <div class="panel-header">当前各板块参考价格<a href="/<%=item.cityPY%>/esf/di-<%=item.regionId%>?channel=<%=item.channel%>" ><span>查看所有房源<i class="iconfont icon-next"></i></span></a></div>
         <div class="wk-body flag">
             <ul>
                 <li class="top-name"> <span>区域</span><span class="unit-price">参考均价</span><span>涨幅</span></li>
@@ -87,7 +87,7 @@
         <span>先看看其他城市的房价</span>
         <a href="/public/city/select?businessType=esfTrend&channel=<%= item.channel%>" class="change">切换城市</a>
     </p>
-    <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+    <a href="https://m.wkzf.com/citywap/fang/index.html" class="apply">城市加盟申请</a>
     <div class="contact">
         <dl>
             <dt><i class="iconfont icon-logotuxing"></i></dt>

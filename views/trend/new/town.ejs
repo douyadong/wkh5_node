@@ -11,8 +11,8 @@
         </div>
         <div class="middle">
             <ul>
-                <li><a href="/<%= item.cityPY%>/trend/esf/town/<%=item.regionId%>">二手房</a> </li>
-                <li><a href="/<%= item.cityPY%>/trend/new/town/<%=item.regionId%>">新房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/esf/town/<%=item.regionId%>?channel=<%= item.channel%>">二手房</a> </li>
+                <li><a href="/<%= item.cityPY%>/trend/new/town/<%=item.regionId%>?channel=<%= item.channel%>">新房</a> </li>
             </ul>
         </div>
         <div class="right">
@@ -33,7 +33,7 @@
                 <p><%= item.housePrice.increase %></p>
             </div>
             <div class="tot-house">
-                <a href="/<%=item.cityPY%>/xflist/to-<%=item.regionId%>?channel=<%=item.channel%>">
+                <a href="/<%=item.cityPY%>/xflist/to-<%=item.regionId%>?channel=<%=item.channel%>" >
                     <span>在售楼盘</span><i class="iconfont icon-next"></i>
                     <p><%= item.housePrice.houseCount %> 套</p>
                 </a>
@@ -77,7 +77,7 @@
         <span>先看看其他城市的房价</span>
         <a href="/public/city/select?businessType=newTrend&channel=<%= item.channel%>" class="change">切换城市</a>
     </p>
-    <a href="https://m.wkzf.com/citywap/index.html" class="apply">城市加盟申请</a>
+    <a href="https://m.wkzf.com/citywap/fang/index.html" class="apply">城市加盟申请</a>
     <div class="contact">
         <dl>
             <dt><i class="iconfont icon-logotuxing"></i></dt>

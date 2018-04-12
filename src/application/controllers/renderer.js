@@ -79,8 +79,9 @@ class AppRendererControllerBasic extends SystemRendererControllerBasic {
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
         if( item.hasOwnProperty(videoKey) && item[videoKey] ){
             item[videoKey].isVideo = true ;
-            item[videoKey].url = item[videoKey].videoUrl ;
+            item[videoKey].url = item[videoKey].smallVideoUrl /*配合新房详情页*/ || item[videoKey].videoUrl ;
             item[videoKey].videoPlayUrl = "/" + city + '/videoplay/index?src=' + encodeURIComponent(item[videoKey].videoUrl) ;
+            item[videoKey].imageUrl = item[videoKey].videoSmallImage/*新房*/ || item[videoKey].imageUrl/*二手房*/;
             result.push(item[videoKey]) ;
         }
         /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

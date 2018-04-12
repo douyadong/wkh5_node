@@ -86,7 +86,9 @@ class Renderer extends AppRendererControllerBasic {
                 "matchStylesheetPath" : modulePathArray.join("/") ,
                 "controllerJavascriptPath" : modulePathArray.join("/") ,
                 "storeId" : storeId,
-                "cityPinYin":cityPinYin
+                "cityPinYin":cityPinYin,
+                "cityName":storeApiData.data.priceModel.cityName,
+                "cityId":storeApiData.data.priceModel.cityId,
             }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             扩展模板api数据

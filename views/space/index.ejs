@@ -17,7 +17,7 @@
             <div class="agent-info">
                 <div class="agent-name">
                     <span class="name"><%= agent.agentName %></span>
-                    <span class="company">| <%= agent.agentBelongToCompanyName %></span>
+                    <span class="company"> | <%= agent.agentBelongToCompanyName %></span>
                 </div>
                 <% if(agentCommentCount) { %>
                 <div class="star">
@@ -62,13 +62,11 @@
 <div class="wk-tabs top-gap">
     <!--tabs-handle部分-->
     <% if((oldHouseList && oldHouseList.length > 0) || (newHouseList && newHouseList.length > 0) || (rentHouseList && rentHouseList.length > 0)) { %>
-    <% if(tabsCount > 1) { %>
     <ul class="wk-panel tabs-handle">
         <% if(oldHouseList && oldHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.esfTab %>" data-typehouse="secondHouseList"><a href="javascript:; ">在售二手房</a></li><% } %>
         <% if(newHouseList && newHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.xfTab %>" data-typehouse="newHouseList"><a href="javascript:; ">在售新房</a></li><% } %>
         <% if(rentHouseList && rentHouseList.length > 0) { %><li data-bigdata="<%= bigDataParams.rentTab %>" data-typehouse="rentHouseList"><a href="javascript:; ">在租房源</a></li><% } %>
     </ul>
-    <% } %>
     <!--tabs-frame部分-->
     <% if(oldHouseList && oldHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="esf-frame"> <%- include("../components/esf-items" , { "oldHouseList" : oldHouseList } ) %></div></div><% } %>
     <% if(newHouseList && newHouseList.length > 0) { %><div class="wk-panel tabs-frame "><div class="xf-frame"> <%- include("../components/xf-items" , { "items" : newHouseList } ) %></div></div><% } %>

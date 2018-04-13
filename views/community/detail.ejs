@@ -18,7 +18,7 @@
             <dl><dt>物业公司</dt><dd><%= item.propertyCompany %></dd></dl>
             <dl><dt>开发商</dt><dd><%= item.developers %></dd></dl>
             <% if( item.subwayName || item.schoolName ) { %>
-            <hr>
+            <hr style="margin:10px 0;">
                 <!--<div class="has-bottom-border"></div>-->
             <div class="subway-school">
                 <% if( item.subwayName) { %><dl><dt>地铁</dt><dd><%= item.subwayName %></dd></dl><% } %>

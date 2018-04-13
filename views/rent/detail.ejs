@@ -40,14 +40,14 @@
             <hr>
             <div class="tags">
                 <% if( item.houseTag ) { %>
-                    <% if( item.houseTag.isZeroCommission == 1 ) { %><div><span class="tag commission">0佣金</span></div><% } %>
-                    <% if( item.houseTag.isSubwayHouse == 1 ) { %><div><span class="tag nears">近地铁</span></div><% } %>
-                    <% if( item.houseTag.isPriceDown == 1) { %><div><span class="tag priced">降价</span></div><% } %>
-                    <% if( item.houseTag.isNewHouse == 1 ) { %><div><span class="tag newup">新上</span></div><% } %>
-                    <% if( item.houseTag.isShortRent == 1 ) { %><div><span class="tag anthert">可短租</span></div><% } %>
-                    <% if( item.houseTag.isHardcover == 1 ) { %><div><span class="tag anthert">精装</span></div><% } %>
-                    <% if( item.houseTag.isHardcover == 2 ) { %><div><span class="tag anthert">豪装</span></div><% } %>
-                    <% if( item.houseTag.isSouth == 1) { %><div><span class="tag anthert">朝南</span></div><% } %>
+                    <% if( item.houseTag.isZeroCommission == 1 ) { %><div class="commission"><span>0佣金</span></div><% } %>
+                    <% if( item.houseTag.isSubwayHouse == 1 ) { %><div class="nears"><span>近地铁</span></div><% } %>
+                    <% if( item.houseTag.isPriceDown == 1) { %><div class="priced"><span>降价</span></div><% } %>
+                    <% if( item.houseTag.isNewHouse == 1 ) { %><div class="newup"><span>新上</span></div><% } %>
+                    <% if( item.houseTag.isShortRent == 1 ) { %><div class="anthert"><span>可短租</span></div><% } %>
+                    <% if( item.houseTag.isHardcover == 1 ) { %><div class="anthert"><span>精装</span></div><% } %>
+                    <% if( item.houseTag.isHardcover == 2 ) { %><div class="anthert"><span>豪装</span></div><% } %>
+                    <% if( item.houseTag.isSouth == 1) { %><div class="anthert"><span>朝南</span></div><% } %>
                 <% } %>
             </div>
             <div class="two-column-container">

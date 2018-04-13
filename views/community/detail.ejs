@@ -18,7 +18,8 @@
             <dl><dt>物业公司</dt><dd><%= item.propertyCompany %></dd></dl>
             <dl><dt>开发商</dt><dd><%= item.developers %></dd></dl>
             <% if( item.subwayName || item.schoolName ) { %>
-                <div class="has-bottom-border"></div>
+            <hr>
+                <!--<div class="has-bottom-border"></div>-->
             <div class="subway-school">
                 <% if( item.subwayName) { %><dl><dt>地铁</dt><dd><%= item.subwayName %></dd></dl><% } %>
                 <% if( item.schoolName) { %><dl><dt>学校</dt><dd><%= item.schoolName %></dd></dl><% } %>
@@ -40,7 +41,7 @@
         <hr/>
         <div id="main"></div>
 
-        <div class="panel-header onsell">在售房源 <% if( item.sellHouseCount > 0  || true){ %><span><a href="/<%=item.cityPinYin%>/community/houseList/<%=item.encryptSubEstateId%>"> <%= item.sellHouseCount %>套</a></span> <% } %></div>
+        <div class="panel-header onsell">在售房源 <% if( item.sellHouseCount > 0  || true){ %><span><a href="/<%=item.cityPinYin%>/community/houseList/<%=item.encryptSubEstateId%>"> <%= item.sellHouseCount %>套<i class="iconfont icon-next"></i></a></span> <% } %></div>
     </div>
     <% } %>
     <% if( item.longitude >0 &&  item.latitude > 0 ){ %>

@@ -23,7 +23,7 @@
             <div class="right">
                 <h4><%= item.houseTitle%></h4>
                 <p class="base-info"><%= item.houseTypeStr%>  <%= item.spaceArea%>㎡ | <%= item.districtAndTownName%></p>
-                <%if(item.distanceSubway != null){%><p class="base-info"><%= item.distanceSubway%></p><%}%>
+                <%if(item.distanceSubway){%><p class="base-info"><%= item.distanceSubway%></p><%}%>
                 <div class="tags" <%if(item.distanceSubway == null || item.distanceSubway == ''){%>style="margin-top:11px"<%}%>>
                     <%if(item.houseTag){%>
                       <%if(item.houseTag.isSubwayHouse){%><div class="nears"><span>近地铁</span></div><%}%>

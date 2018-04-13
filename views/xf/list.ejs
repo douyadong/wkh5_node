@@ -1,6 +1,9 @@
 <%- include("../components/head") %>
-<%- include("../components/conning-tower", {release: !!channel, cityModel: cityModel, bigDataParams: bigDataParams.conningTower, "moduleType" : "xf" , })%>
-<%- include("../components/filter") %>
+<div class="fixed-header">
+    <%- include("../components/conning-tower", {release: !!channel, cityModel: cityModel, bigDataParams: bigDataParams.conningTower, "moduleType" : "xf" , })%>
+    <%- include("./ads") %>
+    <%- include("../components/filter") %>
+</div>
 <div class="container">
 <input type="hidden" id="channel" value="<%= channel%>">
 <input type="hidden" id="oldBusiness" value="<%= cityModel.oldBusiness && '1' || ''%>">

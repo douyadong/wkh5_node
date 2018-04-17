@@ -9,6 +9,7 @@
     </div>
     <div class="text-ads">
         <div class="logo"><img src="<%= appStaticPrefix %>/images/xf/headline.png"></div>
+        <div class="fence"></div>
         <div class="items swiper-container">
             <div class="swiper-wrapper">
                 <% xfAds && xfAds.text && xfAds.text.forEach(function(ads){ %>
@@ -22,3 +23,4 @@
     </div>
     <div class="fence-line"></div>
 </div>
+<input type="hidden" id="routerConditionParams" value="<%= routerConditionParams %>">

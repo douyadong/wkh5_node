@@ -72,6 +72,7 @@ export default {
         },
         "xf": {
             "list": "wkzfH5/newHouseList.rest" ,
+            "ads" : "wkzfH5/getAds.rest" ,
             "detail" : "wkzfH5/newHouseDetail.rest" ,
             "dynamic" : "wkzfH5/newHouseDynamicList.rest" ,
             "baseinfo" : "wkzfH5/briefNewHouseDetail.rest"

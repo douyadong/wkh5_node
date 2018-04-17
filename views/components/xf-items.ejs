@@ -5,7 +5,8 @@
             <% if( item.hasVideo  == 1) { %><span class="play"></span><% } %>
             <% if(item.activitys && item.activitys[0]) { %>
                 <div class="yh"><%= item.activitys[0].title %></div>
-            <%}%>                
+            <%}%>
+            <% if(item.isHot) { %><div class="hot"><span>热销</span></div><% } %>
         </div>
         <div class="info">
             <h3><%= item.estateName %></h3>

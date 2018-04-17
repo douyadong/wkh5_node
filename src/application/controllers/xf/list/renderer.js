@@ -91,7 +91,7 @@ class Renderer extends AppRendererControllerBasic {
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/      
 
             Object.assign(this.templateData, { "cityModel" : cityModel }) ;
-            param.cityId = cityModel.cityId;
+            param.cityId = cityModel.cityId ;
             
 
             if(cityModel.cityOpen){
@@ -110,8 +110,25 @@ class Renderer extends AppRendererControllerBasic {
                         item.hasVideo = parseInt(item.hasVideo) || 0;
                     });
                 }
-            }            
-
+            }
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            新房广告数据获取
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
+            let adsModel = await adf.request({
+                "apiPath" : "xf.ads" ,
+                "data" : { "cityId" : cityModel.cityId , "columnPositionId" : "3,4" } ,
+                "method":"post",
+                "contentType":"application/json"
+            }) ;
+            Object.assign(this.templateData, {                 
+                "xfAds" : {
+                    "pict" : adsModel.data.operationColumnMap["3"] || [] ,
+                    "text" : adsModel.data.operationColumnMap["4"] || [] ,
+                }
+            }) ; 
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            常规变量赋值
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/    
             Object.assign(this.templateData, {                 
                 "matchStylesheetPath" : modulePathArray.join("/"),
                 "controllerJavascriptPath" : modulePathArray.join("/"),
@@ -120,8 +137,7 @@ class Renderer extends AppRendererControllerBasic {
                 "title": cityModel.cityName + "新楼盘_" + cityModel.cityName + "买新房_新房交易_" + cityModel.cityName + "新开楼盘信息-悟空找房",
                 "keywords": cityModel.cityName + "新楼盘,"+ cityModel.cityName +"新开盘房源出售," + cityModel.cityName + "新房,"+ cityModel.cityName +"新开楼盘交易",
                 "description": "悟空找房网为您提供"+cityModel.cityName+"新开楼盘的最新信息，各区域的新楼盘房源出售信息这里都能找到，想要关注更多"+cityModel.cityName+"新楼盘信息尽在悟空找房，这里有真实可靠的房源、真诚的服务、安全的交易，让"+cityModel.cityName+"新楼盘交易买卖变得高效又安全。"
-            }) ;      
-
+            }) ;
             /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             埋点参数配置 
             -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
@@ -138,10 +154,13 @@ class Renderer extends AppRendererControllerBasic {
                     }
                 }
             }) ;
-
+            /*++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            渲染页面
+            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------++*/
             this.render(modulePathArray.join("/")) ;
-        }catch (err){
-            this.next(err)
+        }
+        catch (err) {
+            this.next(err) ;
         }
     }
 

@@ -1,14 +1,16 @@
 <%- include("../components/head") %>
-<!--导入司令塔-->
-<%- include("../components/conning-tower" , { 
-    "moduleType" : "esf" , 
-    "release" : !!channel ,  //是否投放页面，比如今日头条投放，齐家投放，投放页面是没有汉堡菜单和返回按钮的
-    "cityModel" : cityModel ,    
-    "bigDataParams" : bigDataParams.conningTower
- } ) %>
+<div class="fixed-header">
+    <!--导入司令塔-->
+    <%- include("../components/conning-tower" , { 
+        "moduleType" : "esf" , 
+        "release" : !!channel ,  //是否投放页面，比如今日头条投放，齐家投放，投放页面是没有汉堡菜单和返回按钮的
+        "cityModel" : cityModel ,    
+        "bigDataParams" : bigDataParams.conningTower
+    } ) %> 
+    <%- include("../components/filter") %>
+ </div>
  <input type="hidden" id="channel" value="<%= channel%>">
  <input type="hidden" id="newBusiness" value="<%= cityModel.newBusiness && '1' || ''%>">
- <%- include("../components/filter") %>
  <!--导入二手房条目-->
  <div class="container">
 

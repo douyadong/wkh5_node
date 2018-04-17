@@ -1,0 +1,8 @@
+<div class="wk-tags">
+    <% tagList && tagList.forEach(function(tag) { %>
+        <% if( tag == "降价" ) { %><div class="highlight promotion"><span><%= tag %></span></div>
+        <% } else if( tag == "新上" ) { %><div class="highlight new"><span><%= tag %></span></div>
+        <% } else if( tag == "满二" || tag == "满五唯一" ) { %><div class="highlight over"><span><%= tag %></span></div>
+        <% } else { %><div><span><%= tag %></span></div>               
+    <% }}) ; %>
+</div>

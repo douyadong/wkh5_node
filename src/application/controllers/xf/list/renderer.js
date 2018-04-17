@@ -131,6 +131,10 @@ class Renderer extends AppRendererControllerBasic {
                         "search" : this.generateBigDataParams( { "eventName" : 1068017 , "eventParam" : {} } ) ,
                         "hamburg" : this.generateBigDataParams( { "eventName" : 1068027 , "eventParam" : {} } ) ,
                         "clearSearchHistory" : this.generateBigDataParams( { "eventName" : 1068015 } )
+                    } ,
+                    "xfAds" : {
+                        "pict" : this.generateBigDataParams( { "eventName" : 1050058 , "eventParam" : {} } ) ,
+                        "text" : this.generateBigDataParams( { "eventName" : 1050059 , "eventParam" : {} } ) 
                     }
                 }
             }) ;

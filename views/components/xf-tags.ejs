@@ -1,0 +1,9 @@
+<% if( item) { %>
+    <div class="wk-tags">  
+        <% if( item.hasActivity == "1") { %><div class="highlight promotion"><span>有优惠</span></div><% } %>
+        <% if( item.isSubwayEstate == "1") { %><div class="highlight near-subway"><span>近地铁</span></div><% } %>
+        <% if( item.hasVideo == "1") { %><div><span>有视频</span></div><% } %>
+        <% if( item.isSoonOpen == "1") { %><div><span>即将开盘</span></div>
+        <% } else {%><div><span>在售楼盘</span></div><% } %>                
+    </div>
+<% } %>

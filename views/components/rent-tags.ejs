@@ -1,0 +1,12 @@
+<div class="wk-tags">
+    <% if( houseTag ) { %>
+        <% if( houseTag.isZeroCommission == 1 ) { %><div><span>0佣金</span></div><% } %>
+        <% if( houseTag.isSubwayHouse == 1 ) { %><div class="highlight near-subway"><span>近地铁</span></div><% } %>
+        <% if( houseTag.isPriceDown == 1) { %><div class="highlight depreciate"><span>降价</span></div><% } %>
+        <% if( houseTag.isNewHouse == 1 ) { %><div class="highlight new"><span>新上</span></div><% } %>
+        <% if( houseTag.isShortRent == 1 ) { %><div><span>可短租</span></div><% } %>
+        <% if( houseTag.isHardcover == 1 ) { %><div><span>精装</span></div><% } %>
+        <% if( houseTag.isHardcover == 2 ) { %><div><span>豪装</span></div><% } %>
+        <% if( houseTag.isSouth == 1) { %><div><span>朝南</span></div><% } %>
+    <% } %>
+</div>

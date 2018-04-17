@@ -1,46 +1,16 @@
-<%# 
-    参数：
-    {
-        rentItems: [{
-            ...//别的参数按照参数就好了
-            bigDataParams: "", //点击事件埋点
-            url: "", //跳转路径
-        }]
-    }
-%>
-    <%if(rentItems && rentItems.length > 0){
-        for(let i = 0; i < rentItems.length; i++){
-            let item = rentItems[i];
-    %>        
-        <a data-bigdata="<%= item.bigDataParams%>" class="rent-item box" href="<%= item.url%>">
-            <div class="left">
-                <img data-src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>" class="lazy">
-                <% if(item.houseTag.hasVideo == 1) { %><span class="play"></span><% } %>
-                <%if(item.houseTag.isZeroCommission){%>
-                   <span class="commission">0 佣金</span>
-                <%}%>
-            </div>
-            <div class="right">
-                <h4><%= item.houseTitle%></h4>
-                <p class="base-info"><%= item.houseTypeStr%>  <%= item.spaceArea%>㎡ | <%= item.districtAndTownName%></p>
-                <%if(item.distanceSubway){%><p class="base-info"><%= item.distanceSubway%></p><%}%>
-                <div class="tags" <%if(item.distanceSubway == null || item.distanceSubway == ''){%>style=""<%}%>>
-                    <%if(item.houseTag){%>
-                      <%if(item.houseTag.isSubwayHouse){%><div class="nears"><span>近地铁</span></div><%}%>
-                      <%if(item.houseTag.isPriceDown){%><div class="priced"><span>降价</span></div><%}%>
-                      <%if(item.houseTag.isNewHouse){%><div class="newup"><span>新上</span></div><%}%>
-                      <%if(item.houseTag.isShortRent){%><div class="anthert"><span>可短租</span></div><%}%>
-                      <%if(item.houseTag.isHardcover == 1){%><div class="anthert"><span>精装</span></div><%}%>
-                      <%if(item.houseTag.isHardcover == 2){%><div class="anthert"><span>豪装</span></div><%}%>
-                      <%if(item.houseTag.isSouth){%><div class="anthert"><span>朝南</span></div><%}%>
-                    <% } %>
-                </div>
-                <p class="unit-price">
-                   <span><%= item.rentPriceStr%></span>  元/月
-                </p>
-            </div>
-        </a>
-    <%
-        }    
-    %>
-    <%}%>    
+<% rentItems && rentItems.forEach(function(item) { %>
+    <a data-bigdata="<%= item.bigDataParams %>" class="rent-item box" href="<%= item.url %>">
+        <div class="left">
+            <img data-src="<%= item.firstImageUrl %>" alt="<%= item.estateName %>" class="lazy">
+            <% if( item.houseTag.hasVideo == 1 ) { %><span class="play"></span><% } %>
+            <% if( item.houseTag.isZeroCommission) { %><span class="commission">0 佣金</span><%}%>
+        </div>
+        <div class="right">
+            <h4><%= item.houseTitle %></h4>
+            <p class="base-info"><%= item.houseTypeStr %>  <%= item.spaceArea %>㎡ | <%= item.districtAndTownName %></p>
+            <% if( item.distanceSubway) { %><p class="base-info"><%= item.distanceSubway %></p><% } %>
+            <%- include("./rent-tags" , { "houseTag" : item.houseTag }) %>            
+            <p class="unit-price"><span><%= item.rentPriceStr%></span>  元/月</p>
+        </div>
+    </a>
+<% }) ; %>

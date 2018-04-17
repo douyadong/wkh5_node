@@ -7,17 +7,8 @@
             </dt>
             <dd class="title"><%= esf.houseTitle %></dd>
             <dd><%= esf.houseChild %> <%= esf.areaStr %> | <%= esf.district %> <%= esf.town %></dd>
-            <dd class="tags">
-                <% if(esf.tagList) { esf.tagList.forEach(function(tag) { %>
-                    <% if(tag == "降价") { %><div class="promotion"><span><%= tag %></span></div>
-                    <% } else if(tag == "新上") { %><div class="new"><span><%= tag %></span></div>
-                    <% } else if(tag == "满二" || tag == "满五唯一") { %><div class="over"><span><%= tag %></span></div>
-                    <% } else { %><div><span><%= tag %></span></div>
-                <% }}) ; } %>               
-            </dd>   
-            <dd>
-                 <span class="money"><%= esf.totalPrice %></span> <span class="unit">万</span>&nbsp;<span class="price"><%= esf.unitPrice %> 元/㎡</span>
-            </dd>                             
+            <dd class="tags"><%- include("./esf-tags" , { "tagList" : esf.tagList }) %></dd>   
+            <dd><span class="money"><%= esf.totalPrice %></span> <span class="unit">万</span>&nbsp;<span class="price"><%= esf.unitPrice %> 元/㎡</span></dd>
         </dl>
     </a>
 <% }) ; %>
